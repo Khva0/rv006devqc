@@ -1,5 +1,6 @@
 from wrapper import Wrapper
 from conf import Conf
+import hashlib
 
 class Users(object):
 	
@@ -22,6 +23,12 @@ class Users(object):
 		w = Wrapper(Conf().read())
 		return w.select(["*"], ["users"])
 
+	def get_permission(self):
+		pass
+
+	def set_permission(self):
+		pass
+		
 # set permission
 # get permission sha-512
 
