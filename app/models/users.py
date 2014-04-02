@@ -8,7 +8,7 @@ class Users(object):
 	def __del__(self):
 		pass
 
-	def adduser(self,fname,lname,login,password,email,role):
+	def adduser(self):
 		pass
 
 	def edituser(self):

@@ -1,5 +1,5 @@
 import MySQLdb
-from Conf import Conf
+from conf import Conf
 
 
 class Wrapper(object):
@@ -59,5 +59,5 @@ class Wrapper(object):
 		self.connect.close()
 
 
-print Wrapper(Conf().read()).select(["id", "fname", "lname"], ["person"])
+#print Wrapper(Conf().read()).select(["id", "fname", "lname"], ["person"])
 # Wrapper(Conf().read()).insert({"fname" : "T1", "lname" : "T2"}, "person")
