@@ -28,9 +28,14 @@ class Users(object):
 
 	def set_permission(self):
 		pass
-		
+
+	def validateuser(self):
+		pass
+
 # set permission
 # get permission sha-512
+
+# valitade users (check user and password for requirements (sha - 512 len))
 
 if __name__ == '__main__':
 	u = Users()
