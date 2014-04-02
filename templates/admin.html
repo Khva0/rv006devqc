@@ -1,50 +1,81 @@
+<!DOCTYPE html>
 <html>
 	<head>
-		<title></title>
+		<title>Create user</title>
 	</head>
 	<body>
-		<p style="text-align: center;">
-			Admin Page<br />
-			Hello, username<br />
-			&nbsp;</p>
-		<form enctype="text/plain" method="post" name="manage_form" target="_blank">
+		<div class="new_user_screen">
 			<p style="text-align: center;">
-				<input name="add_user" type="button" value="ADD USER" /><input name="make_order" type="button" value="MAKE ORDER" />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<input name="search" type="submit" /><input name="search_user" type="text" value="search" /></p>
-		</form>
-		<form method="post" name="table_manage">
-			<p style="text-align: center;">
-				<input name="us_edit" type="button" value="EDIT" /><input name="del_us" type="button" value="DELETE USER" /></p>
-			<table align="center" border="1" cellpadding="1" cellspacing="1" style="width: 500px; height: 30px;">
-				<thead>
-					<tr>
-						<th scope="col">
-							USER NAME</th>
-						<th scope="col">
-							STATUS</th>
-						<th scope="col">
-							&nbsp;</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td style="text-align: center;">
-							VASYA PUPKIN</td>
-						<td style="text-align: center;">
-							ACTIVE</td>
-						<td style="text-align: center;">
-							<input checked="checked" type="checkbox" value="1" /></td>
-					</tr>
-					<tr>
-						<td style="text-align: center;">
-							KOLYA TYORKIN</td>
-						<td style="text-align: center;">
-							REMOVED</td>
-						<td style="text-align: center;">
-							<input type="checkbox" /></td>
-					</tr>
-				</tbody>
-			</table>
-		</form>
+				Create new user</p>
+			<form method="post" name="new_user">
+				<p style="text-align: center;">
+					Name<input name="Fname" type="text" />&nbsp; &nbsp; &nbsp; &nbsp; Last name<input name="Lname" type="text" /></p>
+				<p style="text-align: center;">
+					Login<input type="text" />&nbsp; &nbsp; &nbsp; &nbsp; Password<input name="password" type="password" /></p>
+				<p style="text-align: center;">
+					Email<input name="email" type="text" />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Status<input name="status" type="text" /></p>
+				<p style="text-align: center;">
+					Role &nbsp;<select name="id_role" size="1"><option value="waiter">Waiter</option><option value="cooker">Cooker</option><option value="manager">Manager</option><option value="admin">Admin</option></select></p>
+				<p style="text-align: center;">
+					<input name="create_user_b" type="button" value="Create" /></p>
+			</form>
+		</div>
+		<table align="center" border="1" cellpadding="1" cellspacing="1" style="width: 500px;">
+			<caption>
+				All users</caption>
+			<thead>
+				<tr>
+					<th scope="col">
+						Name</th>
+					<th scope="col">
+						Last name</th>
+					<th scope="col">
+						Login</th>
+					<th scope="col">
+						Email</th>
+					<th scope="col">
+						Status</th>
+					<th scope="col">
+						Role</th>
+					<th scope="col">
+						<input name="is_chosen" type="checkbox" /></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>
+						Vasiliy</td>
+					<td>
+						Pupkin</td>
+					<td>
+						vasyok_rule</td>
+					<td>
+						pupkin@vasya.com</td>
+					<td>
+						Active</td>
+					<td>
+						Admin</td>
+					<td>
+						<input name="choose_one" type="checkbox" /></td>
+				</tr>
+				<tr>
+					<td>
+						Andriy</td>
+					<td>
+						Vaskin</td>
+					<td>
+						andjey</td>
+					<td>
+						anj@andrey.ru</td>
+					<td>
+						Removed</td>
+					<td>
+						Wauter</td>
+					<td>
+						<input name="choose_one" type="checkbox" /></td>
+				</tr>
+			</tbody>
+		</table>
 		<p>
 			&nbsp;</p>
 	</body>

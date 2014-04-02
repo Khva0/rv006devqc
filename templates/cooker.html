@@ -1,20 +1,26 @@
+<!DOCTYPE html>
 <html>
 	<head>
-		<title></title>
+		<title>Create dish</title>
 	</head>
 	<body>
-		<p style="text-align: center;">
-			Cooker Page<br />
-			Hello, username<br />
-			&nbsp;</p>
-		<form enctype="text/plain" method="post" name="manage_form" target="_blank">
-			<p style="text-align: center;">
-				<input name="make_order" type="button" value="MAKE ORDER" /><input name="add_menu" type="button" value="ADD MENU ENTRY" />&nbsp;<input name="add_category" type="button" value="ADD NEW CATEGORY" /> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</p>
-		</form>
-		<form method="post" name="table_manage">
-			<p style="text-align: center;">
-				&nbsp;</p>
-		</form>
+		<div class="create_menu">
+			<form method="post" name="create_menu_form">
+				<p style="text-align: center;">
+					Add dishes</p>
+				<p style="text-align: center;">
+					Dish name<input name="name" type="text" />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Price<input name="price" type="text" /></p>
+				<p style="text-align: center;">
+					Status<input name="status" type="text" />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Count<input name="count" type="text" /></p>
+				<p style="text-align: center;">
+					Category<input name="id_category" type="text" /></p>
+				<p style="text-align: center;">
+					Description<br />
+					<textarea cols="10" name="Description" rows="3"></textarea></p>
+				<p style="text-align: center;">
+					<input name="new_menu_button" type="button" value="Create" /></p>
+			</form>
+		</div>
 		<p>
 			&nbsp;</p>
 	</body>
