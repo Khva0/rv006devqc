@@ -22,6 +22,9 @@ class Users(object):
 		w = Wrapper(Conf().read())
 		return w.select(["*"], ["users"])
 
+# set permission
+# get permission sha-512
+
 if __name__ == '__main__':
 	u = Users()
 	#print u.get_all_users()
