@@ -1,4 +1,4 @@
-import wrapper
+from wrapper import Wrapper
 
 class Users(object):
 
@@ -18,5 +18,7 @@ class Users(object):
 		pass
 
 if __name__ == '__main__':
-	u = Users()
-	u.edituser()
+	#u = Users()
+	#u.edituser()
+	w = Wrapper()
+	print w.Wrapper(Conf().read()).select(["id", "fname", "lname"], ["person"])
