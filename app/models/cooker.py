@@ -23,5 +23,5 @@ class Cooker(object):
  		self.wrapper.update(item_menu, "dishes", "where id={0}".format(id_menu))
 
 
-	# cooker = Cooker()
-	# print cooker.add_item_category({"category":"T120"})
+#cooker = Cooker()
+#print cooker.add_item_category({"category":"T120"})
