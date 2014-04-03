@@ -32,6 +32,12 @@ class Users(object):
 	def validateuser(self):
 		pass
 
+	def is_pwd(self,passwd):
+	    result = None
+	    try: result = re.match(r'^[a-f0-9]{128}$', passwd).group(0)
+	    except: pass
+	    return result is not None
+
 # set permission
 # get permission sha-512
 
