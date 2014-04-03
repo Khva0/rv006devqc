@@ -1,6 +1,7 @@
 from wrapper import Wrapper
 from conf import Conf
 import hashlib
+import re
 
 class Users(object):
 	
@@ -37,6 +38,18 @@ class Users(object):
 	    try: result = re.match(r'^[a-f0-9]{128}$', passwd).group(0)
 	    except: pass
 	    return result is not None
+
+	def is_email(self,email):
+	    result = None
+	    try: result = re.match('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$', email).group(0)
+	    except: pass
+	    return result is not None
+    
+	def is_username(self,uname):
+		result = None
+		try: result = re.match('^[a-zA-Z0-9_\.+-@#]+$', uname).group(0)
+		except: pass
+		return result is not None
 
 # set permission
 # get permission sha-512
