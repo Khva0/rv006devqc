@@ -38,8 +38,8 @@ class Test(unittest.TestCase):
 
     def get_last_id(self, table):
         try:
-            self.connect = MySQLdb.connect("193.203.48.28",
-                                            "user2", "pass2", "3")
+            self.connect = MySQLdb.connect("127.0.0.1",
+                                            "user", "pass", "db")
             cursor = self.connect.cursor(MySQLdb.cursors.DictCursor)
             cursor.execute("SELECT max(id) FROM %s" % (table))
             return cursor.fetchall()[0].get('max(id)')
