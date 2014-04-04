@@ -4,8 +4,8 @@ from conf import Conf
 
 class Wrapper(object):
 	"""docstring for Wrapper"""
-	def __init__(self, args):
-		self.connect = MySQLdb.connect(*args)
+	def __init__(self):
+		self.connect = MySQLdb.connect(*Conf().read())
 
 
 	def select(self, columns, table_names, condition = ""):
@@ -34,8 +34,10 @@ class Wrapper(object):
 			cursor = self.connect.cursor()
 			cursor.execute("update {0} set {1} {2}".format(table_names, diction, condition))
 			self.connect.commit()
+			return True
 		except Exception, e:
 			print e
+			return e
 
 
 	def insert(self, diction, table_name):
