@@ -5,26 +5,10 @@ from users import Users
 from wrapper import Wrapper
 
 
-def setUpModule():
-    pass
-
-def tearDownModule():
-    pass
-
-
 class Test(unittest.TestCase):
 
-    """def __init__(self, *args, **kwargs):
-        super(Test, self).__init__(*args, **kwargs)
-        pass"""
 
-
-    @staticmethod
-    def setUpClass():
-        print "In setUpClass()"
-
-    def setUp(self):  #
-
+    def setUp(self):
         self.userclass = Users()  # create user object
 
         self.user_insert = {"f_name": 'TestName',
@@ -93,13 +77,6 @@ class Test(unittest.TestCase):
             
     def _test_validateuser(self):  #must return True or False
         self.assertTrue(False)
-    
-    def tearDown(self):
-        pass
-
-    @staticmethod
-    def tearDownClass():
-        pass
     
 
 if __name__ == "__main__":
