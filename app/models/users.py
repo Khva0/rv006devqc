@@ -5,16 +5,14 @@ import re
 class Users(object):
 	""" Users Class 
 			Methods:
-				adduser()
-				edituser()
-				deleteuser()
 				get_all_users()
 				get_permission()
-				set_permission()
+				login()
 				validateuser()
 				is_pwd()
 				is_email()
 				is_username()
+				is_number()
 	"""
 	db_name = "users"
 	def __init__(self):

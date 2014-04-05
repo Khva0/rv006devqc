@@ -2,7 +2,13 @@ from wrapper import Wrapper
 from users import Users
 
 class Admin(Users):
-	"""docstring for Admin"""
+	"""Admin Class
+			Methods:
+				adduser()
+				edituser()
+				deleteuser()
+				set_permission()
+	"""
 	db_name = "users"
 	def __init__(self):
 		self.w = Wrapper()
