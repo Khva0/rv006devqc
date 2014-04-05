@@ -1,19 +1,21 @@
-from flask import *
+from flask import Flask, render_template
 
-app = Flask(__name__) 
+app = Flask(__name__)
+
 
 @app.route('/')
 def index():
-	return render_template('index.html')
+            return render_template('index.html')
+
 
 @app.route('/admin')
 def admin_usr():
-	return render_template('admin.html')
+            return render_template('admin.html')
+
 
 @app.route('/cooker')
 def cooker_usr():
-	return render_template('cooker.html')	
-
+            return render_template('cooker.html')
 
 
 if __name__ == "__main__":
