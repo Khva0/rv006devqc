@@ -23,7 +23,7 @@ def index():
 def login():
     if request.method == 'POST':
         #Admin().adduser(json.loads(json.dumps(request.form, separators=(',',':'))))
-        if Users().login(json.loads(json.dumps(request.form, separators=(',', ':')))):
+        if Users().login(get_dict(request.form)):
             return '{"ok":"login"}'
         else:
             return '{"error":"login"}'
@@ -37,8 +37,7 @@ def admin_usr():
 @app.route('/adduser', methods=['POST', 'GET'])
 def adduser():
     if request.method == 'POST':
-        Admin().adduser(
-            json.loads(json.dumps(request.form, separators=(',', ':'))))
+        Admin().adduser(get_dict(request.form))
     return '{"ok":"user add"}'
 
 
@@ -50,10 +49,12 @@ def cooker_usr():
 @app.route('/add_menu', methods=['POST', 'GET'])
 def add_menu():
     if request.method == 'POST':
-        Cooker().add_item_menu(
-            json.loads(json.dumps(request.form, separators=(',', ':'))))
+        Cooker().add_item_menu(get_dict(request.form))
     return '{"ok":"category add"}'
 
+
+def get_dict(multi_dict):
+    return json.loads(json.dumps(multi_dict, separators=(',', ':')))
 
 if __name__ == "__main__":
     app.debug = True
