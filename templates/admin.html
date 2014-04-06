@@ -7,17 +7,18 @@
 		<div class="new_user_screen">
 			<p style="text-align: center;">
 				Create new user</p>
-			<form method="post" name="new_user">
+			<form method="post" name="new_user" action="/adduser">
 				<p style="text-align: center;">
-					Name<input name="Fname" type="text" />&nbsp; &nbsp; &nbsp; &nbsp; Last name<input name="Lname" type="text" /></p>
+					Name<input name="f_name" type="text" />&nbsp; &nbsp; &nbsp; &nbsp; Last name<input name="l_name" type="text" /></p>
 				<p style="text-align: center;">
-					Login<input type="text" />&nbsp; &nbsp; &nbsp; &nbsp; Password<input name="password" type="password" /></p>
+					Login<input name="login" type="text" />&nbsp; &nbsp; &nbsp; &nbsp; Password<input name="password" type="password" /></p>
 				<p style="text-align: center;">
-					Email<input name="email" type="text" />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Status<input name="status" type="text" /></p>
+					Email<input name="email" type="text" />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Status<input name="status" type="number" /></p>
 				<p style="text-align: center;">
-					Role &nbsp;<select name="id_role" size="1"><option value="waiter">Waiter</option><option value="cooker">Cooker</option><option value="manager">Manager</option><option value="admin">Admin</option></select></p>
+					Role &nbsp;<select name="id_role" size="1"><option value="1">Waiter</option><option value="2">Cooker</option><option value="2">Manager</option><option value="admin">Admin</option></select></p>
 				<p style="text-align: center;">
-					<input name="create_user_b" type="button" value="Create" /></p>
+					<input type="submit"/>
+				</p>
 			</form>
 		</div>
 		<table align="center" border="1" cellpadding="1" cellspacing="1" style="width: 500px;">

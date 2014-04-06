@@ -1,21 +1,58 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
+import json
+import os
+import sys
+#from  admin import *
+lib_path = os.path.abspath('app/models')
+sys.path.append(lib_path)
+
+from admin import Admin
+from wrapper import Wrapper
+from cooker import Cooker
+from users import Users
 
 app = Flask(__name__)
 
 
 @app.route('/')
 def index():
-            return render_template('index.html')
+    return render_template('index.html')
+
+
+@app.route('/login', methods=['POST', 'GET'])
+def login():
+    if request.method == 'POST':
+        #Admin().adduser(json.loads(json.dumps(request.form, separators=(',',':'))))
+        if Users().login(json.loads(json.dumps(request.form, separators=(',', ':')))):
+            return '{"ok":"login"}'
+        else:
+            return '{"error":"login"}'
 
 
 @app.route('/admin')
 def admin_usr():
-            return render_template('admin.html')
+    return render_template('admin.html')
+
+
+@app.route('/adduser', methods=['POST', 'GET'])
+def adduser():
+    if request.method == 'POST':
+        Admin().adduser(
+            json.loads(json.dumps(request.form, separators=(',', ':'))))
+    return '{"ok":"user add"}'
 
 
 @app.route('/cooker')
 def cooker_usr():
-            return render_template('cooker.html')
+    return render_template('cooker.html')
+
+
+@app.route('/add_menu', methods=['POST', 'GET'])
+def add_menu():
+    if request.method == 'POST':
+        Cooker().add_item_menu(
+            json.loads(json.dumps(request.form, separators=(',', ':'))))
+    return '{"ok":"category add"}'
 
 
 if __name__ == "__main__":
