@@ -7,7 +7,7 @@
 		<div class="new_user_screen">
 			<p style="text-align: center;">
 				Create new user</p>
-			<form method="post" name="new_user" action="/adduser">
+			<form action="/adduser" method="post" name="new_user">
 				<p style="text-align: center;">
 					Name<input name="f_name" type="text" />&nbsp; &nbsp; &nbsp; &nbsp; Last name<input name="l_name" type="text" /></p>
 				<p style="text-align: center;">
@@ -17,10 +17,11 @@
 				<p style="text-align: center;">
 					Role &nbsp;<select name="id_role" size="1"><option value="1">Waiter</option><option value="2">Cooker</option><option value="2">Manager</option><option value="admin">Admin</option></select></p>
 				<p style="text-align: center;">
-					<input type="submit"/>
-				</p>
+					<input type="submit" /></p>
 			</form>
 		</div>
+		<p>
+			{% for usr in users %} {% endfor %}</p>
 		<table align="center" border="1" cellpadding="1" cellspacing="1" style="width: 500px;">
 			<caption>
 				All users</caption>
@@ -39,24 +40,31 @@
 					<th scope="col">
 						Role</th>
 					<th scope="col">
+						Edit</th>
+					<th scope="col">
 						<input name="is_chosen" type="checkbox" /></th>
 				</tr>
 			</thead>
 			<tbody>
-			{% for usr in users %}
-			<tr>
-    	  	<td>{{usr.id}}</td>
-    	  	<td>{{usr.l_name}}</td>
-    	  	<td>{{usr.f_name}}</td>
-    	  	<td>{{usr.login}}</td>
-    	  	<td>{{usr.email}}</td>
-    	  	<td>{{usr.id_role}}</td>
-    		</tr>
-    		{% endfor %}
+				<tr>
+					<td>
+						{{usr.id}}</td>
+					<td>
+						{{usr.l_name}}</td>
+					<td>
+						{{usr.f_name}}</td>
+					<td>
+						{{usr.login}}</td>
+					<td>
+						{{usr.email}}</td>
+					<td>
+						{{usr.id_role}}</td>
+					<td>
+						<input name="edit_usr" type="submit" /></td>
+				</tr>
 			</tbody>
 		</table>
 		<p>
 			&nbsp;</p>
-			
 	</body>
 </html>
