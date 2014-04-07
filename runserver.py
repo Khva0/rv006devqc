@@ -50,7 +50,8 @@ def adduser():
 
 @app.route('/cooker')
 def cooker_usr():
-    return render_template('cooker.html')
+    all_dishes = Cooker().get_all_dishes()
+    return render_template('cooker.html', title='Admin',all_dishes = all_dishes)
 
 
 @app.route('/add_menu', methods=['POST', 'GET'])
