@@ -1,27 +1,104 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>Create dish</title>
-	</head>
-	<body>
-		<div class="create_menu">
-			<form method="post" name="create_menu_form" action="/add_menu">
-				<p style="text-align: center;">
-					Add dishes</p>
-				<p style="text-align: center;">
-					Dish name<input name="name" type="text" />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Price<input name="price" type="text" /></p>
-				<p style="text-align: center;">
-					Status<input name="status" type="text" />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Count<input name="count" type="text" /></p>
-				<p style="text-align: center;">
-					Category<input name="id_category" type="text" /></p>
-				<p style="text-align: center;">
-					Description<br />
-					<textarea cols="10" name="Description" rows="3"></textarea></p>
-				<p style="text-align: center;">
-					<input type="submit"/></p>
-			</form>
-		</div>
-		<p>
-			&nbsp;</p>
-	</body>
+   <head>
+      <title>Create dish</title>
+   </head>
+   <body>
+      <div class="create_menu">
+         <form method="post" name="create_menu_form" action="/add_menu">
+            <p style="text-align: center;">
+               Add dishes
+            </p>
+            <p style="text-align: center;">
+               Dish name<input name="name" type="text" /> Price<input name="price" type="text" />
+            </p>
+            <p style="text-align: center;">
+               Status<input name="status" type="text" />Count<input name="count" type="text" />
+            </p>
+            <p style="text-align: center;">
+               Category<input name="id_category" type="text" />
+            </p>
+            <p style="text-align: center;">
+               Description<br />
+               <textarea cols="30" name="Description" rows="3"></textarea>
+            </p>
+            <p style="text-align: center;">
+               <input type="submit"/>
+            </p>
+         </form>
+      </div>
+      <table align="center" border="1" cellpadding="1" cellspacing="1" style="width: 500px;">
+         <caption>
+            Dishes list
+         </caption>
+         <thead>
+            <tr>
+               <th scope="col">
+                  Id
+               </th>
+               <th scope="col">
+                  Name
+               </th>
+               <th scope="col">
+                  Description
+               </th>
+               <th scope="col">
+                  Price
+               </th>
+               <th scope="col">
+                  Image
+               </th>
+               <th scope="col">
+                  Status
+               </th>
+               <th scope="col">
+                  Count
+               </th>
+               <th scope="col">
+                  Category
+               <th scope="col">
+                  Edit
+               <th scope="col">
+                  Delete
+               </th>
+               <th scope="col">
+                  <input name="choos_all" type="checkbox" />
+               </th>
+            </tr>
+         </thead>
+         <tbody>
+            {% for dish in all_dishes %}
+            <tr>
+               <td>
+                  {{dish.id}}
+               </td>
+               <td>
+                  {{dish.name}}
+               </td>
+               <td>
+                  {{dish.description}}
+               </td>
+               <td>
+                  {{dish.price}}
+               </td>
+               <td>
+                  {{dish.image}}
+               </td>
+               <td>
+                  {{dish.status}}
+               </td>
+               <td>
+                  {{dish.count}}
+               </td>
+               <td>
+                  {{dish.id_category}}
+               </td>
+               <td><input name="edit_dish" type="submit" /></td>
+               <td><input name="del_dish" type="submit" /></td>
+               <td><input name="choos_one" type="checkbox" /></td>
+               {% endfor %}	
+            </tr>
+         </tbody>
+      </table>
+   </body>
 </html>
