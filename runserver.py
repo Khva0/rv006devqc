@@ -31,7 +31,8 @@ def login():
 
 @app.route('/admin')
 def admin_usr():
-    return render_template('admin.html')
+    all_users = Users().get_all_users()
+    return render_template('admin.html',title = 'Admin',users = all_users)
 
 
 @app.route('/adduser', methods=['POST', 'GET'])

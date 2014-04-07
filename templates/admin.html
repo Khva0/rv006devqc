@@ -43,41 +43,20 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td>
-						Vasiliy</td>
-					<td>
-						Pupkin</td>
-					<td>
-						vasyok_rule</td>
-					<td>
-						pupkin@vasya.com</td>
-					<td>
-						Active</td>
-					<td>
-						Admin</td>
-					<td>
-						<input name="choose_one" type="checkbox" /></td>
-				</tr>
-				<tr>
-					<td>
-						Andriy</td>
-					<td>
-						Vaskin</td>
-					<td>
-						andjey</td>
-					<td>
-						anj@andrey.ru</td>
-					<td>
-						Removed</td>
-					<td>
-						Wauter</td>
-					<td>
-						<input name="choose_one" type="checkbox" /></td>
-				</tr>
+			{% for usr in users %}
+			<tr>
+    	  	<td>{{usr.id}}</td>
+    	  	<td>{{usr.l_name}}</td>
+    	  	<td>{{usr.f_name}}</td>
+    	  	<td>{{usr.login}}</td>
+    	  	<td>{{usr.email}}</td>
+    	  	<td>{{usr.id_role}}</td>
+    		</tr>
+    		{% endfor %}
 			</tbody>
 		</table>
 		<p>
 			&nbsp;</p>
+			
 	</body>
 </html>
