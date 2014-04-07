@@ -1,15 +1,10 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request,abort, redirect, url_for
 import json
-import os
-import sys
-#from  admin import *
-lib_path = os.path.abspath('app/models')
-sys.path.append(lib_path)
 
-from admin import Admin
-from wrapper import Wrapper
-from cooker import Cooker
-from users import Users
+from models.admin import Admin
+from models.users import Users
+from models.wrapper import Wrapper
+from models.cooker import Cooker
 
 app = Flask(__name__)
 
@@ -22,9 +17,15 @@ def index():
 @app.route('/login', methods=['POST', 'GET'])
 def login():
     if request.method == 'POST':
-        #Admin().adduser(json.loads(json.dumps(request.form, separators=(',',':'))))
-        if Users().login(get_dict(request.form)):
-            return '{"ok":"login"}'
+        if Users().login(json.loads(json.dumps(request.form, separators=(',', ':')))):
+            if (Users().get_permission(json.loads(json.dumps(request.form, separators=(',', ':')))['username'])[0]['id_role']) == 1:
+                return redirect(url_for('admin_usr'))
+            if (Users().get_permission(json.loads(json.dumps(request.form, separators=(',', ':')))['username'])[0]['id_role']) == 2:
+                return redirect(url_for('admin_usr'))
+            if (Users().get_permission(json.loads(json.dumps(request.form, separators=(',', ':')))['username'])[0]['id_role']) == 3:
+                return redirect(url_for('admin_usr'))
+            if (Users().get_permission(json.loads(json.dumps(request.form, separators=(',', ':')))['username'])[0]['id_role']) == 4:
+                return redirect(url_for('admin_usr'))
         else:
             return '{"error":"login"}'
 

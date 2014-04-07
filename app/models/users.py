@@ -44,20 +44,23 @@ class Users(object):
 
     def login(self, credendials):
         """ Login user """
-        if isinstance(credendials, dict):
-            dbuser = self.w.select(
-                "login", self.db_name, "where login='{0}'".format(credendials['username']))
-            if dbuser[0]['login'] == format(credendials['username']):
-                dbpass = self.w.select(
-                    "password", self.db_name, "where login='{0}'".format(credendials['username']))
-                if dbpass[0]['password'] == credendials['password']:
-                    return True
+        try:
+            if isinstance(credendials, dict):
+            	dbuser = self.w.select(
+                    "login", self.db_name, "where login='{0}'".format(credendials['username']))
+                if dbuser[0]['login'] != None and dbuser[0]['login'] == format(credendials['username']):
+                	dbpass = self.w.select(
+                        "password", self.db_name, "where login='{0}'".format(credendials['username']))
+	                if dbpass[0]['password'] == credendials['password']:
+	                    return True
+	                else:
+	                    return False
                 else:
-                    return False
+	               	return False
             else:
-                return False
-        else:
-            return {"error": "need dict"}
+            	return {"error": "need dict"}
+        except Exception as e:
+            return e
 
     def is_pwd(self, passwd):
         """ Check pwd hash a-f0-9 len 128 """
