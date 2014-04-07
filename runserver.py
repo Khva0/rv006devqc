@@ -1,6 +1,11 @@
 from flask import Flask, render_template, request,abort, redirect, url_for
 import json
 
+import os
+import sys
+
+sys.path.append(os.path.dirname("app/models"))
+
 from models.admin import Admin
 from models.users import Users
 from models.wrapper import Wrapper
