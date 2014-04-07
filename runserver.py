@@ -59,6 +59,29 @@ def add_menu():
     if request.method == 'POST':
         Cooker().add_item_menu(get_dict(request.form))
     return '{"ok":"category add"}'
+    
+    
+@app.route("/orders", methods=["GET"])
+def order_get():
+    if 'id' in session and Users().get_permission(session["id"]) == 3:
+        #Waiter().get_orders(session["id"])
+        #get all orders
+        return render_template("/orders.html")  #with data
+    return redirect("/")
+
+
+@app.route("/add_order", methods=["GET"])
+def add_order_get():
+    if 'id' in session and Users().get_permission(session["id"]) == 3:
+        return render_template("/add_order.html")
+    return redirect("/")
+
+
+@app.route("/add_order", methods=["POST"])
+def add_order_post():
+    if 'id' in session and Users().get_permission(session["id"]) == 3:
+        return None  #method to add order
+    return redirect("/")
 
 
 def get_dict(multi_dict):
