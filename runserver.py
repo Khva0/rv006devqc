@@ -10,6 +10,7 @@ from models.admin import Admin
 from models.users import Users
 from models.wrapper import Wrapper
 from models.cooker import Cooker
+from models.waiter import Waiter
 
 app = Flask(__name__)
 
