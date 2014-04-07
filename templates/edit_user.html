@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Edit</title>
+   </head>
+   <body>
+      <div class="edit_user_screen">
+         <p style="text-align: center;">
+            Edit usr
+         </p>
+         <form action="/edituser" method="post" name="edit_user">
+            <p style="text-align: center;">
+               Name<input name="f_name" type="text" />Last name<input name="l_name" type="text" />
+            </p>
+            <p style="text-align: center;">
+               Login<input name="login" type="text" />  Password<input name="password" type="password" />
+            </p>
+            <p style="text-align: center;">
+               Email<input name="email" type="text" /> Status<input name="status" type="number" />
+            </p>
+            <p style="text-align: center;">
+               Role 
+               <select name="id_role" size="1">
+                  <option value="1">Waiter</option>
+                  <option value="2">Cooker</option>
+                  <option value="2">Manager</option>
+                  <option value="admin">Admin</option>
+               </select>
+            </p>
+            <p style="text-align: center;">
+               <input type="submit" />
+            </p>
+         </form>
+      </div>
+   </body>
+</html>
