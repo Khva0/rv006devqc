@@ -1,23 +1,23 @@
 {% extends "layout.html" %}
 {% block body %}
-        <div class="row text-center" style="text-align:right;">
+    <div class="row text-center" style="text-align:right;">
       <div class="field centered ten columns">  
-            <form action="/adduser" method="post" name="new_user">
-                <fieldset>
+      <form action="/adduser" method="post" name="new_user">
+        <fieldset>
          <legend>Add user</legend>
           <ul class ="two_up tiles">
     <li class="field">
     <label class="centered inline" for="text1">Name</label>
-                    <input name="f_name"  class="wide text input" type="text" /> 
+          <input name="f_name"  class="wide text input" type="text" /> 
      </li>  
      <li class="field">      
       <label class="centered inline" for="text1">Last name</label>  
                                             
                <input name="l_name" class="wide text input" type="text" />
                </li> 
-                     <li class="field">      
+             <li class="field">      
       <label class="centered inline" for="text1">Login</label> 
-                    
+          
                <input name="login" type="text" class="wide text input"/>
                </li>
                                             <li class="field">      
@@ -35,65 +35,67 @@
                <input name="status" type="number" class="wide text input"/>
                </li>
 
-                            <li class="field"> 
+                      <li class="field"> 
                            <div class="picker">
                <select name="id_role" size="1"><option value="1">Waiter</option><option value="2">Cooker</option><option value="2">Manager</option><option value="admin">Admin</option></select>
                  </div>
 </li>
-                
-        <div  class="medium success btn centered four columns"><input type="submit" value="Add user"/></div>
+        
+    <div  class="medium success btn centered four columns"><input type="submit" value="Add user"/></div>
       </ul>
       </fieldset>
-            </form>
+      </form>
 
-        </div>
+    </div>
       </div>
 
-        
-        <table align="center" border="1" cellpadding="1" cellspacing="1" >
-            <caption>
-                All users</caption>
-            <thead>
-                <tr>
-                    <th scope="col">
-                        Name</th>
-                    <th scope="col">
-                        Last name</th>
-                    <th scope="col">
-                        Login</th>
-                    <th scope="col">
-                        Email</th>
-                    <th scope="col">
-                        Status</th>
-                    <th scope="col">
-                        Role</th>
-                    <th scope="col">
-                        Edit</th>
-                    <th scope="col">
-                        <input name="is_chosen" type="checkbox" /></th>
+    
+    <table align="center" border="1" cellpadding="1" cellspacing="1" >
+      <caption>
+        All users</caption>
+      <thead>
+        <tr>
+          <th scope="col">
+            Name</th>
+          <th scope="col">
+            Last name</th>
+          <th scope="col">
+            Login</th>
+          <th scope="col">
+            Email</th>
+          <th scope="col">
+            Status</th>
+          <th scope="col">
+            Role</th>
+          <th scope="col">
+            Edit</th>
+          <th scope="col">
+            <input name="is_chosen" type="checkbox" /></th>
                  
-                </tr>
-            </thead>
-            <tbody>
+        </tr>
+      </thead>
+      <tbody>
          {% for usr in all_users %}
-                <tr>
-                    <td>
-                        {{usr.id}}</td>
-                    <td>
-                        {{usr.l_name}}</td>
-                    <td>
-                        {{usr.f_name}}</td>
-                    <td>
-                        {{usr.login}}</td>
-                    <td>
-                        {{usr.email}}</td>
-                    <td>
-                        {{usr.id_role}}</td>
-                    <td>
-                        <div  class="small success btn"><input name="edit_usr" type="submit" value = "Edit"/></div></td>
+        <tr>
+          <td>
+            {{usr.id}}</td>
+          <td>
+            {{usr.l_name}}</td>
+          <td>
+            {{usr.f_name}}</td>
+          <td>
+            {{usr.login}}</td>
+          <td>
+            {{usr.email}}</td>
+          <td>
+            {{usr.id_role}}</td>
+          <td>
+            <!-- <input name="edit_usr" type="submit" /> -->
+            <a href=/edit_user?id={{usr.id}}>Edit</a>
+            </td>
                                                       <td><input name="choos_one" type="checkbox" /></td>
                    {% endfor %}
-                </tr>
-            </tbody>
-        </table>
+        </tr>
+      </tbody>
+    </table>
   {% endblock %}

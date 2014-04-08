@@ -23,7 +23,9 @@ class Users(object):
 
     def __del__(self):
         pass
-
+    def get_user(self,uid):
+        return self.w.select(["*"], [self.db_name],"where id={0}".format(uid))
+        
     def get_all_users(self):
         """ Get All user list method """
         return self.w.select(["*"], [self.db_name])

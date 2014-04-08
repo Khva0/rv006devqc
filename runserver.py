@@ -49,9 +49,18 @@ def adduser():
     return '{"ok":"user add"}'
 
 
-@app.route('/edit_user')
+@app.route('/edit_user', methods=['GET'])
 def edit_user():
-    return render_template('edit_user.html', title='Edit user')
+    if request.method == 'GET':
+        uid = json.loads(json.dumps(request.args.items('id'), separators=(',', ':')))[0][1]
+        userdata = Users().get_user(uid)[0]
+        return render_template('edit_user.html', title='Edit user', userdata = userdata)
+
+@app.route('/edit_user', methods=['POST'])
+def save_user():
+    if request.method == 'POST':
+        Admin().edituser(json.loads(json.dumps(request.form, separators=(',', ':'))),"where id=7")
+        return render_template('edit_user.html', title='Edit user', userdata = '')
 
 
 @app.route('/cooker')

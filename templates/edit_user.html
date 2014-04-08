@@ -2,37 +2,37 @@
 {% block body %}
       <div class="row text-center" style="text-align:right;">
       <div class="field centered ten columns">  
-         <form action="/edituser" method="post" name="edit_user">
+         <form action="/edit_user" method="post" name="edit_user">
             <fieldset>
          <legend>Editr</legend>
           <ul class ="two_up tiles">
     <li class="field">
     <label class="centered inline" for="text1">Name</label>
-               <input name="f_name"  class="wide text input" type="text" /> 
+               <input name="f_name"  class="wide text input" type="text" value="{{userdata.f_name}}" /> 
      </li>  
      <li class="field">      
       <label class="centered inline" for="text1">Last name</label>  
                                             
-               <input name="l_name" class="wide text input" type="text" />
+               <input name="l_name" class="wide text input" type="text" value="{{userdata.l_name}}"/>
                </li> 
                  <li class="field">      
       <label class="centered inline" for="text1">Login</label> 
                
-               <input name="login" type="text" class="wide text input"/>
+               <input name="login" type="text" class="wide text input" value="{{userdata.login}}"/>
                </li>
                                             <li class="field">      
       <label class="centered inline" for="text1">Password</label> 
-               <input name="password" type="password" class="wide text input"/>
+               <input name="password" type="password" class="wide text input" value=""/>
 </li>
  <li class="field">      
       <label class="centered inline" for="text1">
       Email</label>
-               <input name="email" type="text" class="wide text input"/>
+               <input name="email" type="text" class="wide text input" value="{{userdata.email}}"/>
 </li>
                <li class="field">      
       <label class="centered inline" for="text1">
                Status</label>
-               <input name="status" type="number" class="wide text input"/>
+               <input name="status" type="number" class="wide text input" value="{{userdata.status}}"/>
                </li>
 
                            <li class="field"> 
