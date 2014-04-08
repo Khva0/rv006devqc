@@ -42,9 +42,10 @@ class Waiter(object):
 
     def edit_order(self, order_data):
         """get order data with order id
-        [{"id_dish": 1, "count": 1,"id_order": 315},..."""
+        [{"id_dish": 1, "count": 1,"id_order": 315},...
         for ticket in order_data:
-            self.wrap.insert(ticket, "tickets")
+            self.wrap.insert(ticket, "tickets")"""
+            pass
 
     def del_ticket(self):
         pass
