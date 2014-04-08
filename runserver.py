@@ -10,7 +10,6 @@ from models.admin import Admin
 from models.users import Users
 from models.wrapper import Wrapper
 from models.cooker import Cooker
-from models.waiter import Waiter
 
 app = Flask(__name__)
 
@@ -39,7 +38,7 @@ def login():
 @app.route('/admin')
 def admin_usr():
     all_users = Users().get_all_users()
-    return render_template('admin.html',title = 'Admin',users = all_users)
+    return render_template('admin.html',title = 'Admin',all_users = all_users)
 
 
 @app.route('/adduser', methods=['POST', 'GET'])
@@ -49,40 +48,33 @@ def adduser():
     return '{"ok":"user add"}'
 
 
+@app.route('/edit_user')
+def edit_user():
+    return render_template('edit_user.html', title='Edit user')
+
+
 @app.route('/cooker')
 def cooker_usr():
     all_dishes = Cooker().get_all_dishes()
     return render_template('cooker.html', title='Admin',all_dishes = all_dishes)
 
 
+@app.route('/add_category')
+def add_category():  
+    return render_template('add_category.html', title='Add category')
+
+
+@app.route('/create_category', methods=['POST', 'GET'])
+def create_category():
+    if request.method == 'POST':
+        Cooker().add_item_category(get_dict(request.form))
+    return '{"ok":"category add"}'
+    
+
 @app.route('/add_menu', methods=['POST', 'GET'])
 def add_menu():
     if request.method == 'POST':
-        Cooker().add_item_menu(get_dict(request.form))
-    return '{"ok":"category add"}'
-    
-    
-@app.route("/orders", methods=["GET"])
-def order_get():
-    if 'id' in session and Users().get_permission(session["id"]) == 3:
-        #Waiter().get_orders(session["id"])
-        #get all orders
-        return render_template("/orders.html")  #with data
-    return redirect("/")
-
-
-@app.route("/add_order", methods=["GET"])
-def add_order_get():
-    if 'id' in session and Users().get_permission(session["id"]) == 3:
-        return render_template("/add_order.html")
-    return redirect("/")
-
-
-@app.route("/add_order", methods=["POST"])
-def add_order_post():
-    if 'id' in session and Users().get_permission(session["id"]) == 3:
-        return None  #method to add order
-    return redirect("/")
+        Cooker().add_item_menu(get_dict(request.form))    
 
 
 def get_dict(multi_dict):
