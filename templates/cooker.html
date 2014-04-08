@@ -1,42 +1,41 @@
 {% extends "layout.html" %}
 {% block body %}
-      <div class="row text-center">
+      <div class="row text-center" style="text-align:right;">
       <div class="field centered ten columns">  
          <form method="post" name="create_menu_form" action="/add_menu">
          <fieldset>
          <legend>Add dishes</legend>
             
-            <ul>
+            <ul class ="two_up tiles">
     <li class="field">
     <label class="centered inline" for="text1">Dish name</label>
-    <input class="narrow text input" name="name" type="text" /> 
+    <input class="wide text input" name="name" type="text" /> 
     </li>
   <li class="field">
     <label class="centered inline" for="text1">Price</label>
-    <input class="narrow text input" name="price" type="text" />
+    <input class="wide text input" name="price" type="text" />
     </li>
             
             
     <li class="field">
     <label class="centered inline" for="text1">Status</label>
-    <input class="narrow text input" name="status" type="text" />
+    <input class="wide text input" name="status" type="text" />
 </li>
 <li class="field">
     <label class="centered inline" for="text1">Count</label>
-   <input name="count" class="narrow text input" type="text" />
+   <input name="count" class="wide text input" type="text" />
           </li>  
   <li class="append field">">
     <label class="centered inline" for="text1">Category</label>
     <input  class="narrow text input" name="id_category" type="text" />
-    <div class="medium primary btn"><a href="#">Edit</a></div>
+    <div class="medium success btn oval"><a href="#">+</a></div>
     </li> 
   
                
  <li class="field">
     <label class="centered inline" for="text1">Description</label>
-               <textarea class="input textarea" cols="15" name="Description" rows="3"></textarea>
-               </li>
-            
+               <input class="wide text input" name="Description" />
+               </li>   
             
                <div  class="medium success btn centered four columns"><input type="submit" /></div>
               </ul>
@@ -51,7 +50,7 @@
             Dishes list
          </caption>
          <thead>
-            <tr>
+            <tr class=>
                <th scope="col">
                   Id
                </th>
@@ -88,7 +87,7 @@
          <tbody>
             {% for dish in all_dishes %}
             <tr>
-               <td>
+               <td class="striped">
                   {{dish.id}}
                </td>
                <td>
@@ -112,11 +111,11 @@
                <td>
                   {{dish.id_category}}
                </td>
-               <td><div  class="small success btn"><input type="submit" name="edit_dish"/></div></td>
+               <td><div  class="small success btn"><input type="submit" label="Add menu" name="edit_dish"/></div></td>
                <td><div  class="small success btn"><input name="del_dish" type="submit" /></div></td>
                <td><input name="choos_one" type="checkbox" /></td>
-               {% endfor %}   
+               {% endfor %} 
             </tr>
          </tbody>
       </table>
-  {% endblock %}
+  {% endblock %} 
