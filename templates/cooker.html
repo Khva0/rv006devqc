@@ -1,34 +1,52 @@
-<!DOCTYPE html>
-<html>
-   <head>
-      <title>Create dish</title>
-   </head>
-   <body>
-      <div class="create_menu">
+{% extends "layout.html" %}
+{% block body %}
+      <div class="row text-center">
+      <div class="field centered ten columns">  
          <form method="post" name="create_menu_form" action="/add_menu">
-            <p style="text-align: center;">
-               Add dishes
-            </p>
-            <p style="text-align: center;">
-               Dish name<input name="name" type="text" /> Price<input name="price" type="text" />
-            </p>
-            <p style="text-align: center;">
-               Status<input name="status" type="text" />Count<input name="count" type="text" />
-            </p>
-            <p style="text-align: center;">
-               Category<input name="id_category" type="text" />
-               <p style="text-align: center;">Edit catgories<input type="submit" name="edit_category">
-            </p>
-            <p style="text-align: center;">
-               Description<br />
-               <textarea cols="30" name="Description" rows="3"></textarea>
-            </p>
-            <p style="text-align: center;">
-               <input type="submit"/>
-            </p>
+         <fieldset>
+         <legend>Add dishes</legend>
+            
+            <ul>
+    <li class="field">
+    <label class="centered inline" for="text1">Dish name</label>
+    <input class="narrow text input" name="name" type="text" /> 
+    </li>
+  <li class="field">
+    <label class="centered inline" for="text1">Price</label>
+    <input class="narrow text input" name="price" type="text" />
+    </li>
+            
+            
+    <li class="field">
+    <label class="centered inline" for="text1">Status</label>
+    <input class="narrow text input" name="status" type="text" />
+</li>
+<li class="field">
+    <label class="centered inline" for="text1">Count</label>
+   <input name="count" class="narrow text input" type="text" />
+          </li>  
+  <li class="append field">">
+    <label class="centered inline" for="text1">Category</label>
+    <input  class="narrow text input" name="id_category" type="text" />
+    <div class="medium primary btn"><a href="#">Edit</a></div>
+    </li> 
+  
+               
+ <li class="field">
+    <label class="centered inline" for="text1">Description</label>
+               <textarea class="input textarea" cols="15" name="Description" rows="3"></textarea>
+               </li>
+            
+            
+               <div  class="medium success btn centered four columns"><input type="submit" /></div>
+              </ul>
+</fieldset>
+
+
          </form>
       </div>
-      <table align="center" border="1" cellpadding="1" cellspacing="1" style="width: 500px;">
+      </div>
+      <table align="center" border="1" cellpadding="1" cellspacing="1">
          <caption>
             Dishes list
          </caption>
@@ -94,12 +112,11 @@
                <td>
                   {{dish.id_category}}
                </td>
-               <td><input name="edit_dish" type="submit" /></td>
-               <td><input name="del_dish" type="submit" /></td>
-               <td><input name="choose_one" type="checkbox" /></td>
+               <td><div  class="small success btn"><input type="submit" name="edit_dish"/></div></td>
+               <td><div  class="small success btn"><input name="del_dish" type="submit" /></div></td>
+               <td><input name="choos_one" type="checkbox" /></td>
                {% endfor %}   
             </tr>
          </tbody>
       </table>
-   </body>
-</html>
+  {% endblock %}
