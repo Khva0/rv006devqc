@@ -45,7 +45,7 @@ class Waiter(object):
         [{"id_dish": 1, "count": 1,"id_order": 315},...
         for ticket in order_data:
             self.wrap.insert(ticket, "tickets")"""
-            pass
+        pass
 
     def del_ticket(self):
         pass
