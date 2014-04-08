@@ -13,7 +13,7 @@ class Waiter(object):
         [{"id_dish": 1, "count": 1},{"id_dish": 12, "count": 1}..."""
         order = {"status": 1,
                "id_user": waiter_id,
-               "date": ""
+               "date": "CURRENT_DATE()"
                #here must be data
                 }
         order_id = self.wrap.insert(order, "orders")
@@ -33,6 +33,21 @@ class Waiter(object):
         """get order id. Set status to NULL"""
         self.wrap.update({"status": 0}, "orders",
                           "WHERE id={0}".format(order_id))
+##############################################################################
+
+    def get_order(self, order_id):
+        tickets = self.wrap.select("*", "tickets",
+                          "WHERE tickets.id_order={0}").format(order_id)
+        return tickets
+
+    def edit_order(self, order_data):
+        """get order data with order id
+        [{"id_dish": 1, "count": 1,"id_order": 315},..."""
+        for ticket in order_data:
+            self.wrap.insert(ticket, "tickets")
+
+    def del_ticket(self):
+        pass
 
 
 if __name__ == "__main__":
