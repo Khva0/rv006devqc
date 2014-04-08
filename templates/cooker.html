@@ -11,6 +11,10 @@
     <label class="centered inline" for="text1">Dish name</label>
     <input class="wide text input" name="name" type="text" /> 
     </li>
+    <li class="field">
+    <label class="centered inline" for="text1">Image</label>
+    <input class="wide text input" name="image" type="text" />
+    </li>
   <li class="field">
     <label class="centered inline" for="text1">Price</label>
     <input class="wide text input" name="price" type="text" />
@@ -28,7 +32,7 @@
   <li class="append field">">
     <label class="centered inline" for="text1">Category</label>
     <input  class="narrow text input" name="id_category" type="text" />
-    <div class="medium success btn oval"><a href="#">+</a></div>
+    <div class="medium success btn oval"> <i class="icon-pencil"></i></div>
     </li> 
   
                
@@ -37,7 +41,8 @@
                <input class="wide text input" name="Description" />
                </li>   
             
-               <div  class="medium success btn centered four columns"><input type="submit" /></div>
+               <div  class="medium success btn centered four columns"><input type="submit" value="Add menu"/></div>
+               <div class="small success btn"><a href="/add_category">Add category</a></div>
               </ul>
 </fieldset>
 
@@ -45,6 +50,7 @@
          </form>
       </div>
       </div>
+
       <table align="center" border="1" cellpadding="1" cellspacing="1">
          <caption>
             Dishes list
@@ -111,8 +117,8 @@
                <td>
                   {{dish.id_category}}
                </td>
-               <td><div  class="small success btn"><input type="submit" label="Add menu" name="edit_dish"/></div></td>
-               <td><div  class="small success btn"><input name="del_dish" type="submit" /></div></td>
+               <td><div  class="small success btn"><input type="submit" name="edit_dish" value = "Edit"/></div></td>
+               <td><div  class="small success btn"><input name="del_dish" type="submit" value = "Remove"/></div></td>
                <td><input name="choos_one" type="checkbox" /></td>
                {% endfor %} 
             </tr>
