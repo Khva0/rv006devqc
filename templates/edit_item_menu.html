@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+{% block body %}
+      <div class="row text-center" style="text-align:right;">
+      <div class="field centered ten columns">  
+         <form method="post" name="update_menu_form" action="/update_item_menu">
+         <fieldset>
+         <legend>Update dishes</legend>
+            
+            <ul class ="two_up tiles">
+    <li class="field">
+    <input type="hidden" name="id" value="{{id}}">
+    <label class="centered inline" for="text1">Dish name</label>
+    <input class="wide text input" name="name" type="text" value="{{name}}" /> 
+    </li>
+    <li class="field">
+    <label class="centered inline" for="text1">Image</label>
+    <input class="wide text input" name="image" type="text" value="{{image}}" />
+    </li>
+  <li class="field">
+    <label class="centered inline" for="text1">Price</label>
+    <input class="wide text input" name="price" type="text" value="{{price}}" />
+    </li>
+            
+            
+    <li class="field">
+    <label class="centered inline" for="text1">Status</label>
+    <input class="wide text input" name="status" type="text" value="{{status}}" />
+</li>
+<li class="field">
+    <label class="centered inline" for="text1">Count</label>
+   <input name="count" class="wide text input" type="text" value="{{count}}" />
+          </li>  
+  <li class="append field">">
+    <label class="centered inline" for="text1">Category</label>
+    <input  class="narrow text input" name="id_category" type="text" value="{{id_category}}" />
+    <div class="medium success btn oval"> <i class="icon-pencil"></i></div>
+    </li> 
+  
+               
+ <li class="field">
+    <label class="centered inline" for="text1">Description</label>
+               <input class="wide text input" name="description" value="{{description}}" />
+               </li>   
+            
+               <div  class="medium success btn centered four columns"><input type="submit" value="Update menu"/></div>
+              </ul>
+</fieldset>
+
+
+         </form>
+      </div>
+      </div>
+{% endblock %} 

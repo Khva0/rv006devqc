@@ -62,6 +62,15 @@ def save_user():
         Admin().edituser(json.loads(json.dumps(request.form, separators=(',', ':'))),"where id=7")
         return render_template('edit_user.html', title='Edit user', userdata = '')
 
+@app.route('/edit_item_menu')
+def edit_item_menu():
+    return render_template('edit_item_menu.html', title='Edit menu', **Cooker().get_item_menu(1)[0])
+
+@app.route('/update_item_menu', methods=['POST'])
+def update_item_menu():
+    diction = get_dict(request.form)
+    Cooker().edit_item_menu(diction['id'], diction)
+    return '{"ok":dish update}'
 
 @app.route('/cooker')
 def cooker_usr():
