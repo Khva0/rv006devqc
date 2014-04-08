@@ -5,7 +5,7 @@ class Conf:
 	"""class Conf for writing and reading config DB"""
 	def __init__(self, section = "MySQL"):
 		self.section = section
-		self.file_name = "../config/conf.cfg"
+		self.file_name = "app/config/conf.cfg"
 
 
 	def write(self):
