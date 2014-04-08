@@ -2,12 +2,17 @@ from wrapper import Wrapper
 
 
 class Cooker(object):
+
     """docstring for Cooker"""
 
     db_name = "dishes"
 
     def __init__(self):
         self.wrapper = Wrapper()
+
+    def get_item_menu(self, id_item_menu):
+        return self.wrapper.select(["id", "name", "description", "price",
+                                    "image", "status", "count", "id_category"], "dishes", "where id={0}".format(id_item_menu))
 
     def get_all_dishes(self):
         """ Get all dishes from DB """
@@ -27,4 +32,4 @@ class Cooker(object):
 
 
 #cooker = Cooker()
-#print cooker.get_all_dishes()
+# print cooker.get_all_dishes()
