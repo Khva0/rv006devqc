@@ -64,11 +64,11 @@
           <th scope="col">
             Email</th>
           <th scope="col">
-            Status</th>
-          <th scope="col">
             Role</th>
           <th scope="col">
             Edit</th>
+          <th scope="col">
+            Delete</th>
           <th scope="col">
             <input name="is_chosen" type="checkbox" /></th>
                  
@@ -77,8 +77,6 @@
       <tbody>
          {% for usr in all_users %}
         <tr>
-          <td>
-            {{usr.id}}</td>
           <td>
             {{usr.l_name}}</td>
           <td>
@@ -90,11 +88,11 @@
           <td>
             {{usr.id_role}}</td>
           <td>
-            <!-- <input name="edit_usr" type="submit" /> -->
-            <a href=/edit_user?id={{usr.id}}>Edit</a>
-            </td>
-                                                      <td><input name="choos_one" type="checkbox" /></td>
-                   {% endfor %}
+            <a href='/edit_user?id={{usr.id}}'>Edit</a></td>
+            <td>
+            <input type='button' onclick="document.location='/delete_user?id={{usr.id}}'" value="Delete"></td>>
+      <td><input name="choos_one" type="checkbox" /></td>
+            {% endfor %}
         </tr>
       </tbody>
     </table>

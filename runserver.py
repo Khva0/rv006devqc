@@ -62,6 +62,13 @@ def save_user():
         Admin().edituser(json.loads(json.dumps(request.form, separators=(',', ':'))),"where id=7")
         return render_template('edit_user.html', title='Edit user', userdata = '')
 
+@app.route('/delete_user', methods=['GET'])
+def delete_user():
+    if request.method == 'GET':
+        uid = json.loads(json.dumps(request.args.items('id'), separators=(',', ':')))[0][1]
+        Admin().deleteuser(uid)
+        return 'ok'
+
 @app.route('/edit_item_menu')
 def edit_item_menu():
     return render_template('edit_item_menu.html', title='Edit menu', **Cooker().get_item_menu(1)[0])
