@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 from models.wrapper import Wrapper
+=======
+from wrapper import Wrapper
+>>>>>>> 34f0a46e31a2b13e1108fecd0f441ba304f6ab00
 import datetime
 
 
@@ -76,6 +80,9 @@ if __name__ == "__main__":
     #w.edit_order(orderEdit)"""WORK"""
     #w.del_ticket(115)"""WORK"""
     #print datetime.datetime.now().strftime("%d.%m.%Y %H:%M")
+<<<<<<< HEAD
     """add del/update mehods
 in mysql column date must be change to varchar = 16
 P.S. - in wrapper in project does not work import conf or config file when start debug modul"""
+=======
+>>>>>>> 34f0a46e31a2b13e1108fecd0f441ba304f6ab00

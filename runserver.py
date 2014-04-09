@@ -1,16 +1,11 @@
-from flask import Flask, render_template, request,abort, redirect, url_for
+from flask import Flask, render_template, request, abort, redirect, url_for
 import json
 
-import os
-import sys
-
-sys.path.append(os.path.dirname("app/models"))
-
-from models.admin import Admin
-from models.users import Users
-from models.wrapper import Wrapper
-from models.cooker import Cooker
-from models.waiter import Waiter
+from app.models.admin import Admin
+from app.models.users import Users
+from app.models.wrapper import Wrapper
+from app.models.cooker import Cooker
+from app.models.waiter import Waiter
 
 app = Flask(__name__)
 
@@ -39,7 +34,7 @@ def login():
 @app.route('/admin')
 def admin_usr():
     all_users = Users().get_all_users()
-    return render_template('admin.html',title = 'Admin',all_users = all_users)
+    return render_template('admin.html', title='Admin', all_users=all_users)
 
 
 @app.route('/adduser', methods=['POST', 'GET'])
@@ -52,34 +47,56 @@ def adduser():
 @app.route('/edit_user', methods=['GET'])
 def edit_user():
     if request.method == 'GET':
-        uid = json.loads(json.dumps(request.args.items('id'), separators=(',', ':')))[0][1]
+        uid = json.loads(
+            json.dumps(request.args.items('id'), separators=(',', ':')))[0][1]
         userdata = Users().get_user(uid)[0]
-        return render_template('edit_user.html', title='Edit user', userdata = userdata)
+        return render_template('edit_user.html', title='Edit user', userdata=userdata)
+
 
 @app.route('/edit_user', methods=['POST'])
 def save_user():
     if request.method == 'POST':
-        Admin().edituser(json.loads(json.dumps(request.form, separators=(',', ':'))),"where id=7")
-        return render_template('edit_user.html', title='Edit user', userdata = '')
+        Admin().edituser(
+            json.loads(json.dumps(request.form, separators=(',', ':'))), "where id=7")
+        return render_template('edit_user.html', title='Edit user', userdata='')
 
-@app.route('/edit_item_menu')
+
+@app.route('/delete_user', methods=['GET'])
+def delete_user():
+    if request.method == 'GET':
+        uid = json.loads(
+            json.dumps(request.args.items('id'), separators=(',', ':')))[0][1]
+        Admin().deleteuser(uid)
+        return 'ok'
+
+@app.route('/deleteall', methods=['POST'])
+def deleteall():
+    if request.method == 'POST':
+        for uid in json.loads(json.dumps(request.form, separators=(',', ':'))).values():
+            Admin().deleteuser(uid)
+        return 'ok'
+
+@app.route('/edit_item_menu', methods=['GET'])
 def edit_item_menu():
-    return render_template('edit_item_menu.html', title='Edit menu', **Cooker().get_item_menu(1)[0])
+    id_dish = get_dict(request.args.items('id'))[0][1];
+    return render_template('edit_item_menu.html', title='Edit menu', **Cooker().get_item_menu(id_dish)[0])
 
-@app.route('/update_item_menu', methods=['POST'])
+
+@app.route('/edit_item_menu', methods=['POST'])
 def update_item_menu():
     diction = get_dict(request.form)
     Cooker().edit_item_menu(diction['id'], diction)
     return '{"ok":dish update}'
 
+
 @app.route('/cooker')
 def cooker_usr():
     all_dishes = Cooker().get_all_dishes()
-    return render_template('cooker.html', title='Admin',all_dishes = all_dishes)
+    return render_template('cooker.html', title='Admin', all_dishes=all_dishes)
 
 
 @app.route('/add_category')
-def add_category():  
+def add_category():
     return render_template('add_category.html', title='Add category')
 
 
@@ -88,12 +105,13 @@ def create_category():
     if request.method == 'POST':
         Cooker().add_item_category(get_dict(request.form))
     return '{"ok":"category add"}'
-    
+
 
 @app.route('/add_menu', methods=['POST', 'GET'])
 def add_menu():
     if request.method == 'POST':
-        Cooker().add_item_menu(get_dict(request.form))    
+        Cooker().add_item_menu(get_dict(request.form))
+        return redirect(url_for('cooker_usr'))
 
 
 def get_dict(multi_dict):
