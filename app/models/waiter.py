@@ -55,22 +55,7 @@ class Waiter(object):
         """update ticket status to 0, default 1"""
         self.wrap.update({"status": 0}, "tickets", 
                          "WHERE tickets.id = %s" % (ticket_id))
-##############################################################################
-    def add_order2(self, waiter_id, order_data):
-        """must put waiter id and tickets in list of dict
-        [{"id_dish": 1, "count": 1},{"id_dish": 12, "count": 1}..."""
-        date = datetime.datetime.now().strftime("%d.%m.%Y %H:%M")
-        order = {"status": 1,
-               "id_user": waiter_id,
-               "date": date
-                }
-        order_id = self.wrap.insert(order, "orders")
-        tickets = []
-        for ticket in order_data:
-            ticket["id_order"] = order_id
-            tickets.append(ticket)
-        self.wrap.insert(tickets, "tickets")
-        print str(tickets).strip("[]")
+
 
 
 if __name__ == "__main__":
@@ -88,7 +73,7 @@ if __name__ == "__main__":
             {"id_dish": 9, "count": 3, "id_order": 20, "id": 111}   #ticket 5
             ]
     #w.add_order(1, order)#"""WORK"""
-    print w.get_orders(1)#"""WORK"""
+    #print w.get_orders(1)#"""WORK"""
     #close_order(31)#"""WORK"""
     #print w.get_order(29)"""WORK"""
     #w.edit_order(orderEdit)"""WORK"""
