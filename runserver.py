@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, abort, redirect, url_for
+from flask import Flask, render_template, request, abort, redirect, url_for,session
 import json
 
 from app.models.admin import Admin
@@ -8,7 +8,7 @@ from app.models.cooker import Cooker
 from app.models.waiter import Waiter
 
 app = Flask(__name__)
-
+app.secret_key = 'Y9lUivAHtx4THhrrTVWuGBkH'
 
 @app.route('/')
 def index():
@@ -19,6 +19,7 @@ def index():
 def login():
     if request.method == 'POST':
         if Users().login(json.loads(json.dumps(request.form, separators=(',', ':')))):
+            session['username'] = request.form['username']
             if (Users().get_permission(json.loads(json.dumps(request.form, separators=(',', ':')))['username'])[0]['id_role']) == 1:
                 return redirect(url_for('admin_usr'))
             if (Users().get_permission(json.loads(json.dumps(request.form, separators=(',', ':')))['username'])[0]['id_role']) == 2:
@@ -30,51 +31,66 @@ def login():
         else:
             return '{"error":"login"}'
 
+@app.route('/logout')
+def logout():
+    session.pop('username', None)
+    return redirect(url_for('index'))
 
 @app.route('/admin')
 def admin_usr():
-    all_users = Users().get_all_users()
-    return render_template('admin.html', title='Admin', all_users=all_users)
+    if 'username' in session:
+        all_users = Users().get_all_users()
+        return render_template('admin.html', title='Admin', all_users=all_users)
+    return redirect(url_for('index'))
 
 
 @app.route('/adduser', methods=['POST', 'GET'])
 def adduser():
-    if request.method == 'POST':
-        Admin().adduser(get_dict(request.form))
-    return '{"ok":"user add"}'
+    if 'username' in session:
+        if request.method == 'POST':
+            Admin().adduser(get_dict(request.form))
+            return '{"ok":"user add"}'
+    return redirect(url_for('index'))
 
 
 @app.route('/edit_user', methods=['GET'])
 def edit_user():
-    if request.method == 'GET':
-        uid = json.loads(
-            json.dumps(request.args.items('id'), separators=(',', ':')))[0][1]
-        userdata = Users().get_user(uid)[0]
-        return render_template('edit_user.html', title='Edit user', userdata=userdata)
+    if 'username' in session:
+        if request.method == 'GET':
+            uid = json.loads(
+                json.dumps(request.args.items('id'), separators=(',', ':')))[0][1]
+            userdata = Users().get_user(uid)[0]
+            return render_template('edit_user.html', title='Edit user', userdata=userdata)
+    return redirect(url_for('index'))
 
 
 @app.route('/edit_user', methods=['POST'])
 def save_user():
-    if request.method == 'POST':
-        Admin().edituser(
-            json.loads(json.dumps(request.form, separators=(',', ':'))), "where id=7")
-        return render_template('edit_user.html', title='Edit user', userdata='')
-
+    if 'username' in session:
+        if request.method == 'POST':
+            Admin().edituser(
+                json.loads(json.dumps(request.form, separators=(',', ':'))), "where login={0}".format(request.form['login']))
+            return render_template('edit_user.html', title='Edit user', userdata='')
+    return redirect(url_for('index'))
 
 @app.route('/delete_user', methods=['GET'])
 def delete_user():
-    if request.method == 'GET':
-        uid = json.loads(
-            json.dumps(request.args.items('id'), separators=(',', ':')))[0][1]
-        Admin().deleteuser(uid)
-        return 'ok'
+    if 'username' in session:
+        if request.method == 'GET':
+            uid = json.loads(
+                json.dumps(request.args.items('id'), separators=(',', ':')))[0][1]
+            Admin().deleteuser(uid)
+            return 'ok'
+    return redirect(url_for('index'))
 
 @app.route('/deleteall', methods=['POST'])
 def deleteall():
-    if request.method == 'POST':
-        for uid in json.loads(json.dumps(request.form, separators=(',', ':'))).values():
-            Admin().deleteuser(uid)
-        return 'ok'
+    if 'username' in session:
+        if request.method == 'POST':
+            for uid in json.loads(json.dumps(request.form, separators=(',', ':'))).values():
+                Admin().deleteuser(uid)
+            return 'ok'
+    return redirect(url_for('index'))
 
 @app.route('/edit_item_menu', methods=['GET'])
 def edit_item_menu():
