@@ -117,8 +117,15 @@
                <td>
                   {{dish.id_category}}
                </td>
-               <td><div  class="small success btn"><input type="submit" name="edit_dish" value = "Edit"/></div></td>
-               <td><div  class="small success btn"><input name="del_dish" type="submit" value = "Remove"/></div></td>
+               <td>
+                  <div  class="small success btn">
+                    <input type="button" value = "Edit" onclick="document.location = '/edit_item_menu?id={{dish.id}}';" />
+                  </div>
+                </td>
+               <td>
+                  <div  class="small success btn"><input type="button" value = "Remove"/>
+                  </div>
+                </td>
                <td><input name="choos_one" type="checkbox" /></td>
                {% endfor %} 
             </tr>

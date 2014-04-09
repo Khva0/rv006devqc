@@ -70,12 +70,13 @@ def delete_user():
         return 'ok'
 
 
-@app.route('/edit_item_menu')
+@app.route('/edit_item_menu', methods=['GET'])
 def edit_item_menu():
-    return render_template('edit_item_menu.html', title='Edit menu', **Cooker().get_item_menu(1)[0])
+    id_dish = get_dict(request.args.items('id'))[0][1];
+    return render_template('edit_item_menu.html', title='Edit menu', **Cooker().get_item_menu(id_dish)[0])
 
 
-@app.route('/update_item_menu', methods=['POST'])
+@app.route('/edit_item_menu', methods=['POST'])
 def update_item_menu():
     diction = get_dict(request.form)
     Cooker().edit_item_menu(diction['id'], diction)
@@ -104,6 +105,7 @@ def create_category():
 def add_menu():
     if request.method == 'POST':
         Cooker().add_item_menu(get_dict(request.form))
+        return redirect(url_for('cooker_usr'))
 
 
 def get_dict(multi_dict):
