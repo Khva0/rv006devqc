@@ -1,11 +1,11 @@
 import MySQLdb
-#from conf import Conf
+from conf import Conf
 
 
 class Wrapper(object):
 	"""docstring for Wrapper"""
 	def __init__(self):
-		self.connect = MySQLdb.connect()
+		self.connect = MySQLdb.connect(Conf().read())
 
 
 	def select(self, columns, table_names, condition = ""):
