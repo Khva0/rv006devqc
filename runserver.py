@@ -130,6 +130,21 @@ def add_menu():
         return redirect(url_for('cooker_usr'))
 
 
+@app.route('/waiter', methods=['POST', 'GET'])
+def waiter_usr():
+        return render_template('waiter.html')
+
+
+@app.route('/view_orders')
+def view_order_usr():
+        return render_template('view_orders.html')
+
+@app.route('/edit_orders')
+def edit_order_usr():
+        return render_template('edit_orders.html')
+
+
+
 def get_dict(multi_dict):
     return json.loads(json.dumps(multi_dict, separators=(',', ':')))
 
