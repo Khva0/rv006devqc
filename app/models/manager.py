@@ -24,3 +24,10 @@ if __name__=="__main__":
     m = Manager()
     print m.get_full_order(44)
     
+"""(
+{'price': 123L, 'count': 1, 'image': '', 'name': 'Pizza', 'description': 'good pizza'},
+{'price': 13L, 'count': 1, 'image': '', 'name': 'cola-join', 'description': 'description join13'},
+{'price': 13L, 'count': 1, 'image': '', 'name': 'sprite-join', 'description': 'description-join'},
+{'full_price': 149L}
+)"""
+    
