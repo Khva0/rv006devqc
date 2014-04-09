@@ -1,4 +1,4 @@
-from models.wrapper import Wrapper
+from wrapper import Wrapper
 import datetime
 
 
