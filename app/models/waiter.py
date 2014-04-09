@@ -1,6 +1,4 @@
 from wrapper import Wrapper
-
-
 import datetime
 
 
@@ -26,9 +24,11 @@ class Waiter(object):
     def get_orders(self, waiter_id):
         """return dict with status and order id
         {'status': 1, 'id': 12L}"""
+        date = datetime.datetime.now().strftime("%d.%m.%Y")
         orders = self.wrap.select("status, id", "orders",
                                   "WHERE orders.status=1 \
-                                   AND orders.id_user={0}".format(waiter_id))
+                                   AND orders.id_user={0} AND \
+                                   orders.date LIKE '{1}%'".format(waiter_id,date))
         return orders
 
     def close_order(self, order_id):
@@ -55,6 +55,22 @@ class Waiter(object):
         """update ticket status to 0, default 1"""
         self.wrap.update({"status": 0}, "tickets", 
                          "WHERE tickets.id = %s" % (ticket_id))
+##############################################################################
+    def add_order2(self, waiter_id, order_data):
+        """must put waiter id and tickets in list of dict
+        [{"id_dish": 1, "count": 1},{"id_dish": 12, "count": 1}..."""
+        date = datetime.datetime.now().strftime("%d.%m.%Y %H:%M")
+        order = {"status": 1,
+               "id_user": waiter_id,
+               "date": date
+                }
+        order_id = self.wrap.insert(order, "orders")
+        tickets = []
+        for ticket in order_data:
+            ticket["id_order"] = order_id
+            tickets.append(ticket)
+        self.wrap.insert(tickets, "tickets")
+        print str(tickets).strip("[]")
 
 
 if __name__ == "__main__":
@@ -71,13 +87,14 @@ if __name__ == "__main__":
             {"id_dish": 8, "count": 3, "id_order": 20, "id": 112},  #ticket 4
             {"id_dish": 9, "count": 3, "id_order": 20, "id": 111}   #ticket 5
             ]
-    #w.add_order(1, order)"""WORK"""
-    #print w.get_orders(1)"""WORK"""
+    #w.add_order(1, order)#"""WORK"""
+    print w.get_orders(1)#"""WORK"""
     #close_order(31)"""WORK"""
     #print w.get_order(29)"""WORK"""
     #w.edit_order(orderEdit)"""WORK"""
     #w.del_ticket(115)"""WORK"""
     #print datetime.datetime.now().strftime("%d.%m.%Y %H:%M")
+    #w.add_order2(1, order)
 
     """add del/update mehods
 in mysql column date must be change to varchar = 16
