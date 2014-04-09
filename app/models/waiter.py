@@ -89,7 +89,7 @@ if __name__ == "__main__":
             ]
     #w.add_order(1, order)#"""WORK"""
     print w.get_orders(1)#"""WORK"""
-    #close_order(31)"""WORK"""
+    #close_order(31)#"""WORK"""
     #print w.get_order(29)"""WORK"""
     #w.edit_order(orderEdit)"""WORK"""
     #w.del_ticket(115)"""WORK"""
