@@ -4,7 +4,7 @@ import MySQLdb
 class  Manager(object):
     
     def __init__(self):
-        self.connect = MySQLdb.connect()
+        pass
 
     
     def get_full_order(self, order_id):
