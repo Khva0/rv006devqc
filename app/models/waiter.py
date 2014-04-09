@@ -31,7 +31,7 @@ class Waiter(object):
                                    AND orders.id_user={0}".format(waiter_id))
         return orders
 
-    def del_order(self, order_id):
+    def close_order(self, order_id):
         """get order id. Set status to NULL"""
         self.wrap.update({"status": 0}, "orders",
                           "WHERE id = %s" % (order_id))
@@ -73,7 +73,7 @@ if __name__ == "__main__":
             ]
     #w.add_order(1, order)"""WORK"""
     #print w.get_orders(1)"""WORK"""
-    #w.del_order(31)"""WORK"""
+    #close_order(31)"""WORK"""
     #print w.get_order(29)"""WORK"""
     #w.edit_order(orderEdit)"""WORK"""
     #w.del_ticket(115)"""WORK"""
