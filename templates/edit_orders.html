@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+{% block body %}
+<div class="row text-center" style="text-align:right;">
+  <div class="field centered nine columns">
+    <form method="post" name="edit_order" action="/edit_order">
+      <fieldset>
+        <legend>Edit</legend>
+        <ul class ="four_up tiles">
+          <li class="field">
+          <li class="field">
+            <div class="picker">
+              <select>
+                <option value="#" disabled>Dishes</option>
+                <option>Dishes</option>
+              </select>
+            </div>
+          </li>
+          <li class="append field">
+            ">
+            <label class="centered inline">Count</label>
+            <input  class="narrow text input" name="id_category" type="text" />
+            <div class="medium success btn oval"> <i class="icon-plus"></i></div>
+  </div>
+  </li> 
+  <div  class="medium success btn centered four columns"><input type="submit" value="Edit order"/></div>
+
+  </li>
+  </ul>
+  </fieldset>
+    </form>
+
+{% endblock %}

@@ -1,0 +1,69 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<table align="center" border="1" cellpadding="1" cellspacing="1">
+<caption>My orders</caption>
+  <thead>
+    <tr>
+      <th scope="col">
+        Id
+      </th>
+      <th scope="col">
+        Ticket
+      </th>
+      <th scope="col">
+        Waiter
+      </th>
+      <th scope="col">
+       Price
+      </th>
+     
+      <th scope="col">
+        Status
+      </th>
+      <th scope="col">
+        Count
+      </th>
+    
+    </tr>
+  </thead>
+  <tbody>
+    {% for orders in my_orders %}
+    <tr>
+      <td >
+        {{order.id}}
+      </td>
+      <td>
+        {{order.ticket}}
+      </td>
+      <td>
+        {{order.login}}
+      </td>
+      <td>
+        {{order.price}}
+      </td>
+      <td>
+        {{dish.image}}
+      </td>
+      <td>
+        {{order.status}}
+      </td>
+      <td>
+        {{order.count}}
+      </td>
+      <td>
+        {{dish.id_category}}
+      </td>
+      <td>
+        <div  class="small success btn"><input type="button" value = "Edit"/>
+        </div>
+      </td>
+      <td>
+        <div  class="small success btn"><input type="button" value = "Remove"/>
+        </div>
+      </td>
+      {% endfor %} 
+    </tr>
+  </tbody>
+</table>
+{% endblock %}
