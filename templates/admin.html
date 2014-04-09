@@ -1,6 +1,7 @@
 {% extends "layout.html" %}
 {% block body %}
-    <div class="row text-center" style="text-align:right;">
+
+   <div class="row text-center" style="text-align:right;">
       <div class="field centered ten columns">  
       <form action="/adduser" method="post" name="new_user">
         <fieldset>
@@ -49,7 +50,7 @@
     </div>
       </div>
 
-    
+   
     <table align="center" border="1" cellpadding="1" cellspacing="1" >
       <caption>
         All users</caption>
@@ -70,8 +71,9 @@
           <th scope="col">
             Delete</th>
           <th scope="col">
-            <input name="is_chosen" type="checkbox" /></th>
-                 
+                    <form id="deleteall" method="post" action="/deleteall">
+          </form>
+              <input type="submit" value="Submit" form="deleteall">   
         </tr>
       </thead>
       <tbody>
@@ -90,10 +92,12 @@
           <td>
             <a href='/edit_user?id={{usr.id}}'>Edit</a></td>
             <td>
-            <input type='button' onclick="document.location='/delete_user?id={{usr.id}}'" value="Delete"></td>>
-      <td><input name="choos_one" type="checkbox" /></td>
+            <input type='button' onclick="document.location='/delete_user?id={{usr.id}}'" value="Delete"></td>
+          <td>
+          <input form="deleteall" name="ch_{{usr.id}}" type="checkbox" value="{{usr.id}}" /></td>
             {% endfor %}
         </tr>
+        </tbody></table>
       </tbody>
     </table>
   {% endblock %}

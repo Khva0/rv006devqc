@@ -69,6 +69,12 @@ def delete_user():
         Admin().deleteuser(uid)
         return 'ok'
 
+@app.route('/deleteall', methods=['POST'])
+def deleteall():
+    if request.method == 'POST':
+        for uid in json.loads(json.dumps(request.form, separators=(',', ':'))).values():
+            Admin().deleteuser(uid)
+        return 'ok'
 
 @app.route('/edit_item_menu', methods=['GET'])
 def edit_item_menu():
