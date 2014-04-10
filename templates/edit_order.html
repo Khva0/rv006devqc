@@ -14,24 +14,24 @@
 				<th scope="col">Count</th>
 
 				<th scope="col">Price</th>
-					<th scope="col">Delete</th>
+				<th scope="col">Edite</th>
+				<th scope="col"></th>
+				<th scope="col">
+					<form id="deleteall" method="post" action="/deleteall"
+						name="deleteall"></form>
 
-					<th scope="col">
-						<form id="deleteall" method="post" action="/deleteall"
-							name="deleteall"></form>
-
-						<div class="small success btn">
-							<input value="X" form="deleteall" type="submit">
-						</div>
-					</th>
+					<div class="small success btn">
+						<input value="X" form="deleteall" type="submit">
+					</div>
+				</th>
 			</tr>
-		</thead>
-		{% for ticket in order %}
-		<tbody>
 
+		</thead>
+		<tbody>
+            {% for ticket in order %}
 			<tr>
-				<td>
-                    <img width="100" height="100" src="http://icons.iconarchive.com/icons/raindropmemory/in-spirited-we-love/128/Wallpaper-icon.png">
+				<td><img width="100" height="100"
+					src="http://icons.iconarchive.com/icons/raindropmemory/in-spirited-we-love/128/Wallpaper-icon.png">
 				</td>
 
 				<td>{{ticket.name}}</td>
@@ -39,25 +39,29 @@
 				<td>{{ticket.description}}</td>
 
 				<td><input type="text" name="count" value="{{ticket.conut}}"
-					style="width: 35px; text-align: center;">
-				</td>
+					style="width: 35px; text-align: center;"></td>
 
 				<td>{{ticket.price}}</td>
-
+				                <td>
+                    <div class="small success btn">
+                        <input onclick="document.location='#edit_order'"
+                            value="Edite" type="button">
+                    </div>
+                </td>
 				<td>
 					<div class="small success btn">
-						<input onclick="document.location='/delete_user?id=1'"
+						<input onclick="document.location='#delete_order'"
 							value="Delete" type="button">
 					</div>
 				</td>
-
 				<td><input form="deleteall" name="ch_1" value="1"
 					style="align: center; height: 30px; width: 33px" type="checkbox">
 				</td>
 
 			</tr>
+			{% endfor %}
 		</tbody>
-		{% endfor %}
+		
 	</table>
 </fieldset>
 {% endblock %}
