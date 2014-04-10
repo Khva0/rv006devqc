@@ -18,6 +18,8 @@ password varchar(30) not null,
 email varchar(20) not null,
 status tinyint(1) not null,
 id_role int unsigned not null,
+unique(login),
+unique(email),
 foreign key (id_role) references roles(id) on delete cascade 
 ) ENGINE = INNODB;
 
@@ -51,6 +53,8 @@ id int unsigned auto_increment primary key,
 count tinyint(2) not null,
 id_order int unsigned not null,
 id_dish int unsigned not null,
+status tinyint(2) unsigned not null,
+price int unsigned not null,
 foreign key (id_order) references orders(id) on delete cascade, 
 foreign key (id_dish) references dishes(id) on delete cascade
 ) ENGINE = INNODB;
