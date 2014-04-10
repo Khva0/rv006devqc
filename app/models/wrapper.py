@@ -5,7 +5,7 @@ from conf import Conf
 class Wrapper(object):
 	"""docstring for Wrapper"""
 	def __init__(self):
-		self.connect = MySQLdb.connect(Conf().read())
+		self.connect = MySQLdb.connect(*Conf().read())
 
 
 	def select(self, columns, table_names, condition = ""):
