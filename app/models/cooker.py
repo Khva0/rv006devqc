@@ -14,10 +14,8 @@ class Cooker(object):
                                     "dishes",
                                     "where id={0}".format(id_item_menu))
 
-
     def get_all_categories(self):
         return self.wrapper.select(["category", "id"], "categories")
-        r
   
 
     def get_menu_by_category(self, id_category):
@@ -38,6 +36,9 @@ class Cooker(object):
         """ Get all dishes from DB """
         return self.wrapper.select(["*"], "dishes")
 
+    def get_dishes_by_cat(self,catid):
+        """ Get dishes by categories """
+        return self.wrapper.select(["*"], "dishes","where id_category={0}".format(catid))
 
     def add_item_category(self, item_category):
         return self.wrapper.insert(item_category, "categories")
@@ -53,5 +54,3 @@ class Cooker(object):
 
     def edit_item_menu(self, id_menu, item_menu):
         return self.wrapper.update(item_menu, "dishes", "where id={0}".format(id_menu))
-
-
