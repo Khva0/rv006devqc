@@ -146,11 +146,12 @@ def waiter_usr():
 def orders():
         return render_template('view_orders.html')
 
-@app.route('/edit_order')
+@app.route('/edit_order', methods=["GET"])
 def edit_order():
-    tickets = Manager().get_full_order(61)#here put id of order from request
-    return render_template('edit_order.html', order=tickets)
-
+    if 'username' in session: #+permissions check
+        tickets = Manager().get_full_order(61)#here put id of order from request
+        return render_template('edit_order.html', order=tickets)
+    return redirect(url_for('index'))
 
 
 def get_dict(multi_dict):
