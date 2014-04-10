@@ -16,7 +16,9 @@ class Cooker(object):
 
 
     def get_all_categories(self):
-        return self.wrapper.select(["category"], "categories")
+        return self.wrapper.select(["category", "id"], "categories")
+        r
+  
 
     def get_menu_by_category(self, id_category):
         return self.wrapper.select(["id", "name", "description", "price",
@@ -51,4 +53,5 @@ class Cooker(object):
 
     def edit_item_menu(self, id_menu, item_menu):
         return self.wrapper.update(item_menu, "dishes", "where id={0}".format(id_menu))
+
 
