@@ -35,8 +35,9 @@
     <div class="picker">
     <select>
     <option value="#" disabled>Category</option>
-    <option>Pizza</option>
-    
+    {% for cat in all_categories %}
+    <option>{{cat.category}}</option>
+    {% endfor %}
     </select>
 
   </div>
