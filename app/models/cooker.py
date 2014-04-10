@@ -9,6 +9,12 @@ class Cooker(object):
         self.wrapper = Wrapper()
 
 
+    def delete_item_menu(self, id_item_menu):
+        return self.wrapper.update({"status":0},
+                                    "dishes",
+                                    "where id={0}".format(id_item_menu))
+
+
     def get_menu_by_category(self, id_category):
         return self.wrapper.select(["id", "name", "description", "price",
                                     "image", "status", "count", "id_category"],
