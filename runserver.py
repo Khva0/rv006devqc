@@ -6,6 +6,7 @@ from app.models.users import Users
 from app.models.wrapper import Wrapper
 from app.models.cooker import Cooker
 from app.models.waiter import Waiter
+from app.models.manager import Manager
 
 app = Flask(__name__)
 app.secret_key = 'Y9lUivAHtx4THhrrTVWuGBkH'
@@ -141,13 +142,14 @@ def waiter_usr():
         return render_template('waiter.html')
 
 
-@app.route('/view_orders')
-def view_order_usr():
+@app.route('/orders')
+def orders():
         return render_template('view_orders.html')
 
-@app.route('/edit_orders')
-def edit_order_usr():
-        return render_template('edit_orders.html')
+@app.route('/edit_order')
+def edit_order():
+    tickets = Manager().get_full_order(61)#here put id of order from request
+    return render_template('edit_order.html', order=tickets)
 
 
 
