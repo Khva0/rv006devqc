@@ -1,7 +1,8 @@
 from wrapper import Wrapper
-import MySQLdb
+import datetime
 
 class  Manager(object):
+    """in data we put all fields we need to see in ticket!"""
     
     def __init__(self):
         pass
@@ -17,12 +18,22 @@ class  Manager(object):
             full_price += ticket["price"]
         tickets += ({"full_price": full_price},)
         return tickets
+    
+    def get_all_orders(self, waiter_id):
+        """get all orders all waiters for curent date"""
+        date = datetime.datetime.now().strftime('%Y-%m-%d')
+        orders = Wrapper().select("status, id", "orders",
+                                  "WHERE orders.status=1 \
+                                   AND orders.date LIKE '{1}%'"\
+                                   .format(waiter_id, date))
+        return orders
 
 
     
 if __name__=="__main__":
     m = Manager()
-    print m.get_full_order(44)
+    print m.get_full_order(56)
+    print m.get_all_orders(1)
     
 """(
 {'price': 123L, 'count': 1, 'image': '', 'name': 'Pizza', 'description': 'good pizza'},
