@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+{% block body %}
+
+    <fieldset>
+    <legend>Order tickets</legend>
+	<table align="center" border="1" cellpadding="1" cellspacing="1">
+		<thead>
+			<tr>
+				<th scope="col">Image</th>
+
+				<th scope="col">Name</th>
+
+				<th scope="col">Desription</th>
+
+				<th scope="col">Count</th>
+
+				<th scope="col">Price</th>
+
+				<th scope="col">Delete</th>
+
+				<th scope="col">
+					<form id="deleteall" method="post" action="/deleteall"
+						name="deleteall"></form>
+
+					<div class="small success btn">
+						<input value="X" form="deleteall" type="submit">
+					</div>
+				</th>
+
+			</tr>
+		</thead>
+        {% for ticket in order %}
+		<tbody>
+
+			<tr>
+				<td>img.png</td>
+
+				<td>{{ticket.name}}</td>
+
+				<td>{{ticket.description}}</td>
+
+				<td><input type="text" name="count" value="{{ticket.conut}}" style="width: 35px; text-align: center;">
+				</td>
+
+				<td>{{ticket.price}}</td>
+
+				<td>
+					<div class="small success btn">
+						<input onclick="document.location='/delete_user?id=1'"
+							value="Delete" type="button">
+					</div>
+				</td>
+
+				<td><input form="deleteall" name="ch_1" value="1"
+					style="align: center; height: 30px; width: 33px" type="checkbox"></td>
+
+			</tr>
+		</tbody>
+		{% endfor %}
+	</table>
+    </fieldset>
+{% endblock %}
