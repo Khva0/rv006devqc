@@ -9,7 +9,7 @@ class Cooker(object):
         self.wrapper = Wrapper()
 
 
-    def get_menu(self, id_category):
+    def get_menu_by_category(self, id_category):
         return self.wrapper.select(["id", "name", "description", "price",
                                     "image", "status", "count", "id_category"],
                                     "dishes",
