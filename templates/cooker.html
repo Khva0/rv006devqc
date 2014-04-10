@@ -33,11 +33,11 @@
   <li class="append field">"
 
     <div class="picker">
-    <select>
+    <select name = "id_category" >
     
     <option disabled>Category</option>
     {% for cat in all_categories %}
-    <option name "id_category" value="{{cat.id}}">{{cat.category}}</option>
+    <option  value="{{cat.id}}">{{cat.category}}</option>
     {% endfor %}
     </select>
 
