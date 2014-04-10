@@ -11,7 +11,7 @@ class Waiter(object):
     def add_order(self, waiter_id, order_data):
         """must put waiter id and tickets in list of dict
         [{"id_dish": 1, "count": 1},{"id_dish": 12, "count": 1}..."""
-        date = datetime.datetime.now().strftime("%d.%m.%Y %H:%M")
+        date = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         order = {"status": 1,
                "id_user": waiter_id,
                "date": date
@@ -24,11 +24,12 @@ class Waiter(object):
     def get_orders(self, waiter_id):
         """return dict with status and order id
         {'status': 1, 'id': 12L}"""
-        date = datetime.datetime.now().strftime("%d.%m.%Y")
+        date = datetime.datetime.now().strftime('%Y-%m-%d')
         orders = self.wrap.select("status, id", "orders",
                                   "WHERE orders.status=1 \
                                    AND orders.id_user={0} AND \
-                                   orders.date LIKE '{1}%'".format(waiter_id,date))
+                                   orders.date LIKE '{1}%'"\
+                                   .format(waiter_id, date))
         return orders
 
     def close_order(self, order_id):
