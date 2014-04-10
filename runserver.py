@@ -108,9 +108,15 @@ def update_item_menu():
 @app.route('/cooker')
 def cooker_usr():
     all_dishes = Cooker().get_all_dishes()
-    return render_template('cooker.html', title='Admin', all_dishes=all_dishes)
+    all_categories = Cooker().get_all_categories()
+    return render_template('cooker.html', title='Admin', all_dishes=all_dishes, all_categories=all_categories)
 
-
+@app.route('/cookerlist', methods=['GET'])
+def cooker_by_categories():
+    dishes = Cooker().get_dishes_by_cat(request.args.items('id')[0][1])
+    categories = Cooker().get_all_categories()
+    return render_template('cooker.html', title='Admin', all_dishes=dishes, all_categories=categories)
+    
 @app.route('/add_category')
 def add_category():
     return render_template('add_category.html', title='Add category')
