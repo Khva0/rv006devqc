@@ -34,9 +34,10 @@
 
     <div class="picker">
     <select>
-    <option value="#" disabled>Category</option>
+    
+    <option disabled>Category</option>
     {% for cat in all_categories %}
-    <option>{{cat.category}}</option>
+    <option name "id_category" value="{{cat.id}}">{{cat.category}}</option>
     {% endfor %}
     </select>
 
@@ -61,7 +62,11 @@
          </form>
       </div>
       </div>
+
 <div class="medium secondary btn"><a href="#">Category</a></div>
+{% for cat in all_categories %}
+<div class="medium secondary btn"><a href="#">{{cat.category}}</a></div>
+{% endfor %}
       <table align="center" border="1" cellpadding="1" cellspacing="1">
       
        
