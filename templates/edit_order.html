@@ -14,7 +14,7 @@
 				<th scope="col">Count</th>
 
 				<th scope="col">Price</th>
-				<th scope="col">Edite</th>
+				<th scope="col">Edit</th>
 				<th scope="col"></th>
 				<th scope="col">
 					<form id="deleteall" method="post" action="/deleteall"
@@ -37,15 +37,15 @@
 				<td>{{ticket.name}}</td>
 
 				<td>{{ticket.description}}</td>
-
-				<td><input type="text" name="count" value="{{ticket.conut}}"
+                
+				<td><input type="text" name="count" value="{{ticket.count}}"
 					style="width: 35px; text-align: center;"></td>
 
 				<td>{{ticket.price}}</td>
 				                <td>
                     <div class="small success btn">
                         <input onclick="document.location='#edit_order'"
-                            value="Edite" type="button">
+                            value="Edit" type="button">
                     </div>
                 </td>
 				<td>
