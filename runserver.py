@@ -99,6 +99,13 @@ def edit_item_menu():
     return render_template('edit_item_menu.html', title='Edit menu', **Cooker().get_item_menu(id_dish)[0])
 
 
+@app.route('/delete_item_menu', methods=['GET'])
+def delete_item_menu():
+    id_dish = get_dict(request.args.items('id'))[0][1]
+    Cooker().delete_item_menu(id_dish)
+    return redirect(url_for('cooker_usr'))
+
+
 @app.route('/edit_item_menu', methods=['POST'])
 def update_item_menu():
     diction = get_dict(request.form)
