@@ -1,6 +1,7 @@
 {% extends "layout.html" %} {% block body %}
+
 <script type="text/javascript">
-  admin()
+	login()
 
 </script>
-  {% endblock %}
+{% endblock %}
