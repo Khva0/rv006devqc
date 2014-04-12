@@ -1,7 +1,0 @@
-{% extends "layout.html" %} {% block body %}
-
-<script type="text/javascript">
-	login()
-
-</script>
-{% endblock %}
