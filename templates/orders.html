@@ -8,6 +8,7 @@
 				<th scope="col">Status</th>
 				<th scope="col">Waiter</th>
 				<th scope="col">Price</th>
+				<th scope="col">Edit</th>
 				<th scope="col"></th>
 				<th scope="col">
 					<div class="small success btn">
@@ -31,6 +32,12 @@
 				</td>
 				<td>{{waiter_name}}waiter name</td>
 				<td>{{full_price}}full price</td>
+				<td>
+                    <div class="small success btn">
+                        <input onclick="document.location='edit_order?id={{order.id}}'" value="Edit"
+                            type="button">
+                    </div>
+                </td>
 				<td>
 					<div class="small success btn">
 						<input onclick="document.location='#close'" value="Close"
