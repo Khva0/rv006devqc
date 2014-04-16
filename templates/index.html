@@ -1,7 +1,58 @@
-{% extends "layout.html" %} {% block login %}
+<!DOCTYPE html>
 
-<script type="text/javascript">
-	login()
+    <head>
+        
+        
+        <title>Title</title>
 
+
+  
+    </head>
+    <body>
+        <div class="row navbar metro" id="nav1"></div>
+      <div id = "content"></div>
+      <script type="text/template" id= "loginpage">
+
+    <div class="row text-center">
+
+    <div class="field centered ten columns">
+        <form method="post" name="loginform" id="loginform">
+            <fieldset>
+                <legend>Please, enter your login and password</legend>
+                <ul>
+                <li class="field"><label class="centered inline" for="text1">Your
+                        Login</label> <input class="narrow text input" id="text1" type="text"
+                    placeholder="login" name="username" /></li>
+                <li class="field"><label class="inline" for="text2">Password</label>
+                    <input class="narrow password input" id="text2" type="password"
+                    placeholder="password" name="password" /></li>
+                </ul>
+            </fieldset>
+            <div class="medium success btn centered four columns">
+                <input type="submit" id="trylog"/>
+            </div>
+        </form>
+    </div>
+</div>
 </script>
-{% endblock %}
+
+
+      <link rel="stylesheet" type="text/css"
+    href="static/css/gumby.css">
+    <script type=text/javascript src="static/js/jquery.js"></script>
+    <script type=text/javascript src="static/js/underscore.js"></script>
+    <script type=text/javascript src="static/js/backbone.js"></script>
+     <script type=text/javascript src="static/js/script.js"></script>
+
+
+
+
+
+
+    </body>
+
+
+
+
+</html>
+
