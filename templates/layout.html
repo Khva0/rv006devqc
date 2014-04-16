@@ -6,22 +6,14 @@
     
 <body>
     <div class="row navbar metro" id="nav1"></div>
-  <link rel="stylesheet" type="text/css"
+    <link rel="stylesheet" type="text/css"
     href="{{ url_for('static', filename='css/gumby.css') }}">
 
-<script type=text/javascript src="{{
-  url_for('static', filename='js/jquery.js') }}"></script>
-
- <script type=text/javascript src="{{
-  url_for('static', filename='js/underscore.js') }}"></script>
-
-<script type=text/javascript src="{{
-  url_for('static', filename='js/backbone.js') }}"></script>
-
-<script type=text/javascript src="{{
+    <script type=text/javascript src="{{
   url_for('static', filename='js/script.js') }}"></script>
 
-
+ <script type=text/javascript data-main ="static/js/main" src="{{
+  url_for('static', filename='js/require.js') }}"></script>   
 <script type="text/template" id= "loginpage">
 {% block login %}{% endblock %}
     <div class="row text-center">
