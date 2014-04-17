@@ -43,11 +43,14 @@ def admin_usr():
         all_users = Users().get_all_users()
         return render_template("index.html")"""
         
-"""@app.route('/users/all')
+@app.route('/users/all')
 def admin_usr():
-    if 'username' in session:
-        all_users = Users().get_all_users()
-        return Response(jsonify(all_users))"""
+    """if 'username' in session:""" 
+    #def json_view (self):
+    #return {id: self.id, name: self.name}
+    all_users = Users().get_all_users()
+    #return jsonify(collection=[i.json_view() for i in all_users]) 
+    return json.dumps(all_users)
 
 
 @app.route('/adduser', methods=['POST', 'GET'])

@@ -32,7 +32,7 @@ var AdminModel = Backbone.Model.extend({
 
 var UsersCollection = Backbone.Collection.extend({
     //model: AdminModel,
-    url: 'admin'
+    url: '/users/all'
 });
 
 
@@ -47,7 +47,13 @@ var LoginView = Backbone.View.extend({
         var that = this;
         var template = _.template($('#loginpage').html());
         that.$el.html(template);
-        //router.navigate('admin', true);
+        //router.navigate('admin', true); 
+        var test = new UsersCollection();
+        test.fetch({
+            success: function(data) {
+                console.log(data);
+            }
+        });
     }
 
 });
@@ -59,13 +65,13 @@ var AdminView = Backbone.View.extend({
         var template = _.template($('#adminpage').html());
         that.$el.html(template);
         /*this.model = new UsersCollection();
-       this.model.on("change", this.render, this);
-       this.model.fetch();
-       this.model.parse();
+        this.model.on("change", this.render, this);
+        this.model.fetch();
+        this.model.parse();
         var usersCollection = new UsersCollection();
         usersCollection.fetch({
             success: function(users) {
-                var template = _.template($('#content').html(), {
+                var template = _.template($('#users_table').html(), {
                     users: usersCollection.toArray()
                 });
                 that.$el.html(template);
