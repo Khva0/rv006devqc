@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, abort, redirect, url_for,session
+from flask import Flask, render_template, request, abort, redirect, url_for,session, jsonify, make_response
 import json
 
 from app.models.admin import Admin
@@ -37,12 +37,17 @@ def logout():
     session.pop('username', None)
     return redirect(url_for('index'))
 
-@app.route('/admin')
+"""@app.route('/admin')
 def admin_usr():
     if 'username' in session:
         all_users = Users().get_all_users()
-        return render_template('admin.html', title='Admin', all_users=all_users)
-    return redirect(url_for('index'))
+        return render_template("index.html")"""
+        
+"""@app.route('/users/all')
+def admin_usr():
+    if 'username' in session:
+        all_users = Users().get_all_users()
+        return Response(jsonify(all_users))"""
 
 
 @app.route('/adduser', methods=['POST', 'GET'])
