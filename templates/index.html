@@ -412,9 +412,68 @@
 </table>
 </script>
 
+<!-- orders test table for backbone -->
+<script type="text/template" id="orders_template">
+<fieldset>
+    <legend>Orders: </legend>
+    <table align="center" border="1" cellpadding="1" cellspacing="1">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Status</th>
+                <th scope="col">Waiter</th>
+                <th scope="col">Price</th>
+                <th scope="col">Edit</th>
+                <th scope="col"></th>
+                <th scope="col">
+                    <div class="small success btn">
+                        <input onclick="document.location='#close'" value="Close all" type="button">
+                        <form id="deleteall" method="post" action="#deleteall" name="delete">
+                             <input name="all" value="1" style="align: center; height: 28px; width: 97px" type="checkbox">                        
+                        </form>
+
+                    </div>
+                </th>
+            </tr>
+
+        </thead>
+        <tbody>
+            <% _.each(orders.toArray(), function(order){
+            %>
+            <tr>
+                <td><%= order.get("id") %></td>
+                <td>status: <%= order.get("status") %></td>
+                <td><%= order.get("waiter_name") %>waiter name</td>
+                <td><%= order.get("full_price") %>full price</td>
+                <td>
+                    <div class="small success btn">
+                        <input onclick="document.location='#/edit_order/<%= order.get("id") %>'" value="Edit"
+                            type="button">
+                    </div>
+                </td>
+                <td>
+                    <div class="small success btn">
+                        <input onclick="document.location='#close'" value="Close"
+                            type="button">
+                    </div>
+                </td>
+                <td>
+                    <input form="deleteall" name="ch_1" value="1"
+                        style="align: center; height: 28px; width: 97px" type="checkbox">
+                </td>
+
+            </tr>
+            <% })%>
+        </tbody>
+    </table>
+</fieldset>
+</script>
+<!-- END orders test table for backbone -->
+
      <link rel="stylesheet" type="text/css"
    href="static/css/gumby.css">
    <script type=text/javascript data-main="static/js/main.js"src="static/js/libs/requirejs/require.js"></script>
+   <script type="text/javascript" src="static/js/pages/RestaurantPage/views/orders.js"></script>
    
 
 
