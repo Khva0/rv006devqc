@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, abort, redirect, url_for,session, jsonify, make_response, Response
+from flask import Flask, render_template, request, abort, redirect, url_for,session, jsonify, Response
 import json
 
 from app.models.admin import Admin
