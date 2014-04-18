@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, abort, redirect, url_for,session, jsonify, make_response
+from flask import Flask, render_template, request, abort, redirect, url_for,session, jsonify, make_response, Response
 import json
 
 from app.models.admin import Admin
@@ -173,7 +173,7 @@ def orders():
 @app.route('/edit_order/<int:order_id>', methods=["GET"])
 def edit_order_get(order_id):
     order = Manager().get_order(order_id)
-    return Responce(json.dumps(order))
+    return Response(json.dumps(order))
 
 @app.route('/edit_order/<int:order_id>', methods=["PUT"])
 def edit_order_put(order_id):
