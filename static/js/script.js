@@ -41,9 +41,12 @@ var DishesCollection = Backbone.Collection.extend({
     url: '/dishes/all'
 });
 
+var CategoriesCollection = Backbone.Collection.extend({
+    //model: AdminModel,
+    url: '/categories/all'
+});
 
 
-var dishes = new DishesCollection();
 
 var LoginView = Backbone.View.extend({
     model: LoginModel,
@@ -110,6 +113,12 @@ var CookerView = Backbone.View.extend({
         that.$el.html(template);
         var dishes = new DishesCollection();
         dishes.fetch({
+            success: function(data) {
+                console.log(data);
+            }
+        });
+        var categories = new CategoriesCollection();
+        categories.fetch({
             success: function(data) {
                 console.log(data);
             }
