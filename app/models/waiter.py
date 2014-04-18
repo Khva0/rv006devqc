@@ -37,11 +37,6 @@ class Waiter(object):
         self.wrap.update({"status": 0}, "orders",
                           "WHERE id = %s" % (order_id))
 
-    def get_order(self, order_id):
-        tickets = self.wrap.select("*", "tickets",
-                          "WHERE tickets.id_order = %s" % (order_id))
-        return tickets
-
 
 if __name__ == "__main__":
     w = Waiter()
@@ -55,7 +50,6 @@ if __name__ == "__main__":
     w.add_order(1, order)#"""WORK"""
     print w.get_orders(1)#"""WORK"""
     #close_order(31)#"""WORK"""
-    #print w.get_order(29)"""WORK"""
     #print datetime.datetime.now().strftime("%d.%m.%Y %H:%M")
 
 

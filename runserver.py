@@ -7,6 +7,8 @@ from app.models.wrapper import Wrapper
 from app.models.cooker import Cooker
 from app.models.waiter import Waiter
 from app.models.manager import Manager
+from flask.wrappers import Response
+from IPython.core.display import JSON
 
 app = Flask(__name__)
 app.secret_key = 'Y9lUivAHtx4THhrrTVWuGBkH'
@@ -163,17 +165,20 @@ def waiter_usr():
         return render_template('waiter.html')
 
 
-@app.route('/orders')
+@app.route('/orders', methods=["GET"])
 def orders():
-        return render_template('view_orders.html')
+    orders = Manager().get_all_orders()
+    return Response(json.dumps(orders))
 
-@app.route('/edit_order', methods=["GET"])
-def edit_order():
-    if 'username' in session: #+permissions check
-        tickets = Manager().get_full_order(61)#here put id of order from request
-        return render_template('edit_order.html', order=tickets)
-    return redirect(url_for('index'))
+@app.route('/edit_order/<int:order_id>', methods=["GET"])
+def edit_order_get(order_id):
+    order = Manager().get_order(order_id)
+    return Responce(json.dumps(order))
 
+@app.route('/edit_order/<int:order_id>', methods=["PUT"])
+def edit_order_put(order_id):
+    order = Manager().edit_order(json.dumps(request.args))
+    return redirect(url_for('edit_order_get'))#not tested!!!
 
 def get_dict(multi_dict):
     return json.loads(json.dumps(multi_dict, separators=(',', ':')))

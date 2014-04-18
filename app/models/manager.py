@@ -48,6 +48,11 @@ class  Manager(object):
                          "WHERE tickets.id = %s" % (ticket_id))
 
 
+    def get_order(self, order_id):
+        tickets = self.wrap.select("*", "tickets",
+                          "WHERE tickets.id_order = %s" % (order_id))
+        return tickets
+
     
 if __name__=="__main__":
     m = Manager()
@@ -60,10 +65,11 @@ if __name__=="__main__":
             {"count": 3, "id": 284}   #ticket 5
             ]
         
-    print m.get_full_order(78)
-    print m.get_all_orders()
-    m.edit_order(orderEdit)
+    #print m.get_full_order(78)
+    #print m.get_all_orders()
+    #m.edit_order(orderEdit)
     #m.del_ticket(115)"""WORK"""
+    #print m.get_order(78)
     
 """(
 {'price': 123L, 'count': 1, 'image': '', 'name': 'Pizza', 'description': 'good pizza'},
