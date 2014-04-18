@@ -14,26 +14,30 @@ class  Manager(object):
         condition = "INNER JOIN dishes ON tickets.id_dish = dishes.id WHERE tickets.id_order = %s" % (order_id)
         tickets = Wrapper().select(data, "tickets", condition)
         full_price = 0
-        for ticket in tickets:
-            full_price += ticket["price"]
-        tickets += ({"full_price": full_price},)
-        return tickets
+        if len(tickets) != 0:
+            for ticket in tickets:
+                full_price += ticket["price"]
+            tickets += ({"full_price": full_price},)
+            return tickets
+        return None
     
-    def get_all_orders(self, waiter_id):
+    def get_all_orders(self):
         """get all orders all waiters for curent date"""
         date = datetime.datetime.now().strftime('%Y-%m-%d')
         orders = Wrapper().select("status, id", "orders",
                                   "WHERE orders.status=1 \
-                                   AND orders.date LIKE '{1}%'"\
-                                   .format(waiter_id, date))
-        return orders
+                                   AND orders.date LIKE '{0}%'"\
+                                   .format(date))
+        if len(orders) != 0:
+            return orders
+        return None
 
 
     
 if __name__=="__main__":
     m = Manager()
-    print m.get_full_order(56)
-    print m.get_all_orders(1)
+    print m.get_full_order(78)
+    print m.get_all_orders()
     
 """(
 {'price': 123L, 'count': 1, 'image': '', 'name': 'Pizza', 'description': 'good pizza'},
