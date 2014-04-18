@@ -7,8 +7,9 @@ var Order = Backbone.Model.extend({
     	id: "",
     	status: "",
     },
+    
     initialize: function(){
-        console.log("orders initialized");
+        console.log("Orders initialized");
     }
 });
 
@@ -28,21 +29,15 @@ var order6 = new Order({id: "66", status: "1"});
 var newOrders = new Orders([order1, order2, order3, order4, order5, order6]);
 
 var view_Orders = Backbone.View.extend({
-	el: '#div1',
+	el: "#content",
+	template: _.template($("#orders_template").html(), {orders: newOrders})
 
 	initialize: function() {
 		console.log("Backbone View orders work");
 	},
 
 	render: function() {
-		/*
-		require_template("templates");
-		var template = _.template($("#template_templates").html(), {orders: newOrders})
-		this.$el.html(template);
-		*/
-		
-		var template = _.template(require_template("templates.js"), {orders: newOrders})
-		this.$el.html(template);
+		this.$el.html(this.template);
 
 	}
 });
