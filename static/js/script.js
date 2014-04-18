@@ -7,6 +7,7 @@ var Router = Backbone.Router.extend({
     }
 });
 var router = new Router;
+
 var LoginModel = Backbone.Model.extend({
     url: "/login"
 
@@ -35,7 +36,14 @@ var UsersCollection = Backbone.Collection.extend({
     url: '/users/all'
 });
 
+var DishesCollection = Backbone.Collection.extend({
+    //model: AdminModel,
+    url: '/dishes/all'
+});
 
+
+
+var dishes = new DishesCollection();
 
 var LoginView = Backbone.View.extend({
     model: LoginModel,
@@ -61,9 +69,22 @@ var AdminView = Backbone.View.extend({
 
     el: "#content",
     render: function() {
+
         var that = this;
         var template = _.template($('#adminpage').html());
         that.$el.html(template);
+        var test = new UsersCollection();
+
+        test.fetch({
+            success: function(data) {
+                console.log(data);
+                //var template = _.template($('#users_table').html(), {
+                // test: test.toJSON()
+                //});
+                //that.$el.html(template);
+            }
+        });
+
         /*this.model = new UsersCollection();
         this.model.on("change", this.render, this);
         this.model.fetch();
@@ -87,6 +108,12 @@ var CookerView = Backbone.View.extend({
         var that = this;
         var template = _.template($('#cookerpage').html());
         that.$el.html(template);
+        var dishes = new DishesCollection();
+        dishes.fetch({
+            success: function(data) {
+                console.log(data);
+            }
+        });
 
     }
 

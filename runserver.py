@@ -121,11 +121,17 @@ def update_item_menu():
     return '{"ok":dish update}'
 
 
-@app.route('/cooker')
-def cooker_usr():
+@app.route('/dishes/all')
+def get_all_dishes():
     all_dishes = Cooker().get_all_dishes()
+    return json.dumps(all_dishes)
+
+@app.route('/categories/all')
+def get_all_categories():
     all_categories = Cooker().get_all_categories()
-    return render_template('cooker.html', title='Admin', all_dishes=all_dishes, all_categories=all_categories)
+    return json.dumps(all_categories)
+
+
 
 @app.route('/cookerlist', methods=['GET'])
 def cooker_by_categories():
