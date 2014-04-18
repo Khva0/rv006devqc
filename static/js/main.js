@@ -14,17 +14,20 @@ require.config({
         }
     },
     paths: {
-        jquery: 'jquery',
-        backbone: 'backbone',
-        underscore: 'underscore',
-        text: 'text',
-        templates: '../templates',
-        views: '../views'
+        jquery: 'libs/jquery/jquery',
+        backbone: 'libs/backbonejs/backbone',
+        underscore: 'libs/underscorejs/underscore',
+        text: 'libs/requirejs/text',
+        templates: 'pages/RestaurantPage/templates',
+        views: 'pages/RestaurantPage/views',
+        collections:'pages/RestaurantPage/collections',
+        models:'pages/RestaurantPage/models',
+        routers:'pages/RestaurantPage/routers'
     }
 });
 
-require([
-    'backbone'
-], function(Backbone) {
-    Backbone.history.start();
-});
+require(["application"],
+     function (application) {
+        application.start();
+    }
+);
