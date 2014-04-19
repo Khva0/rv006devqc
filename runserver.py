@@ -15,7 +15,7 @@ app.secret_key = 'Y9lUivAHtx4THhrrTVWuGBkH'
 
 @app.route('/')
 def index():
-    return render_template('index2.html')
+    return render_template('index.html')
 
 
 @app.route('/login', methods=['POST', 'GET'])
