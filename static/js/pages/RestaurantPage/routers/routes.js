@@ -18,7 +18,8 @@ define([
                 "cooker": "cooker",
                 "waiter": "waiter",
                 "orders": "orders",
-                "edit_order/:id": "edit_order",
+                "edit_order/:id": "edit_order"
+                
             },
 
 
@@ -45,13 +46,15 @@ define([
             },
             
             orders: function() {
-            	view_orders = new orders_view();
-            	view_orders.render();
+            	ordersView = new OrdersView();
+            	
+            	ordersView.render();
+            	
             },
             
             edit_order: function() {
-            	view_order_tickets = new order_view(id);
-            	view_order_tickets.render({id: id});
+            	ticketsView = new TicketsView(id);
+            	ticketsView.render({id: id});
 
             }
         });
