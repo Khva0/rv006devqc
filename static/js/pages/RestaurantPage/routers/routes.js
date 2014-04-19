@@ -42,11 +42,13 @@ define([
             waiter: function() {
                 waiterView = new WaiterView;
                 waiterView.render();
+            },
             
             orders: function() {
             	view_orders = new orders_view();
             	view_orders.render();
-            	
+            },
+            
             edit_order: function() {
             	view_order_tickets = new order_view();
             	view_order_tickets.render();
