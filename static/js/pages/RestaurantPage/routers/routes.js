@@ -50,8 +50,8 @@ define([
             },
             
             edit_order: function() {
-            	view_order_tickets = new order_view();
-            	view_order_tickets.render();
+            	view_order_tickets = new order_view(id);
+            	view_order_tickets.render({id: id});
 
             }
         });
