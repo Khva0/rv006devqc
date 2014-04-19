@@ -165,17 +165,17 @@ def waiter_usr():
         return render_template('waiter.html')
 
 
-@app.route('/orders', methods=["GET"])
+@app.route('/getOrders', methods=["GET"])
 def orders():
     orders = Manager().get_all_orders()
     return Response(json.dumps(orders))
 
-@app.route('/edit_order/<int:order_id>', methods=["GET"])
+@app.route('/getTickets/<int:order_id>', methods=["GET"])
 def edit_order_get(order_id):
-    order = Manager().get_order(order_id)
+    order = Manager().get_full_order(order_id)
     return Response(json.dumps(order))
 
-@app.route('/edit_order/<int:order_id>', methods=["PUT"])
+@app.route('/getTickets/<int:order_id>', methods=["PUT"])
 def edit_order_put(order_id):
     order = Manager().edit_order(json.dumps(request.args))
     return redirect(url_for('edit_order_get'))#not tested!!!

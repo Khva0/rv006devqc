@@ -1,9 +1,9 @@
 var Order = Backbone.Model.extend({
-	urlRoot: '/orders',
+	urlRoot: '/getOrders',
 });
 
 var Orders = Backbone.Collection.extend({
-	url: '/orders',	
+	url: '/getOrders',	
 	model: Order
 });
 
@@ -22,25 +22,4 @@ var orders_view = Backbone.View.extend({
   });
 
 
-var view = new orders_view();
-
-
-var Router = Backbone.Router.extend({
-    routes: {
-      "orders": "orders",
-      "edit_order": "edit_order",
-      "edit_order/:id": "edit_order",
-    }
-});
-
-var router = new Router;
-router.on('route:orders', function() {
-	view.render();
-})
-router.on('route:edit_order', function(id) {
-  
-})
-router.on('route:edit_order', function() {
-	view.render();
-})
-Backbone.history.start();
+var view_orders = new orders_view();

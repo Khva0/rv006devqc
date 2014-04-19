@@ -13,11 +13,12 @@ class  Manager(object):
         data = "dishes.image, dishes.name, dishes.description, dishes.price, tickets.count"
         condition = "INNER JOIN dishes ON tickets.id_dish = dishes.id WHERE tickets.id_order = %s" % (order_id)
         tickets = self.wrap.select(data, "tickets", condition)
+        
         full_price = 0
         if len(tickets) != 0:
-            for ticket in tickets:
+            """for ticket in tickets:
                 full_price += ticket["price"]
-            tickets += ({"full_price": full_price},)
+            tickets += ({"full_price": full_price},)"""
             return tickets
         return None
     
@@ -66,7 +67,7 @@ if __name__=="__main__":
             ]
         
     #print m.get_full_order(78)
-    #print m.get_all_orders()
+    print m.get_all_orders()
     #m.edit_order(orderEdit)
     #m.del_ticket(115)"""WORK"""
     #print m.get_order(78)
