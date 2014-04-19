@@ -1,17 +1,19 @@
 define([
-        "pages/RestaurantPage/routers/routes",
-        "pages/RestaurantPage/models/User"],
+        "pages/RestaurantPage/routers/routes"
+        //"pages/RestaurantPage/collections/UsersCollection"
+        //"pages/RestaurantPage/models/User"
+    ],
 
     function(routes, User) {
         var _public = {};
         var _private = {};
 
-        _private.init = function () {
-            environment.user = new User();
-            environment.router = new PageRouter();
+        _private.init = function() {
+            // user = new User();
+            router = new routes();
         };
 
-        _public.start = function () {
+        _public.start = function() {
             _private.init();
             Backbone.history.start();
         };

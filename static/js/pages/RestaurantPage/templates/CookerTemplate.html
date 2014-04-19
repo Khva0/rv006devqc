@@ -1,0 +1,149 @@
+<script type="text/template" id="cookerpage">
+  <div class="row text-center" style="text-align:right;">
+      <div class="field centered ten columns">  
+         <form method="post" name="create_menu_form" action="/add_menu">
+         <fieldset>
+         <legend>Add dishes</legend>
+            
+            <ul class ="two_up tiles">
+    <li class="field">
+    <label class="centered inline" for="text1">Dish name</label>
+    <input class="wide text input" name="name" type="text" /> 
+    </li>
+    <li class="field">
+    <label class="centered inline" for="text1">Image</label>
+    <input class="wide text input" name="image" type="text" />
+    </li>
+  <li class="field">
+    <label class="centered inline" for="text1">Price</label>
+    <input class="wide text input" name="price" type="text" />
+    </li>
+            
+            
+    <li class="field">
+    <label class="centered inline" for="text1">Status</label>
+    <input class="wide text input" name="status" type="text" />
+</li>
+<li class="field">
+    <label class="centered inline" for="text1">Count</label>
+   <input name="count" class="wide text input" type="text" />
+          </li>  
+
+  <li class="append field">
+
+    <div class="picker">
+    <select name = "id_category" >
+    
+    <option disabled>Category</option>
+    {% for cat in all_categories %}
+    <option  value="{{cat.id}}">{{cat.category}}</option>
+    {% endfor %}
+    </select>
+
+  </div>
+
+
+</li>
+    <div class="small success btn "> <a>Edit category</a></div>
+               
+ <li class="field">
+    <label class="centered inline" for="text1">Description</label>
+               <input class="wide text input" name="Description" />
+               </li>   
+            
+               <div  class="medium success btn centered four columns"><input type="submit" value="Add menu"/></div>
+               <div class="small success btn"><a href="/add_category">Add category</a></div>
+               </li>
+              </ul>
+</fieldset>
+
+
+         </form>
+      </div>
+      </div>
+
+<div class="medium secondary btn"><a href="#">Category</a></div>
+{% for cat in all_categories %}
+<div class="medium secondary btn"><a href="/cookerlist?id={{cat.id}}">{{cat.category}}</a></div>
+{% endfor %}
+      <table align="center" border="1" cellpadding="1" cellspacing="1">
+      
+       
+         <thead>
+            <tr>
+               <th scope="col">
+                  Id
+               </th>
+               <th scope="col">
+                  Name
+               </th>
+               <th scope="col">
+                  Description
+               </th>
+               <th scope="col">
+                  Price
+               </th>
+               <th scope="col">
+                  Image
+               </th>
+               <th scope="col">
+                  Status
+               </th>
+               <th scope="col">
+                  Count
+               </th>
+               <th scope="col">
+                  Category
+               <th scope="col">
+                  Edit
+               <th scope="col">
+                  Delete
+               </th>
+               <th scope="col">
+                  <input name="choos_all" type="checkbox" />
+               </th>
+            </tr>
+         </thead>
+         <tbody>
+            {% for dish in all_dishes %}
+            <tr>
+               <td class="striped">
+                  {{dish.id}}
+               </td>
+               <td>
+                  {{dish.name}}
+               </td>
+               <td>
+                  {{dish.description}}
+               </td>
+               <td>
+                  {{dish.price}}
+               </td>
+               <td>
+                  {{dish.image}}
+               </td>
+               <td>
+                  {{dish.status}}
+               </td>
+               <td>
+                  {{dish.count}}
+               </td>
+               <td>
+                  {{dish.id_category}}
+               </td>
+               <td>
+                  <div  class="small success btn">
+                    <input type="button" value = "Edit" onclick="document.location = '/edit_item_menu?id={{dish.id}}';" />
+                  </div>
+                </td>
+               <td>
+                  <div  class="small success btn">
+                    <input type="button" onclick="document.location = '/delete_item_menu?id={{dish.id}}'" value = "Remove"/>
+                  </div>
+                </td>
+               <td><input name="choos_one" type="checkbox" /></td>
+               {% endfor %} 
+            </tr>
+         </tbody>
+      </table>
+</script>

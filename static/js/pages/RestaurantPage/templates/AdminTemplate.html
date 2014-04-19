@@ -1,0 +1,125 @@
+<script type="text/template" id= "adminpage">
+
+   <div class="row text-center" style="text-align:right;">
+   <div class="field centered ten columns">
+     <form action="/adduser" method="post" name="new_user" id="new_user">
+       <fieldset>
+         <legend>Add user</legend>
+
+         <ul class="two_up tiles">
+           <li class="field"><label class="centered inline" for="text1">Name</label>
+           <input name="f_name" class="wide text input" type="text" /></li>
+
+           <li class="field"><label class="centered inline" for="text1">Last
+           name</label> <input name="l_name" class="wide text input" type="text" /></li>
+
+           <li class="field"><label class="centered inline" for="text1">Login</label>
+           <input name="login" type="text" class="wide text input" /></li>
+
+           <li class="field"><label class="centered inline" for="text1">Password</label>
+           <input name="password" type="password" class="wide text input" /></li>
+
+           <li class="field"><label class="centered inline" for="text1">Email</label>
+           <input name="email" type="text" class="wide text input" /></li>
+
+           <li class="field"><label class="centered inline" for="text1">Status</label>
+           <input name="status" type="number" class="wide text input" /></li>
+
+           <li class="field">
+             <div class="picker">
+               <select name="id_role" size="1">
+                 <option value="1">
+                   Waiter
+                 </option>
+
+                 <option value="2">
+                   Cooker
+                 </option>
+
+                 <option value="2">
+                   Manager
+                 </option>
+
+                 <option value="admin">
+                   Admin
+                 </option>
+               </select>
+             </div>
+           </li>
+
+           <li style="list-style: none; display: inline">
+             <div class="medium success btn centered four columns">
+               <input type="submit" value="Add user" />
+             </div>
+           </li>
+         </ul>
+       </fieldset>
+     </form>
+   </div>
+ </div> 
+
+ <table align="center" border="1" cellpadding="1" cellspacing="1" id='users_table'>
+   <caption>
+     All users
+   </caption>
+
+   <thead>
+     <tr>
+       <th scope="col">Name</th>
+
+       <th scope="col">Last name</th>
+
+       <th scope="col">Login</th>
+
+       <th scope="col">Email</th>
+
+       <th scope="col">Role</th>
+
+       <th scope="col">Edit</th>
+
+       <th scope="col">Delete</th>
+
+       <th scope="col">
+         <form id="deleteall" method="post" action="/deleteall" name="deleteall"></form>
+
+         <div class="small success btn">
+           <input type="submit" value="X" form="deleteall" />
+         </div>
+       </th>
+       
+     </tr>
+   </thead>
+
+   <tbody>
+   {% for usr in all_users %}
+     <tr>
+       <td>{{usr.l_name}}</td>
+
+       <td>{{usr.f_name}}</td>
+
+       <td>{{usr.login}}</td>
+
+       <td>{{usr.email}}</td>
+
+       <td>{{usr.id_role}}</td>
+
+       <td>
+         <div class="small success btn">
+           <a href='/edit_user?id={{usr.id}}'>Edit</a>
+         </div>
+       </td>
+
+       <td>
+         <div class="small success btn">
+           <input type='button' onclick="document.location='/delete_user?id={{usr.id}}'"
+           value="Delete" />
+         </div>
+       </td>
+
+       <td><input form="deleteall" name="ch_{{usr.id}}" type="checkbox" value=
+       "{{usr.id}}" style="align:center;" /></td>
+       {% endfor %}
+     </tr>
+   </tbody>
+ </table>
+</script><!-- Admin Page template -->
