@@ -6,11 +6,11 @@ define([
 
 ], function($, _, Backbone, Ticket){
 
-var Tickets = Backbone.Collection.extend({
-	url: function(){
-		return this.orderId === undefined? "/edit_order": "/getTickets/" + this.orderId;
-	},
-	model: Ticket
+	var Tickets = Backbone.Collection.extend({
+		url: function(){
+			return this.orderId === undefined? "/getOrders": "/getTickets/" + this.orderId;
+		},
+		model: Ticket
 });
 	return Tickets;
 });
