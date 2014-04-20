@@ -51,7 +51,7 @@ define([
             	
             },
             
-            edit_order: function() {
+            edit_order: function(id) {
             	ticketsView = new TicketsView(id);
             	ticketsView.render({id: id});
 
