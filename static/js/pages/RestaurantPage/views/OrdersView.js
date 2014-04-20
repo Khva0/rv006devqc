@@ -1,13 +1,12 @@
-/*
 define([
   'jquery',
   'underscore',
   'backbone',
-  "pages/RestaurantPage/collections/orders_collections",
+  "pages/RestaurantPage/collections/orders_collection",
   'text!pages/RestaurantPage/templates/orders.html'
-], function($, _, Backbone){
+], function($, _, Backbone, Orders,OrdersTemplate ){
 
-	return  Backbone.View.extend({
+	var OrdersView =  Backbone.View.extend({
 		
 	    el: '#content',
 	    
@@ -16,11 +15,11 @@ define([
 	      var orders = new Orders();
 	      orders.fetch({
 	        success: function (orders) {
-	          var template = _.template($("#OrdersTemplate").html(), {orders: orders});
+	          var template = _.template(OrdersTemplate, {orders: orders});
 	          self.$el.html(template);
 	        }
 	      })
 	    }
 	  });
+	return OrdersView;
 });
-*/
