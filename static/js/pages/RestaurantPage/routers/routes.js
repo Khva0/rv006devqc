@@ -47,8 +47,7 @@ define([
             
             orders: function() {
             	ordersView = new OrdersView();
-            	
-            	ordersView.render();
+              	ordersView.render();
             	
             },
             
