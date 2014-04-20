@@ -1,3 +1,4 @@
+/*
 define([
   'jquery',
   'underscore',
@@ -22,3 +23,4 @@ define([
 	    }
 	  });
 });
+*/
