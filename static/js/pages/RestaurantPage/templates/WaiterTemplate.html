@@ -1,4 +1,4 @@
-<script type="text/template" id="waiterpage">
+
   <div class="row text-center" style="text-align:right;">
   <div class="field centered nine columns">
     <form method="post" name="make_order" action="/create_order">
@@ -63,7 +63,7 @@
     </tr>
   </thead>
   <tbody>
-    {% for dish in all_dishes %}
+
     <tr>
       <td >
         {{dish.id}}
@@ -92,8 +92,8 @@
       <td>
         
       </td>
-      {% endfor %} 
+ 
     </tr>
   </tbody>
 </table>
-</script>
+
