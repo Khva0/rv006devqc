@@ -5,11 +5,11 @@ define([
         "pages/RestaurantPage/views/CookerView",
         "pages/RestaurantPage/views/WaiterView",
         "pages/RestaurantPage/views/OrdersView",
-        "pages/RestaurantPage/views/TicketsView",
-        "pages/RestaurantPage/views/UserDataView"
+        "pages/RestaurantPage/views/TicketsView"
+
     ],
 
-    function(LoginView, AdminView, CookerView, WaiterView, OrdersView, TicketsView, UserDataView) {
+    function(LoginView, AdminView, CookerView, WaiterView, OrdersView, TicketsView) {
         return Backbone.Router.extend({
 
 
@@ -31,9 +31,7 @@ define([
             },
             admin: function() {
                 adminView = new AdminView;
-                userData = new UserDataView();
                 adminView.render();
-                userData.render();
             },
 
             cooker: function() {
