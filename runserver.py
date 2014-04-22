@@ -17,7 +17,33 @@ app.secret_key = 'Y9lUivAHtx4THhrrTVWuGBkH'
 def index():
     return render_template('index.html')
 
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
 
+def check_image(filename):
+    img_type = imghdr.what(filename)
+    if img_type != None and any(img_type in s for s in ALLOWED_EXTENSIONS):
+        return True
+    else:
+        return False
+
+@app.route('/upload', methods=['POST'])
+def upload():
+    if request.method == 'POST':
+        file = request.files['file']
+        if file and allowed_file(file.filename):
+            hash = hashlib.sha1()
+            hash.update(str(time.time()))
+            filename = os.path.join(app.config['UPLOAD_FOLDER'], hash.hexdigest()[:10] + secure_filename(file.filename))
+            file.save(filename)
+            if check_image(filename):
+                return 'ok'
+            else:
+                os.remove(filename)
+                return 'no image'
+        else:
+            return 'type error'
+            
 @app.route('/login', methods=['POST', 'GET'])
 def login():
     if request.method == 'POST':
