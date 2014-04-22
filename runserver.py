@@ -5,10 +5,10 @@ from app.models.admin import Admin
 from app.models.users import Users
 from app.models.wrapper import Wrapper
 from app.models.cooker import Cooker
-from app.models.waiter import Waiter
+#from app.models.waiter import Waiter  #all methods reilized in manager that extend waiter class
 from app.models.manager import Manager
 from flask.wrappers import Response
-#from IPython.core.display import JSON
+
 
 app = Flask(__name__)
 app.secret_key = 'Y9lUivAHtx4THhrrTVWuGBkH'
@@ -196,15 +196,23 @@ def orders():
     orders = Manager().get_all_orders()
     return Response(json.dumps(orders))
 
+
 @app.route('/getTickets/<int:order_id>', methods=["GET"])
 def edit_order_get(order_id):
     order = Manager().get_full_order(order_id)
     return Response(json.dumps(order))
 
+
 @app.route('/getTickets/<int:order_id>', methods=["PUT"])
 def edit_order_put(order_id):
     order = Manager().edit_order(json.dumps(request.args))
     return redirect(url_for('edit_order_get'))#not tested!!!
+
+@app.route('/closeOrder/<int:order_id>', methods=["DELETE"])
+def close_order(order_id):
+    Manager().close_order(order_id)
+    return Response(None);#not tested!!!
+
 
 def get_dict(multi_dict):
     return json.loads(json.dumps(multi_dict, separators=(',', ':')))
