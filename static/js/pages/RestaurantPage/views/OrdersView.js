@@ -10,6 +10,19 @@ define([
 		
 	    el: '#content',
 	    
+	    events: {
+	        'click .closeOrder': 'closeOrder'
+	      },
+	      
+	      closeOrder: function() {
+	        //this.model.destroy();
+	        $(this.el).find("#85").remove();
+	      },
+	      
+	      remove: function() {
+	        $(this.el).find('.className').remove();
+	      },
+	    
 	    render: function () {
 	      var self = this;
 	      var orders = new Orders();
@@ -18,7 +31,7 @@ define([
 	          var template = _.template(OrdersTemplate, {orders: orders});
 	          self.$el.html(template);
 	        }
-	      })
+	      });
 	    }
 	  });
 	return OrdersView;
