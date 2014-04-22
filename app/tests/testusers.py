@@ -52,7 +52,7 @@ class Test(unittest.TestCase):
         try:
             self.connect = MySQLdb.connect("193.203.48.28",
                                             "test",
-                                            "qwerty",
+                                            "Qqwerty",
                                             "3"
                                             )
             cursor = self.connect.cursor(MySQLdb.cursors.DictCursor)

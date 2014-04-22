@@ -47,9 +47,9 @@ if __name__ == "__main__":
             {"id_dish": 7, "count": 1}   #ticket 5
             ]
 
-    w.add_order(1, order)#"""WORK"""
-    print w.get_orders(1)#"""WORK"""
-    #close_order(31)#"""WORK"""
+    #w.add_order(1, order)#"""WORK"""
+    #print w.get_orders(1)#"""WORK"""
+    #w.close_order(90)
     #print datetime.datetime.now().strftime("%d.%m.%Y %H:%M")
 
 
