@@ -14,13 +14,10 @@ define([
 	        'click .closeOrder': 'closeOrder'
 	      },
 	      
-	      closeOrder: function() {
+	      closeOrder: function(event) {
 	        //this.model.destroy();
-	        $(this.el).find("#85").remove();
-	      },
-	      
-	      remove: function() {
-	        $(this.el).find('.className').remove();
+	    	  //this.orders.remove(event.target.value);
+	        $(this.el).find("#" + event.target.value).remove();
 	      },
 	    
 	    render: function () {

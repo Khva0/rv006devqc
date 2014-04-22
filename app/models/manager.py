@@ -1,7 +1,8 @@
 from wrapper import Wrapper
 import datetime
+from waiter import Waiter
 
-class  Manager(object):
+class  Manager(Waiter):
     """in data we put all fields we need to see in ticket!"""
     
     def __init__(self):
@@ -67,10 +68,11 @@ if __name__=="__main__":
             ]
         
     #print m.get_full_order(78)
-    print m.get_all_orders()
+    #print m.get_all_orders()
     #m.edit_order(orderEdit)
     #m.del_ticket(115)"""WORK"""
     #print m.get_order(78)
+    #m.close_order(92);
     
 """(
 {'price': 123L, 'count': 1, 'image': '', 'name': 'Pizza', 'description': 'good pizza'},

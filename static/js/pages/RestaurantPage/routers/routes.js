@@ -56,7 +56,6 @@ define([
                 ticketsView.render({
                     id: id
                 });
-
             }
         });
     });
