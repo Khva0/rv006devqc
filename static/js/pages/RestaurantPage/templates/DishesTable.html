@@ -1,0 +1,76 @@
+
+      <table align="center" border="1" cellpadding="1" cellspacing="1">
+      
+       
+         <thead>
+            <tr>
+               <th scope="col">
+                  Id
+               </th>
+               <th scope="col">
+                  Name
+               </th>
+               <th scope="col">
+                  Description
+               </th>
+               <th scope="col">
+                  Price
+               </th>
+               <th scope="col">
+                  Image
+               </th>
+               <th scope="col">
+                  Status
+               </th>
+               <th scope="col">
+                  Count
+               </th>
+               <th scope="col">
+                  Category
+               <th scope="col">
+                  Edit
+               <th scope="col">
+                  Delete
+               </th>
+               <th scope="col">
+                  <input name="choos_all" type="checkbox" />
+               </th>
+            </tr>
+         </thead>
+         <tbody>
+ <% _.each(dishes.toArray(), function(dish, key, list) { %>
+            <tr>
+               
+                 <td><%- dish.get('id') %></td>
+               
+               
+                  <td><%- dish.get('name') %></td>
+              
+               
+                  <td><%- dish.get('description') %></td>
+                  <td><%- dish.get('price') %></td>
+              
+                  <td><%- dish.get('image') %></td>
+             
+                  
+              
+                  <td><%- dish.get('status') %></td>
+              
+                  <td><%- dish.get('count') %></td>
+                             <td><%- dish.get('id_category') %></td>
+
+             <td>
+                  <div  class="small success btn">
+                    <input type="button" value = "Edit" onclick="document.location = '/edit_item_menu?id={{dish.id}}';" />
+                  </div>
+              </td>
+               <td>
+                  <div  class="small success btn">
+                    <input type="button" onclick="document.location = '/delete_item_menu?id=<%- dish.id %></td>" value = "Remove"/>
+                  </div>
+                </td>
+               <td><input name="choos_one" type="checkbox" /></td>
+               <% }) %> 
+            </tr>
+         </tbody>
+      </table>

@@ -5,11 +5,17 @@ define([
         "pages/RestaurantPage/views/CookerView",
         "pages/RestaurantPage/views/WaiterView",
         "pages/RestaurantPage/views/OrdersView",
-        "pages/RestaurantPage/views/TicketsView"
+        "pages/RestaurantPage/views/TicketsView",
+        "pages/RestaurantPage/views/UserDataView",
+        "pages/RestaurantPage/views/DishesDataView",
+        "pages/RestaurantPage/views/CategoriesView",
+        "pages/RestaurantPage/views/WaiterDataView"
+
 
     ],
 
-    function(LoginView, AdminView, CookerView, WaiterView, OrdersView, TicketsView) {
+    function(LoginView, AdminView, CookerView, WaiterView, OrdersView,
+        TicketsView, UserDataView, DishesDataView, CategoriesView, WaiterDataView) {
         return Backbone.Router.extend({
 
 
@@ -30,19 +36,29 @@ define([
                 loginView.render();
             },
             admin: function() {
-                adminView = new AdminView;
+
+                adminView = new AdminView();
                 adminView.render();
+                usersView = new UserDataView;
+                usersView.render();
             },
 
             cooker: function() {
                 cookerView = new CookerView;
-
                 cookerView.render();
+                dishesDataView = new DishesDataView();
+                dishesDataView.render();
+                categoriesView = new CategoriesView;
+                categoriesView.render();
             },
 
             waiter: function() {
                 waiterView = new WaiterView;
                 waiterView.render();
+                categoriesView = new CategoriesView;
+                categoriesView.render();
+                waiterDataView = new WaiterDataView();
+                waiterDataView.render();
             },
 
             orders: function() {
@@ -56,6 +72,7 @@ define([
                 ticketsView.render({
                     id: id
                 });
+
             }
         });
     });

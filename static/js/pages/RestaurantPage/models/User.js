@@ -1,12 +1,13 @@
-define(["underscore", "jquery", "backbone"],
+define(["underscore", "backbone", "jquery"],
 
     function(_, Backbone, $) {
         return Backbone.Model.extend({
-            urlRoot: "admin",
+
+            urlRoot: "/adduser",
+
             defaults: {
                 "email": "",
                 "f_name": "",
-                "id": 0,
                 "id_role": 0,
                 "l_name": "",
                 "login": "",

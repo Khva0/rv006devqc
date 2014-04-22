@@ -7,6 +7,6 @@ define([
     ],
     function(_, Backbone, $) {
         return Backbone.Collection.extend({
-            url: '/users/all'
+            url: '/dishes/all'
         });
     });

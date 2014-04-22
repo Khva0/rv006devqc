@@ -1,0 +1,57 @@
+<table align="center" border="1" cellpadding="1" cellspacing="1">
+  <thead>
+    <tr>
+      <th scope="col">
+        Id
+      </th>
+      <th scope="col">
+        Name
+      </th>
+      <th scope="col">
+        Description
+      </th>
+      <th scope="col">
+        Price
+      </th>
+      <th scope="col">
+        Image
+      </th>
+      <th scope="col">
+        Status
+      </th>
+      <th scope="col">
+        Count
+      </th>
+      <th scope="col">
+        Category
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+
+<% _.each(dishes.toArray(), function(dish, key, list) { %>
+            <tr>
+               
+                 <td><%- dish.get('id') %></td>
+               
+               
+                  <td><%- dish.get('name') %></td>
+              
+               
+                  <td><%- dish.get('description') %></td>
+                  <td><%- dish.get('price') %></td>
+              
+                  <td><%- dish.get('image') %></td>
+             
+                  
+              
+                  <td><%- dish.get('status') %></td>
+              
+                  <td><%- dish.get('count') %></td>
+                             <td><%- dish.get('id_category') %></td>
+
+             
+               <% }) %> 
+  </tbody>
+</table>
+

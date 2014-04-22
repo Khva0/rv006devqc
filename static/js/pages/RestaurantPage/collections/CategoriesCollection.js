@@ -7,6 +7,7 @@ define([
     ],
     function(_, Backbone, $) {
         return Backbone.Collection.extend({
-            url: '/users/all'
+            //model: AdminModel,
+            url: '/categories/all'
         });
     });

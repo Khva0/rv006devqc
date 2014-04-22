@@ -4,28 +4,20 @@ define([
         "jquery",
         "text!pages/RestaurantPage/templates/CookerTemplate.html"
     ],
-    function(_, Backbone, $) {
+
+    function(_, Backbone, $, CookerTemplate) {
         return Backbone.View.extend({
 
-            el: '#content',
+            events: {
+                'click #adduser': 'adduser'
+            },
+
+            el: $('#content'),
+
             render: function() {
-                var that = this;
-                var template = _.template($('#cookerpage').html());
-                that.$el.html(template);
-                var dishes = new DishesCollection();
-                dishes.fetch({
-                    success: function(data) {
-                        console.log(data);
-                    }
-                });
-                var categories = new CategoriesCollection();
-                categories.fetch({
-                    success: function(data) {
-                        console.log(data);
-                    }
-                });
 
+                this.$el.html(CookerTemplate);
             }
-
         });
-    });
+    }
+);

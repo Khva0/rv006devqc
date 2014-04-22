@@ -1,32 +1,32 @@
    <div class="row text-center" style="text-align:right;">
 
    <div class="field centered ten columns">
-     <form action="/adduser" method="post" name="new_user" id="new_user">
+     <form  method="post" name="new_user" id="new_user" action="/adduser">
        <fieldset>
          <legend>Add user</legend>
 
          <ul class="two_up tiles">
            <li class="field"><label class="centered inline" for="text1">Name</label>
-           <input name="f_name" class="wide text input" type="text" /></li>
+           <input name="f_name" class="wide text input" type="text" id="f_name"/></li>
 
            <li class="field"><label class="centered inline" for="text1">Last
-           name</label> <input name="l_name" class="wide text input" type="text" /></li>
+           name</label> <input name="l_name" class="wide text input" type="text" id ="l_name"/></li>
 
            <li class="field"><label class="centered inline" for="text1">Login</label>
-           <input name="login" type="text" class="wide text input" /></li>
+           <input name="login" type="text" class="wide text input" id="login" /></li>
 
            <li class="field"><label class="centered inline" for="text1">Password</label>
-           <input name="password" type="password" class="wide text input" /></li>
+           <input name="password" type="password" class="wide text input" id="password"/></li>
 
            <li class="field"><label class="centered inline" for="text1">Email</label>
-           <input name="email" type="text" class="wide text input" /></li>
+           <input name="email" type="text" class="wide text input" id= "email"/></li>
 
            <li class="field"><label class="centered inline" for="text1">Status</label>
-           <input name="status" type="number" class="wide text input" /></li>
+           <input name="status" type="number" class="wide text input" id="status"/></li>
 
            <li class="field">
              <div class="picker">
-               <select name="id_role" size="1">
+               <select name="id_role" size="1" id="id_role">
                  <option value="1">
                    Waiter
                  </option>
@@ -35,7 +35,7 @@
                    Cooker
                  </option>
 
-                 <option value="2">
+                 <option value="3">
                    Manager
                  </option>
 
@@ -48,7 +48,7 @@
 
            <li style="list-style: none; display: inline">
              <div class="medium success btn centered four columns">
-               <input type="submit" value="Add user" />
+               <input type="submit" value="Add user" id="adduser"/>
              </div>
            </li>
          </ul>

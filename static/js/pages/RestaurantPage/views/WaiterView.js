@@ -4,16 +4,17 @@ define([
         "jquery",
         "text!pages/RestaurantPage/templates/WaiterTemplate.html"
     ],
-    function(_, Backbone, $) {
+
+    function(_, Backbone, $, WaiterTemplate) {
         return Backbone.View.extend({
 
-            el: '#content',
+
+            el: $('#content'),
+
             render: function() {
-                var that = this;
-                var template = _.template($('#waiterpage').html());
-                that.$el.html(template);
 
+                this.$el.html(WaiterTemplate);
             }
-
         });
-    });
+    }
+);

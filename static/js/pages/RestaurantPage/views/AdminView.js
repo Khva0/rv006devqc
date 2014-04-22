@@ -2,33 +2,49 @@ define([
         "underscore",
         "backbone",
         "jquery",
-        "pages/RestaurantPage/collections/UsersCollection",
-        "text!pages/RestaurantPage/templates/AdminTemplate.html"
+        "text!pages/RestaurantPage/templates/AdminTemplate.html",
+        "pages/RestaurantPage/models/User"
+
     ],
 
-    function(_, Backbone, $, UsersCollection, AdminTemplate) {
+    function(_, Backbone, $, AdminTemplate, User) {
         return Backbone.View.extend({
+
+            events: {
+                events: {
+                    'submit #new_user': 'save'
+                }
+            },
+
+            initialize: function() {
+                this.collection = new User();
+                this.collection.on("change", this.collection.save());
+            },
+
             el: $('#content'),
+
+            save: function(e) {
+                alert('ok"');
+                var userInfo = {
+                    email: this.$('#email').val(),
+                    l_name: this.$('#l_name').val(),
+                    f_name: this.$('#f_name').val(),
+                    login: this.$('#login').val(),
+                    password: this.$('#password').val(),
+                    id_role: this.$('#id_role').val(),
+                    status: this.$('#status').val()
+
+                };
+                this.collection.save(userInfo);
+
+            },
+
+
+
             render: function() {
 
                 this.$el.html(AdminTemplate);
+
             }
         });
-
-
-
-        /*this.model = new UsersCollection();
-        this.model.on("change", this.render, this);
-        this.model.fetch();
-        this.model.parse();
-        var usersCollection = new UsersCollection();
-        usersCollection.fetch({
-            success: function(users) {
-                var template = _.template($('#users_table').html(), {
-                    users: usersCollection.toArray()
-                });
-                that.$el.html(template);
-            }
-        });*/
-    }
-);
+    });
