@@ -8,7 +8,7 @@ from app.models.cooker import Cooker
 from app.models.waiter import Waiter
 from app.models.manager import Manager
 from flask.wrappers import Response
-from IPython.core.display import JSON
+#from IPython.core.display import JSON
 
 app = Flask(__name__)
 app.secret_key = 'Y9lUivAHtx4THhrrTVWuGBkH'
