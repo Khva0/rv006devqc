@@ -23,21 +23,19 @@
         </thead>
         <tbody>
             <% _.each(orders.toArray(), function(order) {%>
-            <tr>
+            <tr id="<%= order.get("id") %>">
                 <td><%= order.get("id") %></td>
                 <td>status: <%= order.get("status") %></td>
                 <td><%= order.get("waiter_name") %>waiter name</td>
                 <td><%= order.get("full_price") %>full price</td>
                 <td>
                     <div class="small success btn">
-                        <input onclick="document.location='#/edit_order/<%= order.get("id") %>'" value="Edit"
-                            type="button">
+                        <a href='#/edit_order/<%= order.get("id") %>' >Edit</a>
                     </div>
                 </td>
                 <td>
                     <div class="small success btn">
-                        <input onclick="document.location='#close'" value="Close"
-                            type="button">
+                        <button type="button" value='<%= order.get("id") %>' class="closeOrder">Close</button>
                     </div>
                 </td>
                 <td>
