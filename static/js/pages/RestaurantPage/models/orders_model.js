@@ -10,7 +10,12 @@ var Order = Backbone.Model.extend({
     defaults: {
     	id: "",
     	status: "",
-    }
+    },
+	
+    initialize: function() {
+    	
+    	},
+    
 });
 	return Order;
 });
