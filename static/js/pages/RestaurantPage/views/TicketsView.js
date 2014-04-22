@@ -8,6 +8,11 @@ define([
 
 var TicketsView = Backbone.View.extend({
     el: '#content',
+    
+    initialize: function () {
+
+    },
+    
     render: function (options) {
       var self = this;
       var tickets = new Tickets();
