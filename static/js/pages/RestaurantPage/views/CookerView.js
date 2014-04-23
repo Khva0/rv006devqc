@@ -23,7 +23,9 @@ define([
 
                 var jsonString = JSON.stringify(data, null, '\t');
                 console.log(jsonString);
-                this.model.save();
+                this.model.save({
+
+                }); //Saving nw dish to server
             },
 
             render: function() {
