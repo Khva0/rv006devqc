@@ -12,31 +12,28 @@ define([
 
             events: {
                 events: {
-                    'submit #new_user': 'save'
+                    'submit': 'store'
                 }
             },
 
             initialize: function() {
-                this.collection = new User();
-                this.collection.on("change", this.collection.save());
+                this.model = new User();
+
             },
 
             el: $('#content'),
 
-            save: function(e) {
-                alert('ok"');
-                var userInfo = {
-                    email: this.$('#email').val(),
-                    l_name: this.$('#l_name').val(),
-                    f_name: this.$('#f_name').val(),
-                    login: this.$('#login').val(),
-                    password: this.$('#password').val(),
-                    id_role: this.$('#id_role').val(),
-                    status: this.$('#status').val()
+            store: function(e) {
+                e.preventDefault();
 
-                };
-                this.collection.save(userInfo);
 
+                _.each(this.$('input, select, textarea'), function(input) {
+
+                    this.model.set(input.name, input.value);
+                }, this);
+
+
+                console.log(this.model.toJSON());
             },
 
 

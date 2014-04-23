@@ -22,6 +22,7 @@ define([
             routes: {
                 "": "index",
                 "admin": "admin",
+                "edit_user/:id": "edit_user",
                 "cooker": "cooker",
                 "waiter": "waiter",
                 "orders": "orders",
@@ -41,6 +42,14 @@ define([
                 adminView.render();
                 usersView = new UserDataView;
                 usersView.render();
+            },
+
+            edit_user: function(id) {
+                editUserView = new AdminView();
+                editUserView.render({
+                    id: id
+                });
+
             },
 
             cooker: function() {
