@@ -58,7 +58,7 @@ if __name__ == "__main__":
             ]
 
     w.add_order(1, order)
-    print w.get_orders(1)
+    #print w.get_orders(1)
     #w.close_order(90)
     #print datetime.datetime.now().strftime("%d.%m.%Y %H:%M")
 

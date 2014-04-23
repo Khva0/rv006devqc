@@ -67,12 +67,12 @@ if __name__=="__main__":
             {"count": 3, "id": 284}   #ticket 5
             ]
         
-    print m.get_full_order(100)
+    #print m.get_full_order(100)
     #print m.get_all_orders()
     #m.edit_order(orderEdit)
     #m.del_ticket(521)
     #print m.get_order(78)
-    #m.close_order(92);
+    m.close_order(101)
     
 """(
 {'price': 123L, 'count': 1, 'image': '', 'name': 'Pizza', 'description': 'good pizza'},

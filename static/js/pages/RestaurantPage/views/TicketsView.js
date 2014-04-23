@@ -9,13 +9,26 @@ define([
 var TicketsView = Backbone.View.extend({
     el: '#content',
     
-    initialize: function () {
+    events: {
+        'click .closeTicket': 'closeTicket',
+        'click .saveTicket': 'saveTicket'
+      },
+      
+      initialize: function() {
+          tickets = new Tickets();
+      },
+      
+      closeTicket: function(event) {
+    	    $(this.el).find("#" + event.target.value).fadeOut(1000, function(){
+    	    	$(this.el).find("#" + event.target.value).remove();
+    	    });
+	        var modelr = tickets.get(event.target.value);
+	        modelr.destroy();
+	      },
 
-    },
     
     render: function (options) {
       var self = this;
-      var tickets = new Tickets();
       tickets.orderId = options.id;
       tickets.fetch({
         success: function (tickets) {

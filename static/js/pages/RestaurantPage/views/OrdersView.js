@@ -15,13 +15,20 @@ define([
 	        'click .saveOrder': 'saveOrder'
 	      },
 	      
-	    closeOrder: function(event) {
-	        $(this.el).find("#" + event.target.value).remove();
+	      initialize: function() {
+	          orders = new Orders();
+	      },
+	      
+	      closeOrder: function(event) {
+	    	$(this.el).find("#" + event.target.value).fadeOut(1000, function(){
+	    		$(this.el).find("#" + event.target.value).remove();
+	    	});
+	        var modelr = orders.get(event.target.value);
+	        modelr.destroy();
 	      },
 	    
 	    render: function () {
 	      var self = this;
-	      var orders = new Orders();
 	      orders.fetch({
 	        success: function (orders) {
 	          var template = _.template(OrdersTemplate, {orders: orders});

@@ -216,8 +216,8 @@ def tickets_get(order_id):
 
 @app.route('/getTickets/<int:ticket_id>', methods=["PUT"])
 def tickets_put(ticket_id):
-    order = Manager().edit_order(json.dumps(request.args))
-    return redirect(url_for('edit_order_get'))
+    Manager().edit_order(get_dict(request.json))
+    return Response(None)
 #not tested!!!
 
 
