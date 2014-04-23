@@ -20,14 +20,15 @@ require.config({
         text: 'libs/requirejs/text',
         templates: 'pages/RestaurantPage/templates',
         views: 'pages/RestaurantPage/views',
-        collections:'pages/RestaurantPage/collections',
-        models:'pages/RestaurantPage/models',
-        routers:'pages/RestaurantPage/routers'
+        collections: 'pages/RestaurantPage/collections',
+        models: 'pages/RestaurantPage/models',
+        routers: 'pages/RestaurantPage/routers',
+        form2js: 'libs/form2js/form2js'
     }
 });
 
 require(["application"],
-     function (application) {
+    function(application) {
         application.start();
     }
 );

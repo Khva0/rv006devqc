@@ -6,6 +6,7 @@ define(["underscore", "backbone", "jquery"],
             urlRoot: "/adduser",
 
             defaults: {
+
                 "email": "",
                 "f_name": "",
                 "id_role": 0,
