@@ -12,7 +12,7 @@ class  Manager(Waiter):
     def get_full_order(self, order_id):
         """in data put all what we need to see in ticket"""
         data = "dishes.image, dishes.name, dishes.description, dishes.price, tickets.count, tickets.id"
-        condition = "INNER JOIN dishes ON tickets.id_dish = dishes.id WHERE tickets.id_order = %s" % (order_id)
+        condition = "INNER JOIN dishes ON tickets.id_dish = dishes.id WHERE tickets.status = 1 AND tickets.id_order = %s" % (order_id)
         tickets = self.wrap.select(data, "tickets", condition)
         
         full_price = 0
@@ -67,10 +67,10 @@ if __name__=="__main__":
             {"count": 3, "id": 284}   #ticket 5
             ]
         
-    #print m.get_full_order(78)
+    print m.get_full_order(100)
     #print m.get_all_orders()
     #m.edit_order(orderEdit)
-    #m.del_ticket(115)"""WORK"""
+    #m.del_ticket(521)
     #print m.get_order(78)
     #m.close_order(92);
     

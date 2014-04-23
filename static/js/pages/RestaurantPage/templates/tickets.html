@@ -26,7 +26,7 @@
         </thead>
         <tbody>
             <% _.each(order.toArray(),function(ticket){ %>
-            <tr>
+            <tr id="<%= ticket.get("id") %>">
                 <td><img width="100" height="100"
                     src="<%= ticket.get("image") %>">
                 </td>
@@ -41,12 +41,12 @@
                 <td><%= ticket.get("price") %></td>
                                 <td>
                     <div class="small success btn">
-                        <button type="button" class="saveTicket">Save</button>
+                        <button type="button" class="saveTicket" value="<%= ticket.get("id") %>">Save</button>
                     </div>
                 </td>
                 <td>
                     <div class="small success btn">
-                        <button type="button" class="closeTicket">Delete</button>
+                        <button type="button" class="closeTicket" value="<%= ticket.get("id") %>">Delete</button>
                     </div>
                 </td>
                 <td>

@@ -40,15 +40,25 @@ class Waiter(object):
 
 if __name__ == "__main__":
     w = Waiter()
-    order = [{"id_dish": 1, "count": 1}, #ticket 1
-            {"id_dish": 12, "count": 1}, #ticket 2
-            {"id_dish": 11, "count": 1}, #ticket 3
-            {"id_dish": 5, "count": 1},  #ticket 4
-            {"id_dish": 7, "count": 1}   #ticket 5
+    order = [{"id_dish": 1, "count": 10},
+            {"id_dish": 2, "count": 20},
+            {"id_dish": 3, "count": 14},
+            {"id_dish": 4, "count": 11},
+            {"id_dish": 5, "count": 13},
+            {"id_dish": 6, "count": 21},
+            {"id_dish": 7, "count": 14},
+            {"id_dish": 8, "count": 19},
+            {"id_dish": 9, "count": 18},
+            {"id_dish": 10, "count": 17},
+            {"id_dish": 11, "count": 15},
+            {"id_dish": 12, "count": 10},
+            {"id_dish": 13, "count": 5},
+            {"id_dish": 14, "count": 3}
+
             ]
 
-    #w.add_order(1, order)#"""WORK"""
-    #print w.get_orders(1)#"""WORK"""
+    w.add_order(1, order)
+    print w.get_orders(1)
     #w.close_order(90)
     #print datetime.datetime.now().strftime("%d.%m.%Y %H:%M")
 
