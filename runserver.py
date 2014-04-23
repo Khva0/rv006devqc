@@ -169,11 +169,6 @@ def edit_item_menu():
     return render_template('edit_item_menu.html', title='Edit menu', **Cooker().get_item_menu(id_dish)[0])
 
 
-@app.route('/delete_item_menu', methods=['GET'])
-def delete_item_menu():
-    id_dish = get_dict(request.args.items('id'))[0][1]
-    Cooker().delete_item_menu(id_dish)
-    return redirect(url_for('cooker_usr'))
 
 
 @app.route('/edit_item_menu', methods=['POST'])
@@ -181,7 +176,6 @@ def update_item_menu():
     diction = get_dict(request.form)
     Cooker().edit_item_menu(diction['id'], diction)
     return '{"ok":dish update}'
-
 
 
 
@@ -196,6 +190,11 @@ def add_menu():
     print(request.json)
     Cooker().add_item_menu(get_dict(request.json))
     return 'ok'
+
+@app.route('/dishes/<int:id_dish>', methods=['DELETE'])
+def delete_item_menu(id_dish):    
+    Cooker().delete_item_menu(id_dish)
+    return "ok"  
 
 
 @app.route('/categories/all')

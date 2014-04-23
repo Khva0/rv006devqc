@@ -8,14 +8,26 @@ define([
 
     var DishesTableView = Backbone.View.extend({
 
+        events: {
+            "click .dishDrop": "dishdrop"
+        },
+
+        initialize: function() {
+            dishes = new DishesCollection();
+        },
 
         el: '#data_table',
 
-
+        dishdrop: function(event) {
+            var droppedDish = dishes.get(event.target.value);
+            var jsonString = JSON.stringify(droppedDish, null, '\t');
+            console.log(jsonString);
+            droppedDish.destroy();
+        },
 
         render: function() {
             var that = this;
-            var dishes = new DishesCollection();
+
             dishes.fetch({
                 success: function(dishes) {
                     var template = _.template(DishesTable, {

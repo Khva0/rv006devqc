@@ -66,7 +66,7 @@
               </td>
                <td>
                   <div  class="small success btn">
-                    <input type="button" onclick="document.location = '/delete_item_menu?id=<%- dish.id %></td>" value = "Remove"/>
+                    <button type="button" value = "<%- dish.get('id') %>" class = "dishDrop">Delete</button>
                   </div>
                 </td>
                <td><input name="choos_one" type="checkbox" /></td>
