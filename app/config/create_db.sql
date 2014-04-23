@@ -54,7 +54,7 @@ count tinyint(2) not null,
 id_order int unsigned not null,
 id_dish int unsigned not null,
 status tinyint(2) unsigned not null,
-price int unsigned not null,
+price double unsigned not null,
 foreign key (id_order) references orders(id) on delete cascade, 
 foreign key (id_dish) references dishes(id) on delete cascade
 ) ENGINE = INNODB;
