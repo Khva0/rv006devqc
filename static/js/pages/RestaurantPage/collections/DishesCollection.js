@@ -1,12 +1,15 @@
 define([
         "underscore",
         "backbone",
-        "jquery"
+        "jquery",
+        "pages/RestaurantPage/models/DishesModel"
 
 
     ],
-    function(_, Backbone, $) {
+    function(_, Backbone, $, DishesModel) {
         return Backbone.Collection.extend({
-            url: '/dishes/all'
+            model: DishesModel,
+
+            url: '/dishes'
         });
     });

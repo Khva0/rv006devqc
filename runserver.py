@@ -183,10 +183,19 @@ def update_item_menu():
     return '{"ok":dish update}'
 
 
-@app.route('/dishes/all')
-def get_all_dishes():
-    all_dishes = Cooker().get_all_dishes()
+
+
+@app.route('/dishes', methods=['POST'])
+def add_menu():
+    print(request.json)
+    Cooker().add_item_menu(get_dict(request.json))
+    return 'ok'
+
+@app.route('/dishes', methods=['GET'])
+def get_all_menu():
+    all_dishes = Cooker().get_all_dishes()    
     return json.dumps(all_dishes)
+
 
 @app.route('/categories/all')
 def get_all_categories():
@@ -213,12 +222,7 @@ def create_category():
     return '{"ok":"category add"}'
 
 
-@app.route('/add_menu', methods=['POST', 'GET'])
-def add_menu():
-    if request.method == 'POST':
-        print(request.json)
-        Cooker().add_item_menu(get_dict(request.json))
-        return 'ok'
+
 
 
 @app.route('/waiter', methods=['POST', 'GET'])
