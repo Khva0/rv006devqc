@@ -40,3 +40,20 @@ insert into dishes(name, description, price, image, status, count, id_category) 
 ('Green Salad', '', 35.5, '', 1, 6, 7),
 ('Onion Salad', '', 20, '', 1, 15, 7),
 ('Tomatto Salad', '', 25.7, '', 1, 8, 7);
+insert into orders(date, status, id_user) values
+(CONCAT(CURDATE(), ' ', CURTIME()), 1, 1),
+(CONCAT(CURDATE(), ' ', CURTIME()), 1, 1),
+(CONCAT(CURDATE(), ' ', CURTIME()), 1, 1),
+(CONCAT(CURDATE(), ' ', CURTIME()), 1, 1),
+(CONCAT(CURDATE(), ' ', CURTIME()), 1, 1),
+(CONCAT(CURDATE(), ' ', CURTIME()), 1, 1),
+(CONCAT(CURDATE(), ' ', CURTIME()), 1, 1);
+insert into tickets(count, status, price, id_order, id_dish) values
+(2, 1, 45, 1, 1),
+(2, 1, 15, 1, 2),
+(2, 1, 25, 1, 3),
+(3, 1, 40, 2, 3),
+(3, 1, 65, 2, 8),
+(2, 1, 55, 3, 7),
+(2, 1, 55, 3, 12),
+(2, 1, 55, 3, 14);
