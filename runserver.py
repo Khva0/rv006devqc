@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, abort, redirect, url_for,session, jsonify, Response
-import json
+import json, os, imghdr, hashlib, time
+from werkzeug.utils import secure_filename
 
 from app.models.admin import Admin
 from app.models.users import Users
@@ -17,10 +18,19 @@ app.secret_key = 'Y9lUivAHtx4THhrrTVWuGBkH'
 def index():
     return render_template('index.html')
 
+app.config['UPLOAD_FOLDER'] = 'img' # Folder to upload images
+ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif']) # Valid pictures format
+
 def allowed_file(filename):
+    """ Check image by file extension
+        Get filename and check in ALLOWED_EXTENSIONS
+    """
     return '.' in filename and filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
 
 def check_image(filename):
+    """ Check image format
+        Checking whether a file is a picture use imghdr.what - return file type if a picture or None
+    """
     img_type = imghdr.what(filename)
     if img_type != None and any(img_type in s for s in ALLOWED_EXTENSIONS):
         return True
@@ -29,23 +39,29 @@ def check_image(filename):
 
 @app.route('/upload', methods=['POST'])
 def upload():
+    """Upload pictures to the server
+        Get data from picture upload forrm and upload image
+    """
     if request.method == 'POST':
         file = request.files['file']
         if file and allowed_file(file.filename):
             hash = hashlib.sha1()
-            hash.update(str(time.time()))
+            hash.update(str(time.time())) # Hash to guarantee uniqueness file name 
             filename = os.path.join(app.config['UPLOAD_FOLDER'], hash.hexdigest()[:10] + secure_filename(file.filename))
             file.save(filename)
             if check_image(filename):
                 return 'ok'
             else:
-                os.remove(filename)
+                os.remove(filename) # remove picture if file not valid
                 return 'no image'
         else:
             return 'type error'
             
-@app.route('/login', methods=['POST', 'GET'])
+@app.route('/login', methods=['POST'])
 def login():
+    """ Login method
+        Get data from login form and redirect to page
+    """
     if request.method == 'POST':
         if Users().login(json.loads(json.dumps(request.form, separators=(',', ':')))):
             session['username'] = request.form['username']
@@ -62,6 +78,9 @@ def login():
 
 @app.route('/logout')
 def logout():
+    """ Logout user
+        Delete session and logout user
+    """
     session.pop('username', None)
     return redirect(url_for('index'))
 
@@ -73,6 +92,7 @@ def admin_usr():
         
 @app.route('/users/all')
 def admin_usr():
+    """ Get List of users """
     """if 'username' in session:""" 
     #def json_view (self):
     #return {id: self.id, name: self.name}
@@ -81,16 +101,22 @@ def admin_usr():
     return json.dumps(all_users)
 
 
-@app.route('/adduser', methods=['POST', 'GET'])
+@app.route('/adduser', methods=['POST'])
 def adduser():
-    #if 'username' in session:
-     if request.method == 'POST':
-        print(request.json)
-        Admin().adduser(get_dict(request.json))
-        return "ok"
+    """ Add new user
+        Get data from User Add from and add user in DB
+    """
+    if 'username' in session:
+        if request.method == 'POST':
+            Admin().adduser(get_dict(request.form))
+            return '{"ok":"user add"}'
+    return redirect(url_for('index'))
 
 @app.route('/edit_user', methods=['GET'])
 def edit_user():
+    """ Edit User
+        Get user by id and return in to user edit form
+    """
     if 'username' in session:
         if request.method == 'GET':
             uid = json.loads(
@@ -102,6 +128,9 @@ def edit_user():
 
 @app.route('/edit_user', methods=['POST'])
 def save_user():
+    """ Edit User
+        Get data from user edit form and update in to db
+    """
     if 'username' in session:
         if request.method == 'POST':
             Admin().edituser(
@@ -111,6 +140,9 @@ def save_user():
 
 @app.route('/delete_user', methods=['GET'])
 def delete_user():
+    """ Delete User
+        Delete user from system (change status by remove)
+    """
     if 'username' in session:
         if request.method == 'GET':
             uid = json.loads(
@@ -120,7 +152,10 @@ def delete_user():
     return redirect(url_for('index'))
 
 @app.route('/deleteall', methods=['POST'])
-def deleteall():
+def multiple_users_delete():
+    """ Multiple users delete 
+        Multiple users delete (change status by remove) get data from users form and change status
+    """
     if 'username' in session:
         if request.method == 'POST':
             for uid in json.loads(json.dumps(request.form, separators=(',', ':'))).values():
