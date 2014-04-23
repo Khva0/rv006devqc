@@ -83,12 +83,11 @@ def admin_usr():
 
 @app.route('/adduser', methods=['POST', 'GET'])
 def adduser():
-    if 'username' in session:
-        if request.method == 'POST':
-            Admin().adduser(get_dict(request.form))
-            return '{"ok":"user add"}'
-    return redirect(url_for('index'))
-
+    #if 'username' in session:
+     if request.method == 'POST':
+        print(request.json)
+        Admin().adduser(get_dict(request.json))
+        return "ok"
 
 @app.route('/edit_user', methods=['GET'])
 def edit_user():
