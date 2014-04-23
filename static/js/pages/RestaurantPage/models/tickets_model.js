@@ -6,7 +6,7 @@ define([
 ], function($, _, Backbone){
 
 var Ticket = Backbone.Model.extend({
-	urlRoot: '/#',
+	urlRoot: '/getTickets',
 });
 	return Ticket;
 });

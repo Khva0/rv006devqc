@@ -197,21 +197,34 @@ def orders():
     return Response(json.dumps(orders))
 
 
+@app.route('/getOrders/<int:order_id>', methods=["DELETE"])
+def close_order(order_id):
+    Manager().close_order(order_id)
+    return Response(None)
+
+
+@app.route('/getOrders/<int:order_id>', methods=["PUT"])
+def update_order(order_id):
+    pass
+
+
 @app.route('/getTickets/<int:order_id>', methods=["GET"])
-def edit_order_get(order_id):
+def tickets_get(order_id):
     order = Manager().get_full_order(order_id)
     return Response(json.dumps(order))
 
 
-@app.route('/getTickets/<int:order_id>', methods=["PUT"])
-def edit_order_put(order_id):
+@app.route('/getTickets/<int:ticket_id>', methods=["PUT"])
+def tickets_put(ticket_id):
     order = Manager().edit_order(json.dumps(request.args))
-    return redirect(url_for('edit_order_get'))#not tested!!!
+    return redirect(url_for('edit_order_get'))
+#not tested!!!
 
-@app.route('/closeOrder/<int:order_id>', methods=["DELETE"])
-def close_order(order_id):
-    Manager().close_order(order_id)
-    return Response(None);#not tested!!!
+
+@app.route('/getTickets/<int:ticket_id>', methods=["DELETE"])
+def tickets_delete(ticket_id):
+    Manager().del_ticket(ticket_id)
+    return Response(None)
 
 
 def get_dict(multi_dict):
