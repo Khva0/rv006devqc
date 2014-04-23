@@ -2,49 +2,47 @@ define([
         "underscore",
         "backbone",
         "jquery",
+        "form2js",
         "text!pages/RestaurantPage/templates/AdminTemplate.html",
-        "pages/RestaurantPage/models/User"
+        "pages/RestaurantPage/models/User",
+        "pages/RestaurantPage/collections/NewUserCollection"
 
     ],
 
-    function(_, Backbone, $, AdminTemplate, User) {
+    function(_, Backbone, $, form2js, AdminTemplate, User, NewUserCollection) {
         return Backbone.View.extend({
 
-            events: {
                 events: {
-                    'submit #new_user': 'save'
+
+                    'click #adduser': 'store'
+
+                },
+
+                initialize: function() {
+
+                    this.user = new User();
+
+                },
+
+                el: $('#content'),
+
+                store: function(e) {
+                    e.preventDefault();
+                    var data = form2js('new_user', '.', true);
+                    this.model = new User(data);
+
+                    var jsonString = JSON.stringify(data, null, '\t');
+                    console.log(jsonString);
+                    this.model.save();
+                },
+
+                render: function() {
+
+                    this.$el.html(AdminTemplate);
+
                 }
-            },
-
-            initialize: function() {
-                this.collection = new User();
-                this.collection.on("change", this.collection.save());
-            },
-
-            el: $('#content'),
-
-            save: function(e) {
-                alert('ok"');
-                var userInfo = {
-                    email: this.$('#email').val(),
-                    l_name: this.$('#l_name').val(),
-                    f_name: this.$('#f_name').val(),
-                    login: this.$('#login').val(),
-                    password: this.$('#password').val(),
-                    id_role: this.$('#id_role').val(),
-                    status: this.$('#status').val()
-
-                };
-                this.collection.save(userInfo);
-
-            },
-
-
-
-            render: function() {
-
-                this.$el.html(AdminTemplate);
 
             }
-        });
+
+        );
     });

@@ -1,7 +1,7 @@
 
   <div class="row text-center" style="text-align:right;">
       <div class="field centered ten columns">  
-         <form method="post" name="create_menu_form" action="/add_menu">
+         <form method="post" name="create_menu_form" id="create_menu_form" action="#">
          <fieldset>
          <legend>Add dishes</legend>
             
@@ -35,9 +35,9 @@
     <select name = "id_category" >
     
     <option disabled>Category</option>
-    {% for cat in all_categories %}
-    <option  value="{{cat.id}}">{{cat.category}}</option>
-    {% endfor %}
+<% _.each(categories.toArray(), function(cat, key, list) { %>
+    <option  value="<%- cat.get('id') %>"><%- cat.get('category') %></option>
+<% }) %> 
     </select>
 
   </div>
@@ -51,7 +51,7 @@
                <input class="wide text input" name="Description" />
                </li>   
             
-               <div  class="medium success btn centered four columns"><input type="submit" value="Add menu"/></div>
+               <div  class="medium success btn centered four columns"><input type="button" value="Add menu" id = "addmenu"/></div>
                <div class="small success btn"><a href="/add_category">Add category</a></div>
                </li>
               </ul>

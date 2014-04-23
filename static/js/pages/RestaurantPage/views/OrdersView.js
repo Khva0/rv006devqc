@@ -8,7 +8,7 @@ define([
 
 	var OrdersView =  Backbone.View.extend({
 		
-	    el: '#content',
+	    el: '#data_table',
 	    
 	    events: {
 	        'click .closeOrder': 'closeOrder',
