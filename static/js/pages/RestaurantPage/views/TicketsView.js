@@ -7,7 +7,7 @@ define([
 ], function($, _, Backbone, Tickets, TicketsTemplate ){
 
 var TicketsView = Backbone.View.extend({
-    el: '#content',
+    el: '#data_table',
     
     events: {
         'click .closeTicket': 'closeTicket',
