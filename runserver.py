@@ -185,16 +185,17 @@ def update_item_menu():
 
 
 
+@app.route('/dishes', methods=['GET'])
+def get_all_menu():
+    all_dishes = Cooker().get_all_dishes()    
+    return json.dumps(all_dishes)
+
+
 @app.route('/dishes', methods=['POST'])
 def add_menu():
     print(request.json)
     Cooker().add_item_menu(get_dict(request.json))
     return 'ok'
-
-@app.route('/dishes', methods=['GET'])
-def get_all_menu():
-    all_dishes = Cooker().get_all_dishes()    
-    return json.dumps(all_dishes)
 
 
 @app.route('/categories/all')
@@ -208,7 +209,7 @@ def get_all_categories():
 def cooker_by_categories():
     dishes = Cooker().get_dishes_by_cat(request.args.items('id')[0][1])
     categories = Cooker().get_all_categories()
-    return render_template('cooker.html', title='Admin', all_dishes=dishes, all_categories=categories)
+    return json.dumps(dishes, categories)
     
 @app.route('/add_category')
 def add_category():
