@@ -3,7 +3,6 @@ from users import Users
 
 
 class Admin(Users):
-
     """Admin Class
                     Methods:
                             adduser()
@@ -20,19 +19,27 @@ class Admin(Users):
         pass
 
     def adduser(self, fields):
-        """ Add user method """
+        """ Add user method
+        	insert data from user form in to db 
+        """
         return self.w.insert(fields, self.db_name)
 
     def edituser(self, fields, condition):
-        """ Edit user method """
+        """ Edit user method
+        	update user data 
+        """
         return self.w.update(fields, self.db_name, condition)
 
     def deleteuser(self, uid):
-        """ Delete user method """
+        """ Delete user method
+        	Dete user from db (change status to remove) 
+        """
         self.edituser({"status": "0"}, "where id={0}".format(uid))
 
     def set_permission(self, uname, role):
-        """ Set user permission method """
+        """ Set user permission method 
+        	change users permission
+        """
         if role == 'admin':
             self.w.update(
                 "id_role=1", self.db_name, "where login='{0}'".format(uname))
