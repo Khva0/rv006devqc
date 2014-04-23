@@ -4,19 +4,18 @@ define([
   'backbone',
   "pages/RestaurantPage/collections/orders_collection",
   'text!pages/RestaurantPage/templates/orders.html'
-], function($, _, Backbone, Orders,OrdersTemplate ){
+], function($, _, Backbone, Orders, OrdersTemplate ){
 
 	var OrdersView =  Backbone.View.extend({
 		
 	    el: '#content',
 	    
 	    events: {
-	        'click .closeOrder': 'closeOrder'
+	        'click .closeOrder': 'closeOrder',
+	        'click .saveOrder': 'saveOrder'
 	      },
 	      
-	      closeOrder: function(event) {
-	        //this.model.destroy();
-	    	  //this.orders.remove(event.target.value);
+	    closeOrder: function(event) {
 	        $(this.el).find("#" + event.target.value).remove();
 	      },
 	    
