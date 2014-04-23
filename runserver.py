@@ -101,17 +101,17 @@ def admin_usr():
     return json.dumps(all_users)
 
 
+
 @app.route('/adduser', methods=['POST'])
 def adduser():
     """ Add new user
         Get data from User Add from and add user in DB
     """
-    if 'username' in session:
-        if request.method == 'POST':
-            Admin().adduser(get_dict(request.form))
-            return '{"ok":"user add"}'
-    return redirect(url_for('index'))
-
+    if request.method == 'POST':
+        print(request.json)
+        Admin().adduser(get_dict(request.json))
+        return "ok"
+        
 @app.route('/edit_user', methods=['GET'])
 def edit_user():
     """ Edit User
