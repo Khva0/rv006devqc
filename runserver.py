@@ -181,8 +181,9 @@ def create_category():
 @app.route('/add_menu', methods=['POST', 'GET'])
 def add_menu():
     if request.method == 'POST':
-        Cooker().add_item_menu(get_dict(request.form))
-        return redirect(url_for('cooker_usr'))
+        print(request.json)
+        Cooker().add_item_menu(get_dict(request.json))
+        return 'ok'
 
 
 @app.route('/waiter', methods=['POST', 'GET'])
