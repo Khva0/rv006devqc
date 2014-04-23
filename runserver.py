@@ -197,10 +197,15 @@ def delete_item_menu(id_dish):
     return "ok"  
 
 
-@app.route('/categories/all')
+@app.route('/categories' ,methods=['GET'])
 def get_all_categories():
     all_categories = Cooker().get_all_categories()
     return json.dumps(all_categories)
+
+@app.route('/categories', methods=['POST'])
+def create_category():
+    Cooker().add_item_category(get_dict(request.json))
+    return '{"ok":"category add"}'    
 
 
 
@@ -210,16 +215,8 @@ def cooker_by_categories():
     categories = Cooker().get_all_categories()
     return json.dumps(dishes, categories)
     
-@app.route('/add_category')
-def add_category():
-    return render_template('add_category.html', title='Add category')
 
 
-@app.route('/create_category', methods=['POST', 'GET'])
-def create_category():
-    if request.method == 'POST':
-        Cooker().add_item_category(get_dict(request.form))
-    return '{"ok":"category add"}'
 
 
 

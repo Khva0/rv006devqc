@@ -1,13 +1,14 @@
 define([
         "underscore",
         "backbone",
-        "jquery"
+        "jquery",
+        "pages/RestaurantPage/models/CategoryModel"
 
 
     ],
-    function(_, Backbone, $) {
+    function(_, Backbone, $, CategoryModel) {
         return Backbone.Collection.extend({
-            //model: AdminModel,
-            url: '/categories/all'
+            model: CategoryModel,
+            url: '/categories'
         });
     });
