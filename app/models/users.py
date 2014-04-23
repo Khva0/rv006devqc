@@ -4,9 +4,9 @@ import re
 
 
 class Users(object):
-
     """ Users Class
                     Methods:
+                            get_user()
                             get_all_users()
                             get_permission()
                             login()
@@ -23,21 +23,36 @@ class Users(object):
 
     def __del__(self):
         pass
+
     def get_user(self,uid):
+        """ Get User
+            Return all user row.
+        """
         return self.w.select(["*"], [self.db_name],"where id={0}".format(uid))
         
     def get_all_users(self):
-        """ Get All user list method """
+        """ Get All user method 
+            Return list of users
+        """
         return self.w.select(["*"], [self.db_name])
 
     def get_permission(self, uname):
-        """ Get user permission method """
+        """ Get user permission method 
+            Return id users role
+        """
         return self.w.select("id_role", self.db_name, "where login='{0}'".format(uname))
 
     def validateuser(self, credendials):
-        """ Validate all users fields """
+        """ Validate all users fields 
+        """
         if isinstance(credendials, dict):
-            if self.is_username(credendials['username']) and self.is_pwd(credendials['password']) and self.is_email(credendials['mail']) and self.is_username(credendials['f_name']) and self.is_username(credendials['l_name']) and self.is_number(credendials['status']) and self.is_number(credendials['id_role']):
+            if self.is_username(credendials['username']) \
+            and self.is_pwd(credendials['password']) \
+            and self.is_email(credendials['mail']) \
+            and self.is_username(credendials['f_name']) \
+            and self.is_username(credendials['l_name']) \
+            and self.is_number(credendials['status']) \
+            and self.is_number(credendials['id_role']):
                 return True
             else:
                 return False

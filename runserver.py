@@ -68,11 +68,11 @@ def login():
             if (Users().get_permission(json.loads(json.dumps(request.form, separators=(',', ':')))['username'])[0]['id_role']) == 1:
                 return redirect(url_for('admin_usr'))
             if (Users().get_permission(json.loads(json.dumps(request.form, separators=(',', ':')))['username'])[0]['id_role']) == 2:
-                return redirect(url_for('admin_usr'))
+                return redirect(url_for('manager_usr'))
             if (Users().get_permission(json.loads(json.dumps(request.form, separators=(',', ':')))['username'])[0]['id_role']) == 3:
-                return redirect(url_for('admin_usr'))
+                return redirect(url_for('waiter_usr'))
             if (Users().get_permission(json.loads(json.dumps(request.form, separators=(',', ':')))['username'])[0]['id_role']) == 4:
-                return redirect(url_for('admin_usr'))
+                return redirect(url_for('cooker_usr'))
         else:
             return '{"error":"login"}'
 
