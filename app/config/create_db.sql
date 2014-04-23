@@ -32,7 +32,7 @@ create table dishes(
 id int unsigned auto_increment primary key,
 name varchar(50) not null,
 description text not null,
-price int not null,
+price double not null,
 image varchar(70) not null,
 status tinyint(1) not null,
 count tinyint(2) not null,
