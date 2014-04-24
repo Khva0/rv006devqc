@@ -10,7 +10,7 @@ class Cooker(object):
 
 
     def delete_item_menu(self, id_item_menu):
-        return self.wrapper.update({"status":0},
+        return self.wrapper.update({"id_status":2},
                                     "dishes",
                                     "where id={0}".format(id_item_menu))
 
@@ -34,7 +34,10 @@ class Cooker(object):
 
     def get_all_dishes(self):
         """ Get all dishes from DB """
-        return self.wrapper.select(["*"], "dishes")
+        return self.wrapper.select(["dishes.id", "name", "description", "price", 
+                                    "image", "count", "status", "id_status"],
+                                   ["dishes", "statuses"], 
+                                    "where id_status=statuses.id")
 
     def get_dishes_by_cat(self,catid):
         """ Get dishes by categories """
