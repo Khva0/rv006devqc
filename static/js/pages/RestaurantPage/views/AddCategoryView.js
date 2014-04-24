@@ -13,13 +13,13 @@ define([
         return Backbone.View.extend({
 
             events: {
-                'click #addmenu': 'store'
+                'click #addCat': 'store'
             },
 
             el: $('#content'),
             store: function(e) {
                 e.preventDefault();
-                var data = form2js('create_menu_form', '.', true);
+                var data = form2js('catform', '.', true);
                 this.model = new CategoryModel(data);
 
                 var jsonString = JSON.stringify(data, null, '\t');
