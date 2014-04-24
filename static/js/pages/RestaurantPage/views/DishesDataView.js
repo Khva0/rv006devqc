@@ -23,6 +23,7 @@ define([
             var jsonString = JSON.stringify(droppedDish, null, '\t');
             console.log(jsonString);
             droppedDish.destroy();
+            $(this.el).find("#" + event.target.value).css("color", "red");
         },
 
         render: function() {

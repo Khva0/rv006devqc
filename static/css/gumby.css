@@ -1387,8 +1387,8 @@ img { -ms-interpolation-mode: bicubic; }
 .btn.warning:hover, .skiplink.warning:hover { background: #f8ca70; }
 .btn.warning:active, .skiplink.warning:active { background: #f4a60e; }
 .btn.warning a, .btn.warning input, .btn.warning button, .skiplink.warning a, .skiplink.warning input, .skiplink.warning button { color: #644405; }
-.btn.success, .skiplink.success { background: #58c026; border: 1px solid #58c026; }
-.btn.success:hover, .skiplink.success:hover { background: #72d940; }
+.btn.success, .skiplink.success { background: #664e4d; border: 1px solid #f2f2e6; }
+.btn.success:hover, .skiplink.success:hover { background: #ffd37c   ; }
 .btn.success:active, .skiplink.success:active { background: #44951e; }
 
 .btn.metro, .metro .btn, .metro .skiplink, .skiplink.metro, .btn.pretty.squared, .pretty .squared.btn, .pretty .squared.skiplink, .pretty .btn.squared { -webkit-border-radius: 0; -moz-border-radius: 0; -ms-border-radius: 0; -o-border-radius: 0; border-radius: 0; }
@@ -1656,9 +1656,9 @@ table caption { text-align: center; font-size: 30px; padding: .75em; }
 table thead th, table tbody td, table tr td { display: table-cell; padding: 10px; vertical-align: top; text-align: left; border-top: 1px solid #e5e5e5; }
 table tr td, table tbody tr td { font-size: 16px; }
 table tr td:first-child { font-weight: bold; }
-table thead { background-color: #3085d6; color: #fff; }
+table thead { background-color: #664e4d; color: #fff; }
 table thead tr th { font-size: 16px; font-weight: bold; vertical-align: bottom; }
-table.striped tr:nth-of-type(even), table table tr.stripe, table table tr.striped { background-color: #e5e5e5; }
+table.striped tr:nth-of-type(even), table table tr.stripe, table table tr.striped { background-color: #f2f2e6; }
 table.rounded { border-radius: 4px; border-collapse: separate; }
 table.rounded caption + thead tr:first-child th:first-child, table.rounded caption + tr td:first-child, table.rounded > thead tr:first-child th:first-child, table.rounded > thead tr:first-child td:first-child, table.rounded > tr:first-child td:first-child { border-top-left-radius: 4px; }
 table.rounded caption + thead tr:first-child th:last-child, table.rounded caption + tr td:last-child, table.rounded > thead tr:first-child th:last-child, table.rounded > thead tr:first-child td:last-child, table.rounded > tr:first-child td:last-child { border-top-right-radius: 4px; }

@@ -37,6 +37,7 @@ define([
                             categories: categories
                         });
                         that.$el.html(template);
+
                     }
                 });
 
