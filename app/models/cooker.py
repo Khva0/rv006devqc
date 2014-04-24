@@ -35,7 +35,7 @@ class Cooker(object):
     def get_all_dishes(self):
         """ Get all dishes from DB """
         return self.wrapper.select(["dishes.id", "name", "description", "price", 
-                                    "image", "count", "status", "id_status"],
+                                    "image", "count", "status", "id_status", "id_category"],
                                    ["dishes", "statuses"], 
                                     "where id_status=statuses.id")
 
