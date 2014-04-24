@@ -1,6 +1,7 @@
 use restaurant_db;
 insert into roles(role) values('waiter'), ('admin'), ('manager'), ('cooker');
-insert into users(f_name, l_name, login, password, email, status, id_role) values
+insert into statuses(status) values('Active'), ('Inactive'), ('Removed'), ('Pending'), ('Closed');
+insert into users(f_name, l_name, login, password, email, id_status, id_role) values
 ('Jon', 'Collins', 'waiter', 'waiter', 'waiter@urk.net', 1, 1),
 ('Capitan', 'America', 'admin', 'admin', 'admin@yandex.ua', 1, 2),
 ('Linda', 'Haek', 'manager', 'manager', 'lindos@mail.ru', 1, 3),
@@ -13,7 +14,7 @@ insert into categories(category) values
 ('Rice'),
 ('Fish'),
 ('Salad');
-insert into dishes(name, description, price, image, status, count, id_category) values
+insert into dishes(name, description, price, image, id_status, count, id_category) values
 ('Tea', '', 7, '', 1, 10, 1),
 ('Coffee-Hot', '', 10, '', 1, 25, 1),
 ('Cream Coffee', '', 25, '', 1, 3, 1),
@@ -40,20 +41,20 @@ insert into dishes(name, description, price, image, status, count, id_category) 
 ('Green Salad', '', 35.5, '', 1, 6, 7),
 ('Onion Salad', '', 20, '', 1, 15, 7),
 ('Tomatto Salad', '', 25.7, '', 1, 8, 7);
-insert into orders(date, status, id_user) values
-(CONCAT(CURDATE(), ' ', CURTIME()), 1, 1),
-(CONCAT(CURDATE(), ' ', CURTIME()), 1, 1),
-(CONCAT(CURDATE(), ' ', CURTIME()), 1, 1),
-(CONCAT(CURDATE(), ' ', CURTIME()), 1, 1),
-(CONCAT(CURDATE(), ' ', CURTIME()), 1, 1),
-(CONCAT(CURDATE(), ' ', CURTIME()), 1, 1),
-(CONCAT(CURDATE(), ' ', CURTIME()), 1, 1);
-insert into tickets(count, status, price, id_order, id_dish) values
-(2, 1, 45, 1, 1),
-(2, 1, 15, 1, 2),
-(2, 1, 25, 1, 3),
-(3, 1, 40, 2, 3),
-(3, 1, 65, 2, 8),
-(2, 1, 55, 3, 7),
-(2, 1, 55, 3, 12),
-(2, 1, 55, 3, 14);
+insert into orders(date, id_status, id_user) values
+(CONCAT(CURDATE(), ' ', CURTIME()), 4, 1),
+(CONCAT(CURDATE(), ' ', CURTIME()), 4, 1),
+(CONCAT(CURDATE(), ' ', CURTIME()), 4, 1),
+(CONCAT(CURDATE(), ' ', CURTIME()), 4, 1),
+(CONCAT(CURDATE(), ' ', CURTIME()), 4, 1),
+(CONCAT(CURDATE(), ' ', CURTIME()), 4, 1),
+(CONCAT(CURDATE(), ' ', CURTIME()), 4, 1);
+insert into tickets(count, price, id_order, id_dish) values
+(2, 45, 1, 1),
+(2, 15, 1, 2),
+(2, 25, 1, 3),
+(3, 40, 2, 3),
+(3, 65, 2, 8),
+(2, 55, 3, 7),
+(2, 55, 3, 12),
+(2, 55, 3, 14);
