@@ -1,5 +1,4 @@
 from wrapper import Wrapper
-import json
 
 class Cooker(object):
     """docstring for Cooker"""
