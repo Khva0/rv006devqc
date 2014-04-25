@@ -8,7 +8,6 @@ define([
         "pages/RestaurantPage/views/TicketsView",
         "pages/RestaurantPage/views/UserDataView",
         "pages/RestaurantPage/views/DishesDataView",
-        "pages/RestaurantPage/views/CategoriesView",
         "pages/RestaurantPage/views/WaiterDataView",
         "pages/RestaurantPage/views/AddCategoryView"
 
@@ -66,8 +65,6 @@ define([
             waiter: function() {
                 waiterView = new WaiterView;
                 waiterView.render();
-                categoriesView = new CategoriesView;
-                categoriesView.render();
                 waiterDataView = new WaiterDataView();
                 waiterDataView.render();
             },
