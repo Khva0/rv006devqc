@@ -60,8 +60,7 @@ define([
                 cookerView.render();
                 dishesDataView = new DishesDataView();
                 dishesDataView.render();
-                categoriesView = new CategoriesView;
-                categoriesView.render();
+
             },
 
             waiter: function() {

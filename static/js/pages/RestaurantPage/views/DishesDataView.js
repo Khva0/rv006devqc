@@ -3,8 +3,9 @@ define([
     'underscore',
     'backbone',
     "pages/RestaurantPage/collections/DishesCollection",
+    "pages/RestaurantPage/collections/CategoriesCollection",
     'text!pages/RestaurantPage/templates/DishesTable.html'
-], function($, _, Backbone, DishesCollection, DishesTable) {
+], function($, _, Backbone, DishesCollection, CategoriesCollection, DishesTable) {
 
     var DishesTableView = Backbone.View.extend({
 
@@ -14,6 +15,7 @@ define([
 
         initialize: function() {
             dishes = new DishesCollection();
+            categories = new CategoriesCollection();
         },
 
         el: '#data_table',
@@ -28,14 +30,11 @@ define([
 
         render: function() {
             var that = this;
-
-            dishes.fetch({
-                success: function(dishes) {
-                    var template = _.template(DishesTable, {
-                        dishes: dishes
-                    });
-                    that.$el.html(template);
-                }
+            $.when(dishes.fetch(), categories.fetch()).done(function() {
+                var template = _.template(DishesTable, {
+                    dishes: dishes
+                });
+                that.$el.html(template);
             });
         }
     });
