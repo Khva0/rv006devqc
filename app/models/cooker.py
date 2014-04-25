@@ -1,5 +1,5 @@
 from wrapper import Wrapper
-
+import json
 
 class Cooker(object):
     """docstring for Cooker"""
@@ -16,7 +16,15 @@ class Cooker(object):
 
     def get_all_categories(self):
         return self.wrapper.select(["category", "id"], "categories")
-  
+
+
+    def get_categories_from_inner_dishes(self):
+    	dictionary = {}
+    	for category in self.wrapper.select(["category", "id"], "categories"):
+    		dishes = self.wrapper.select("*", "dishes", "where id_category=%s" % (category['id']))
+    		dictionary[category['category']] = list(dishes)
+    	return dictionary
+
 
     def get_menu_by_category(self, id_category):
         return self.wrapper.select(["id", "name", "description", "price",
