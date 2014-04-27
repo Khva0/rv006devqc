@@ -13,50 +13,42 @@ from flask.wrappers import Response
 
 app = Flask(__name__)
 app.secret_key = 'Y9lUivAHtx4THhrrTVWuGBkH'
+app.config['UPLOAD_FOLDER'] = 'img'  # Folder to upload images
 
 @app.route('/')
 def index():
     return render_template('index.html')
-
-app.config['UPLOAD_FOLDER'] = 'img' # Folder to upload images
-ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif']) # Valid pictures format
-
-def allowed_file(filename):
-    """ Check image by file extension
-        Get filename and check in ALLOWED_EXTENSIONS
-    """
-    return '.' in filename and filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
-
-def check_image(filename):
-    """ Check image format
-        Checking whether a file is a picture use imghdr.what - return file type if a picture or None
-    """
-    img_type = imghdr.what(filename)
-    if img_type != None and any(img_type in s for s in ALLOWED_EXTENSIONS):
-        return True
-    else:
-        return False
-
-@app.route('/upload', methods=['POST'])
-def upload():
-    """Upload pictures to the server
-        Get data from picture upload forrm and upload image
-    """
+    
+@app.route('/search', methods=['POST'])
+def search_user():
     if request.method == 'POST':
-        file = request.files['file']
-        if file and allowed_file(file.filename):
-            hash = hashlib.sha1()
-            hash.update(str(time.time())) # Hash to guarantee uniqueness file name 
-            filename = os.path.join(app.config['UPLOAD_FOLDER'], hash.hexdigest()[:10] + secure_filename(file.filename))
-            file.save(filename)
-            if check_image(filename):
-                return 'ok'
-            else:
-                os.remove(filename) # remove picture if file not valid
-                return 'no image'
+        return json.dumps(Users().search_users(request.form['search']))
+
+@app.route('/asearch', methods=['POST'])
+def asearch_user():
+    if request.method == 'POST':
+        if (request.form['id']):
+            uid = request.form['id']
         else:
-            return 'type error'
-            
+            uid = ''
+        if (request.form['f_name']):
+            f_name = request.form['f_name']
+        else:
+            f_name = ''
+        if (request.form['l_name']):
+            l_name = request.form['l_name']
+        else:
+            l_name = ''
+        if(request.form['login']):
+            login = request.form['login']
+        else:
+            login = ''
+        if(request.form['email']):
+            email = request.form['email']
+        else:
+            email = ''
+        return json.dumps(Users().advanced_search_users(uid,f_name,l_name,login,email))
+
 @app.route('/login', methods=['POST'])
 def login():
     """ Login method
