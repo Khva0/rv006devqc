@@ -1,12 +1,17 @@
-from flask import Flask, render_template, request, abort, redirect, url_for,session, jsonify, Response
-import json, os, imghdr, hashlib, time
+from flask import Flask, render_template, request, abort, redirect, url_for, session, jsonify, Response
+import json
+import os
+import imghdr
+import hashlib
+import time
 from werkzeug.utils import secure_filename
 
 from app.models.admin import Admin
 from app.models.users import Users
 from app.models.wrapper import Wrapper
 from app.models.cooker import Cooker
-#from app.models.waiter import Waiter  #all methods reilized in manager that extend waiter class
+# from app.models.waiter import Waiter  #all methods reilized in manager
+# that extend waiter class
 from app.models.manager import Manager
 from flask.wrappers import Response
 
@@ -15,14 +20,17 @@ app = Flask(__name__)
 app.secret_key = 'Y9lUivAHtx4THhrrTVWuGBkH'
 app.config['UPLOAD_FOLDER'] = 'img'  # Folder to upload images
 
+
 @app.route('/')
 def index():
     return render_template('index.html')
-    
+
+
 @app.route('/search', methods=['POST'])
 def search_user():
     if request.method == 'POST':
         return json.dumps(Users().search_users(request.form['search']))
+
 
 @app.route('/asearch', methods=['POST'])
 def asearch_user():
@@ -47,7 +55,8 @@ def asearch_user():
             email = request.form['email']
         else:
             email = ''
-        return json.dumps(Users().advanced_search_users(uid,f_name,l_name,login,email))
+        return json.dumps(Users().advanced_search_users(uid, f_name, l_name, login, email))
+
 
 @app.route('/login', methods=['POST'])
 def login():
@@ -68,6 +77,7 @@ def login():
         else:
             return '{"error":"login"}'
 
+
 @app.route('/logout')
 def logout():
     """ Logout user
@@ -81,17 +91,17 @@ def admin_usr():
     if 'username' in session:
         all_users = Users().get_all_users()
         return render_template("index.html")"""
-        
+
+
 @app.route('/users/all')
 def admin_usr():
     """ Get List of users """
-    """if 'username' in session:""" 
-    #def json_view (self):
-    #return {id: self.id, name: self.name}
+    """if 'username' in session:"""
+    # def json_view (self):
+    # return {id: self.id, name: self.name}
     all_users = Users().get_all_users()
-    #return jsonify(collection=[i.json_view() for i in all_users]) 
+    # return jsonify(collection=[i.json_view() for i in all_users])
     return json.dumps(all_users)
-
 
 
 @app.route('/adduser', methods=['POST'])
@@ -103,7 +113,8 @@ def adduser():
         print(request.json)
         Admin().adduser(get_dict(request.json))
         return "ok"
-        
+
+
 @app.route('/edit_user', methods=['GET'])
 def edit_user():
     """ Edit User
@@ -130,6 +141,7 @@ def save_user():
             return render_template('edit_user.html', title='Edit user', userdata='')
     return redirect(url_for('index'))
 
+
 @app.route('/delete_user', methods=['GET'])
 def delete_user():
     """ Delete User
@@ -143,6 +155,7 @@ def delete_user():
             return 'ok'
     return redirect(url_for('index'))
 
+
 @app.route('/deleteall', methods=['POST'])
 def multiple_users_delete():
     """ Multiple users delete 
@@ -155,12 +168,11 @@ def multiple_users_delete():
             return 'ok'
     return redirect(url_for('index'))
 
+
 @app.route('/edit_item_menu', methods=['GET'])
 def edit_item_menu():
-    id_dish = get_dict(request.args.items('id'))[0][1];
+    id_dish = get_dict(request.args.items('id'))[0][1]
     return render_template('edit_item_menu.html', title='Edit menu', **Cooker().get_item_menu(id_dish)[0])
-
-
 
 
 @app.route('/edit_item_menu', methods=['POST'])
@@ -170,10 +182,9 @@ def update_item_menu():
     return '{"ok":dish update}'
 
 
-
 @app.route('/dishes', methods=['GET'])
 def get_all_menu():
-    all_dishes = Cooker().get_all_dishes()    
+    all_dishes = Cooker().get_all_dishes()
     return json.dumps(all_dishes)
 
 
@@ -183,22 +194,23 @@ def add_menu():
     Cooker().add_item_menu(get_dict(request.json))
     return 'ok'
 
+
 @app.route('/dishes/<int:id_dish>', methods=['DELETE'])
-def delete_item_menu(id_dish):    
+def delete_item_menu(id_dish):
     Cooker().delete_item_menu(id_dish)
-    return "ok"  
+    return "ok"
 
 
-@app.route('/categories' ,methods=['GET'])
+@app.route('/categories', methods=['GET'])
 def get_all_categories():
     all_categories = Cooker().get_all_categories()
     return json.dumps(all_categories)
 
+
 @app.route('/categories', methods=['POST'])
 def create_category():
     Cooker().add_item_category(get_dict(request.json))
-    return '{"ok":"category add"}'    
-
+    return '{"ok":"category add"}'
 
 
 @app.route('/cookerlist', methods=['GET'])
@@ -206,12 +218,6 @@ def cooker_by_categories():
     dishes = Cooker().get_dishes_by_cat(request.args.items('id')[0][1])
     categories = Cooker().get_all_categories()
     return json.dumps(dishes, categories)
-    
-
-
-
-
-
 
 
 @app.route('/waiter', methods=['POST', 'GET'])
@@ -246,7 +252,7 @@ def tickets_get(order_id):
 def tickets_put(ticket_id):
     Manager().edit_order(get_dict(request.json))
     return Response(None)
-#not tested!!!
+# not tested!!!
 
 
 @app.route('/getTickets/<int:ticket_id>', methods=["DELETE"])
