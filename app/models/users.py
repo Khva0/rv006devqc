@@ -2,8 +2,8 @@ from wrapper import Wrapper
 from conf import Conf
 import re
 
-
 class Users(object):
+
     """ Users Class
                     Methods:
                             get_user()
@@ -24,35 +24,35 @@ class Users(object):
     def __del__(self):
         pass
 
-    def get_user(self,uid):
+    def get_user(self, uid):
         """ Get User
             Return all user row.
         """
-        return self.w.select(["*"], [self.db_name],"where id={0}".format(uid))
-        
+        return self.w.select(["*"], [self.db_name], "where id={0}".format(uid))
+
     def get_all_users(self):
-        """ Get All user method 
+        """ Get All user method
             Return list of users
         """
         return self.w.select(["*"], [self.db_name])
 
     def get_permission(self, uname):
-        """ Get user permission method 
+        """ Get user permission method
             Return id users role
         """
         return self.w.select("id_role", self.db_name, "where login='{0}'".format(uname))
 
     def validateuser(self, credendials):
-        """ Validate all users fields 
+        """ Validate all users fields
         """
         if isinstance(credendials, dict):
             if self.is_username(credendials['username']) \
-            and self.is_pwd(credendials['password']) \
-            and self.is_email(credendials['mail']) \
-            and self.is_username(credendials['f_name']) \
-            and self.is_username(credendials['l_name']) \
-            and self.is_number(credendials['status']) \
-            and self.is_number(credendials['id_role']):
+                and self.is_pwd(credendials['password']) \
+                and self.is_email(credendials['mail']) \
+                and self.is_username(credendials['f_name']) \
+                and self.is_username(credendials['l_name']) \
+                and self.is_number(credendials['status']) \
+                and self.is_number(credendials['id_role']):
                 return True
             else:
                 return False
@@ -79,48 +79,27 @@ class Users(object):
         except Exception as e:
             return False
 
-    def is_pwd(self, passwd):
-        """ Check pwd hash a-f0-9 len 128 """
-        result = None
-        try:
-            result = re.match('^[a-f0-9]{128}$', passwd).group(0)
-        except:
-            pass
-        return result is not None
+    def search_users(self, param):
+        """ search """
+        search_str = param.split(' ')
+        if(len(search_str) == 1):
+            return self.w.select("id,f_name,l_name,login,email", self.db_name, "where id like '%{0}%' or f_name like '%{0}%' or l_name like '%{0}%' or login like '%{0}%' or email like '%{0}%'".format(self.search_validation(param.lower())))
+        else:
+            xdic = []
+            for x in search_str:
+                xxx = self.w.select(
+                    "id,f_name,l_name,login,email", self.db_name, "where id like '%{0}%' or f_name like '%{0}%' or l_name like '%{0}%' or login like '%{0}%' or email like '%{0}%'".format(self.search_validation(x.lower())))
+                xdic.append(xxx[0])
+            return xdic
 
-    def is_email(self, email):
-        """ Check mail """
-        result = None
-        try:
-            result = re.match(
-                '^[_A-Za-z0-9-+]+(.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(.[A-Za-z0-9]+)*(.[A-Za-z]{2,})$', email).group(0)
-        except:
-            pass
-        return result is not None
+    def advanced_search_users(self, id, f_name, l_name, login, email):
+        """ Advanced search """
+        return self.w.select("id,f_name,l_name,login,email", self.db_name, "where id like '%{0}%' and f_name like '%{1}%' and l_name like '%{2}%' and login like '%{3}%' and email like '%{4}%'".format(id, f_name, l_name, login, email))
 
-    def is_username(self, uname):
-        """ check username """
-        result = None
-        try:
-            result = re.match('^[a-zA-Z0-9_\.+-@#]{3,28}$', uname).group(0)
-        except:
-            pass
-        return result is not None
-
-    def is_number(self, num):
-        """ Check is number"""
-        try:
-            long(num)
-        except ValueError:
-            return False
-        return True
+    def search_validation(self, param):
+        out = re.sub('[\W]', '', param)
+        return out
 
 if __name__ == '__main__':
     u = Users()
-    # print u.get_all_users()
-    # print u.get_permission('admin')
-    # print u.set_permission('admin', "admin")
-    # print u.is_pwd('12222')
-    # print u.is_number(123)
-    # print u.validateuser({"username":"user","password":"3a9909afec25354d551dae21590bb26e38d53f2173b8d3dc3eee4c047e7ab1c1eb8b85103e3be7ba613b31bb5c9c36214dc9f14a42fd7a2fdb84856bca5c44c2","mail":"zanmax@mail.ua","f_name":"test","l_name":"test","status":1,"id_role":0})
-    # print u.login({"username":"1","password":"hashpasswd"})
+    #u.get_all_users()
