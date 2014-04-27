@@ -100,6 +100,15 @@ class Users(object):
         out = re.sub('[\W]', '', param)
         return out
 
+    def user_count(self):
+        return len(self.w.select('id',self.db_name))
+     
+    def pages(self):
+        return int(ceil(self.user_count() / float(self.per_page)))
+    
+    def pagination(self,page_num):
+        return self.w.select('id,f_name,l_name,login,email',self.db_name,'limit {0},{1}'.format((page_num-1)*self.per_page,self.per_page))
+        
 if __name__ == '__main__':
     u = Users()
     #u.get_all_users()
