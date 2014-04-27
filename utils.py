@@ -9,8 +9,7 @@ from werkzeug.utils import secure_filename
 def get_dict(multi_dict):
     return json.loads(json.dumps(multi_dict, separators=(',', ':')))
 
-app.config['UPLOAD_FOLDER'] = 'img'  # Folder to upload images
-# Valid pictures format ADD TO CONFIG FILE
+
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
 
 
