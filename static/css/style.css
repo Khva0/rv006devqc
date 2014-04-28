@@ -9,28 +9,7 @@ body {
     height:20%;
 }
 
-#circle {
-    background-color: #f2f2e6;
-    position: relative;
-    top:75%;
-    left:47%;
-    width: 60px;
-    height:60px;
-    border-radius: 100%;
-    font-size: 70%;
-    text-align: center;
-    font-weight: bold;
-    vertical-align: bottom;
-}
 
-
-#circle:hover {
-    background-color: #664e4d;
-    border-width: 2px;
-    border-color:#f2f2e6;
-    border-style: solid;
-    color:white;
-}
 
 .footer {
     background-color: #664e4d;
@@ -64,5 +43,40 @@ body {
 
 .dishprice {
     text-align: right;
+}
+
+
+
+.css_btn_class {
+    right: 20px;
+    position: relative;
+    font-size:28px;
+    font-family:Arial;
+    font-weight:normal;
+    -moz-border-radius:0px;
+    -webkit-border-radius:0px;
+    border-radius:0px;
+    border:1px solid #eeb44f;
+    height:100%;
+    width: 7%;
+    text-align: center;
+    vertical-align: middle;
+    text-decoration:none;
+    background:-moz-linear-gradient( center top, #ffce79 5%, #eeaf41 100% );
+    background:-ms-linear-gradient( top, #ffce79 5%, #eeaf41 100% );
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffce79', endColorstr='#eeaf41');
+    background:-webkit-gradient( linear, left top, left bottom, color-stop(5%, #ffce79), color-stop(100%, #eeaf41) );
+    background-color:#ffce79;
+    color:#ffffff;
+    display:inline-block;
+}.css_btn_class:hover {
+    background:-moz-linear-gradient( center top, #eeaf41 5%, #ffce79 100% );
+    background:-ms-linear-gradient( top, #eeaf41 5%, #ffce79 100% );
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#eeaf41', endColorstr='#ffce79');
+    background:-webkit-gradient( linear, left top, left bottom, color-stop(5%, #eeaf41), color-stop(100%, #ffce79) );
+    background-color:#eeaf41;
+}.css_btn_class:active {
+    position:relative;
+    top:1px;
 }
 
