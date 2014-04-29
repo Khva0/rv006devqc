@@ -1,3 +1,4 @@
+/*
 body {
     background-color: #fdfdfc;
 }
@@ -65,4 +66,26 @@ body {
 .dishprice {
     text-align: right;
 }
+*/
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+############################################# ORDERs AND TICKETS##############################
+
+.orderBlock{
+	border: ridge;
+}
