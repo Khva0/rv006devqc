@@ -16,7 +16,7 @@ define([
     ],
 
     function(LoginView, AdminView, CookerView, WaiterView, OrdersView,
-        TicketsView, UserDataView, DishesDataView, CategoriesView,
+        TicketsView, UserDataView, DishesDataView,
         WaiterDataView, AddCategoryView, EditDishView) {
         return Backbone.Router.extend({
 
@@ -65,9 +65,11 @@ define([
             },
 
             edit_dish: function(id){
-                editDishView = new EditDishView;
-                editDishView.render();
-                alert(new EditDishView);
+                console.log(id);
+                editDishView = new EditDishView();
+                editDishView.render({
+                    id:id
+                });
             },
 
             waiter: function() {
