@@ -1,4 +1,9 @@
+<p><input type="button" value="Work with menu!" id="popup__toggle" class="small success btn" /></p>
 
+<div class="popup__overlay">
+    <div class="popup">
+        <a href="#cooker" class="popup__close"><i class="icon-cancel-squared"></i></a>
+        <div class="row text-center" style="text-align:right;">
   <div class="row text-center" style="text-align:right;">
       <div class="field centered ten columns">  
          <form method="post" name="create_menu_form" id="create_menu_form" action="#">
@@ -61,3 +66,18 @@
          </form>
       </div>
       </div>
+      </div>
+      <div>
+      <script>p = $('.popup__overlay')
+$('#popup__toggle').click(function() {
+    p.css('display', 'block')
+})
+p.click(function(event) {
+    e = event || window.event
+    if (e.target == this) {
+        $(p).css('display', 'none')
+    }
+})
+$('.popup__close').click(function() {
+    p.css('display', 'none')
+})</script>

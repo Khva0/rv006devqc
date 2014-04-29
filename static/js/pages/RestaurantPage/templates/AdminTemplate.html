@@ -1,4 +1,9 @@
-   <div class="row text-center" style="text-align:right;">
+<p><input type="button" value="Add new user!" id="popup__toggle" class="small success btn" /></p>
+
+<div class="popup__overlay">
+    <div class="popup">
+        <a href="#admin" class="popup__close"><i class="icon-cancel-squared"></i></a>
+        <div class="row text-center" style="text-align:right;">
 
    <div class="field centered ten columns">
      <form  method="post" name="new_user" id="new_user" action="/adduser">
@@ -56,3 +61,21 @@
      </form>
    </div>
  </div> 
+    </div>
+    <!--[if lt IE 9]><div class="popup__valignfix"></div><![endif]-->
+</div>
+
+   
+<script>p = $('.popup__overlay')
+$('#popup__toggle').click(function() {
+    p.css('display', 'block')
+})
+p.click(function(event) {
+    e = event || window.event
+    if (e.target == this) {
+        $(p).css('display', 'none')
+    }
+})
+$('.popup__close').click(function() {
+    p.css('display', 'none')
+})</script>
