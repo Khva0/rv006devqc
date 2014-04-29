@@ -9,14 +9,15 @@ define([
         "pages/RestaurantPage/views/UserDataView",
         "pages/RestaurantPage/views/DishesDataView",
         "pages/RestaurantPage/views/WaiterDataView",
-        "pages/RestaurantPage/views/AddCategoryView"
+        "pages/RestaurantPage/views/AddCategoryView",
+        "pages/RestaurantPage/views/EditDishView"
 
 
     ],
 
     function(LoginView, AdminView, CookerView, WaiterView, OrdersView,
-        TicketsView, UserDataView, DishesDataView, CategoriesView,
-        WaiterDataView, AddCategoryView) {
+        TicketsView, UserDataView, DishesDataView,
+        WaiterDataView, AddCategoryView, EditDishView) {
         return Backbone.Router.extend({
 
 
@@ -28,7 +29,8 @@ define([
                 "waiter": "waiter",
                 "orders": "orders",
                 "edit_order/:id": "edit_order",
-                "add_category": "add_category"
+                "add_category": "add_category",
+                "edit_dish/:id": "edit_dish"
 
             },
 
@@ -60,6 +62,14 @@ define([
                 dishesDataView = new DishesDataView();
                 dishesDataView.render();
 
+            },
+
+            edit_dish: function(id){
+                console.log(id);
+                editDishView = new EditDishView();
+                editDishView.render({
+                    id:id
+                });
             },
 
             waiter: function() {

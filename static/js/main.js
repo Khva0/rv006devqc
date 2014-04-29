@@ -23,7 +23,8 @@ require.config({
         collections: 'pages/RestaurantPage/collections',
         models: 'pages/RestaurantPage/models',
         routers: 'pages/RestaurantPage/routers',
-        form2js: 'libs/form2js/form2js'
+        form2js: 'libs/form2js/form2js',
+        style: 'pages/RestaurantPage/script'
     }
 });
 

@@ -2,11 +2,9 @@
 <table align="center" border="1" cellpadding="1" cellspacing="1" >
 
 
-   <caption>
-     All users
-   </caption>
 
    <thead>
+
      <tr>
 
        <th scope="col">Name</th>
@@ -34,7 +32,11 @@
      </tr>
    </thead>
 
-
+   <li class="prepend append field">
+    <span class="adjoined">X</span>
+    <input class="wide text input" type="text" placeholder="Search" />
+    <div class="medium success btn"><a href="#">Go</a></div>
+  </li>
 
 <% _.each(users.toArray(), function(user, key, list) { %>
      <tr>

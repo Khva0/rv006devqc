@@ -5,7 +5,8 @@ define([
         "form2js",
         "text!pages/RestaurantPage/templates/AdminTemplate.html",
         "pages/RestaurantPage/models/User",
-        "pages/RestaurantPage/collections/NewUserCollection"
+        "pages/RestaurantPage/collections/NewUserCollection",
+        "style"
 
     ],
 

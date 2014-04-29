@@ -78,7 +78,7 @@
 
              <td>
                   <div  class="small success btn">
-                    <input type="button" value = "Edit" onclick="document.location = '/edit_item_menu?id={{dish.id}}';" />
+                    <a href="#/edit_dish/<%= dish.get('id') %>">Edit</a>
                   </div>
               </td>
                <td>

@@ -169,10 +169,9 @@ def multiple_users_delete():
     return redirect(url_for('index'))
 
 
-@app.route('/edit_item_menu', methods=['GET'])
-def edit_item_menu():
-    id_dish = get_dict(request.args.items('id'))[0][1]
-    return render_template('edit_item_menu.html', title='Edit menu', **Cooker().get_item_menu(id_dish)[0])
+@app.route('/edit_item_menu/<int:id_dish>', methods=['GET'])
+def edit_item_menu(id_dish):
+    return json.dumps(Cooker().get_item_menu(id_dish))
 
 
 @app.route('/edit_item_menu', methods=['POST'])
