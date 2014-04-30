@@ -1,26 +1,21 @@
 
-<div class="medium secondary btn"><a href="#">Category</a></div>
+   <div><li class="prepend append field" >
+    <div class="adjoined" id="resetter">X</div>
+    <input class="wide text input" type="text" id ="search" placeholder="Fast search" />
+    <div class="medium success btn" id="search_btn"><i class="icon-search"></i></div>
+  </li></div>
+
+
+<div class="medium secondary btn"><a href="#">Show all</a></div>
  <% _.each(categories.toArray(), function(cat, key, list) { %>
 <div class="medium secondary btn"><a href="/cookerlist?id=<%- cat.get('id') %>">
 <%- cat.get('category') %></a></div>
 <% }) %>         
      
 
-<div class="line_up dishes">
 
- <% _.each(dishes.toArray(), function(dish, key, list) { %>
 
-<div class="dish blk"><div class="dishname"><%- dish.get('name') %></div><div class="dishprice"><%- dish.get('price') %>$</div>
-<div class="dishdesc"><%- dish.get('description') %></div>
-</div>
-<% }) %> 
 
-</div>
-   <div><li class="prepend append field" >
-    <div class="adjoined" id="resetter">X</div>
-    <input class="wide text input" type="text" id ="search" placeholder="Search" />
-    <div class="medium success btn"><a href="#">Go</a></div>
-  </li></div>
       <table align="center" border="1" cellpadding="1" cellspacing="1" class = "striped">
       
        

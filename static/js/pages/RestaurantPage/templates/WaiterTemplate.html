@@ -1,4 +1,11 @@
+<div class="line_up dishes">
 
+ <% _.each(dishes.toArray(), function(dish, key, list) { %>
+
+<div class="dish blk"><div class="dishname"><%- dish.get('name') %></div><div class="dishprice"><%- dish.get('price') %>$</div>
+<div class="dishdesc"><%- dish.get('description') %></div>
+</div>
+<% }) %> 
   <div class="row text-center" style="text-align:right;">
   <div class="field centered nine columns">
     <form method="post" name="make_order" action="/create_order">
