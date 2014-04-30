@@ -93,18 +93,7 @@ def admin_usr():
         return render_template("index.html")"""
 
 
-@app.route('/users/all')
-def admin_usr():
-    """ Get List of users """
-    """if 'username' in session:"""
-    # def json_view (self):
-    # return {id: self.id, name: self.name}
-    all_users = Users().get_all_users()
-    # return jsonify(collection=[i.json_view() for i in all_users])
-    return json.dumps(all_users)
-
-
-@app.route('/adduser', methods=['POST'])
+@app.route('/users', methods=['POST'])
 def adduser():
     """ Add new user
         Get data from User Add from and add user in DB
@@ -115,45 +104,29 @@ def adduser():
         return "ok"
 
 
-@app.route('/edit_user', methods=['GET'])
-def edit_user():
-    """ Edit User
-        Get user by id and return in to user edit form
-    """
-    if 'username' in session:
-        if request.method == 'GET':
-            uid = json.loads(
-                json.dumps(request.args.items('id'), separators=(',', ':')))[0][1]
-            userdata = Users().get_user(uid)[0]
-            return render_template('edit_user.html', title='Edit user', userdata=userdata)
-    return redirect(url_for('index'))
+@app.route('/users/<int:id_user>', methods=['GET'])
+def edit_user(id_user):
+    if request.method == 'GET':
+        userdata = Users().get_user(id_user)[0]
+    return Response(json.dumps(userdata))
 
 
-@app.route('/edit_user', methods=['POST'])
-def save_user():
+@app.route('/users/<int:id_user>', methods=['PUT'])
+def save_user(id_user):
     """ Edit User
         Get data from user edit form and update in to db
-    """
-    if 'username' in session:
-        if request.method == 'POST':
-            Admin().edituser(
-                json.loads(json.dumps(request.form, separators=(',', ':'))), "where login={0}".format(request.form['login']))
-            return render_template('edit_user.html', title='Edit user', userdata='')
-    return redirect(url_for('index'))
+    """    
+    Admin().edituser(request.json, "where id={0}".format(id_user))
+    return json.dumps(request.json)
 
 
-@app.route('/delete_user', methods=['GET'])
-def delete_user():
+@app.route('/users/<int:id_user>', methods=['DELETE'])
+def delete_user(id_user):
     """ Delete User
         Delete user from system (change status by remove)
     """
-    if 'username' in session:
-        if request.method == 'GET':
-            uid = json.loads(
-                json.dumps(request.args.items('id'), separators=(',', ':')))[0][1]
-            Admin().deleteuser(uid)
-            return 'ok'
-    return redirect(url_for('index'))
+    Admin().deleteuser(id_user)
+    return 'ok'
 
 
 @app.route('/deleteall', methods=['POST'])
