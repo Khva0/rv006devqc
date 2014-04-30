@@ -16,6 +16,11 @@
 <% }) %> 
 
 </div>
+   <div><li class="prepend append field" >
+    <div class="adjoined" id="resetter">X</div>
+    <input class="wide text input" type="text" id ="search" placeholder="Search" />
+    <div class="medium success btn"><a href="#">Go</a></div>
+  </li></div>
       <table align="center" border="1" cellpadding="1" cellspacing="1" class = "striped">
       
        
@@ -91,3 +96,9 @@
             </tr>
          </tbody>
       </table>
+<script type="text/javascript">
+  $('#resetter').click(
+    function(){
+        $("#search").val('');
+    });
+</script>

@@ -1,4 +1,8 @@
-
+ <div><li class="prepend append field" >
+    <div class="adjoined" id="resetter">X</div>
+    <input class="wide text input" type="text" id ="search" placeholder="Search" />
+    <div class="medium success btn"><a href="#">Go</a></div>
+  </li></div>
 <table align="center" border="1" cellpadding="1" cellspacing="1" >
 
 
@@ -32,11 +36,7 @@
      </tr>
    </thead>
 
-   <li class="prepend append field">
-    <span class="adjoined">X</span>
-    <input class="wide text input" type="text" placeholder="Search" />
-    <div class="medium success btn"><a href="#">Go</a></div>
-  </li>
+
 
 <% _.each(users.toArray(), function(user, key, list) { %>
      <tr>
@@ -74,3 +74,9 @@
    </tbody>
 
  </table>
+<script type="text/javascript">
+  $('#resetter').click(
+    function(){
+        $("#search").val('');
+    });
+</script>
