@@ -1,0 +1,12 @@
+Flask           - 0.10.1       - active 
+Jinja2          - 2.7.2        - active 
+MarkupSafe      - 0.21         - active 
+MySQL-python    - 1.2.5        - active 
+Python          - 2.7.4        - active development (/usr/lib/python2.7/lib-dynload)
+Werkzeug        - 0.9.4        - active 
+argparse        - 1.2.1        - active development (/usr/lib/python2.7)
+itsdangerous    - 0.24         - active 
+pip 1.5.4 has no metadata
+setuptools 2.2 has no metadata
+wsgiref         - 0.1.2        - active development (/usr/lib/python2.7)
+yolk            - 0.4.3        - active 
