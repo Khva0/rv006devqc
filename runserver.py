@@ -142,15 +142,19 @@ def multiple_users_delete():
     return redirect(url_for('index'))
 
 
+@app.route('/statuses', methods=['GET'])
+def get_all_statuses():
+    return json.dumps(Wrapper().select(["id", "status"], "statuses"))
+
+
 @app.route('/edit_item_menu/<int:id_dish>', methods=['GET'])
 def edit_item_menu(id_dish):
-    return json.dumps(Cooker().get_item_menu(id_dish))
+    return json.dumps(Cooker().get_item_menu(id_dish)[0])
 
 
-@app.route('/edit_item_menu', methods=['POST'])
-def update_item_menu():
-    diction = get_dict(request.form)
-    Cooker().edit_item_menu(diction['id'], diction)
+@app.route('/edit_item_menu/<int:id_dish>', methods=['PUT'])
+def update_item_menu(id_dish):
+    Cooker().edit_item_menu(id_dish, request.json)
     return '{"ok":dish update}'
 
 
