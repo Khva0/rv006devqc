@@ -1,99 +1,90 @@
-
-   <div><li class="prepend append field" >
+<div>
+  <li class="prepend append field" >
     <div class="adjoined" id="resetter">X</div>
-    <input class="wide text input" type="text" id ="search" placeholder="Fast search" />
+      <input class="wide text input" type="text" id ="search" placeholder="Fast search" />
     <div class="medium success btn" id="search_btn"><i class="icon-search"></i></div>
-  </li></div>
+  </li>
+</div>
 
+<div class="medium secondary btn">
+  <a href="#">Show all</a>
+</div>
+<% _.each(categories.toArray(), function(cat, key, list) { %>
+  <div class="medium secondary btn">
+    <a href="/cookerlist?id=<%- cat.get('id') %>">
+      <%- cat.get('category') %>
+    </a>
+  </div>
+<% }) %>   
 
-<div class="medium secondary btn"><a href="#">Show all</a></div>
- <% _.each(categories.toArray(), function(cat, key, list) { %>
-<div class="medium secondary btn"><a href="/cookerlist?id=<%- cat.get('id') %>">
-<%- cat.get('category') %></a></div>
-<% }) %>         
-     
-
-
-
-
-      <table align="center" border="1" cellpadding="1" cellspacing="1" class = "striped">
-      
-       
-         <thead>
-            <tr>
-               <th scope="col">
-                  Id
-               </th>
-               <th scope="col">
-                  Name
-               </th>
-               <th scope="col">
-                  Description
-               </th>
-               <th scope="col">
-                  Price
-               </th>
-               <th scope="col">
-                  Image
-               </th>
-               <th scope="col">
-                  Status
-               </th>
-               <th scope="col">
-                  Count
-               </th>
-               <th scope="col">
-                  Category
-               <th scope="col">
-                  Edit
-               <th scope="col">
-                  Delete
-               </th>
-               <th scope="col">
-                  <input name="choos_all" type="checkbox" />
-               </th>
-            </tr>
-         </thead>
-         <tbody>
- <% _.each(dishes.toArray(), function(dish, key, list) { %>
-            <tr>
-               
-                 <td><%- dish.get('id') %></td>
-               
-               
-                  <td><%- dish.get('name') %></td>
-              
-               
-                  <td><%- dish.get('description') %></td>
-                  <td><%- dish.get('price') %></td>
-              
-                  <td><%- dish.get('image') %></td>
-             
-                  
-              
-                  <td><%- dish.get('status') %></td>
-              
-                  <td><%- dish.get('count') %></td>
-                             <td><%- dish.get('id_category') %></td>
-
-             <td>
-                  <div  class="small success btn">
-                    <a href="#/edit_dish/<%= dish.get('id') %>">Edit</a>
-                  </div>
-              </td>
-               <td>
-                  <div  class="small success btn">
-                    <button type="button" value = "<%- dish.get('id') %>" class = "dishDrop">Delete</button>
-                  </div>
-                </td>
-               <td><input name="choos_one" type="checkbox" /></td>
-               <% }) %> 
-            </tr>
-         </tbody>
-      </table>
+<table align="center" border="1" cellpadding="1" cellspacing="1" class = "striped">       
+   <thead>
+      <tr>
+         <th scope="col">
+            <input name="choos_all" type="checkbox" />
+         </th>
+         <th scope="col">
+            Id
+         </th>
+         <th scope="col">
+            Name
+         </th>
+         <th scope="col">
+            Description
+         </th>
+         <th scope="col">
+            Price
+         </th>
+         <th scope="col">
+            Image
+         </th>
+         <th scope="col">
+            Status
+         </th>
+         <th scope="col">
+            Count
+         </th>
+         <th scope="col">
+            Category
+         <th scope="col">
+            Edit
+         <th scope="col">
+            Delete
+         </th>
+      </tr>
+   </thead>
+   <tbody>
+   <% _.each(dishes.toArray(), function(dish, key, list) { %>
+      <tr>
+        <td>
+          <input name="choos_one" type="checkbox" />
+        </td>               
+        <td><%- dish.get('id') %></td>               
+        <td><%- dish.get('name') %></td>
+        <td><%- dish.get('description') %></td>
+        <td><%- dish.get('price') %></td>
+        <td><%- dish.get('image') %></td>
+        <td><%- dish.get('status') %></td>
+        <td><%- dish.get('count') %></td>
+        <td><%- dish.get('id_category') %></td>
+        <td>
+          <div  class="small success btn">
+            <a href="#/edit_dish/<%= dish.get('id') %>">Edit</a>
+          </div>
+        </td>
+        <td>
+          <div  class="small success btn">
+            <button type="button" value = "<%- dish.get('id') %>" class = "dishDrop">Delete</button>
+          </div>
+        </td>
+      </tr>
+   <% }); %> 
+   </tbody>
+</table>
 <script type="text/javascript">
   $('#resetter').click(
     function(){
-        $("#search").val('');
-    });
+      $("#search").val('');
+    }
+  );
 </script>
