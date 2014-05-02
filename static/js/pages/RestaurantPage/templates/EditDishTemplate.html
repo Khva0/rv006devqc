@@ -1,62 +1,79 @@
 
-<div class="row text-center">
-	<div class="field centered ten columns">  
+<div class="popup__overlay">
+  <div class="popup">
+	<div class="row text-center">
+	  <div class="field centered ten columns">  
 		<form method="post" id="update_menu_form">
-			<fieldset>
-				<legend style="text-align:right;">Update dish</legend>			        
-					<ul class ="two_up tiles">
-						<li class="field">
-						    <label class="centered inline">Dish name</label>
-						    <input class="wide text input" name="name" type="text" 
-						    	value="<%-name%>" /> 
-						</li>
-						<li class="field">
-						    <label class="centered inline">Image</label>
-						    <input class="wide text input" name="image" type="text" 
-						    	value="<%= _.isEmpty(image)? ' ': image %>" />
-						</li>
-						<li class="field">
-							<label class="centered inline">Price</label>
-							<input class="wide text input" name="price" type="text" 
-								value="<%-price%>" />
-						</li>
-						<li class="field">
-							<label class="centered inline" style="text-align: left">Count</label>
-							<input name="count" class="wide text input" type="text" 
-								value="<%-count%>"/>
-						</li> 						        
-						<li class="field">
-							<label class="centered inline">Status</label>
-							<div class="picker">
-								<select name="id_status">
-									<% _.each(statuses.toJSON(), function(obj) { %>
-									<option <%-obj.id === id_status? 'selected="selected"': ''%>
-										value="<%-obj.id%>" >
-										<%- obj.status %>	
-									</option>
-									<% }) %>
-								</select>
-							</div>
-						</li>
-						<li class="field">
-							<label class="centered inline">Category</label>
-								<div class="picker">
-									<select name = "id_category">
-										<% _.each(categories.toJSON(), function(obj) { %>
-											<option  <%-obj.category === category ? 'selected="selected"': ''%> 
-												value="<%- obj.id %>" >
-											    <%- obj.category %>
-										    </option>
-										<% }) %> 
-									</select>
-								</div>
-						</li>
-					</ul>
-					<div class="medium success btn centered three columns">
-						<input type="button" value="Update" id="save_dish" />
+		  <fieldset>
+			<legend style="text-align:right;">Update dish</legend>			        
+			  <ul class ="two_up tiles">
+				<li class="field">
+				    <label class="centered inline">Dish name</label>
+				    <input class="wide text input" name="name" type="text" 
+				    	value="<%-name%>" /> 
+				</li>
+				<li class="field">
+				    <label class="centered inline">Image</label>
+				    <input class="wide text input" name="image" type="text" 
+				    	value="<%= _.isEmpty(image)? ' ': image %>" />
+				</li>
+				<li class="field">
+					<label class="centered inline">Price</label>
+					<input class="wide text input" name="price" type="text" 
+						value="<%-price%>" />
+				</li>
+				<li class="field">
+					<label class="centered inline" style="text-align: left">Count</label>
+					<input name="count" class="wide text input" type="text" 
+						value="<%-count%>"/>
+				</li> 						        
+				<li class="field">
+					<label class="centered inline">Status</label>
+					<div class="picker">
+						<select name="id_status">
+							<% _.each(statuses.toJSON(), function(obj) { %>
+							<option <%-obj.id === id_status? 'selected="selected"': ''%>
+								value="<%-obj.id%>" >
+								<%- obj.status %>	
+							</option>
+							<% }) %>
+						</select>
 					</div>
-					<input type="hidden" name="id" value="<%-id%>" />
-			</fieldset>
+				</li>
+				<li class="field">
+				  	<label class="centered inline">Category</label>
+					<div class="picker">
+						<select name = "id_category">
+							<% _.each(categories.toJSON(), function(obj) { %>
+								<option  <%-obj.category === category ? 'selected="selected"': ''%> 
+									value="<%- obj.id %>" >
+								    <%- obj.category %>
+							    </option>
+							<% }) %> 
+						</select>
+					</div>
+				</li>
+			  </ul>
+			<div class="medium success btn centered three columns">
+				<input type="button" value="Update" id="save_dish" />
+			</div>
+			<input type="hidden" name="id" value="<%-id%>" />
+		  </fieldset>
 		</form>
+	  </div>
 	</div>
+  </div>
 </div>
+<script type="text/javascript">
+	var p = $('.popup__overlay');
+    p.click(function(event) {
+        e = event || window.event
+        if (e.target == this) {
+            $(p).css('display', 'none');
+            window.history.back();
+        }
+    });
+    $('.popup__close').click(function() {
+        p.css('display', 'none')
+    });
+</script>
