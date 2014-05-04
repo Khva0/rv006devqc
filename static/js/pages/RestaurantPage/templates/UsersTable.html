@@ -1,9 +1,9 @@
- <div id="searcher" class="centered"><li class="prepend append field" >
+ <div id="searcher" class="text-center"><li class="prepend append field" >
     <div class="adjoined" id="resetter">X</div>
     <input class="wide text input" type="text" id ="search" placeholder="Fast search" />
     <div class="medium success btn"><a href="#">Go</a></div>
   </li></div>
-<table align="center" border="1" cellpadding="1" cellspacing="1" >
+<table class = "striped" align="center" border="1" cellpadding="1" cellspacing="1" >
 
 
 
@@ -40,7 +40,8 @@
 
 <% _.each(users.toArray(), function(user, key, list) { %>
      <tr>
-       
+        <td><input form="deleteall" name="ch_<%= user.get("id") %>" type="checkbox" value= '<%= user.get("id") %>'
+        style="align:center;" /></td>
 
        <td><%- user.get('f_name') %></td>
 
@@ -54,20 +55,24 @@
 
 
        <td>
-         <div class="small success btn">
-           <a href="#/edit_user/<%= user.id %>">Edit</a>
+       <a href="#/edit_user/<%= user.id %>">
+       <div>
+       
+         <i class="icon-pencil">         
+         </i>
          </div>
+         </a>
        </td>
-
+       
        <td>
-         <div class="small success btn">
-           <input type='button' onclick="document.location='/users?id=<%= user.get('id') %>"
-           value="Delete" />
+         <div onclick="document.location='/users?id=<%= user.get('id') %>">
+           <i class="icon-cancel-circled" 
+            />
+         </i>
          </div>
        </td>
 
-       <td><input form="deleteall" name="ch_<%= user.get("id") %>" type="checkbox" value= '<%= user.get("id") %>'
-        style="align:center;" /></td>
+      
      
 <% }) %>
      </tr>
