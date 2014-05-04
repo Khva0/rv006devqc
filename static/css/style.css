@@ -169,6 +169,7 @@ label {
 
 #searcher {
   padding: 2px;
+  
 }
 
 #search_btn {
@@ -179,3 +180,9 @@ label {
 	border: ridge;
 }
 
+#logout {
+    position: relative;
+    left: 600px;
+    display: table-cell;
+    color:black;
+}
