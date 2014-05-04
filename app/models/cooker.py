@@ -26,10 +26,10 @@ class Cooker(object):
 
 
     def get_menu_by_category(self, id_category):
-        return self.wrapper.select(["id", "name", "description", "price",
-                                    "image", "status", "count", "id_category"],
-                                    "dishes",
-                                    "where id_category={0}".format(id_category))
+        return self.wrapper.select(["dishes.id", "name", "description", "price", "status",
+                                    "image", "id_status", "count", "id_category"],
+                                    ["dishes", "statuses"],
+                                    "where id_category=%s and id_status=statuses.id" % (id_category))
 
 
     def get_item_menu(self, id_item_menu):

@@ -1,83 +1,69 @@
-<div id="popup__toggle" class="medium success btn centered"><a>Work with menu</a></div>
-
+<div id="popup__toggle" class="medium success btn centered">
+  <a>Work with menu</a>
+</div>
 <div class="popup__overlay">
-    <div class="popup">
-        <a href="#cooker" class="popup__close"><i class="icon-cancel-squared"></i></a>
-        <div class="row text-center" style="text-align:right;">
-  <div class="row text-center" style="text-align:right;">
+  <div class="popup">
+    <a href="#cooker" class="popup__close"><i class="icon-cancel-squared"></i></a>
+    <div class="row text-center" style="text-align:right;">
       <div class="field centered ten columns">  
-         <form method="post" name="create_menu_form" id="create_menu_form" action="#">
-         <fieldset>
-         <legend>Add dishes</legend>
-            
+        <form method="post" name="create_menu_form" id="create_menu_form" action="#">
+          <fieldset>
+            <legend>Add dishes</legend>
             <ul class ="two_up tiles">
-    <li class="field">
-    <label class="centered inline" for="text1">Dish name</label>
-    <input class="wide text input" name="name" type="text" /> 
-    </li>
-    <li class="field">
-    <label class="centered inline" for="text1">Image</label>
-    <input class="wide text input" name="image" type="text" />
-    </li>
-  <li class="field">
-    <label class="centered inline" for="text1">Price</label>
-    <input class="wide text input" name="price" type="text" />
-    </li>
-            
-            
-    <li class="field">
-    <label class="centered inline" for="text1">Status</label>
-    <input class="wide text input" name="id_status" type="text" />
-</li>
-<li class="field">
-    <label class="centered inline" for="text1">Count</label>
-   <input name="count" class="wide text input" type="text" />
-          </li>  
-
-  <li class="append field">
-
-    <div class="picker">
-    <select name = "id_category" >
-    
-    <option disabled>Category</option>
-<% _.each(categories.toArray(), function(cat, key, list) { %>
-    <option  value="<%- cat.get('id') %>"><%- cat.get('category') %></option>
-<% }) %> 
-    </select>
-
+              <li class="field">
+                <label class="centered inline" for="text1">Dish name</label>
+                <input class="wide text input" name="name" type="text" /> 
+              </li>
+              <li class="field">
+                <label class="centered inline" for="text1">Image</label>
+                <input class="wide text input" name="image" type="text" />
+              </li>
+              <li class="field">
+                <label class="centered inline" for="text1">Price</label>
+                <input class="wide text input" name="price" type="text" />
+              </li>
+              <li class="field">
+                <label class="centered inline" for="text1">Status</label>
+                <input class="wide text input" name="id_status" type="text" />
+              </li>
+              <li class="field">
+                <label class="centered inline" for="text1">Count</label>
+                <input name="count" class="wide text input" type="text" />
+              </li>
+              <li class="append field">
+                <div class="picker">
+                  <select name = "id_category" >
+                  <option disabled>Category</option>
+                  <% _.each(categories.toArray(), function(cat, key, list) { %>
+                    <option  value="<%- cat.get('id') %>"><%- cat.get('category') %></option>
+                  <% }) %> 
+                  </select>
+                </div>
+              </li>
+              <div class="small success btn "> 
+                <a>Edit category</a>
+              </div>
+              <li class="field">
+                <label class="centered inline" for="text1">Description</label>
+                <input class="wide text input" name="Description" />
+              </li>
+              <li class="field">
+                <div  class="medium success btn centered four columns">
+                  <input type="button" value="Add menu" id = "addmenu"/>
+                </div>
+                <div class="small success btn">
+                  <a href="#/add_category">Add category</a>
+                </div>
+              </li>
+            </ul>
+          </fieldset>
+        </form>
+      </div>
+    </div>
   </div>
-
-
-</li>
-    <div class="small success btn "> <a>Edit category</a></div>
-               
- <li class="field">
-    <label class="centered inline" for="text1">Description</label>
-               <input class="wide text input" name="Description" />
-               </li>   
-            
-               <div  class="medium success btn centered four columns"><input type="button" value="Add menu" id = "addmenu"/></div>
-               <div class="small success btn"><a href="#/add_category">Add category</a></div>
-               </li>
-              </ul>
-</fieldset>
-
-
-         </form>
-      </div>
-      </div>
-      </div>
-      <div>
-   <script>p = $('.popup__overlay')
-$('#popup__toggle').click(function() {
-    p.css('display', 'block')
-})
-p.click(function(event) {
-    e = event || window.event
-    if (e.target == this) {
-        $(p).css('display', 'none')
-    }
-})
-$('.popup__close').click(function() {
-    p.css('display', 'none')
-})</script>
+</div>
+<script type="text/javascript">
+  $('#resetter').click(function(){
+    $("#search").val('');
+  });
+</script>

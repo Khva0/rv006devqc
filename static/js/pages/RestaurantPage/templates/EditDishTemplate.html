@@ -1,5 +1,5 @@
 
-<div class="popup__overlay">
+<div class="popup__overlay" id="edit_dish_template">
   <div class="popup">
 	<div class="row text-center">
 	  <div class="field centered ten columns">  
@@ -45,7 +45,7 @@
 					<div class="picker">
 						<select name = "id_category">
 							<% _.each(categories.toJSON(), function(obj) { %>
-								<option  <%-obj.category === category ? 'selected="selected"': ''%> 
+								<option  <%-obj.id === id_category ? 'selected="selected"': ''%> 
 									value="<%- obj.id %>" >
 								    <%- obj.category %>
 							    </option>
@@ -63,17 +63,14 @@
 	  </div>
 	</div>
   </div>
-</div>
-<script type="text/javascript">
-	var p = $('.popup__overlay');
+  <script type="text/javascript">
+	var p = $('#edit_dish_template');
     p.click(function(event) {
         e = event || window.event
         if (e.target == this) {
             $(p).css('display', 'none');
-            window.history.back();
+            $('#edit_dish_template').remove();
         }
     });
-    $('.popup__close').click(function() {
-        p.css('display', 'none')
-    });
-</script>
+  </script>
+</div>

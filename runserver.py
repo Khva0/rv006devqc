@@ -10,6 +10,7 @@ from app.models.admin import Admin
 from app.models.users import Users
 from app.models.wrapper import Wrapper
 from app.models.cooker import Cooker
+from app.models.statuses import Statuses
 # from app.models.waiter import Waiter  #all methods reilized in manager
 # that extend waiter class
 from app.models.manager import Manager
@@ -144,28 +145,23 @@ def multiple_users_delete():
 
 @app.route('/statuses', methods=['GET'])
 def get_all_statuses():
-    return json.dumps(Wrapper().select(["id", "status"], "statuses"))
+    return json.dumps(Statuses().get_all())
 
 
-@app.route('/edit_item_menu/<int:id_dish>', methods=['GET'])
-def edit_item_menu(id_dish):
-    return json.dumps(Cooker().get_item_menu(id_dish)[0])
-
-
-@app.route('/edit_item_menu/<int:id_dish>', methods=['PUT'])
+@app.route('/dishes/<int:id_dish>', methods=['PUT'])
 def update_item_menu(id_dish):
+    request.json.pop('status', None)
     Cooker().edit_item_menu(id_dish, request.json)
     return '{"ok":dish update}'
 
 
-@app.route('/dishes', methods=['GET'])
-def get_all_menu():
-    all_dishes = Cooker().get_all_dishes()
-    return json.dumps(all_dishes)
+@app.route('/dishes/<int:id_category>', methods=['GET'])
+def get_menu_by_category(id_category):
+    return json.dumps(Cooker().get_menu_by_category(id_category))
 
 
 @app.route('/dishes', methods=['POST'])
-def add_menu():
+def add_item_menu():
     print(request.json)
     Cooker().add_item_menu(get_dict(request.json))
     return 'ok'
