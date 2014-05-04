@@ -1,0 +1,24 @@
+<% _.each(dishes.toJSON(), function(dish) { %>
+      <tr>
+        <td>
+          <input name="choos_one" type="checkbox" />
+        </td>               
+        <td><%- dish.id %></td>               
+        <td><%- dish.name %></td>
+        <td><%- dish.description %></td>
+        <td><%- dish.image %></td>
+        <td><%- dish.price %></td>
+        <td><%- dish.count %></td>
+        <td><%- dish.status %></td>
+        <td>
+          <div  class="small success btn">
+            <button type="button" value="<%- dish.id %>" id="edit_dish">Edit</button>
+          </div>
+        </td>
+        <td>
+          <div  class="small success btn">
+            <button type = "button" value = "<%- dish.id %>" id = "dishDrop">Delete</button>
+          </div>
+        </td>
+      </tr>
+<% }); %>
