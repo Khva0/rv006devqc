@@ -1,8 +1,11 @@
- <div id="searcher" class="text-center"><li class="prepend append field" >
+<div class="text-center">
+  <li class="prepend append field" >
     <div class="adjoined" id="resetter">X</div>
-    <input class="wide text input" type="text" id ="search" placeholder="Fast search" />
-    <div class="medium success btn"><a href="#">Go</a></div>
-  </li></div>
+      <input class="wide text input" type="text" id ="search" placeholder="Fast search" />
+      <div class="medium success btn" id="search_btn">
+        <i class="icon-search"></i>
+      </div>
+  </li>
 <table class = "striped" align="center" border="1" cellpadding="1" cellspacing="1" >
 
 
@@ -78,10 +81,3 @@
      </tr>
    </tbody>
 
- </table>
-<script type="text/javascript">
-  $('#resetter').click(
-    function(){
-        $("#search").val('');
-    });
-</script>
