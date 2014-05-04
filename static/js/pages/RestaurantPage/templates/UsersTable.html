@@ -55,13 +55,13 @@
 
        <td>
          <div class="small success btn">
-           <a href='/#/edit_user?id="<%= user.get("id") %>"'>Edit</a>
+           <a href="#/edit_user/<%= user.id %>">Edit</a>
          </div>
        </td>
 
        <td>
          <div class="small success btn">
-           <input type='button' onclick="document.location='/delete_user?id=<%= user.get('id') %>"
+           <input type='button' onclick="document.location='/users?id=<%= user.get('id') %>"
            value="Delete" />
          </div>
        </td>

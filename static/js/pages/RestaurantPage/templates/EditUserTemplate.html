@@ -1,0 +1,60 @@
+<% _.each(user.toArray(), function(user, key, list) { %>
+<div class="field centered ten columns">
+     <form  name="edit_user" id="edit_user" action="/users">
+       <fieldset>
+         <legend>Edit user</legend>
+
+         <ul class="two_up tiles">
+         
+           <li class="field"><label class="centered inline" for="text1">Name</label>
+           <input name="f_name" class="wide text input" type="text" id="f_name" value="<%= user ? user.get('f_name') : '' %>"/></li>
+
+           <li class="field"><label class="centered inline" for="text1">Last
+           name</label> <input name="l_name" class="wide text input" type="text" id ="l_name" value="<%= user ? user.get('l_name') : '' %>"/></li>
+
+           <li class="field"><label class="centered inline" for="text1">Login</label>
+           <input name="login" type="text" class="wide text input" id="login" value="<%= user ? user.get('login') : '' %>"/></li>
+
+           <li class="field"><label class="centered inline" for="text1">Password</label>
+           <input name="password" type="password" class="wide text input" id="password" value=""/></li>
+
+           <li class="field"><label class="centered inline" for="text1">Email</label>
+           <input name="email" type="text" class="wide text input" id= "email" value="<%= user ? user.get('email') : '' %>"/></li>
+
+           <li class="field"><label class="centered inline" for="text1">Status</label>
+           <input name="id_status" type="number" class="wide text input" id="id_status" value="<%= user ? user.get('id_status') : '' %>"/></li>
+
+           <li class="field">
+             <div class="picker">
+               <select name="id_role" size="1" id="id_role">
+                 <option value="1">
+                   Waiter
+                 </option>
+
+                 <option value="2">
+                   Cooker
+                 </option>
+
+                 <option value="3">
+                   Manager
+                 </option>
+
+                 <option value="4">
+                   Admin
+                 </option>
+               </select>
+             </div>
+           </li>
+           <li style="list-style: none; display: inline">
+             <div class="medium success btn centered four columns">
+               <input type="hidden" name="id" value="<%= user.id %>">
+               <input value="Edit user" id="edituser"/>
+             </div>
+
+           </li>
+         </ul>
+       </fieldset>
+     </form>
+   </div>
+ </div> 
+ <% }) %>

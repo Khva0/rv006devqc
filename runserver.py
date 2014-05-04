@@ -92,6 +92,10 @@ def admin_usr():
         all_users = Users().get_all_users()
         return render_template("index.html")"""
 
+@app.route('/users', methods=['GET'])
+def admin_usr():
+    all_users = Users().get_all_users()
+    return json.dumps(all_users)
 
 @app.route('/users', methods=['POST'])
 def adduser():
@@ -117,6 +121,7 @@ def save_user(id_user):
         Get data from user edit form and update in to db
     """    
     Admin().edituser(request.json, "where id={0}".format(id_user))
+    print json.dumps(request.json)
     return json.dumps(request.json)
 
 
