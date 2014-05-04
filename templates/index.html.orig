@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<<<<<<< HEAD
+<html>
+	<head>
+	  <title>Title</title>
+	  <link rel="stylesheet" type="text/css" href="static/css/gumby.css">
+	  <link rel="stylesheet" type="text/css" href="static/css/style.css">
+	  <script type=text/javascript data-main="static/js/main.js" src="static/js/libs/requirejs/require.js">
+	  </script>
+	</head>
+	<body>
+		<div class="row navbar metro head" gumby-fixed="top" id="nav1"></div>
+		<div class = "row" id="content">
+		</div>
+			<div class = "row eight columns" id="data_table"></div>
+			<div class = "centered ten columns" id="innerdata"></div>
+	</body>
+=======
+
+<head>
+
+
+<title>Title</title>
+
+
+
+</head>
+<body>
+	<div class="row navbar metro head" gumby-fixed="top" id="nav1">
+<h1 class="four columns logo">
+    <a href="#">
+      <img src="static/img/menu.png" gumby-retina />
+    </a>
+  </h1>
+ 
+</div>
+	<div id="content"></div>
+    <div class = "centered ten columns" id="innerdata"></div>
+  <div class = "row eight columns" id="data_table"></div>
+
+
+	<link rel="stylesheet" type="text/css" href="static/css/gumby.css">
+    <link rel="stylesheet" type="text/css" href="static/css/style.css">
+	<script type=text/javascript data-main="static/js/main.js" src="static/js/libs/requirejs/require.js"></script>
+
+</body>
+
+
+
+
+>>>>>>> 1d0265a232357f17e9f0bb3930891594e8bc3264
+</html>

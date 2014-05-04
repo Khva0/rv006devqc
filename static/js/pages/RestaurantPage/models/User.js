@@ -3,7 +3,7 @@ define(["underscore", "backbone", "jquery"],
     function(_, Backbone, $) {
         return Backbone.Model.extend({
 
-            urlRoot: "/adduser",
+            urlRoot: "/users",
 
             defaults: {
 
@@ -13,7 +13,7 @@ define(["underscore", "backbone", "jquery"],
                 "l_name": "",
                 "login": "",
                 "password": "",
-                "status": 1
+                "id_status": 1
             }
         });
     });
