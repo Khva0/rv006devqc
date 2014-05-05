@@ -1369,9 +1369,9 @@ img { -ms-interpolation-mode: bicubic; }
 .btn.primary, .skiplink.primary { background: #3085d6; border: 1px solid #3085d6; }
 .btn.primary:hover, .skiplink.primary:hover { background: #5b9ede; }
 .btn.primary:active, .skiplink.primary:active { background: #236bb0; }
-.btn.secondary, .skiplink.secondary { background: #42a35a; border: 1px solid #42a35a; }
-.btn.secondary:hover, .skiplink.secondary:hover { background: #5bbd73; }
-.btn.secondary:active, .skiplink.secondary:active { background: #337f46; }
+.btn.secondary, .skiplink.secondary { background: #f2f2e6; border: 1px solid #f2f2e6; }
+.btn.secondary:hover, .skiplink.secondary:hover { background: #664e4d; }
+.btn.secondary:active, .skiplink.secondary:active { background: #f2f2e6; }
 .btn.default, .skiplink.default { background: #f2f2f2; border: 1px solid #f2f2f2; color: #555555; border: 1px solid #f2f2f2; }
 .btn.default:hover, .skiplink.default:hover { background: white; }
 .btn.default:active, .skiplink.default:active { background: #d8d8d8; }
@@ -1389,7 +1389,7 @@ img { -ms-interpolation-mode: bicubic; }
 .btn.warning a, .btn.warning input, .btn.warning button, .skiplink.warning a, .skiplink.warning input, .skiplink.warning button { color: #644405; }
 .btn.success, .skiplink.success { background: #664e4d; border: 1px solid #f2f2e6; }
 .btn.success:hover, .skiplink.success:hover { background: #ffd37c   ; }
-.btn.success:active, .skiplink.success:active { background: #44951e; }
+.btn.success:active, .skiplink.success:active { background: #664e4d; }
 
 .btn.metro, .metro .btn, .metro .skiplink, .skiplink.metro, .btn.pretty.squared, .pretty .squared.btn, .pretty .squared.skiplink, .pretty .btn.squared { -webkit-border-radius: 0; -moz-border-radius: 0; -ms-border-radius: 0; -o-border-radius: 0; border-radius: 0; }
 
