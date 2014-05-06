@@ -1,0 +1,28 @@
+<tr>
+    <td>
+      <input name="choos_one" type="checkbox" />
+    </td>               
+    <td><%- id %></td>               
+    <td><%- name %></td>
+    <td><%- description %></td>
+    <td><%- image %></td>
+    <td><%- price %></td>
+    <td><%- count %></td>
+    <td><%- status %></td>
+    <td class="text-center">
+      <input type="image"
+             src="static/img/edit.png" 
+             width="25px" 
+             height="25px" 
+             value="<%- id %>" 
+             id="edit_dish" />
+    </td>
+    <td class="text-center">
+        <input type="image"
+               src="static/img/trash.png" 
+               width="25px" 
+               height="25px" 
+               value="<%- id %>"  
+               id="dishDrop" />
+    </td>
+</tr>
