@@ -10,7 +10,8 @@ define([
         "text!pages/RestaurantPage/templates/CookerTemplate.html",
         'text!pages/RestaurantPage/templates/DishesTemplate.html',
         'text!pages/RestaurantPage/templates/EditDishTemplate.html',
-        'text!pages/RestaurantPage/templates/CategoriesTemplate.html'
+        'text!pages/RestaurantPage/templates/CategoriesTemplate.html',
+        'text!pages/RestaurantPage/templates/DishRowTemplate.html'
     ],
 
     function(_,
@@ -24,7 +25,8 @@ define([
         CookerTemplate,
         DishesTemplate,
         EditDishTemplate,
-        CategoriesTemplate
+        CategoriesTemplate,
+        DishRowTemplate
     ) {
         return Backbone.View.extend({
 
@@ -41,7 +43,6 @@ define([
             el: '#content',
 
             initialize: function() {
-                var dishes;
                 categories = new CategoriesCollection();
                 statuses = new StatusesCollection();
             },
@@ -60,14 +61,21 @@ define([
                 var data = form2js('update_menu_form', '.', true);
                 dishModel.save(data);
                 $('#edit_dish_template').remove();
+                var template = _.template(DishRowTemplate,dishModel.toJSON());
+                $(template).replaceAll($(eventModel.target).parent().parent());
             },
 
             dishdrop: function(event) {
-                var droppedDish = dishes.get(event.target.value);
-                var jsonString = JSON.stringify(droppedDish, null, '\t');
-                console.log(jsonString);
-                droppedDish.destroy();
-                $(this.el).find("#" + event.target.value).css("color", "red");
+                var dish = dishes.get(event.target.value);
+                if (dish.get('status') !== 'Inactive') {
+                    $(event.target).parent().parent().remove();
+                    dish.set({
+                        'status': 'Inactive',
+                        'id_status': 2
+                    });
+                    $('#dishes').append(_.template(DishRowTemplate, dish.toJSON()));
+                    dish.clone().destroy();
+                };
             },
 
             edit_dish: function(e) {
@@ -77,6 +85,7 @@ define([
                     self.$el.append(_.template(EditDishTemplate, dishModel.toJSON()));
                     $('#edit_dish_template').css('display', 'block');
                 });
+                eventModel = e;
             },
 
             view_category: function(e) {

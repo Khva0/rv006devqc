@@ -2,11 +2,11 @@
   <li class="prepend append field" >
     <div class="adjoined" id="resetter">X</div>
       <input class="wide text input" type="text" id ="search" placeholder="Fast search" />
-      <div class="medium success btn" id="search_btn">
+      <div class="adjoined" id="search_btn">
         <i class="icon-search"></i>
       </div>
   </li>
-  <table align="center" border="1" cellpadding="1" cellspacing="1" class = "striped">
+  <table cellpadding="1" cellspacing="1" class = "striped">
      <caption>
       <% _.each(categories.toJSON(), function(category) { %>
         <div class="medium secondary btn">
@@ -28,8 +28,8 @@
            <th scope="col">Price</th>
            <th scope="col">Count</th>
            <th scope="col">Status</th>
-           <th scope="col">Edit</th>
-           <th scope="col">Delete</th>
+           <th scope="col"></th>
+           <th scope="col"></th>
         </tr>
      </thead>
      <tbody id="dishes">
