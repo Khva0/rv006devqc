@@ -208,6 +208,14 @@ def orders():
     return Response(json.dumps(orders))
 
 
+@app.route('/addOrder', methods=["POST"])
+def add_order():
+    user_id = 1
+    orderId = Manager().add_order(user_id, get_dict(request.json))
+    print orderId
+    return Response(str(orderId))
+
+
 @app.route('/getOrders/<int:order_id>', methods=["DELETE"])
 def close_order(order_id):
     Manager().close_order(order_id)
