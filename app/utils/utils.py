@@ -3,6 +3,7 @@ import os
 import imghdr
 import hashlib
 import time
+import Image
 from werkzeug.utils import secure_filename
 
 
@@ -53,7 +54,7 @@ def upload():
             return 'type error'
 
 
-def is_pwd(self, passwd):
+def is_pwd(passwd):
         """ Check pwd hash a-f0-9 len 128 """
         result = None
         try:
@@ -63,7 +64,7 @@ def is_pwd(self, passwd):
         return result is not None
 
 
-def is_email(self, email):
+def is_email(email):
         """ Check mail """
         result = None
         try:
@@ -74,7 +75,7 @@ def is_email(self, email):
         return result is not None
 
 
-def is_username(self, uname):
+def is_username(uname):
         """ check username """
         result = None
         try:
@@ -84,10 +85,16 @@ def is_username(self, uname):
         return result is not None
 
 
-def is_number(self, num):
+def is_number(num):
         """ Check is number"""
         try:
             long(num)
         except ValueError:
             return False
         return True
+
+def image_resize(filename,width,height):
+    """ Resize Image """
+    im = Image.open(filename)
+    imr = im.resize((width, height),Image.ANTIALIAS)
+    imr.save(filename)
