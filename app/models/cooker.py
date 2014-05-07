@@ -8,6 +8,18 @@ class Cooker(object):
         self.wrapper = Wrapper()
 
 
+    def search_dishes(self, string):
+        return self.wrapper.select(["distinct dishes.id", "name", "description", "price", "status",
+                                    "image", "id_status", "count", "id_category"],
+                                    "dishes",
+                                    "inner join statuses on statuses.id=id_status "\
+                                    "where lower(name) LIKE lower('%{0}%') or "\
+                                    "lower(description) LIKE lower('%{0}%') or "\
+                                    "lower(price) LIKE lower('%{0}%') or "\
+                                    "lower(status) LIKE lower('%{0}%') or "\
+                                    "lower(count) LIKE lower('%{0}%')".format(string))
+
+
     def delete_item_menu(self, id_item_menu):
         return self.wrapper.update({"id_status":2},
                                     "dishes",
