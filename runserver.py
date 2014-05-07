@@ -152,16 +152,17 @@ def multiple_users_delete():
 def get_all_statuses():
     return json.dumps(Statuses().get_all())
 
-@app.route('/search_dishes/<path:string>', methods=['GET'])
-def search_dishes(string):
-    return json.dumps(Cooker().search_dishes(string));
-
 
 @app.route('/dishes/<int:id_dish>', methods=['PUT'])
 def update_item_menu(id_dish):
     request.json.pop('status', None)
     Cooker().edit_item_menu(id_dish, request.json)
     return '{"ok":dish update}'
+
+
+@app.route('/dishes/search/<path:string>', methods=['GET'])
+def search_dishes(string):
+    return json.dumps(Cooker().search_dishes(string));
 
 
 @app.route('/dishes/<int:id_category>', methods=['GET'])

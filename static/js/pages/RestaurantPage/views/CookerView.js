@@ -37,7 +37,8 @@ define([
                 'click #edit_dish': 'edit_dish',
                 'click #save_dish': 'save_dish',
                 'click #resetter': 'resetSearch',
-                'click #popup__toggle': 'popUp'
+                'click #popup__toggle': 'popUp',
+                'click #search_btn': 'search_dishes'
             },
 
             el: '#content',
@@ -96,10 +97,7 @@ define([
             },
 
             resetSearch: function(e) {
-                $('#resetter').click(
-                    function() {
-                        $("#search").val('');
-                    });
+                $("#search").val('');
             },
 
             popUp: function(e) {
@@ -118,6 +116,13 @@ define([
                 })
             },
 
+            search_dishes: function(){
+                var str = "search/" + $('#search').val();
+                dishes = new DishesCollection(str);
+                $.when(dishes.fetch()).done(function(){
+                    $('#dishes').html(_.template(DishesTemplate));
+                });
+            },
 
             render: function() {
                 var self = this;
