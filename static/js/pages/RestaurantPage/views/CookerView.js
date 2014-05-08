@@ -89,15 +89,32 @@ define([
                 eventModel = e;
             },
 
+            is_selected_category: function(val){
+                if (typeof val === 'string') {
+                    selected_category_id = val;
+                    return true;
+                } else {
+                    if (selected_category_id !== val.target.value) {
+                        selected_category_id = val.target.value;
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            },
+
             view_category: function(e) {
-                dishes = new DishesCollection(e.target.value);
-                $.when(dishes.fetch()).done(function() {
-                    $('#dishes').html(_.template(DishesTemplate));
-                });
+                if (this.is_selected_category(e)) {
+                    dishes = new DishesCollection(selected_category_id);
+                    $.when(dishes.fetch()).done(function() {
+                        $('#dishes').html(_.template(DishesTemplate));
+                    });
+                };
             },
 
             resetSearch: function(e) {
                 $("#search").val('');
+                this.view_category(selected_category_id); // set last selected category
             },
 
             popUp: function(e) {
@@ -128,7 +145,8 @@ define([
                 var self = this;
                 $.when(categories.fetch()).done(function() {
                     self.$el.append(_.template(CookerTemplate));
-                    dishes = new DishesCollection(categories.models[0].id);
+                    selected_category_id = categories.models[0].id;
+                    dishes = new DishesCollection(selected_category_id);
                     $.when(dishes.fetch()).done(function() {
                         self.$el.append(_.template(CategoriesTemplate));
                         $('#dishes').append(_.template(DishesTemplate));
