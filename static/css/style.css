@@ -98,7 +98,8 @@ p {
     width: 100%;
     height: 100%;
     background: rgba(0,0,0,.7);
-    text-align: center
+    text-align: center;
+    z-index:300;
     }
     .popup__overlay:after {
         display: inline-block;
@@ -180,17 +181,30 @@ label {
 #logout {
     position: relative;
     left: 600px;
+    bottom:50px;
     display: table-cell;
     color:black;
 }
+
+#basket {
+    position: relative;
+    left: 400px;
+    top: 50px;
+    display: table-cell;
+    color:black;
+}
+
 
 #view_category {
     color:black;
 }
 
-#view_category{
+#view_category:hover{
     color:white;
 }
+
+
+
 
 th, td{
     border: 1px solid white;
