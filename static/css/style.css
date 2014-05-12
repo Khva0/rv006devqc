@@ -203,7 +203,10 @@ label {
     color:white;
 }
 
-
+#resetter{
+    display: none;
+    background-color:#f2f2e6; 
+}
 
 
 th, td{
