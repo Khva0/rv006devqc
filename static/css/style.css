@@ -39,41 +39,6 @@ body {
     text-align: right;
 }
 
-
-
-#navbut {
-
-    right: 1px;
-    height: 100%;
-    font-size:16px;
-    font-family:Arial;
-    font-weight:bold;
-    -moz-border-radius:0px;
-    -webkit-border-radius:0px;
-    border-radius:0px;
-    border:1px solid #eeb44f;
-    padding:12px 22px;
-    text-decoration:none;
-    background:-moz-linear-gradient( center top, #fa8a00 5%, #f78800 100% );
-    background:-ms-linear-gradient( top, #fa8a00 5%, #f78800 100% );
-    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#fa8a00', endColorstr='#f78800');
-    background:-webkit-gradient( linear, left top, left bottom, color-stop(5%, #fa8a00), color-stop(100%, #f78800) );
-    background-color:#fa8a00;
-   display:inline-block;
-    text-align: center;
-    color: white;
-}#navbut:hover {
-    background:-moz-linear-gradient( center top, #f78800 5%, #fa8a00 100% );
-    background:-ms-linear-gradient( top, #f78800 5%, #fa8a00 100% );
-    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#f78800', endColorstr='#fa8a00');
-    background:-webkit-gradient( linear, left top, left bottom, color-stop(5%, #f78800), color-stop(100%, #fa8a00) );
-    background-color:#f78800;
-}#navbut:active {
-    position:relative;
-    top:1px;
-}
-
-
 #bachata_logo {
     position: relative;
   bottom:50%;
@@ -208,9 +173,78 @@ label {
     background-color:#f2f2e6; 
 }
 
+#mainmenu {
+    position: fixed;
+    top: 1em;
+    left: 1em;
+    width:20%;
+    height:100%;
+    background-color: #664e4d;
+    z-index: 300;
+}
 
 th, td{
     border: 1px solid white;
     text-align: center; 
     vertical-align: middle;
 }
+
+.menu__overlay {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,.7);
+    text-align: center;
+    z-index:300;
+    }
+    .menu__overlay:after {
+        display: inline-block;
+        *display: inline;
+        *zoom: 1;
+        height: 100%;
+        width: 0;
+        vertical-align: middle;
+        content: ''
+        }
+    /* Added for IE<9 compatibility */
+    .menu__overlay_ie {
+        background: #000;
+        opacity: .7;
+        filter: alpha(opacity=70)
+        }
+.men_popup {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    position: relative;
+    max-width: 80%;
+    padding: 20px;
+    border: 5px solid #fff;
+    border-color: #664e4d;
+    
+    background: #fff;
+    vertical-align: middle
+    }
+/* Added instead of :after pseudoelement */
+.men_popup__valignfix {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    width: 0;
+    height: 100%;
+    vertical-align: middle
+    }
+.men_popup-form__row {
+    margin: 1em 0
+    }
+label {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    width: 120px;
+    text-align: left
+    }
+
