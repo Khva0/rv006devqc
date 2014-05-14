@@ -38,7 +38,9 @@ define([
                 'click #save_dish': 'save_dish',
                 'click #resetter': 'resetSearch',
                 'click #popup__toggle': 'popUp',
-                'click #search_btn': 'search_dishes'
+                'click #search_btn': 'search_dishes',
+                'focus #search': 'showRes',
+                'blur #search': 'hideRes'
             },
 
             el: '#content',
@@ -62,7 +64,7 @@ define([
                 var data = form2js('update_menu_form', '.', true);
                 dishModel.save(data);
                 $('#edit_dish_template').remove();
-                var template = _.template(DishRowTemplate,dishModel.toJSON());
+                var template = _.template(DishRowTemplate, dishModel.toJSON());
                 $(template).replaceAll($(eventModel.target).parent().parent());
             },
 
@@ -76,7 +78,7 @@ define([
                     });
                     $('#dishes').append(_.template(DishRowTemplate, dish.toJSON()));
                     dish.clone().destroy();
-                };
+                }
             },
 
             edit_dish: function(e) {
@@ -89,7 +91,7 @@ define([
                 eventModel = e;
             },
 
-            is_selected_category: function(val){
+            is_selected_category: function(val) {
                 if (typeof val === 'string') {
                     selected_category_id = val;
                     return true;
@@ -109,7 +111,7 @@ define([
                     $.when(dishes.fetch()).done(function() {
                         $('#dishes').html(_.template(DishesTemplate));
                     });
-                };
+                }
             },
 
             resetSearch: function(e) {
@@ -118,28 +120,43 @@ define([
             },
 
             popUp: function(e) {
-                p = $('.popup__overlay')
+                p = $('.popup__overlay');
                 $('#popup__toggle').click(function() {
-                    p.css('display', 'block')
-                })
+                    p.css('display', 'block');
+                });
                 p.click(function(event) {
-                    e = event || window.event
+                    e = event || window.event;
                     if (e.target == this) {
-                        $(p).css('display', 'none')
+                        $(p).css('display', 'none');
                     }
-                })
+                });
                 $('.popup__close').click(function() {
-                    p.css('display', 'none')
-                })
+                    p.css('display', 'none');
+                });
             },
 
-            search_dishes: function(){
+            search_dishes: function() {
                 var str = "search/" + $('#search').val();
                 dishes = new DishesCollection(str);
-                $.when(dishes.fetch()).done(function(){
+                $.when(dishes.fetch()).done(function() {
                     $('#dishes').html(_.template(DishesTemplate));
                 });
             },
+
+            showRes: function(event) {
+                $('#resetter').css({
+                    display: 'inline-block'
+                });
+
+            },
+
+            hideRes: function(event) {
+                $('#resetter').css({
+                    display: 'none'
+                });
+
+            },
+
 
             render: function() {
                 var self = this;
