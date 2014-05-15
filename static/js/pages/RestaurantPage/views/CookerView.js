@@ -154,6 +154,7 @@ define([
                 $('#resetter').css({
                     display: 'none'
                 });
+                $("#search").val('');
 
             },
 
