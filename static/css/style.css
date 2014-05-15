@@ -64,7 +64,7 @@ p {
     height: 100%;
     background: rgba(0,0,0,.7);
     text-align: center;
-    z-index:300;
+    z-index:360;
     }
     .popup__overlay:after {
         display: inline-block;
@@ -130,6 +130,29 @@ label {
 #popup__toggle {
     color:white;
     font-size: 15px;
+    position: fixed;
+    left:15px;
+    z-index: 320;
+    top:130px;
+    width:20%;
+  }
+#cat__toggle {
+    color:white;
+    font-size: 15px;
+    position: fixed;
+    left:15px;
+    z-index: 320;
+    top:165px;
+    width:20%;     
+}
+#menu_trigger {
+    color:white;
+    font-size: 25px;
+    position: fixed;
+    left:15px;
+    z-index: 320;
+    top:100px;
+    width:20%; 
 }
 
 
@@ -180,8 +203,11 @@ label {
     width:20%;
     height:100%;
     background-color: #664e4d;
+    border-color: white;
+    border-width: 20px;
     z-index: 300;
 }
+
 
 th, td{
     border: 1px solid white;
@@ -240,6 +266,9 @@ th, td{
 .men_popup-form__row {
     margin: 1em 0
     }
+
+
+
 label {
     display: inline-block;
     *display: inline;

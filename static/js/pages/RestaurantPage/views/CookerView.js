@@ -143,18 +143,19 @@ define([
                 });
             },
 
-            showRes: function(event) {
-                $('#resetter').css({
-                    display: 'inline-block'
-                });
 
-            },
 
             hideRes: function(event) {
                 $('#resetter').css({
                     display: 'none'
                 });
                 $("#search").val('');
+
+            },
+            showBut: function(event) {
+                $('.popup__toggle').css({
+                    display: 'inline-block',
+                });
 
             },
 

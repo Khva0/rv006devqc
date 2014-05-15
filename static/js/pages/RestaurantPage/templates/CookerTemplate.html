@@ -1,7 +1,19 @@
+<div class="menu__overlay">
+      <div class="menu_popup">
+    <div id="mainmenu"></div>
+    <div id="menu_trigger">
+    Add...
+    </div>
+    <div id="popup__toggle" class="medium success btn centered">
+  <a>Dish</a>
+      </div>
+    <div id="cat__toggle" class="medium success btn centered">
+  <a>Category</a>
+  
 
-<div id="popup__toggle" class="medium success btn centered">
-  <a>Work with menu</a>
-</div>
+    </div>      
+    </div>
+
 <div class="popup__overlay">
   <div class="popup">
     <a href="#cooker" class="popup__close"><i class="icon-cancel-squared"></i></a>
@@ -64,3 +76,18 @@
   </div>
 </div>
 
+  <script type="text/javascript">
+   p = $('.menu__overlay');
+                $('#menu__toggle').click(function() {
+                    p.css('display', 'block');
+                });
+                p.click(function(event) {
+                    e = event || window.event;
+                    if (e.target == this) {
+                        $(p).css('display', 'none');
+                    }
+                });
+                $('.popup__close').click(function() {
+                    p.css('display', 'none');
+                });
+            </script>
