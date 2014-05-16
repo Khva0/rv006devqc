@@ -5,6 +5,7 @@ define([
         "form2js",
         "pages/RestaurantPage/models/DishesModel",
         "pages/RestaurantPage/collections/CategoriesCollection",
+        "pages/RestaurantPage/models/CategoryModel",
         "pages/RestaurantPage/collections/DishesCollection",
         "pages/RestaurantPage/collections/StatusesCollection",
         "text!pages/RestaurantPage/templates/CookerTemplate.html",
@@ -20,6 +21,7 @@ define([
         form2js,
         DishesModel,
         CategoriesCollection,
+        CategoryModel,
         DishesCollection,
         StatusesCollection,
         CookerTemplate,
@@ -40,7 +42,9 @@ define([
                 'click #popup__toggle': 'popUp',
                 'click #search_btn': 'search_dishes',
                 'focus #search': 'showRes',
-                'blur #search': 'hideRes'
+                'blur #search': 'hideRes',
+                'click #addCat': 'addCat',
+                'click #cat__toggle': 'catPopUp'
             },
 
             el: '#content',
@@ -145,20 +149,47 @@ define([
 
 
 
+            showRes: function(event) {
+                $('#resetter').css({
+                    display: 'inline-block'
+                });
+
+            },
+
             hideRes: function(event) {
                 $('#resetter').css({
                     display: 'none'
                 });
                 $("#search").val('');
-
             },
-            showBut: function(event) {
-                $('.popup__toggle').css({
-                    display: 'inline-block',
+
+            addCat: function(e) {
+                e.preventDefault();
+                var data = form2js('catform', '.', true);
+                this.model = new CategoryModel(data);
+
+                var jsonString = JSON.stringify(data, null, '\t');
+                console.log(jsonString);
+                this.model.save({
+
                 });
-
             },
 
+            catPopUp: function(e) {
+                p = $('.cat__overlay');
+                $('#cat__toggle').click(function() {
+                    p.css('display', 'block');
+                });
+                p.click(function(event) {
+                    e = event || window.event;
+                    if (e.target == this) {
+                        $(p).css('display', 'none');
+                    }
+                });
+                $('.cat__close').click(function() {
+                    p.css('display', 'none');
+                });
+            },
 
             render: function() {
                 var self = this;

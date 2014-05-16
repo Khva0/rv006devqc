@@ -8,14 +8,13 @@ define([
         "pages/RestaurantPage/views/TicketsView",
         "pages/RestaurantPage/views/UserDataView",
         "pages/RestaurantPage/views/WaiterDataView",
-        "pages/RestaurantPage/views/AddCategoryView",
         "pages/RestaurantPage/views/EditUserView"
 
 
     ],
 
     function(LoginView, AdminView, CookerView, WaiterView, OrdersView,
-        TicketsView, UserDataView, WaiterDataView, AddCategoryView, EditUserView) {
+        TicketsView, UserDataView, WaiterDataView, EditUserView) {
         return Backbone.Router.extend({
 
 
@@ -27,13 +26,13 @@ define([
                 "waiter": "waiter",
                 "orders": "orders",
                 "edit_order/:id": "edit_order",
-                "add_category": "add_category"
+
 
             },
 
 
             index: function() {
-                loginView = new LoginView;
+                loginView = new LoginView();
 
                 loginView.render();
             },
@@ -41,7 +40,7 @@ define([
 
                 adminView = new AdminView();
                 adminView.render();
-                usersView = new UserDataView;
+                usersView = new UserDataView();
                 usersView.render();
             },
 
@@ -54,20 +53,20 @@ define([
             },
 
             cooker: function() {
-                cookerView = new CookerView;
+                cookerView = new CookerView();
                 cookerView.render();
             },
 
-            edit_dish: function(id){
+            edit_dish: function(id) {
                 console.log(id);
                 editDishView = new EditDishView();
                 editDishView.render({
-                    id:id
+                    id: id
                 });
             },
 
             waiter: function() {
-                waiterView = new WaiterView;
+                waiterView = new WaiterView();
                 waiterView.render();
                 waiterDataView = new WaiterDataView();
                 waiterDataView.render();
@@ -79,10 +78,7 @@ define([
 
             },
 
-            add_category: function() {
-                addCategoryView = new AddCategoryView();
-                addCategoryView.render();
-            },
+
 
             edit_order: function(id) {
                 ticketsView = new TicketsView();

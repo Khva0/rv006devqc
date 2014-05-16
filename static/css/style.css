@@ -145,6 +145,66 @@ label {
     top:165px;
     width:20%;     
 }
+
+.cat__overlay {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,.7);
+    text-align: center;
+    z-index:360;
+    }
+    .cat__overlay:after {
+        display: inline-block;
+        *display: inline;
+        *zoom: 1;
+        height: 100%;
+        width: 0;
+        vertical-align: middle;
+        content: ''
+        }
+    /* Added for IE<9 compatibility */
+    .cat__overlay_ie {
+        background: #000;
+        opacity: .7;
+        filter: alpha(opacity=70)
+        }
+.cat_popup {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    position: relative;
+    max-width: 80%;
+    padding: 20px;
+    border: 5px solid #fff;
+    border-color: #664e4d;
+    
+    background: #fff;
+    vertical-align: middle
+    }
+/* Added instead of :after pseudoelement */
+.cat_popup__valignfix {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    width: 0;
+    height: 100%;
+    vertical-align: middle
+    }
+.cat_popup-form__row {
+    margin: 1em 0
+    }
+.cat__close {
+    display: block;
+    position: absolute;   
+    
+    cursor: pointer;
+    background: #fff;
+    text-align: center;}
+
 #menu_trigger {
     color:white;
     font-size: 25px;
@@ -155,6 +215,15 @@ label {
     width:20%; 
 }
 
+#search__toggle {
+    color:white;
+    font-size: 15px;
+    position: fixed;
+    left:15px;
+    z-index: 320;
+    top:130px;
+    width:20%;
+  }
 
 #searcher {
   padding: 2px;
