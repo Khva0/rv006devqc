@@ -1,4 +1,5 @@
 from wrapper import Wrapper
+from app.utils.utils import advanced_search
 
 class Cooker(object):
     """docstring for Cooker"""
@@ -6,6 +7,15 @@ class Cooker(object):
 
     def __init__(self):
         self.wrapper = Wrapper()
+
+
+
+    def advanced_search(self, diction):
+        return advanced_search(
+            ["distinct dishes.id", "name", "description", "price",
+             "status", "image", "id_status", "count", "id_category"],
+             "dishes inner join statuses on dishes.id_status=statuses.id",
+            diction)
 
 
     def search_dishes(self, string):

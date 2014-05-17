@@ -1,0 +1,14 @@
+<% _.each(dishes.toArray(), function(dish) { %>
+  <div class="dish blk">
+    <div class="dishname">
+      <%- dish.get('name') %>
+    </div>
+    <div class="dishprice">
+      <%- dish.get('price') %>
+      $
+    </div>
+    <div class="dishdesc">
+      <%- dish.get('description') %>
+    </div>
+  </div>
+<% }) %> 

@@ -5,6 +5,7 @@ import hashlib
 import time
 import Image
 from werkzeug.utils import secure_filename
+from app.models.wrapper import Wrapper
 
 
 def get_dict(multi_dict):
@@ -98,3 +99,14 @@ def image_resize(filename,width,height):
     im = Image.open(filename)
     imr = im.resize((width, height),Image.ANTIALIAS)
     imr.save(filename)
+
+
+def advanced_search(columns, tables, diction):
+    """Common function for advanced search"""
+    if not isinstance(diction, dict):
+        raise Exception('Third argument should be only type dict!')
+
+    condition = 'where %s' % ' and '\
+        .join("lower({0}) LIKE lower('%{1}%')"\
+            .format(column, value) for column, value in diction.items())
+    return Wrapper().select(columns, tables, condition)

@@ -11,6 +11,7 @@ from app.models.users import Users
 from app.models.wrapper import Wrapper
 from app.models.cooker import Cooker
 from app.models.statuses import Statuses
+from app.utils.utils import advanced_search
 # from app.models.waiter import Waiter  #all methods reilized in manager
 # that extend waiter class
 from app.models.manager import Manager
@@ -158,6 +159,11 @@ def update_item_menu(id_dish):
     request.json.pop('status', None)
     Cooker().edit_item_menu(id_dish, request.json)
     return '{"ok":dish update}'
+
+
+@app.route('/dishes/advanced_search/<path:string>', methods=['GET'])
+def advanced_search_dishes(string):
+    return json.dumps(Cooker().advanced_search(json.loads(string)))
 
 
 @app.route('/dishes/search/<path:string>', methods=['GET'])
