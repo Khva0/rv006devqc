@@ -5,9 +5,6 @@ import hashlib
 import time
 import Image
 from werkzeug.utils import secure_filename
-# import imp
-# sys.path.append('/models')
-# import app
 from app.models.wrapper import Wrapper
 
 
