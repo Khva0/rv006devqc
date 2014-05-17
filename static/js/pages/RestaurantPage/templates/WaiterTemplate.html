@@ -1,42 +1,43 @@
-<div class="line_up dishes">
-
- <% _.each(dishes.toArray(), function(dish, key, list) { %>
-
-<div class="dish blk"><div class="dishname"><%- dish.get('name') %></div><div class="dishprice"><%- dish.get('price') %>$</div>
-<div class="dishdesc"><%- dish.get('description') %></div>
+<div id="categories" class="text-center">
+  <% _.each(categories.toJSON(), function(category) { %>
+      <div class="medium secondary btn">
+        <button type="button" value = "<%- category.id %>" id = "view_category">
+          <%- category.category %>
+        </button>
+      </div>
+  <% }) %>   
 </div>
-<% }) %> 
-  <div class="row text-center" style="text-align:right;">
-  <div class="field centered nine columns">
-    <form method="post" name="make_order" action="/create_order">
-      <fieldset>
-        <legend>Create order</legend>
-        <ul class ="four_up tiles">
-          <li class="field">
-          <li class="field">
-            <div class="picker">
-              <select>
-                <option value="#" disabled>Dishes</option>
-                <option>Dishes</option>
-              </select>
-            </div>
-          </li>
-          <li class="append field">
-            
-            <label class="centered inline">Count</label>
-            <input  class="narrow text input" name="count" type="text" />
-            <div class="medium success btn oval"> <i class="icon-plus"></i></div>
-  </div>
-  </li> 
-  <div  class="medium success btn centered four columns"><input type="submit" value="Add to cart"/></div>
-  <div  class="small success btn">
-  <a href="/view_orders">View my orders</a>
-  <input type="button" value = "vieworders" />  
-  </div> 
-  </li>
-  </ul>
-  </fieldset>
-  </form>
+<div class="line_up dishes" id="dishes">
   
+</div>  
+<div class="field centered seven columns">
+  <form method="post" name="make_order" action="/create_order">
+    <fieldset class="text-right">
+      <legend>Create order</legend>
+      <ul class ="two_up tiles">
+        <li class="field">
+          <div class="picker">
+          <select>
+            <option value="#" disabled>Dishes</option>
+            <option>Dishes</option>
+          </select>
+          </div>
+        </li>
+        <li class="field">
+          <label class="inline">Count</label>
+          <input  class="narrow text input" name="count" type="text" />
+          <div class="medium success btn oval">
+            <i class="icon-plus"></i>
+          </div>
+        </li>
+      </ul>
+      <div  class="medium success btn centered four columns">
+        <input type="submit" value="Add to cart"/>
+      </div>
+      <div  class="small success btn">
+        <a href="/view_orders">View my orders</a>
+      </div> 
+    </fieldset>
+  </form>
 </div>
 

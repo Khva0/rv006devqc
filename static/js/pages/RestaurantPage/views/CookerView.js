@@ -5,7 +5,6 @@ define([
         "form2js",
         "pages/RestaurantPage/models/DishesModel",
         "pages/RestaurantPage/collections/CategoriesCollection",
-        "pages/RestaurantPage/models/CategoryModel",
         "pages/RestaurantPage/collections/DishesCollection",
         "pages/RestaurantPage/collections/StatusesCollection",
         "text!pages/RestaurantPage/templates/CookerTemplate.html",
@@ -21,7 +20,6 @@ define([
         form2js,
         DishesModel,
         CategoriesCollection,
-        CategoryModel,
         DishesCollection,
         StatusesCollection,
         CookerTemplate,
@@ -34,17 +32,15 @@ define([
 
             events: {
                 'click #addmenu': 'store',
-                'click #view_category': 'view_category',
-                'click #dishDrop': 'dishdrop',
-                'click #edit_dish': 'edit_dish',
-                'click #save_dish': 'save_dish',
+                'click #view_category': 'viewCategory',
+                'click #dishDrop': 'dishDrop',
+                'click #edit_dish': 'editDish',
+                'click #save_dish': 'saveDish',
                 'click #resetter': 'resetSearch',
                 'click #popup__toggle': 'popUp',
-                'click #search_btn': 'search_dishes',
+                'click #search_btn': 'searchDishes',
                 'focus #search': 'showRes',
-                'blur #search': 'hideRes',
-                'click #addCat': 'addCat',
-                'click #cat__toggle': 'catPopUp'
+                'blur #search': 'hideRes'
             },
 
             el: '#content',
@@ -64,7 +60,7 @@ define([
                 this.model.save(); //Saving nw dish to server
             },
 
-            save_dish: function(e) {
+            saveDish: function(e) {
                 var data = form2js('update_menu_form', '.', true);
                 dishModel.save(data);
                 $('#edit_dish_template').remove();
@@ -72,7 +68,7 @@ define([
                 $(template).replaceAll($(eventModel.target).parent().parent());
             },
 
-            dishdrop: function(event) {
+            dishDrop: function(event) {
                 var dish = dishes.get(event.target.value);
                 if (dish.get('status') !== 'Inactive') {
                     $(event.target).parent().parent().remove();
@@ -85,7 +81,7 @@ define([
                 }
             },
 
-            edit_dish: function(e) {
+            editDish: function(e) {
                 self = this;
                 dishModel = dishes.get(e.target.value);
                 $.when(statuses.fetch()).done(function() {
@@ -109,7 +105,7 @@ define([
                 }
             },
 
-            view_category: function(e) {
+            viewCategory: function(e) {
                 if (this.is_selected_category(e)) {
                     dishes = new DishesCollection(selected_category_id);
                     $.when(dishes.fetch()).done(function() {
@@ -120,7 +116,7 @@ define([
 
             resetSearch: function(e) {
                 $("#search").val('');
-                this.view_category(selected_category_id); // set last selected category
+                this.viewCategory(selected_category_id); // set last selected category
             },
 
             popUp: function(e) {
@@ -139,15 +135,13 @@ define([
                 });
             },
 
-            search_dishes: function() {
+            searchDishes: function() {
                 var str = "search/" + $('#search').val();
                 dishes = new DishesCollection(str);
                 $.when(dishes.fetch()).done(function() {
                     $('#dishes').html(_.template(DishesTemplate));
                 });
             },
-
-
 
             showRes: function(event) {
                 $('#resetter').css({
@@ -161,46 +155,16 @@ define([
                     display: 'none'
                 });
                 $("#search").val('');
-            },
 
-            addCat: function(e) {
-                e.preventDefault();
-                var data = form2js('catform', '.', true);
-                this.model = new CategoryModel(data);
-
-                var jsonString = JSON.stringify(data, null, '\t');
-                console.log(jsonString);
-                this.model.save({
-
-                });
-            },
-
-            catPopUp: function(e) {
-                p = $('.cat__overlay');
-                $('#cat__toggle').click(function() {
-                    p.css('display', 'block');
-                });
-                p.click(function(event) {
-                    e = event || window.event;
-                    if (e.target == this) {
-                        $(p).css('display', 'none');
-                    }
-                });
-                $('.cat__close').click(function() {
-                    p.css('display', 'none');
-                });
             },
 
             render: function() {
                 var self = this;
                 $.when(categories.fetch()).done(function() {
-                    self.$el.append(_.template(CookerTemplate));
+                    self.$el.html(_.template(CookerTemplate));
+                    self.$el.append(_.template(CategoriesTemplate));
                     selected_category_id = categories.models[0].id;
-                    dishes = new DishesCollection(selected_category_id);
-                    $.when(dishes.fetch()).done(function() {
-                        self.$el.append(_.template(CategoriesTemplate));
-                        $('#dishes').append(_.template(DishesTemplate));
-                    });
+                    self.viewCategory(selected_category_id.toString());
                 });
             }
         });
