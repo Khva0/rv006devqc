@@ -1,7 +1,7 @@
 <% _.each(dishes.toArray(), function(dish) { %>
 <div class="dish blk" style="position: relative; background: url(<%- dish.get('image') %>); padding-top: 8%;">
     <div style="background-color: rgba(255, 255, 255, 0.6); min-height: 73px;">
-	<div class="row ">
+	<div class="row" style="padding-right: 1%">
 		<div class="columns dishname"><%- dish.get('name') %></div>
 		<div class="dishprice columns"><%- dish.get('price') %>$</div>
 	</div>
