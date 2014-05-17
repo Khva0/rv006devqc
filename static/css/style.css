@@ -19,28 +19,31 @@ body {
     top:15%;    
 }
 
-.dishes { display: block; overflow: hidden; }
-.dishes > li, .dishes > .dish { display: block;  float: left; padding-bottom: 0; }
+.dishes { display: block; overflow: hidden;}
+.dishes > li, .dishes > .dish { display: block;  float: left; padding-bottom: 0;}
 .dishes.two_up { margin-left: -4%; }
 .dishes.two_up > li, .dishes.two_up > .dish { margin-left: 4%; width: 46%; }
 .dishes.three_up, .dishes.line_up { margin-left: -2%; }
 .dishes.three_up > li, .dishes.three_up > .dish { margin-left: 2%; width: 31.3%; }
-.dishes.line_up > li, .dishes.line_up > .dish {padding-right: 1%; margin-left: 1%; margin-bottom: 0%; margin-top: 1%; width: 32%;height: 150px; border-width: 1px;border-color:#664e4d; border-style:solid;}
+.dishes.line_up > li, .dishes.line_up > .dish {margin-left: 1%; margin-bottom: 0%; margin-top: 1%; width: 32%;height: 150px; border-width: 1px;border-color:#664e4d; border-style:solid;}
 .dishes.five_up { margin-left: -1.5%; }
 .dishes.five_up > li, .dishes.five_up > .dish { margin-left: 1.5%; width: 18.5%; }
 .dishdesc {
 	line-height: 16px;
-    font-size: 14px;
+	font-size: 14px;
+	width: 89%;
+	text-align: justify;
 }
 
 
 
 .dishname {
     font-weight: bold;
+    font-size: 15px;
 }
 
 .dishprice {
-    text-align: right;
+    float: right;
 }
 
 #bachata_logo {
