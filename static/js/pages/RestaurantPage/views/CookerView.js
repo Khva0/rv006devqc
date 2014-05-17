@@ -40,7 +40,9 @@ define([
                 'click #popup__toggle': 'popUp',
                 'click #search_btn': 'searchDishes',
                 'focus #search': 'showRes',
-                'blur #search': 'hideRes'
+                'blur #search': 'hideRes',
+                'click #addCat': 'addCat',
+                'click #cat__toggle': 'catPopUp'
             },
 
             el: '#content',
@@ -157,6 +159,34 @@ define([
                 $("#search").val('');
 
             },
+
+            addCat: function(e) {
+                e.preventDefault();
+                var data = form2js('catform', '.', true);
+                this.model = new CategoryModel(data);
+ 
+                var jsonString = JSON.stringify(data, null, '\t');
+                console.log(jsonString);
+                this.model.save({
+ 
+                });
+            },
+  
+            catPopUp: function(e) {
+                p = $('.cat__overlay');
+                $('#cat__toggle').click(function() {
+                    p.css('display', 'block');
+                });
+                p.click(function(event) {
+                    e = event || window.event;
+                    if (e.target == this) {
+                        $(p).css('display', 'none');
+                    }
+                });
+                $('.cat__close').click(function() {
+                    p.css('display', 'none');
+                });
+              },
 
             render: function() {
                 var self = this;
