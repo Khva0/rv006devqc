@@ -1,62 +1,39 @@
-<fieldset>
-    <legend>Order tickets: </legend>
-    <table align="center" border="1" cellpadding="1" cellspacing="1">
-        <thead>
-            <tr>
-                <th scope="col">Image</th>
+<style>
+.TicketHover:HOVER {
+	background-color: #E1E1D5;
+}
 
-                <th scope="col">Name</th>
-
-                <th scope="col">Desription</th>
-
-                <th scope="col">Count</th>
-
-                <th scope="col">Price</th>
-                <th scope="col">Edit</th>
-                <th scope="col"></th>
-                <th scope="col">
-                    <div class="small success btn">
-                        <input onclick="document.location='#close'" value="Close all" type="button">
-                    </div>
-                        <input name="choos_all" type="checkbox" />                        
-
-                </th>
-            </tr>
-
-        </thead>
-        <tbody>
-            <% _.each(order.toArray(),function(ticket){ %>
-            <tr id="<%= ticket.get("id") %>">
-                <td><img width="100" height="100"
-                    src="<%= ticket.get("image") %>">
-                </td>
-
-                <td><%= ticket.get("name") %></td>
-
-                <td><%= ticket.get("description") %></td>
-                
-                <td><input type="text" name="count" value="<%= ticket.get("count") %>"
-                    style="width: 35px; text-align: center;"></td>
-
-                <td><%= ticket.get("price") %></td>
-                                <td>
-                    <div class="small success btn">
-                        <button type="button" class="saveTicket" value="<%= ticket.get("id") %>">Save</button>
-                    </div>
-                </td>
-                <td>
-                    <div class="small success btn">
-                        <button type="button" class="closeTicket" value="<%= ticket.get("id") %>">Delete</button>
-                    </div>
-                </td>
-                <td>
-                    <input form="deleteall" name="ch_1" value="1"
-                        style="align: center; height: 28px; width: 97px" type="checkbox">
-                </td>
-
-            </tr>
-            <% }) %>
-        </tbody>
-        
-    </table>
-</fieldset>
+.BtnCornerDivide {
+    position:absolute;
+    bottom:0;
+    right:0;
+    border-right: 30px solid #664e4d;
+    border-top: 30px solid transparent;
+}
+</style>
+<% _.each(order.toArray(),function(ticket){ %>
+<div class="row TicketHover" style="padding:4px; dashed 1px #ccc;margin-bottom: 4px;border-bottom: dashed 1px #ccc; position: relative;" id="Ticket_<%= ticket.get("id") %>">
+	<div class="two columns">
+		<img width="100" height="100" src="<%= ticket.get("image") %>">
+	</div>
+	<div class="ten columns">
+		<div class="row">
+			<div class="five columns"><%= ticket.get("name") %></div>
+			<div class="five columns">
+				Count <input class="ticketCountInOrder orderId_<%= order.orderId %>" type="text" name="<%= ticket.get("id") %>"
+				value="<%=ticket.get("count") %>" style="width: 35px;
+				text-align:center;">
+			</div>
+			<div class="two columns" style="text-align: right;">
+					<img class="closeTicket orderId_<%= order.orderId %>" id="<%= ticket.get("id") %>" src="static/img/trash16.png">
+			</div>
+		</div>
+		<div class="row">
+			<div class="five columns">Price: <%= ticket.get("price") %>$</div>
+			<div id ="totalPrice_<%= ticket.get("id") %>" class="five columns TotalPrice">Total: <%= ticket.get("count")*ticket.get("price") %>$</div>
+			<div class="two columns"></div>
+			</div>
+		</div>
+		<div id="BtnCornerDivideId_<%= ticket.get("id") %>" class="BtnCornerDivide"></div>
+	</div>
+<% }) %>

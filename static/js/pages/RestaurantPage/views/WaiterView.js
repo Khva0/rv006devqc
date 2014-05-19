@@ -5,19 +5,22 @@ define([
         "text!pages/RestaurantPage/templates/WaiterTemplate.html",
         "text!pages/RestaurantPage/templates/WaiterDishesTemplate.html",
         "pages/RestaurantPage/collections/CategoriesCollection",
-        "pages/RestaurantPage/collections/DishesCollection"
+        "pages/RestaurantPage/collections/DishesCollection",
+        "pages/RestaurantPage/views/BucketView"
     ],
 
     function(_, Backbone, $, WaiterTemplate, WaiterDishesTemplate, CategoriesCollection, DishesCollection) {
         return Backbone.View.extend({
             events:{
-                'click #view_category': 'viewCategory'
+                'click #view_category': 'viewCategory',
+                'click .imgToAddDishToCart': 'addDishToCart',
             },
 
             el: $('#content'),
 
             initialize: function() {
                 categories = new CategoriesCollection();
+
             },
 
             isSelectedCategory: function(val) {
@@ -42,6 +45,17 @@ define([
                     });
                 }
             },
+            
+            addDishToCart: function(event){
+            	var id = parseInt(event.currentTarget.id.match(/\d+$/)[0]);
+            	//alert(dishes.at(id).get("id"))
+            	var dish = dishes.get(id).toJSON();
+            	dish.count = 1;
+            	dish.id_dish = dish.id;
+            	delete dish["id_status"]
+            	delete dish["status"]
+            	bucket.add(dish);
+            },
 
             render: function() {
                 var self = this;
@@ -49,6 +63,7 @@ define([
                     self.$el.html(_.template(WaiterTemplate));
                     selected_category_id = categories.models[0].id;
                     self.viewCategory(selected_category_id.toString());
+
                 });
             }
         });

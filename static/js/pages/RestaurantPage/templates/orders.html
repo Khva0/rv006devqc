@@ -1,45 +1,67 @@
-<fieldset>
-    <legend>Orders: </legend>
-    <table align="center" border="1" cellpadding="1" cellspacing="1">
-        <thead>
-            <tr>
-                <th scope="col">Id</th>
-                <th scope="col">Status</th>
-                <th scope="col">Waiter</th>
-                <th scope="col">Price</th>
-                <th scope="col">Edit</th>
-                <th scope="col"></th>
-                <th scope="col">
-	                <div class="small success btn"><button type="button">Close</button></div>
-	                <input name="choos_all" type="checkbox" /> 
-                </th>
-            </tr>
+<style> 
+/*
+.orderBlock {
+background-color: #F7F7ED;
+}
+*/
+.OrderRow1 {
+	border-bottom: dashed 1px #ccc !important;
+	padding-bottom: 4px !important;
+	padding-left: 4px !important;
+	padding-right: 4px !important;
+}
+.OrderRow2 {
+	padding-left: 4px !important;
+	padding-right: 4px !important;
+	padding-top: 4px !important;
+}
+.OrderBtN {
+width: 80px !important;
+}
 
-        </thead>
-        <tbody>
-            <% _.each(orders.toArray(), function(order) {%>
-            <tr id="<%= order.get("id") %>">
-                <td><%= order.get("id") %></td>
-                <td>status: <%= order.get("status") %></td>
-                <td><%= order.get("waiter_name") %>waiter name</td>
-                <td><%= order.get("full_price") %>full price</td>
-                <td>
-                    <div class="small success btn">
-                        <a href='#/edit_order/<%= order.get("id") %>' >Edit</a>
-                    </div>
-                </td>
-                <td>
-                    <div class="small success btn">
-                        <button type="button" value='<%= order.get("id") %>' class="closeOrder">Close</button>
-                    </div>
-                </td>
-                <td>
-                    <input form="deleteall" name="ch_1" value="1"
-                        style="align: center; height: 28px; width: 97px" type="checkbox">
-                </td>
+.OrderRemoveBtn {
+    background-color: red !important;
+}
 
-            </tr>
-            <% })%>
-        </tbody>
-    </table>
-</fieldset>
+.OrderImg {
+    width: 54px !important;
+}
+
+</style>
+
+<% _.each(orders.toArray(), function(order) {%>
+	<div class="row Order" id="Order_<%= order.get("id") %>">
+		<div class="twelve columns centered orderBlock" style="background-color: #F7F7ED;">
+			<div class="row OrderRow1" >
+				<div class="columns">
+					<span style="color: #664e4d; font-weight:bold;" id="<%= order.get("id") %>">Order #<%= order.get("id") %></span>
+				</div>
+				<div class="columns " style="float: right;">
+				    <div class="small success btn OrderBtN">
+                        <button type="button" class="RemoveOrderBtn OrderRemoveBtn" value="<%= order.get("id") %>">Remove</button>
+                    </div>
+			    	<div class="small success btn OrderBtN">
+                        <button type="button" class="DivideOrderBtn" value="<%= order.get("id") %>">Divide</button>
+                    </div>
+					<div class="small success btn OrderBtN">
+						<button type="button" class="EditOrderBtn" value="<%= order.get("id") %>">Edit</button>
+					</div>
+					<div class="small success btn OrderBtN">
+						<button type="button" class="closeOrder" value="<%= order.get("id") %>">Close</button>
+					</div>
+				</div>
+			</div>
+			<div class="row OrderRow2" >
+				<div class="two columns OrderImg">
+					<img src="static/img/order.gif">
+				</div>
+				<div class="eight columns">Curent order status:</div>
+				<div class="two columns" style="text-align: right; float: right;">
+					<span style="color: green;"><%= order.get("status") %></span>
+				</div>
+				<div class="three columns">Total price: 1.5$</div>
+			</div>
+			<div id="OpCl_<%= order.get("id") %>" class="row" style="display: none; background-color: white;"></div>
+		</div>
+	</div>
+<% }) %>

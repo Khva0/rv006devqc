@@ -7,15 +7,6 @@ define([
 
 var Order = Backbone.Model.extend({
 	urlRoot: '/getOrders',
-    defaults: {
-    	id: "",
-    	status: "",
-    },
-	
-    initialize: function() {
-    	
-    	},
-    
 });
 	return Order;
 });
