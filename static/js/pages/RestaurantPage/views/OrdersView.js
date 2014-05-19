@@ -4,11 +4,10 @@ define([
   'backbone',
   "pages/RestaurantPage/collections/orders_collection",
   "pages/RestaurantPage/collections/tickets_collection",
-  "pages/RestaurantPage/collections/bucket_collection",
   'text!pages/RestaurantPage/templates/orders.html',
   "pages/RestaurantPage/views/TicketsView",
   "pages/RestaurantPage/views/BucketView"
-], function($, _, Backbone, Orders, Tickets, Bucket, OrdersTemplate, TicketsView, BucketView){
+], function($, _, Backbone, Orders, Tickets, OrdersTemplate, TicketsView, BucketView){
 
 	var OrdersView =  Backbone.View.extend({
 		
