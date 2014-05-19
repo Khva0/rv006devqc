@@ -29,8 +29,8 @@ body {
 .dishes.five_up { margin-left: -1.5%; }
 .dishes.five_up > li, .dishes.five_up > .dish { margin-left: 1.5%; width: 18.5%; }
 .dishdesc {
-	line-height: 16px;
-	font-size: 14px;
+	line-height: 13px;
+	font-size: 11px;
 	width: 89%;
 	text-align: justify;
 }
