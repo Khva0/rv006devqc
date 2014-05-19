@@ -26,8 +26,6 @@ define([
 	    	  
 	    	  this.listenTo(bucket, 'add', this.render);
 	    	  this.listenTo(bucket, 'remove', this.render);
-	    	  //_.each(dishes.toJSON(), function(m){console.log(m.unset["price", "description", "id_category", "name", "image", "id_status"])})
-
 	      },	      
 	      
 	      cartAddOrder: function(){
@@ -125,8 +123,8 @@ define([
 	    		  function MinMaxDrag(leftPosition){
 	    			  if(leftPosition < 0){
 	    				  return 0;
-	    			  }else if (leftPosition >= window.screen.width) {
-						return window.screen.width + 4;
+	    			  }else if (leftPosition >= 980) {
+						return 980;
 					}else{
 						return leftPosition;
 					}
@@ -147,9 +145,9 @@ define([
 	    		  this.onmouseup = function() {
 	    			    document.onmousemove = self.onmouseup = null;
 	    			  }
-	    		  /*this.onmouseout = function() {
+	    		  this.onmouseout = function() {
 	    			    document.onmousemove = self.onmouseout = null;
-	    			  }*/
+	    			  }
 	    		  
 	    		  
 	    	  });

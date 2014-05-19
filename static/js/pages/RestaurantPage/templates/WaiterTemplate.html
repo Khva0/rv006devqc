@@ -1,43 +1,9 @@
 <div id="categories" class="text-center">
-  <% _.each(categories.toJSON(), function(category) { %>
-      <div class="medium secondary btn">
-        <button type="button" value = "<%- category.id %>" id = "view_category">
-          <%- category.category %>
-        </button>
-      </div>
-  <% }) %>   
+	<% _.each(categories.toJSON(), function(category) { %>
+	<div class="medium secondary btn">
+		<button type="button" value="<%- category.id %>" id="view_category">
+			<%- category.category %></button>
+	</div>
+	<% }) %>
 </div>
-<div class="line_up dishes" id="dishes">
-  
-</div>  
-<div class="field centered seven columns">
-  <form method="post" name="make_order" action="/create_order">
-    <fieldset class="text-right">
-      <legend>Create order</legend>
-      <ul class ="two_up tiles">
-        <li class="field">
-          <div class="picker">
-          <select>
-            <option value="#" disabled>Dishes</option>
-            <option>Dishes</option>
-          </select>
-          </div>
-        </li>
-        <li class="field">
-          <label class="inline">Count</label>
-          <input  class="narrow text input" name="count" type="text" />
-          <div class="medium success btn oval">
-            <i class="icon-plus"></i>
-          </div>
-        </li>
-      </ul>
-      <div  class="medium success btn centered four columns">
-        <input type="submit" value="Add to cart"/>
-      </div>
-      <div  class="small success btn">
-        <a href="/view_orders">View my orders</a>
-      </div> 
-    </fieldset>
-  </form>
-</div>
-
+<div class="line_up dishes" id="dishes"></div>
