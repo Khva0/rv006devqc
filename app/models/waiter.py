@@ -1,5 +1,6 @@
 from wrapper import Wrapper
 import datetime
+from conf import Conf
 
 
 class Waiter(object):
@@ -12,21 +13,33 @@ class Waiter(object):
         """must put waiter id and tickets in list of dict
         [{"id_dish": 1, "count": 1},{"id_dish": 12, "count": 1}..."""
         date = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-        order = {"status": 1,
+        order = {"status": 4,
                "id_user": waiter_id,
                "date": date
                 }
         order_id = self.wrap.insert(order, "orders")
         for ticket in order_data:
             ticket["id_order"] = order_id
+            try:
+                del ticket["image"]
+                del ticket["name"]
+                del ticket["id"]
+                del ticket["description"]
+                del ticket["id_category"]
+                del ticket["price"]
+
+            except Exception, e:
+                print e
+
             self.wrap.insert(ticket, "tickets")
+        return order_id
 
     def get_orders(self, waiter_id):
         """return dict with status and order id
         {'status': 1, 'id': 12L}"""
         date = datetime.datetime.now().strftime('%Y-%m-%d')
         orders = self.wrap.select("status, id", "orders",
-                                  "WHERE orders.status=1 \
+                                  "WHERE orders.status=4 \
                                    AND orders.id_user={0} AND \
                                    orders.date LIKE '{1}%'"\
                                    .format(waiter_id, date))
@@ -34,8 +47,9 @@ class Waiter(object):
 
     def close_order(self, order_id):
         """get order id. Set status to NULL"""
-        self.wrap.update({"status": 0}, "orders",
+        self.wrap.update({"status": 5}, "orders",
                           "WHERE id = %s" % (order_id))
+
 
 
 if __name__ == "__main__":
@@ -61,7 +75,7 @@ if __name__ == "__main__":
     #print w.get_orders(1)
     #w.close_order(90)
     #print datetime.datetime.now().strftime("%d.%m.%Y %H:%M")
-
+    #ssu-jira.softserveinc.com
 
     """add del/update mehods
 in mysql column date must be change to varchar = 16
