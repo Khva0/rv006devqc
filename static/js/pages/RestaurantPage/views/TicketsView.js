@@ -20,7 +20,7 @@ var TicketsView = Backbone.View.extend({
       },
       
       initialize: function() {
-          tickets = new Tickets();
+          //tickets = new Tickets();
           
       },
       

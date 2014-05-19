@@ -21,7 +21,7 @@ define([
 	      },
 	      
 	      initialize: function() {
-	    	  orders = new Orders();
+	    	  //orders = new Orders();
               ticketsView = new TicketsView();
               //cartView = new BucketView();
               

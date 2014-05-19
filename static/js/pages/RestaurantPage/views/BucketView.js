@@ -3,9 +3,11 @@ define([
   'underscore',
   'backbone',
   "pages/RestaurantPage/collections/bucket_collection",
+  "pages/RestaurantPage/collections/orders_collection",
+  "pages/RestaurantPage/collections/tickets_collection",
   'text!pages/RestaurantPage/templates/bucket.html',
   "pages/RestaurantPage/models/bucket_model"
-], function($, _, Backbone, Bucket, BucketTemplate, bucketModel){
+], function($, _, Backbone, Bucket, Orders, Tickets, BucketTemplate, bucketModel){
 
 	var bucketView =  Backbone.View.extend({
 		
@@ -32,6 +34,9 @@ define([
 	    			  $("#bucket").show();
 	    		  }
 	    	  });
+	    	  
+	    	  orders = new Orders();
+	    	  tickets = new Tickets();
 	    	  bucket = new Bucket();//new collection bucket
 	    	  
 	    	  this.listenTo(bucket, 'add', this.render);
