@@ -27,7 +27,7 @@ class  Manager(Waiter):
         """get all orders all waiters for curent date"""
         date = datetime.datetime.now().strftime('%Y-%m-%d')
         data = "orders.id, statuses.status" #Sum(tickets.price) as TotalPrice
-        condition = "WHERE orders.status = statuses.id AND orders.id_user = users.id AND orders.date LIKE '{0}%'".format(date)
+        condition = "WHERE orders.id_status = statuses.id AND orders.id_user = users.id AND orders.date LIKE '{0}%'".format(date)
         #condition = "WHERE orders.status = statuses.id AND orders.status = 4 AND orders.id_user = users.id AND orders.date LIKE '{0}%'".format(date)
         
         orders = self.wrap.select(data, "orders, statuses, users", condition)
