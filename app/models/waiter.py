@@ -13,7 +13,7 @@ class Waiter(object):
         """must put waiter id and tickets in list of dict
         [{"id_dish": 1, "count": 1},{"id_dish": 12, "count": 1}..."""
         date = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-        order = {"status": 4,
+        order = {"id_status": 4,
                "id_user": waiter_id,
                "date": date
                 }
@@ -38,8 +38,8 @@ class Waiter(object):
         """return dict with status and order id
         {'status': 1, 'id': 12L}"""
         date = datetime.datetime.now().strftime('%Y-%m-%d')
-        orders = self.wrap.select("status, id", "orders",
-                                  "WHERE orders.status=4 \
+        orders = self.wrap.select("id_status, id", "orders",
+                                  "WHERE orders.id_status=4 \
                                    AND orders.id_user={0} AND \
                                    orders.date LIKE '{1}%'"\
                                    .format(waiter_id, date))
@@ -47,7 +47,7 @@ class Waiter(object):
 
     def close_order(self, order_id):
         """get order id. Set status to NULL"""
-        self.wrap.update({"status": 5}, "orders",
+        self.wrap.update({"id_status": 5}, "orders",
                           "WHERE id = %s" % (order_id))
 
 
