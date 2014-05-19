@@ -12,7 +12,7 @@ class  Manager(Waiter):
     def get_full_order(self, order_id):
         """in data put all what we need to see in ticket"""
         data = "dishes.image, dishes.name, dishes.price, dishes.id as id_dish, tickets.count, tickets.id, tickets.id_order"
-        condition = "INNER JOIN dishes ON tickets.id_dish = dishes.id WHERE tickets.status = 1 AND tickets.id_order = %s" % (order_id)
+        condition = "INNER JOIN dishes ON tickets.id_dish = dishes.id WHERE tickets.id_order = %s" % (order_id)
         tickets = self.wrap.select(data, "tickets", condition)
         
         full_price = 0
