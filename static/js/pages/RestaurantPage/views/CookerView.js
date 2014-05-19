@@ -39,9 +39,8 @@ define([
                 'click #resetter': 'resetSearch',
                 'click #popup__toggle': 'popUp',
                 'click #search_btn': 'searchDishes',
-                'focus #search': 'showRes',
-                'blur #search': 'hideRes',
-                'click #addCat': 'addCat',
+                'keyup #search': 'showRes',
+                'click #addCat': 'addCat', 
                 'click #cat__toggle': 'catPopUp'
             },
 
@@ -52,8 +51,8 @@ define([
                 statuses = new StatusesCollection();
             },
 
-            store: function(e) {
-                e.preventDefault();
+            store: function(event) {
+                event.preventDefault();
                 var data = form2js('create_menu_form', '.', true);
                 this.model = new DishesModel(data);
 
@@ -62,7 +61,7 @@ define([
                 this.model.save(); //Saving nw dish to server
             },
 
-            saveDish: function(e) {
+            saveDish: function(event) {
                 var data = form2js('update_menu_form', '.', true);
                 dishModel.save(data);
                 $('#edit_dish_template').remove();
@@ -83,17 +82,17 @@ define([
                 }
             },
 
-            editDish: function(e) {
+            editDish: function(event) {
                 self = this;
-                dishModel = dishes.get(e.target.value);
+                dishModel = dishes.get(event.target.value);
                 $.when(statuses.fetch()).done(function() {
                     self.$el.append(_.template(EditDishTemplate, dishModel.toJSON()));
                     $('#edit_dish_template').css('display', 'block');
                 });
-                eventModel = e;
+                eventModel = event;
             },
 
-            is_selected_category: function(val) {
+            isSelectedCategory: function(val) {
                 if (typeof val === 'string') {
                     selected_category_id = val;
                     return true;
@@ -107,8 +106,8 @@ define([
                 }
             },
 
-            viewCategory: function(e) {
-                if (this.is_selected_category(e)) {
+            viewCategory: function(event) {
+                if (this.isSelectedCategory(event)) {
                     dishes = new DishesCollection(selected_category_id);
                     $.when(dishes.fetch()).done(function() {
                         $('#dishes').html(_.template(DishesTemplate));
@@ -116,12 +115,13 @@ define([
                 }
             },
 
-            resetSearch: function(e) {
+            resetSearch: function(event) {
                 $("#search").val('');
+                this.showRes(event);
                 this.viewCategory(selected_category_id); // set last selected category
             },
 
-            popUp: function(e) {
+            popUp: function(event) {
                 p = $('.popup__overlay');
                 $('#popup__toggle').click(function() {
                     p.css('display', 'block');
@@ -137,7 +137,7 @@ define([
                 });
             },
 
-            searchDishes: function() {
+            searchDishes: function(event) {
                 var str = "search/" + $('#search').val();
                 dishes = new DishesCollection(str);
                 $.when(dishes.fetch()).done(function() {
@@ -146,22 +146,20 @@ define([
             },
 
             showRes: function(event) {
-                $('#resetter').css({
-                    display: 'inline-block'
-                });
+                if ($(event.target).val().length > 0) {
+                    $('#resetter').css({
+                        display: 'inline-block'
+                    });
+                } else {
+                    $('#resetter').css({
+                        display: 'none'
+                    });
+                }
 
             },
 
-            hideRes: function(event) {
-                $('#resetter').css({
-                    display: 'none'
-                });
-                $("#search").val('');
-
-            },
-
-            addCat: function(e) {
-                e.preventDefault();
+            addCat: function(event) {
+                event.preventDefault();
                 var data = form2js('catform', '.', true);
                 this.model = new CategoryModel(data);
  
@@ -172,7 +170,7 @@ define([
                 });
             },
   
-            catPopUp: function(e) {
+            catPopUp: function(event) {
                 p = $('.cat__overlay');
                 $('#cat__toggle').click(function() {
                     p.css('display', 'block');
