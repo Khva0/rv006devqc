@@ -1,0 +1,117 @@
+<style>
+.myRow {
+	padding: 2px !important;
+	/*line-height: 12px !important;*/
+}
+
+#bucket {
+	background-color: #F2F2E6; 
+	position : fixed !important;
+	bottom: 0 !important;
+	right: 0 !important;
+	/*margin: 5px !important;*/
+	bottom: 0 !important;
+	right: 0 !important;
+	right: 0 !important;
+	padding: 0;
+	max-width: 400px;
+	width: 400px;
+	display: none;
+}
+
+.CartDellTicket {
+	text-align: right;
+	padding: 18px 5px 0 0;
+}
+
+.cartImg {
+	padding: 5px 0px 0px 5px;
+}
+
+.CartHead {
+	text-align: center !important;
+	background-color: #664e4d !important;
+	color: white !important;
+	font-weight: bold !important;
+	padding: 0px;
+}
+
+#CartHeadBtn {
+	float: right !important;
+	padding-right: 10px !important;
+	padding-left: 10px !important;
+}
+
+.CartTickets {
+	background-color: #F2F2E6 !important;
+	font-size: 14px;
+	overflow: auto;
+    max-height: 400px;
+}
+
+.CartTickets input{
+    background-color: #F2F2E6 !important;
+    border: 0;
+}
+
+.CartBtnFooter {
+	width: 100px !important;
+	margin-left: 10px !important;
+	margin-right: 10px !important;
+}
+
+.CartBtnFooter button {
+	font-weight: bold !important;
+}
+
+.CartFooter {
+	text-align: center !important;
+	padding-bottom: 5px !important;
+}
+</style>
+
+<div id="bucket" >
+	<div class="row CartHead">
+		Cart
+		<div id="CartHeadBtn">
+			<b>X</b>
+		</div>
+	</div>
+
+	<div class="CartTickets">
+		<%_.each(order.toArray(),function(ticket, key){ %>
+		<div id="cartTicketToDelete_<%= key %>" class="row myRow" style="border-top: dashed 1px;">
+			<div class="two columns"  >
+				<img class="cartImg" src="<%= ticket.get("image") %>">
+			</div>
+			<div class="eight columns">
+				<div class="row myRow">
+					<div class="columns seven"><%= ticket.get("name") %></div>
+					<div class="columns">Count
+					   <input id="CartDishId_<%= key %>" name="CartDishCount" value="<%=ticket.get("count") %>" size="2" type="text">
+					</div>
+				</div>
+				<div class="row myRow">
+					<div class="columns seven">Price <%= ticket.get("price")%>$</div>
+					<div class="columns ticketTotalPrice">Total <%= ticket.get("price")*ticket.get("count")%>$</div>
+				</div>
+			</div>
+			<div class="two columns CartDellTicket">
+				<img id="cartTicketId_<%= key %>" src="static/img/trash16.png">
+			</div>
+		</div>
+
+		<% }) %>
+	</div>
+
+
+
+	<div class="row CartFooter">
+		<div class="small success btn CartBtnFooter cartRefreshBucket">
+			<button type="button">Cancel</button>
+		</div>
+		<div class="small success btn CartBtnFooter cartAddOrder" >
+			<button type="button" disabled>Save</button>
+		</div>
+	</div>
+</div>
