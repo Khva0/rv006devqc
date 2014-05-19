@@ -21,7 +21,17 @@ define([
 	      },
 	      
 	      initialize: function() {
-	    	  $("#basket").click(this.showCart);
+	    	  $(window).on('hashchange', function() {
+	    		  if(window.location.hash !== "#orders" || window.location.hash !== "#waiter"){
+	    			  $("#bucket").hide();
+	    		  }
+	    		});
+	    	  
+	    	  $("#basket").click(function(){
+	    		  if(window.location.hash == "#orders" || window.location.hash == "#waiter"){
+	    			  $("#bucket").show();
+	    		  }
+	    	  });
 	    	  bucket = new Bucket();//new collection bucket
 	    	  
 	    	  this.listenTo(bucket, 'add', this.render);
@@ -82,11 +92,6 @@ define([
 	    	  bucket.reset();
 	    	  cartView.render();
 	    	  self.$el.find($("#bucket")).css("display", "block");
-	      },
-	      
-	      showCart: function(){
-	    	  var self = this;
-	    	  $("#bucket").show();
 	      },
 	      
 	      closeCart: function(){

@@ -23,7 +23,7 @@ define([
 	      initialize: function() {
 	    	  orders = new Orders();
               ticketsView = new TicketsView();
-              cartView = new BucketView();
+              //cartView = new BucketView();
               
               this.listenTo(orders, 'add', this.renderNewElement);
               this.listenTo(orders, 'destroy', this.renderNewElement);
@@ -149,7 +149,7 @@ define([
 	          var template = _.template(OrdersTemplate, {orders: orders});
 	          self.$el.html(self.doCol(template));
 	          
-	          cartView.render();
+	          //cartView.render();
 	        }
 	      });
 	    }
