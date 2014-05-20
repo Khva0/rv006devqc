@@ -12,7 +12,7 @@ class Wrapper(object):
 		try:
 			cursor = self.connect.cursor();
 			statement = "delete from %s where id= ?" % table_name
-			cursor.execute(statement, id)
+			cursor.execute(statement, id_row)
 			self.connect.commit()
 			return True
 		except Exception, e:
