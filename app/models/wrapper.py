@@ -8,6 +8,17 @@ class Wrapper(object):
 		self.connect = MySQLdb.connect(*Conf().read())
 
 
+	def delete(self, table_name, id_row):
+		try:
+			cursor = self.connect.cursor();
+			statement = "delete from %s where id= ?" % table_name
+			cursor.execute(statement, id)
+			self.connect.commit()
+			return True
+		except Exception, e:
+			print e
+
+
 	def select(self, columns, table_names, condition = ""):
 		if not isinstance(table_names, basestring):
 		    table_names = ", ".join(table_names)
