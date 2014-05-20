@@ -40,6 +40,7 @@ define([
 	    		var modelr = orders.get(event.target.value);
 		        try {
 		        	modelr.destroy();
+		        	orders.add({id: event.target.value, status: "Closed"});
 				} catch (e) {
 					// TODO: handle exception
 				}
