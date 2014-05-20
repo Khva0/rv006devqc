@@ -1,6 +1,5 @@
 from wrapper import Wrapper
 import datetime
-from conf import Conf
 
 
 class Waiter(object):
