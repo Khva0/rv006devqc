@@ -71,9 +71,9 @@ def login():
             if (Users().get_permission(json.loads(json.dumps(request.form, separators=(',', ':')))['username'])[0]['id_role']) == 1:
                 return redirect(url_for('admin_usr'))
             if (Users().get_permission(json.loads(json.dumps(request.form, separators=(',', ':')))['username'])[0]['id_role']) == 2:
-                return redirect(url_for('manager_usr'))
+                return redirect("/#orders")
             if (Users().get_permission(json.loads(json.dumps(request.form, separators=(',', ':')))['username'])[0]['id_role']) == 3:
-                return redirect(url_for('waiter_usr'))
+                return redirect("/#orders")
             if (Users().get_permission(json.loads(json.dumps(request.form, separators=(',', ':')))['username'])[0]['id_role']) == 4:
                 return redirect(url_for('cooker_usr'))
         else:
@@ -206,11 +206,6 @@ def cooker_by_categories():
     dishes = Cooker().get_dishes_by_cat(request.args.items('id')[0][1])
     categories = Cooker().get_all_categories()
     return json.dumps(dishes, categories)
-
-
-@app.route('/waiter', methods=['POST', 'GET'])
-def waiter_usr():
-        return render_template('waiter.html')
 
 
 @app.route('/getOrders', methods=["GET"])

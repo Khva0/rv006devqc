@@ -26,7 +26,7 @@ class Waiter(object):
                 del ticket["id"]
                 del ticket["description"]
                 del ticket["id_category"]
-                del ticket["price"]
+                #del ticket["price"]
 
             except Exception, e:
                 print e
