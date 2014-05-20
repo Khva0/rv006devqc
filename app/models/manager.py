@@ -57,9 +57,9 @@ class  Manager(Waiter):
             
     def del_ticket(self, ticket_id):
         """update ticket status to 0, default 1"""
-        #self.wrap.update({"status": 0}, "tickets", 
+        #self.wrap.update({"id_status": 0}, "tickets", 
         #                 "WHERE tickets.id = %s" % (ticket_id))
-        pass
+        return self.wrap.delete("tickets", ticket_id)
 
 
     def get_order(self, order_id):
@@ -94,10 +94,10 @@ if __name__=="__main__":
             ]
         
     #print m.get_full_order(185)
-    #print m.get_all_orders()
+    print m.get_all_orders()
     #print m.get_summ()
     #m.edit_order({"count":13,"id":637,"id_order":112})
-    #m.del_ticket(521)
+    #print m.del_ticket(521)
     #print m.get_order(78)
     #m.close_order(101)
     

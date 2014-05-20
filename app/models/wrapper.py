@@ -11,8 +11,7 @@ class Wrapper(object):
 	def delete(self, table_name, id_row):
 		try:
 			cursor = self.connect.cursor();
-			statement = "delete from %s where id= ?" % table_name
-			cursor.execute(statement, id_row)
+			cursor.execute("delete from %s where id= %s" % (table_name, id_row))
 			self.connect.commit()
 			return True
 		except Exception, e:
