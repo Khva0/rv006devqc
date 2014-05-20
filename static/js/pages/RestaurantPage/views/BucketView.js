@@ -39,14 +39,17 @@ define([
 	    	  tickets = new Tickets();
 	    	  bucket = new Bucket();//new collection bucket
 	    	  
-	    	  this.listenTo(bucket, 'add', this.render);
+	    	  bucket.posLeft = $(window).width() - 400;
+	    	  
+    		  this.listenTo(bucket, 'add', this.render);
 	    	  this.listenTo(bucket, 'remove', this.render);
+			
 	      },	      
 	      
 	      cartAddOrder: function(){
 	    	  if(bucket.length > 0){
 	    		  bucket.sync("create", bucket, {success: function(response){
-	    			  orders.add({id: response, status: "Pending"}, {merge: true});
+	    			  orders.add({id: response, status: "Pending"});
 	    			  
 	    			  bucket.reset();
 	    			  tickets.reset();
@@ -133,8 +136,8 @@ define([
 	    		  function MinMaxDrag(leftPosition){
 	    			  if(leftPosition < 0){
 	    				  return 0;
-	    			  }else if (leftPosition >= 980) {
-						return 980;
+	    			  }else if (leftPosition > $(window).width() - 400) {
+						return $(window).width() - 400;
 					}else{
 						return leftPosition;
 					}
@@ -142,6 +145,7 @@ define([
 	    		  
 	    		  function moveAt(e) {
 	    			    self.style.left = MinMaxDrag(e.pageX - shiftX) + 'px';
+	    			    bucket.posLeft = MinMaxDrag(e.pageX - shiftX) + 'px';
 	    			    //self.style.top = e.pageY - shiftY+ 'px';
 	    			  }
 	    		  
@@ -155,9 +159,9 @@ define([
 	    		  this.onmouseup = function() {
 	    			    document.onmousemove = self.onmouseup = null;
 	    			  }
-	    		  this.onmouseout = function() {
+	    		  /*this.onmouseout = function() {
 	    			    document.onmousemove = self.onmouseout = null;
-	    			  }
+	    			  }*/
 	    		  
 	    		  
 	    	  });
@@ -172,6 +176,8 @@ define([
 	    	var self = this;
 	        var template = _.template(BucketTemplate, {order: bucket});
 	        self.$el.html(template);
+
+	        self.$el.find($("#bucket")).css("left", bucket.posLeft);
 	        
 	        if(bucket.length > 0){
 	        	self.$el.find($("#bucket")).css("display", "block");
