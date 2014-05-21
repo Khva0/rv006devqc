@@ -15,6 +15,7 @@ define([
 	    
 	    events: {
 	        'click .closeOrder': 'closeOrder',
+	        'click .OrderRemoveBtn': 'removeOrder',
 	        'click .EditOrderBtn': 'openCloseEdit',
 	        'click span': 'openClose',
 	        'click .DivideOrderBtn': 'divideOrder',
@@ -50,6 +51,25 @@ define([
 	        
 	        
 	      },
+	      
+	      removeOrder: function(event) {
+	    	  var orderId = event.target.value;
+		    	$(this.el).find("#Order_" + orderId).fadeOut(1000, function(){
+		    		$(this.el).find("#Order_" + orderId).remove();
+
+		    		var modelr = orders.get(orderId);
+			        try {
+			        	modelr.destroy({ url: "/deleteOrder/" + orderId } );
+
+					} catch (e) {
+						// TODO: handle exception
+					}
+		    	
+		    	
+		    	});
+		        
+		        
+		      },
 
 	      
 	      openCloseEdit: function(event){
@@ -147,7 +167,11 @@ define([
 	      var self = this;
 	      orders.fetch({
 	        success: function (orders) {
-	          var template = _.template(OrdersTemplate, {orders: orders});
+	        	//var role = orders.at(0).get("role")
+	        	//console.log(role);
+	        	//orders = orders.at(0).get("orders")
+	        	//console.log(orders);
+	           var template = _.template(OrdersTemplate, {orders: orders});
 	          self.$el.html(self.doCol(template));
 	          
 	          //cartView.render();

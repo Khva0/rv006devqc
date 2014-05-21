@@ -16,6 +16,7 @@ from app.utils.utils import advanced_search
 # that extend waiter class
 from app.models.manager import Manager
 from flask.wrappers import Response
+from app.models.waiter import Waiter
 
 
 app = Flask(__name__)
@@ -208,25 +209,41 @@ def cooker_by_categories():
     return json.dumps(dishes, categories)
 
 
+def permission_decorator(val):
+    def create_decorator(fn):
+        def decorate():
+            fn()
+        return decorate
+    return create_decorator
+
+
 @app.route('/getOrders', methods=["GET"])
+#@permission_decorator("id")
 def orders():
     name = session["username"]
     role = Users().get_permission(name)[0]['id_role']
-    print name + " " + str(role)
+    user_id = Manager().get_user_id(name)
+    session["userid"] = user_id
+    print name + " role = " + str(role) + " user id = " + str(user_id)
     #for mnager 2
     if 'username' in session and role == 2:
         orders = Manager().get_all_orders()
-        return Response(json.dumps(orders))
-    #for waiter
+        data = {}
+        data["role"] = "test role"
+        data["orders"] = orders
+        print data
+        return Response(json.dumps(data["orders"]))
+    #for waiter 3
     elif 'username' in session and role == 3:
-        pass
+        orders = Waiter().get_orders(user_id)
+        return Response(json.dumps(orders))
     print "!!!NOT IN SESSION!!!"
     return render_template('index.html')
 
 
 @app.route('/addOrder', methods=["POST"])
 def add_order():
-    user_id = 1
+    user_id = session["userid"]
     orderId = Manager().add_order(user_id, get_dict(request.json))
     return Response(str(orderId))
 
@@ -234,6 +251,12 @@ def add_order():
 @app.route('/getOrders/<int:order_id>', methods=["DELETE"])
 def close_order(order_id):
     Manager().close_order(order_id)
+    return Response(None)
+
+
+@app.route('/deleteOrder/<int:order_id>', methods=["DELETE"])
+def remove_order(order_id):
+    Manager().remove_order(order_id)
     return Response(None)
 
 

@@ -2,9 +2,10 @@ from wrapper import Wrapper
 import datetime
 from waiter import Waiter
 
+
 class  Manager(Waiter):
     """in data we put all fields we need to see in ticket!"""
-    
+
     def __init__(self):
         self.wrap = Wrapper()
 
@@ -26,8 +27,8 @@ class  Manager(Waiter):
     def get_all_orders(self):
         """get all orders all waiters for curent date"""
         date = datetime.datetime.now().strftime('%Y-%m-%d')
-        data = "orders.id, statuses.status" #Sum(tickets.price) as TotalPrice
-        condition = "WHERE orders.id_status = statuses.id AND orders.id_user = users.id AND orders.date LIKE '{0}%'".format(date)
+        data = "orders.id, statuses.status"
+        condition = "WHERE orders.id_status = statuses.id AND (orders.id_status = 4 OR orders.id_status =5) AND orders.id_user = users.id AND orders.date LIKE '{0}%'".format(date)
         #condition = "WHERE orders.status = statuses.id AND orders.status = 4 AND orders.id_user = users.id AND orders.date LIKE '{0}%'".format(date)
         
         orders = self.wrap.select(data, "orders, statuses, users", condition)
@@ -46,15 +47,15 @@ class  Manager(Waiter):
             print id
             print ticket'''
         id = order_data["id"]
-        
+
         del order_data["id"]
         del order_data["name"]
         del order_data["image"]
         del order_data["price"]
-        
+
         self.wrap.update(order_data, "tickets", "WHERE tickets.id = %s" % (id))
-        
-            
+
+
     def del_ticket(self, ticket_id):
         """update ticket status to 0, default 1"""
         #self.wrap.update({"id_status": 0}, "tickets", 
@@ -66,11 +67,23 @@ class  Manager(Waiter):
         tickets = self.wrap.select("*", "tickets",
                           "WHERE tickets.id_order = %s" % (order_id))
         return tickets
-    
+
+    def remove_order(self, order_id):
+        """get order id. Set status to NULL"""
+        self.wrap.update({"id_status": 3}, "orders",
+                          "WHERE id = %s" % (order_id))
+
+    def get_user_id(self, username):
+        data = "users.id"
+        table = "users"
+        condition = "WHERE users.f_name = '%s'" % (username)
+        resp = self.wrap.select(data, table, condition)
+        return resp[0]['id']
+
     def get_summ(self):
         data = "Sum(tickets.price) as TotalCount"
         condition = "GROUP BY tickets.id_order"
-                
+
         orders = self.wrap.select(data, "tickets", condition)
         return orders
 
@@ -94,12 +107,13 @@ if __name__=="__main__":
             ]
         
     #print m.get_full_order(185)
-    print m.get_all_orders()
+    #print m.get_all_orders()
     #print m.get_summ()
     #m.edit_order({"count":13,"id":637,"id_order":112})
     #print m.del_ticket(521)
     #print m.get_order(78)
     #m.close_order(101)
+    print m.get_user_id("waiter")
     
 """(
 {'price': 123L, 'count': 1, 'image': '', 'name': 'Pizza', 'description': 'good pizza'},
