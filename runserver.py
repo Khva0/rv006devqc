@@ -210,15 +210,24 @@ def cooker_by_categories():
 
 @app.route('/getOrders', methods=["GET"])
 def orders():
-    orders = Manager().get_all_orders()
-    return Response(json.dumps(orders))
+    name = session["username"]
+    role = Users().get_permission(name)[0]['id_role']
+    print name + " " + str(role)
+    #for mnager 2
+    if 'username' in session and role == 2:
+        orders = Manager().get_all_orders()
+        return Response(json.dumps(orders))
+    #for waiter
+    elif 'username' in session and role == 3:
+        pass
+    print "!!!NOT IN SESSION!!!"
+    return render_template('index.html')
 
 
 @app.route('/addOrder', methods=["POST"])
 def add_order():
     user_id = 1
     orderId = Manager().add_order(user_id, get_dict(request.json))
-    print orderId
     return Response(str(orderId))
 
 
@@ -243,7 +252,6 @@ def tickets_get(order_id):
 def tickets_put(ticket_id):
     Manager().edit_order(get_dict(request.json))
     return Response(None)
-# not tested!!!
 
 
 @app.route('/getTickets/<int:ticket_id>', methods=["DELETE"])
