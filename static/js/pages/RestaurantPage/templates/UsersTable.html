@@ -13,7 +13,7 @@
    <thead>
 
      <tr>
-
+     <th></th>
        <th scope="col">Name</th>
 
        <th scope="col">Last name</th>
@@ -27,7 +27,7 @@
        <th scope="col">Edit</th>
 
        <th scope="col">Delete</th>
-
+<!--
        <th scope="col">
          <form id="deleteall" method="post" action="/deleteall" name="deleteall"></form>
 
@@ -35,7 +35,7 @@
            <input type="submit" value="X" form="deleteall" />
          </div>
        </th>
-       
+       -->
      </tr>
    </thead>
 
@@ -61,16 +61,16 @@
        <td>
        <a href="#/edit_user/<%= user.id %>">
        <div>
-       
-         <i class="icon-pencil">         
-         </i>
+        <input type="image" src="static/img/edit.png" width="25px" height="25px" value="<%= user.id %>" id="edituser">  
          </div>
          </a>
        </td>
        
        <td>
+       <!--
          <button id="deleteuser" value="<%= user.id %>">DELETE</button>
-           <!-- <i class="icon-cancel-circled" /> -->
+            <i class="icon-cancel-circled" /> -->
+           <input type="image" src="static/img/trash.png" width="25px" height="25px" value="<%= user.id %>" id="deleteuser">
          </i>
          </div>
        </td>

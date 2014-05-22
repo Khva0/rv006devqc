@@ -34,7 +34,7 @@ class Admin(Users):
         """ Delete user method
         	Dete user from db (change status to remove) 
         """
-        self.edituser({"id_status": "0"}, "where id={0}".format(uid))
+        self.edituser({"id_status": "2"}, "where id={0}".format(uid))
 
     def set_permission(self, uname, role):
         """ Set user permission method 
