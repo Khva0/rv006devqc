@@ -37,10 +37,12 @@ class Waiter(object):
         """return dict with status and order id
         {'status': 1, 'id': 12L}"""
         date = datetime.datetime.now().strftime('%Y-%m-%d')
-        orders = self.wrap.select("id_status, id", "orders",
-                                  "WHERE orders.id_status=4 \
+        data = "orders.id, statuses.status"
+        orders = self.wrap.select(data, "orders, statuses",
+                                  "WHERE (orders.id_status = 4 OR orders.id_status =5) \
+                                   AND orders.id_status = statuses.id \
                                    AND orders.id_user={0} AND \
-                                   orders.date LIKE '{1}%'"\
+                                   orders.date LIKE '{1}%'" \
                                    .format(waiter_id, date))
         return orders
 
