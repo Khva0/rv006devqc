@@ -13,7 +13,7 @@ define([
                 el: '#data_table',
                  events: {
 
-                    'click #edituser': 'edit',
+                    'click #edituser': 'edit'
 
                 },
                 initialize: function(){
