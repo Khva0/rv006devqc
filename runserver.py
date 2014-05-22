@@ -228,11 +228,8 @@ def orders():
     #for mnager 2
     if 'username' in session and role == 2:
         orders = Manager().get_all_orders()
-        data = {}
-        data["role"] = "test role"
-        data["orders"] = orders
-        print data
-        return Response(json.dumps(data["orders"]))
+        print orders
+        return Response(json.dumps(orders))
     #for waiter 3
     elif 'username' in session and role == 3:
         orders = Waiter().get_orders(user_id)
