@@ -39,8 +39,8 @@ define([
 
                 adminView = new AdminView();
                 adminView.render();
-                usersView = new UserDataView();
-                usersView.render();
+                //usersView = new UserDataView;
+                //usersView.render();
             },
 
             edit_user: function(id) {

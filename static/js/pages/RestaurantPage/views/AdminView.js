@@ -6,24 +6,29 @@ define([
         "text!pages/RestaurantPage/templates/AdminTemplate.html",
         "pages/RestaurantPage/models/User",
         "pages/RestaurantPage/collections/NewUserCollection",
-        "style"
-
+        "pages/RestaurantPage/collections/UsersCollection",
+        'text!pages/RestaurantPage/templates/UsersTable.html'
+        
+    
     ],
 
-    function(_, Backbone, $, form2js, AdminTemplate, User, NewUserCollection) {
+    function(_, Backbone, $, form2js, AdminTemplate, User, NewUserCollection,UsersCollection, UsersTable) {
         return Backbone.View.extend({
 
                 events: {
 
                     'click #adduser': 'store',
                     'click #popup__toggle': 'popUp',
-                    'click #resetter': 'resetSearch'
+                    'click #resetter': 'resetSearch',
+                    'click #deleteuser': 'deleteuser',
+                    'click #search_btn': 'search'
 
                 },
 
                 initialize: function() {
 
                     this.user = new User();
+                    users = new UsersCollection();
 
                 },
 
@@ -38,7 +43,13 @@ define([
                     console.log(jsonString);
                     this.model.save();
                 },
+                deleteuser: function(e){
+                    users.get(e.target.value).destroy();
 
+                },
+                search: function(e){
+                    console.log($("#search").val());
+                },
                 resetSearch: function(e) {
                     $('#resetter').click(
                         function() {
@@ -64,11 +75,19 @@ define([
 
                 render: function() {
 
-                    this.$el.html(AdminTemplate);
+                    this.$el.append(AdminTemplate);
+                    var that = this;
+                    users.fetch({
+                    success: function(users) {
+                        var template = _.template(UsersTable, {
+                            users: users
+                        });
+                        that.$el.append(template);
+                    }
+                    });
+        }
 
                 }
-
-            }
 
         );
     });
