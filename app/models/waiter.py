@@ -34,17 +34,20 @@ class Waiter(object):
         return order_id
 
     def get_orders(self, waiter_id):
-        """return dict with status and order id
-        {'status': 1, 'id': 12L}"""
         date = datetime.datetime.now().strftime('%Y-%m-%d')
-        data = "orders.id, statuses.status"
-        orders = self.wrap.select(data, "orders, statuses",
-                                  "WHERE (orders.id_status = 4 OR orders.id_status =5) \
-                                   AND orders.id_status = statuses.id \
-                                   AND orders.id_user={0} AND \
-                                   orders.date LIKE '{1}%'" \
-                                   .format(waiter_id, date))
-        return orders
+        data = "orders.id, statuses.status, CAST(Sum(tickets.price) as UNSIGNED) as TotalCount"
+        condition = "JOIN orders on orders.id=tickets.id_order \
+        WHERE orders.id_status = statuses.id \
+        AND orders.id_user={1} \
+        AND (orders.id_status = 4 OR orders.id_status =5) \
+        AND orders.id_user = users.id \
+        AND orders.date LIKE '{0}%' \
+        GROUP BY tickets.id_order".format(date, waiter_id)
+
+        orders = self.wrap.select(data, "statuses, users, tickets", condition)
+        if len(orders) != 0:
+            return orders
+        return None
 
     def close_order(self, order_id):
         """get order id. Set status to NULL"""
