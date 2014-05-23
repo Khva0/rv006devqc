@@ -36,6 +36,7 @@ width: 80px !important;
 					<span style="color: #664e4d; font-weight:bold;" id="<%= order.get("id") %>">Order #<%= order.get("id") %></span>
 				</div>
 				<div class="columns " style="float: right;">
+				    <% if( role == "role=2") { %>
 				    <div class="small success btn OrderBtN">
                         <button type="button" class="RemoveOrderBtn OrderRemoveBtn" value="<%= order.get("id") %>">Remove</button>
                     </div>
@@ -45,6 +46,7 @@ width: 80px !important;
 					<div class="small success btn OrderBtN">
 						<button type="button" class="EditOrderBtn" value="<%= order.get("id") %>">Edit</button>
 					</div>
+					<% }  %>
 					<div class="small success btn OrderBtN">
 						<button type="button" class="closeOrder" value="<%= order.get("id") %>">Close</button>
 					</div>

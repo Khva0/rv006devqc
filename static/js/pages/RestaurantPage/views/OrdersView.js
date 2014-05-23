@@ -9,7 +9,7 @@ define([ 'jquery', 'underscore', 'backbone',
 	var OrdersView = Backbone.View.extend({
 
 		el : '#content',
-		role: null,
+		role : null,
 
 		events : {
 			'click .closeOrder' : 'closeOrder',
@@ -144,7 +144,8 @@ define([ 'jquery', 'underscore', 'backbone',
 		renderNewElement : function() {
 			var self = this;
 			var template = _.template(OrdersTemplate, {
-				orders : orders.sort()
+				orders : orders.sort(),
+				role : document.cookie
 			});
 			self.$el.html(self.doCol(template));
 
@@ -188,7 +189,8 @@ define([ 'jquery', 'underscore', 'backbone',
 			orders.fetch({
 				success : function(orders) {
 					var template = _.template(OrdersTemplate, {
-						orders : orders
+						orders : orders,
+						role : document.cookie
 					});
 					self.$el.html(self.doCol(template));
 				}
