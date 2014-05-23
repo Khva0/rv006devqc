@@ -60,7 +60,7 @@ width: 80px !important;
 				<div class="two columns" style="text-align: right; float: right;">
 					<span style="color: green;"><%= order.get("status") %></span>
 				</div>
-				<div class="three columns">Total price: 1.5$</div>
+				<div class="three columns">Total price: <%= order.get("TotalCount") %>$</div>
 			</div>
 			<div id="OpCl_<%= order.get("id") %>" class="row" style="display: none; background-color: white;"></div>
 		</div>

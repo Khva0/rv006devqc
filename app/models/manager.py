@@ -27,11 +27,18 @@ class  Manager(Waiter):
     def get_all_orders(self):
         """get all orders all waiters for curent date"""
         date = datetime.datetime.now().strftime('%Y-%m-%d')
-        data = "orders.id, statuses.status"
-        condition = "WHERE orders.id_status = statuses.id AND (orders.id_status = 4 OR orders.id_status =5) AND orders.id_user = users.id AND orders.date LIKE '{0}%'".format(date)
-        #condition = "WHERE orders.status = statuses.id AND orders.status = 4 AND orders.id_user = users.id AND orders.date LIKE '{0}%'".format(date)
         
-        orders = self.wrap.select(data, "orders, statuses, users", condition)
+        #data = "orders.id, statuses.status"
+        data = "orders.id, statuses.status, CAST(Sum(tickets.price) as UNSIGNED) as TotalCount"
+        #condition = "WHERE orders.id_status = statuses.id AND (orders.id_status = 4 OR orders.id_status =5) AND orders.id_user = users.id AND orders.date LIKE '{0}%'".format(date)
+        condition = "JOIN orders on orders.id=tickets.id_order \
+        WHERE orders.id_status = statuses.id \
+        AND (orders.id_status = 4 OR orders.id_status =5) \
+        AND orders.id_user = users.id \
+        AND orders.date LIKE '{0}%' \
+        GROUP BY tickets.id_order".format(date)
+        
+        orders = self.wrap.select(data, "statuses, users, tickets", condition)
         if len(orders) != 0:
             return orders
         return None
@@ -81,8 +88,8 @@ class  Manager(Waiter):
         return resp[0]['id']
 
     def get_summ(self):
-        data = "Sum(tickets.price) as TotalCount"
-        condition = "GROUP BY tickets.id_order"
+        data = "orders.id, Sum(tickets.price) as TotalCount"
+        condition = "JOIN orders on orders.id=tickets.id_order GROUP BY tickets.id_order"
 
         orders = self.wrap.select(data, "tickets", condition)
         return orders
@@ -107,13 +114,13 @@ if __name__=="__main__":
             ]
         
     #print m.get_full_order(185)
-    #print m.get_all_orders()
+    print m.get_all_orders()
     #print m.get_summ()
     #m.edit_order({"count":13,"id":637,"id_order":112})
     #print m.del_ticket(521)
     #print m.get_order(78)
     #m.close_order(101)
-    print m.get_user_id("waiter")
+    #print m.get_user_id("waiter")
     
 """(
 {'price': 123L, 'count': 1, 'image': '', 'name': 'Pizza', 'description': 'good pizza'},
