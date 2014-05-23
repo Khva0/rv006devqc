@@ -17,6 +17,7 @@ from app.utils.utils import advanced_search
 from app.models.manager import Manager
 from flask.wrappers import Response
 from app.models.waiter import Waiter
+from flask.helpers import make_response
 
 
 app = Flask(__name__)
@@ -72,9 +73,13 @@ def login():
             if (Users().get_permission(json.loads(json.dumps(request.form, separators=(',', ':')))['username'])[0]['id_role']) == 1:
                 return redirect(url_for('admin_usr'))
             if (Users().get_permission(json.loads(json.dumps(request.form, separators=(',', ':')))['username'])[0]['id_role']) == 2:
-                return redirect("/#orders")
+                response = make_response(redirect("/#orders"))
+                response.set_cookie('user_role', "2")
+                return response
             if (Users().get_permission(json.loads(json.dumps(request.form, separators=(',', ':')))['username'])[0]['id_role']) == 3:
-                return redirect("/#orders")
+                response = make_response(redirect("/#orders"))
+                response.set_cookie('user_role', "3")
+                return response
             if (Users().get_permission(json.loads(json.dumps(request.form, separators=(',', ':')))['username'])[0]['id_role']) == 4:
                 return redirect(url_for('cooker_usr'))
         else:
@@ -224,11 +229,14 @@ def orders():
     role = Users().get_permission(name)[0]['id_role']
     user_id = Manager().get_user_id(name)
     session["userid"] = user_id
+    data = ()
+    data += ({"role": role},)
     print name + " role = " + str(role) + " user id = " + str(user_id)
     #for mnager 2
     if 'username' in session and role == 2:
         orders = Manager().get_all_orders()
-        print orders
+        data += ({"orders": orders},)
+        print data
         return Response(json.dumps(orders))
     #for waiter 3
     elif 'username' in session and role == 3:
