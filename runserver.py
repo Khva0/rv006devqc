@@ -74,11 +74,11 @@ def login():
                 return redirect(url_for('admin_usr'))
             if (Users().get_permission(json.loads(json.dumps(request.form, separators=(',', ':')))['username'])[0]['id_role']) == 2:
                 response = make_response(redirect("/#orders"))
-                response.set_cookie('user_role', "2")
+                response.set_cookie('role', "2")
                 return response
             if (Users().get_permission(json.loads(json.dumps(request.form, separators=(',', ':')))['username'])[0]['id_role']) == 3:
                 response = make_response(redirect("/#orders"))
-                response.set_cookie('user_role', "3")
+                response.set_cookie('role', "3")
                 return response
             if (Users().get_permission(json.loads(json.dumps(request.form, separators=(',', ':')))['username'])[0]['id_role']) == 4:
                 return redirect(url_for('cooker_usr'))
