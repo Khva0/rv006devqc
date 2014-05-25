@@ -122,18 +122,18 @@ define([
             },
 
             popUp: function(event) {
-                p = $('.popup__overlay');
-                $('#popup__toggle').click(function() {
-                    p.css('display', 'block');
-                });
-                p.click(function(event) {
+               
+                
+                $('.popup__overlay').css('display', 'block');
+                
+                $('.popup__overlay').click(function(event) {
                     e = event || window.event;
                     if (e.target == this) {
-                        $(p).css('display', 'none');
+                        $('.popup__overlay').css('display', 'none');
                     }
                 });
                 $('.popup__close').click(function() {
-                    p.css('display', 'none');
+                    $('.popup__overlay').css('display', 'none');
                 });
             },
 
@@ -171,18 +171,18 @@ define([
             },
   
             catPopUp: function(event) {
-                p = $('.cat__overlay');
-                $('#cat__toggle').click(function() {
-                    p.css('display', 'block');
-                });
-                p.click(function(event) {
+                
+                
+                $('.cat__overlay').css('display', 'block');
+               
+                $('.cat__overlay').click(function(event) {
                     e = event || window.event;
                     if (e.target == this) {
-                        $(p).css('display', 'none');
+                        $('.cat__overlay').css('display', 'none');
                     }
                 });
                 $('.cat__close').click(function() {
-                    p.css('display', 'none');
+                    $('.cat__overlay').css('display', 'none');
                 });
               },
 
