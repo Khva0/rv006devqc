@@ -3,7 +3,7 @@ import os
 import imghdr
 import hashlib
 import time
-import Image
+#import Image
 from werkzeug.utils import secure_filename
 from app.models.wrapper import Wrapper
 
