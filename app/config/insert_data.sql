@@ -2,9 +2,9 @@ use restaurant_db;
 insert into roles(role) values('waiter'), ('admin'), ('manager'), ('cooker');
 insert into statuses(status) values('Active'), ('Inactive'), ('Removed'), ('Pending'), ('Closed');
 insert into users(f_name, l_name, login, password, email, id_status, id_role) values
-('Jon', 'Collins', 'waiter', 'waiter', 'waiter@urk.net', 1, 1),
-('Capitan', 'America', 'admin', 'admin', 'admin@yandex.ua', 1, 2),
-('Linda', 'Haek', 'manager', 'manager', 'lindos@mail.ru', 1, 3),
+('Jon', 'Collins', 'waiter', 'waiter', 'waiter@urk.net', 1, 3),
+('Capitan', 'America', 'admin', 'admin', 'admin@yandex.ua', 1, 1),
+('Linda', 'Haek', 'manager', 'manager', 'lindos@mail.ru', 1, 2),
 ('Ivan', 'Fast', 'cooker', 'cooker', 'cooker@gmail.com', 1, 4);
 insert into categories(category) values
 ('Tea & Snacks'),
