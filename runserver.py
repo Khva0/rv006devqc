@@ -251,44 +251,62 @@ def orders():
 
 @app.route('/addOrder', methods=["POST"])
 def add_order():
-    user_id = session["userid"]
-    orderId = Manager().add_order(user_id, get_dict(request.json))
-    return Response(str(orderId))
+    try:
+        user_id = session["userid"]
+        orderId = Manager().add_order(user_id, get_dict(request.json))
+        return Response(str(orderId))
+    except Exception, e:
+            print e
+    return render_template('index.html')
 
 
 @app.route('/getOrders/<int:order_id>', methods=["DELETE"])
 def close_order(order_id):
-    Manager().close_order(order_id)
-    return Response(None)
+    try:
+        Manager().close_order(order_id)
+        return Response(None)
+    except Exception, e:
+            print e
+    return render_template('index.html')
 
 
 @app.route('/deleteOrder/<int:order_id>', methods=["DELETE"])
 def remove_order(order_id):
-    Manager().remove_order(order_id)
-    return Response(None)
-
-
-@app.route('/getOrders/<int:order_id>', methods=["PUT"])
-def update_order(order_id):
-    pass
+    try:
+        Manager().remove_order(order_id)
+        return Response(None)
+    except Exception, e:
+            print e
+    return render_template('index.html')
 
 
 @app.route('/getTickets/<int:order_id>', methods=["GET"])
 def tickets_get(order_id):
-    order = Manager().get_full_order(order_id)
-    return Response(json.dumps(order))
+    try:
+        order = Manager().get_full_order(order_id)
+        return Response(json.dumps(order))
+    except Exception, e:
+            print e
+    return render_template('index.html')
 
 
 @app.route('/getTickets/<int:ticket_id>', methods=["PUT"])
 def tickets_put(ticket_id):
-    Manager().edit_order(get_dict(request.json))
-    return Response(None)
-
+    try:
+        Manager().edit_order(get_dict(request.json))
+        return Response(None)
+    except Exception, e:
+            print e
+    return render_template('index.html')
 
 @app.route('/getTickets/<int:ticket_id>', methods=["DELETE"])
 def tickets_delete(ticket_id):
-    Manager().del_ticket(ticket_id)
-    return Response(None)
+    try:
+        Manager().del_ticket(ticket_id)
+        return Response(None)
+    except Exception, e:
+            print e
+    return render_template('index.html')
 
 
 def get_dict(multi_dict):
