@@ -183,6 +183,11 @@ define([ 'jquery', 'underscore', 'backbone',
 			;
 			$(div).toggle("slow");
 		},
+		
+		getCookie: function(name) {
+			  match = document.cookie.match(new RegExp(name + '=([^;]+)'));
+			  if (match) return parseInt(match[1]);
+			},
 
 		render : function() {
 			var self = this;

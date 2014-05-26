@@ -73,10 +73,12 @@ def login():
             if (Users().get_permission(json.loads(json.dumps(request.form, separators=(',', ':')))['username'])[0]['id_role']) == 1:
                 return redirect(url_for('admin_usr'))
             if (Users().get_permission(json.loads(json.dumps(request.form, separators=(',', ':')))['username'])[0]['id_role']) == 2:
+                session['role'] = 2
                 response = make_response(redirect("/#orders"))
                 response.set_cookie('role', "2")
                 return response
             if (Users().get_permission(json.loads(json.dumps(request.form, separators=(',', ':')))['username'])[0]['id_role']) == 3:
+                session['role'] = 3
                 response = make_response(redirect("/#orders"))
                 response.set_cookie('role', "3")
                 return response
