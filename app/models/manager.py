@@ -83,7 +83,7 @@ class  Manager(Waiter):
     def get_user_id(self, username):
         data = "users.id"
         table = "users"
-        condition = "WHERE users.f_name = '%s'" % (username)
+        condition = "WHERE users.login = '%s'" % (username)
         resp = self.wrap.select(data, table, condition)
         return resp[0]['id']
 
