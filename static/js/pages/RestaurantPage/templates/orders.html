@@ -23,6 +23,11 @@
 	padding-right: 4px !important;
 	padding-top: 4px !important;
 }
+
+.OrderRow2 span{
+    color: red;
+}
+
 .OrderBtN {
 width: 80px !important;
 }
@@ -68,7 +73,7 @@ width: 80px !important;
 				<div class="two columns OrderImg"></div>
 				<div class="eight columns">Curent order status:</div>
 				<div class="two columns" style="text-align: right; float: right;">
-					<span style="color: green;"><%= order.get("status") %></span>
+					<span <% if( order.get("status") == "Pending") { %> style="color: green;"<% }  %> ><%= order.get("status") %></span>
 				</div>
 				<div class="three columns">Total price: <%= order.get("TotalCount") %>$</div>
 			</div>
