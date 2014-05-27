@@ -94,7 +94,10 @@ def logout():
         Delete session and logout user
     """
     session.pop('username', None)
-    return redirect(url_for('index'))
+    #return redirect(url_for('index'))
+    response = make_response(redirect(url_for('index')))
+    response.set_cookie('role', expires=0)
+    return response
 
 """@app.route('/admin')
 def admin_usr():
