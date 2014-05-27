@@ -20,10 +20,8 @@ define([ 'jquery', 'underscore', 'backbone',
 		},
 
 		initialize : function() {
-			// orders = new Orders();
+			this.role = this.getCookie("role");
 			ticketsView = new TicketsView();
-			// cartView = new BucketView();
-
 			this.listenTo(orders, 'add', this.renderNewElement);
 			this.listenTo(orders, 'destroy', this.renderNewElement);
 
@@ -145,12 +143,9 @@ define([ 'jquery', 'underscore', 'backbone',
 			var self = this;
 			var template = _.template(OrdersTemplate, {
 				orders : orders.sort(),
-				role : document.cookie
+				role : self.role
 			});
 			self.$el.html(self.doCol(template));
-
-			// var div = self.$el.find("#cart");
-			// cart.setElement(div).render();
 
 		},
 
@@ -195,7 +190,7 @@ define([ 'jquery', 'underscore', 'backbone',
 				success : function(orders) {
 					var template = _.template(OrdersTemplate, {
 						orders : orders,
-						role : document.cookie
+						role : self.role
 					});
 					self.$el.html(self.doCol(template));
 				}

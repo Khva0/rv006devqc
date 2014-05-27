@@ -65,23 +65,34 @@ define([
             },
 
             waiter: function() {
-                waiterView = new WaiterView();
-                waiterView.render();
+            	if (this.getCookie("role") == 2 || this.getCookie("role") == 3) {
+                    waiterView = new WaiterView();
+                    waiterView.render();					
+				}
             },
 
             orders: function() {
-                ordersView = new OrdersView();
-                ordersView.render();
-
+            	if (this.getCookie("role") == 2 || this.getCookie("role") == 3) {
+                    ordersView = new OrdersView();
+                    ordersView.render();
+				}
             },
 
 
 
             edit_order: function(id) {
-                ticketsView = new TicketsView();
-                ticketsView.render({
-                    id: id
-                });
-            }
+            	if (this.getCookie("role") == 2 || this.getCookie("role") == 3) {
+                    ticketsView = new TicketsView();
+                    ticketsView.render({
+                        id: id
+                    });
+				}
+            },
+            
+            
+            getCookie: function(name) {
+  			  match = document.cookie.match(new RegExp(name + '=([^;]+)'));
+  			  if (match) return parseInt(match[1]);
+  			}
         });
     });

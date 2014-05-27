@@ -35,6 +35,7 @@ width: 80px !important;
     width: 54px !important;
     height: 54px !important;
     background-image: url("static/img/purchase.png") !important;
+    background-position: 5px !important;
     margin-top: -10px !important;
 }
 
@@ -47,7 +48,7 @@ width: 80px !important;
 					<span id="<%= order.get("id") %>">Order #<%= order.get("id") %></span>
 				</div>
 				<div class="columns OrderButtonsFloat">
-				    <% if( role == "role=2") { %>
+				    <% if( role == 2) { %>
 				    <div class="small success btn OrderBtN">
                         <button type="button" class="RemoveOrderBtn OrderRemoveBtn" value="<%= order.get("id") %>">Remove</button>
                     </div>
