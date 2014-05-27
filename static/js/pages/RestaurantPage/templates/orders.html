@@ -1,15 +1,23 @@
 <style> 
-/*
 .orderBlock {
-background-color: #F7F7ED;
+    background-color: #F7F7ED;
 }
-*/
+
 .OrderRow1 {
 	border-bottom: dashed 1px #ccc !important;
 	padding-bottom: 4px !important;
 	padding-left: 4px !important;
 	padding-right: 4px !important;
 }
+
+.OrderRow1 span{
+    color: #664e4d; font-weight:bold;
+}
+
+.OrderButtonsFloat {
+    float: right;
+}
+
 .OrderRow2 {
 	padding-left: 4px !important;
 	padding-right: 4px !important;
@@ -25,17 +33,20 @@ width: 80px !important;
 
 .OrderImg {
     width: 54px !important;
+    height: 54px !important;
+    background-image: url("static/img/purchase.png") !important;
+    margin-top: -10px !important;
 }
 
 </style>
 <% _.each(orders.toArray(), function(order) {%>
 	<div class="row Order" id="Order_<%= order.get("id") %>">
-		<div class="twelve columns centered orderBlock" style="background-color: #F7F7ED;">
+		<div class="twelve columns centered orderBlock">
 			<div class="row OrderRow1" >
 				<div class="columns">
-					<span style="color: #664e4d; font-weight:bold;" id="<%= order.get("id") %>">Order #<%= order.get("id") %></span>
+					<span id="<%= order.get("id") %>">Order #<%= order.get("id") %></span>
 				</div>
-				<div class="columns " style="float: right;">
+				<div class="columns OrderButtonsFloat">
 				    <% if( role == "role=2") { %>
 				    <div class="small success btn OrderBtN">
                         <button type="button" class="RemoveOrderBtn OrderRemoveBtn" value="<%= order.get("id") %>">Remove</button>
@@ -53,9 +64,7 @@ width: 80px !important;
 				</div>
 			</div>
 			<div class="row OrderRow2" >
-				<div class="two columns OrderImg">
-					<img src="static/img/order.gif">
-				</div>
+				<div class="two columns OrderImg"></div>
 				<div class="eight columns">Curent order status:</div>
 				<div class="two columns" style="text-align: right; float: right;">
 					<span style="color: green;"><%= order.get("status") %></span>
