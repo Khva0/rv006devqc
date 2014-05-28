@@ -1,3 +1,14 @@
+<style>
+.closeTicket {
+    background-image: url("static/img/trash16.png") !important;
+    width: 16px !important;
+    height: 16px !important;
+    float: right !important;
+    margin-right: 5px !important;
+    margin-top: 5px !important;
+}
+</style>
+
 <% _.each(order.toArray(),function(ticket){ %>
 <div class="row TicketHover" id="Ticket_<%= ticket.get("id") %>">
 	<div class="two columns">
