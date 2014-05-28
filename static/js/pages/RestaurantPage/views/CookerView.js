@@ -41,7 +41,8 @@ define([
                 'click #search_btn': 'searchDishes',
                 'keyup #search': 'showRes',
                 'click #addCat': 'addCat', 
-                'click #cat__toggle': 'catPopUp'
+                'click #cat__toggle': 'catPopUp',
+                'click #is_active': 'isActiveStatus'
             },
 
             el: '#content',
@@ -63,6 +64,7 @@ define([
 
             saveDish: function(event) {
                 var data = form2js('update_menu_form', '.', true);
+                console.log(data);
                 dishModel.save(data);
                 $('#edit_dish_template').remove();
                 var template = _.template(DishRowTemplate, dishModel.toJSON());
@@ -90,6 +92,10 @@ define([
                     $('#edit_dish_template').css('display', 'block');
                 });
                 eventModel = event;
+            },
+
+            isActiveStatus: function(event) {
+                $('#is_active').val(event.target.value == 1 ? 2 : 1);
             },
 
             isSelectedCategory: function(val) {
