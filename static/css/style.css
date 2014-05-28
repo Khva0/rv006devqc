@@ -101,38 +101,6 @@ p {
     background: #fff;
     vertical-align: middle
     }
-
-.popup_edit_dish {
-    display: inline-block;
-    *display: inline;
-    *zoom: 1;
-    position: relative;
-    max-width: 700px; 
-    background: #664e4d;
-    border-bottom: 10px solid white;
-    vertical-align: middle
-}
-.popup_edit_dish .row {
-    background-color: white;
-    padding-right: 5px;
-    padding-left: 10px
-}
-.popup_edit_dish .title {
-    color: white;
-    text-align: center;
-    font-size: 150%;
-    margin: 10px;
-    width: 100%
-}
-.popup_edit_dish .actions {
-    float:right;
-    padding-bottom: 7px;
-    padding-right: 10px
-}
-.description {
-    line-height: 13px;
-    font-size: 11px
-}
 /* Added instead of :after pseudoelement */
 .popup__valignfix {
     display: inline-block;
@@ -318,7 +286,9 @@ label {
 
 
 th, td{
-    border: 1px solid white
+    border: 1px solid white;
+    text-align: center; 
+    vertical-align: middle;
 }
 
 .menu__overlay {
@@ -382,3 +352,163 @@ label {
     width: 120px;
     text-align: left
     }
+
+/******************START ORDERS CSS**************************/
+/***********************ORDERS*******************************/
+.orderBlock {
+    background-color: #F7F7ED;
+}
+
+.OrderRow1 {
+    border-bottom: dashed 1px #ccc !important;
+    padding-bottom: 4px !important;
+    padding-left: 4px !important;
+    padding-right: 4px !important;
+}
+
+.OrderRow1 span{
+    color: #664e4d; font-weight:bold;
+    cursor: pointer !important;
+}
+
+.OrderButtonsFloat {
+    float: right !important;
+}
+
+.OrderRow2 {
+    padding-left: 4px !important;
+    padding-right: 4px !important;
+    padding-top: 4px !important;
+}
+
+.OrderRow2 span{
+    color: red;
+}
+
+.OrderBtN {
+width: 80px !important;
+}
+
+.OrderRemoveBtn {
+    background-color: red !important;
+}
+
+/***********************END ORDERS***************************/
+/***********************TICKETS******************************/
+.TicketHover {
+    padding:4px !important; 
+    dashed 1px #ccc !important;
+    margin-bottom: 4px !important;
+    border-bottom: dashed 1px #ccc !important; 
+    position: relative !important;
+}
+
+.ticketCountInOrder {
+    width: 35px !important;
+    text-align:center !important;
+}
+
+.closeTicket {
+    background-image: url("static/img/trash16.png") !important;
+    width: 16px !important;
+    height: 16px !important;
+    float: right !important;
+    margin-right: 5px !important;
+    margin-top: 5px !important;
+}
+
+.TicketHover:HOVER {
+    background-color: #E1E1D5 !important;
+}
+
+.BtnCornerDivide {
+    position:absolute !important;
+    bottom:0 !important;
+    right:0 !important;
+    border-right: 30px solid #664e4d !important;
+    border-top: 30px solid transparent !important;
+    cursor: pointer !important;
+}
+
+.CursorPointer {
+    cursor: pointer !important;
+}
+/***********************END TICKETS**************************/
+/***********************CART*********************************/
+.myRow {
+    padding: 2px !important;
+    /*line-height: 12px !important;*/
+}
+
+.cartTicketToDeleteRow {
+    border-top: dashed 1px !important;
+}
+
+
+#bucket {
+    background-color: #F2F2E6; 
+    position : fixed !important;
+    bottom: 0 !important;
+    right: 0 !important;
+    /*margin: 5px !important;*/
+    bottom: 0 !important;
+    right: 0 !important;
+    right: 0 !important;
+    padding: 0 !important;
+    max-width: 400px !important;
+    width: 400px !important;
+    display: none;
+}
+
+.CartDellTicket {
+    padding: 18px 5px 0 0 !important;
+    cursor: pointer !important;
+}
+
+.cartImg {
+    padding: 5px 0px 0px 5px !important;
+}
+
+.CartHead {
+    text-align: center !important;
+    background-color: #664e4d !important;
+    color: white !important;
+    font-weight: bold !important;
+    padding: 0px !important;
+}
+
+#CartHeadBtn {
+    float: right !important;
+    padding-right: 10px !important;
+    padding-left: 10px !important;
+    cursor: pointer !important;
+}
+
+.CartTickets {
+    background-color: #F2F2E6 !important;
+    font-size: 14px !important;
+    overflow: auto !important;
+    max-height: 400px !important;
+}
+
+.CartTickets input{
+    background-color: #F2F2E6 !important;
+    border: 0 !important;
+}
+
+.CartBtnFooter {
+    width: 100px !important;
+    margin-left: 10px !important;
+    margin-right: 10px !important;
+}
+
+.CartBtnFooter button {
+    font-weight: bold !important;
+}
+
+.CartFooter {
+    text-align: center !important;
+    padding-bottom: 5px !important;
+}
+/***********************END CART*****************************/
+/******************END ORDERS CSS****************************/

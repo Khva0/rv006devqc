@@ -304,6 +304,7 @@ def tickets_put(ticket_id):
             print e
     return render_template('index.html')
 
+
 @app.route('/getTickets/<int:ticket_id>', methods=["DELETE"])
 def tickets_delete(ticket_id):
     try:

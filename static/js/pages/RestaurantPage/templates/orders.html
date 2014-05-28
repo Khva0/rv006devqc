@@ -1,49 +1,11 @@
 <style> 
-.orderBlock {
-    background-color: #F7F7ED;
-}
-
-.OrderRow1 {
-	border-bottom: dashed 1px #ccc !important;
-	padding-bottom: 4px !important;
-	padding-left: 4px !important;
-	padding-right: 4px !important;
-}
-
-.OrderRow1 span{
-    color: #664e4d; font-weight:bold;
-}
-
-.OrderButtonsFloat {
-    float: right;
-}
-
-.OrderRow2 {
-	padding-left: 4px !important;
-	padding-right: 4px !important;
-	padding-top: 4px !important;
-}
-
-.OrderRow2 span{
-    color: red;
-}
-
-.OrderBtN {
-width: 80px !important;
-}
-
-.OrderRemoveBtn {
-    background-color: red !important;
-}
-
 .OrderImg {
     width: 54px !important;
     height: 54px !important;
-    background-image: url("static/img/purchase.png") !important;
+    background-image: url("static/img/purchase.png");
     background-position: 5px !important;
     margin-top: -10px !important;
 }
-
 </style>
 <% _.each(orders.toArray(), function(order) {%>
 	<div class="row Order" id="Order_<%= order.get("id") %>">
