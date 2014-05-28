@@ -101,6 +101,38 @@ p {
     background: #fff;
     vertical-align: middle
     }
+
+.popup_edit_dish {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    position: relative;
+    max-width: 700px; 
+    background: #664e4d;
+    border-bottom: 10px solid white;
+    vertical-align: middle
+}
+.popup_edit_dish .row {
+    background-color: white;
+    padding-right: 5px;
+    padding-left: 10px
+}
+.popup_edit_dish .title {
+    color: white;
+    text-align: center;
+    font-size: 150%;
+    margin: 10px;
+    width: 100%
+}
+.popup_edit_dish .actions {
+    float:right;
+    padding-bottom: 7px;
+    padding-right: 10px
+}
+.description {
+    line-height: 13px;
+    font-size: 11px
+}
 /* Added instead of :after pseudoelement */
 .popup__valignfix {
     display: inline-block;
@@ -286,9 +318,7 @@ label {
 
 
 th, td{
-    border: 1px solid white;
-    text-align: center; 
-    vertical-align: middle;
+    border: 1px solid white
 }
 
 .menu__overlay {
@@ -352,4 +382,3 @@ label {
     width: 120px;
     text-align: left
     }
-
