@@ -60,14 +60,27 @@ define([
 
                 var jsonString = JSON.stringify(data, null, '\t');
                 console.log(jsonString);
-                this.model.save(); //Saving nw dish to server
+                this.model.save(); //Saving new dish to server
             },
 
             saveDish: function(event) {
                 var data = form2js('update_menu_form', '.', true);
-                console.log(data);
-                dishModel.save(data);
                 this.removeEditDishModal();
+                dishModel.save(data);
+                if(data.id_category !== dishModel.id_category){
+                    dishes.remove(dishModel);
+                    this.removeDishRow(eventModel);
+                    return;
+                }
+                if (data.id_status == 1 && dishModel.get('status') === 'Inactive') {
+                    dishModel.set('status', 'Active') ;
+                }
+                if (data.id_status == 2 && dishModel.get('status') === 'Active') {
+                    dishModel.set('status', 'Inactive') ;
+                    this.removeDishRow(eventModel);
+                    this.appendDishRow(dishModel.toJSON());
+                    return;
+                }
                 var template = _.template(DishRowTemplate, dishModel.toJSON());
                 $(template).replaceAll($(eventModel.target).parent().parent());
             },
@@ -75,12 +88,12 @@ define([
             dishDrop: function(event) {
                 var dish = dishes.get(event.target.value);
                 if (dish.get('status') !== 'Inactive') {
-                    $(event.target).parent().parent().remove();
+                    this.removeDishRow(event);
                     dish.set({
                         'status': 'Inactive',
                         'id_status': 2
                     });
-                    $('#dishes').append(_.template(DishRowTemplate, dish.toJSON()));
+                    this.appendDishRow(dish.toJSON());
                     dish.clone().destroy();
                 }
             },
@@ -97,15 +110,19 @@ define([
 
             isActiveStatus: function(event) {
                 var statusId = event.target.value;
-                if (statusId == 1 ) {
-                    event.target.value = 2;    
-                }
-                event.target.value = 1;
+                event.target.value = statusId == 1 ? 2 : 1;
+            },
 
+            appendDishRow: function(obj) {
+                $('#dishes').append(_.template(DishRowTemplate, obj));
             },
 
             removeEditDishModal: function(event) {
                 $('#edit_dish_template').remove();
+            },
+
+            removeDishRow: function(event) {
+                $(event.target).parent().parent().remove();
             },
 
             isSelectedCategory: function(val) {
