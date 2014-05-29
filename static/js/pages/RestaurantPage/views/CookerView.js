@@ -43,7 +43,13 @@ define([
                 'click #addCat': 'addCat', 
                 'click #cat__toggle': 'catPopUp',
                 'click #is_active_status': 'isActiveStatus',
-                'click #cancel_edit_dish': 'removeEditDishModal'
+                'click #cancel_edit_dish': 'removeEditDishModal',
+                'mouseenter #menu_trigger': 'addDialog',
+                'mouseleave #menu_trigger': 'remDialog',
+                'mouseenter #popup__toggle': 'addDialog',
+                'mouseleave #popup__toggle': 'remDialog',
+                'mouseenter #cat__toggle': 'addDialog',
+                'mouseleave #cat__toggle': 'remDialog'
             },
 
             el: '#content',
@@ -177,8 +183,7 @@ define([
             addCat: function(event) {
                 event.preventDefault();
                 var data = form2js('catform', '.', true);
-                this.model = new CategoryModel(data);
- 
+                this.model = new CategoryModel(data); 
                 var jsonString = JSON.stringify(data, null, '\t');
                 console.log(jsonString);
                 this.model.save({
@@ -202,6 +207,15 @@ define([
                 });
               },
 
+              addDialog: function(event) {
+              	$('#popup__toggle').css('display', 'inline-block');
+                $('#cat__toggle').css('display', 'inline-block');
+              },
+
+              remDialog: function(event) {
+                $('#popup__toggle').css('display', 'none');
+                $('#cat__toggle').css('display', 'none');
+              },
             render: function() {
                 var self = this;
                 $.when(categories.fetch()).done(function() {

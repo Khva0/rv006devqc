@@ -171,19 +171,28 @@ label {
     color:white;
     font-size: 15px;
     position: fixed;
-    left:15px;
-    z-index: 320;
-    top:130px;
+    left:21%;
+    z-index: 310;
+    top:100px;
     width:20%;
+    display: none;
+    border-bottom: 1px solid white; 
+    border-left: 0px;
+    border-right: 0px;
   }
+
 #cat__toggle {
     color:white;
     font-size: 15px;
     position: fixed;
-    left:15px;
-    z-index: 320;
-    top:165px;
-    width:20%;     
+    left:21%;
+    z-index: 310;
+    top:130px;
+    width:20%;
+    display: none;
+    border-bottom: 1px solid white; 
+    border-left: 0px;
+    border-right: 0px;
 }
 
 .cat__overlay {
@@ -237,6 +246,7 @@ label {
 .cat_popup-form__row {
     margin: 1em 0
     }
+
 .cat__close {
     display: block;
     position: absolute;   
@@ -247,12 +257,15 @@ label {
 
 #menu_trigger {
     color:white;
-    font-size: 25px;
     position: fixed;
     left:15px;
-    z-index: 320;
+    z-index: 350;
     top:100px;
-    width:20%; 
+    width:20%;
+    
+    border-bottom: 1px solid white; 
+    border-left: 0px;
+    border-right: 0px;
 }
 
 #search__toggle {
