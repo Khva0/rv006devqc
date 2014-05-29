@@ -131,7 +131,7 @@ p {
 }
 .description {
     line-height: 13px;
-font-size: 11px
+    font-size: 11px
 }
 
 /* Added instead of :after pseudoelement */

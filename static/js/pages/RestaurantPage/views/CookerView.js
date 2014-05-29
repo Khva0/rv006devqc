@@ -42,7 +42,8 @@ define([
                 'keyup #search': 'showRes',
                 'click #addCat': 'addCat', 
                 'click #cat__toggle': 'catPopUp',
-                'click #is_active': 'isActiveStatus'
+                'click #is_active_status': 'isActiveStatus',
+                'click #cancel_edit_dish': 'removeEditDishModal'
             },
 
             el: '#content',
@@ -66,7 +67,7 @@ define([
                 var data = form2js('update_menu_form', '.', true);
                 console.log(data);
                 dishModel.save(data);
-                $('#edit_dish_template').remove();
+                this.removeEditDishModal();
                 var template = _.template(DishRowTemplate, dishModel.toJSON());
                 $(template).replaceAll($(eventModel.target).parent().parent());
             },
@@ -95,7 +96,16 @@ define([
             },
 
             isActiveStatus: function(event) {
-                $('#is_active').val(event.target.value == 1 ? 2 : 1);
+                var statusId = event.target.value;
+                if (statusId == 1 ) {
+                    event.target.value = 2;    
+                }
+                event.target.value = 1;
+
+            },
+
+            removeEditDishModal: function(event) {
+                $('#edit_dish_template').remove();
             },
 
             isSelectedCategory: function(val) {

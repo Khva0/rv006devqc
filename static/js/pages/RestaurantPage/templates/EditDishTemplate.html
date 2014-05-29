@@ -48,8 +48,9 @@
 							</div>
 						</li>
 						<li>
-							<label class="checkbox">
-								<input name="id_status" value="<%-id_status%>" id="is_active" type="checkbox" <%-id_status === 1? 'checked=checked': ''%> />
+							<label class="checkbox" for="is_active">
+								<input type="hidden" name="id_status" value="2" /> <!-- 2 = Inactive-->
+								<input name="id_status" value="<%-id_status%>" id="is_active_status" type="checkbox" <%-parseInt(id_status) === 1? 'checked': ''%> />
 								<span></span> Is active
 							</label>
 						</li>
@@ -61,7 +62,9 @@
 						<label>Description</label>
 					</div>
 					<div class="row">
-						<textarea class="input textarea"></textarea>
+						<textarea style="line-height: 13px; font-size: 11px; height: 75px"
+							class="input textarea" name="description"><%-description%>
+						</textarea>
 					</div>
 					<div class="row">
 						<ul class="two_up tiles">
@@ -70,7 +73,7 @@
 							</li>
 							<li class="field">
 							    <input name="image" type="image" style="width: 200px; height: 100px"
-							    	src="<%= _.isEmpty(image)? ' ': image %>" />
+							    	src="<%= _.isEmpty(image)? ' ': image %>" value="<%-image%>"/>
 							</li>
 						</ul>
 					</div>
