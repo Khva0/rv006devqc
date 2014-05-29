@@ -72,10 +72,10 @@ define([
             saveDish: function(event) {
                 var data = form2js('update_menu_form', '.', true);
                 this.removeEditDishModal();
-                dishModel.save(data);
-                if(data.id_category !== dishModel.id_category){
+                if(data.id_category != dishModel.get('id_category')){
                     dishes.remove(dishModel);
                     this.removeDishRow(eventModel);
+                    dishModel.save(data);
                     return;
                 }
                 if (data.id_status == 1 && dishModel.get('status') === 'Inactive') {
@@ -87,6 +87,7 @@ define([
                     this.appendDishRow(dishModel.toJSON());
                     return;
                 }
+                dishModel.save(data);
                 var template = _.template(DishRowTemplate, dishModel.toJSON());
                 $(template).replaceAll($(eventModel.target).parent().parent());
             },
