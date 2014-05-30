@@ -114,7 +114,7 @@ p {
 }
 .popup_edit_dish .row {
     background-color: white;
-    padding-right: 5px;
+    padding-right: 10px;
     padding-left: 10px
 }
 .popup_edit_dish .title {
@@ -128,6 +128,12 @@ p {
     float:right;
     padding-bottom: 7px;
     padding-right: 10px
+}
+.popup_edit_dish sup {
+    vertical-align: top; 
+    font-size: 1em;
+    padding-left: 0.1em;
+    color: red
 }
 .description {
     line-height: 13px;
@@ -289,19 +295,18 @@ label {
 
 
 #logout {
-    position: relative;
-    left: 600px;
-    bottom:50px;
-    display: table-cell;
-    color:black;
-}
+    float: right
+} 
 
 #basket {
-    position: relative;
-    left: 400px;
-    top: 50px;
-    display: table-cell;
-    color:black;
+    float: right;
+    padding-bottom: 20px
+}
+#basket div img {
+    cursor: pointer;
+    width: 25px;
+    height: 25px;
+    vertical-align: top
 }
 
 
