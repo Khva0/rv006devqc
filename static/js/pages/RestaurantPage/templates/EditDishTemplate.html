@@ -5,38 +5,37 @@
   		<span>Edit Dish</span>
   	</div>
 	<div class="row">
-		<form method="post" id="update_menu_form" style="padding-top: 10px">
-			<!-- <legend style="text-align:right;">Edit Dish</legend>			         -->
+		<form method="post" id="update_menu_form" style="padding-top: 10px; margin-bottom: -10px">
 			  <ul class ="two_up tiles">
 			  	<!-- First block -->
-				  <li>
+				  <li style="padding-left: 10px">
 				  	<ul class ="two_up tiles">
 						<li class="field three columns">
-						    <label class="centered inline">Name</label>
+						    <label class="centered inline">Name<sup>*</sup></label>
 					    </li>
-					    <li class="field eight columns">
+					    <li class="field eight columns success" id="dish_name">
 						    <input class=" text input" name="name" type="text" 
 						    	value="<%-name%>" /> 
 						</li>
 						<li class="field three columns">
-							<label class="centered inline">Price</label>
+							<label class="centered inline">Price<sup>*</sup></label>
 						</li>
-						<li class="field eight columns">
+						<li class="field eight columns danger" id="dish_price">
 							<input class="text input" name="price" type="text" 
 								value="<%-price%>" />
 						</li>
 						<li class="field three columns">
-							<label class="centered inline" style="text-align: left">Count</label>
+					<label class="centered inline" style="text-align: left">Count<sup>*</sup></label>
 						</li>
-						<li class="field eight columns">
+						<li class="field eight columns" id="dish_count">
 							<input name="count" class="text input" type="text" 
 								value="<%-count%>"/>
 						</li> 						        
 						<li class="field three columns">
-						  	<label class="centered inline">Category</label>
+						  	<label class="centered inline">Category<sup>*</sup></label>
 					  	</li>
 					  	<li class="field eight columns">
-							<div class="picker eight columns" style="width: 223px">
+							<div class="picker eight columns" style="width: 216px">
 								<select name = "id_category">
 									<% _.each(categories.toJSON(), function(obj) { %>
 										<option  <%-obj.id === id_category ? 'selected="selected"': ''%> 
@@ -57,14 +56,12 @@
 					</ul>
 				  </li>
 				<!-- Second block -->
-				  <li class="field">
+				  <li class="field" >
 				    <div class="row">
-						<label>Description</label>
+						<label style="margin-top: 5px">Description</label>
 					</div>
 					<div class="row">
-						<textarea style="line-height: 13px; font-size: 11px; height: 75px"
-							class="input textarea" name="description"><%-description%>
-						</textarea>
+						<textarea style="line-height: 13px; font-size: 11px; height: 75px" class="input textarea" name="description"><%-description%></textarea>
 					</div>
 					<div class="row">
 						<ul class="two_up tiles">

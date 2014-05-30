@@ -71,12 +71,10 @@ define([
 
             saveDish: function(event) {
                 var data = form2js('update_menu_form', '.', true);
-                this.removeEditDishModal();
                 if(data.id_category != dishModel.get('id_category')){
                     dishes.remove(dishModel);
                     this.removeDishRow(eventModel);
-                    dishModel.save(data);
-                    return;
+                    if(dishModel.save(data)) return;
                 }
                 if (data.id_status == 1 && dishModel.get('status') === 'Inactive') {
                     dishModel.set('status', 'Active') ;
@@ -87,9 +85,11 @@ define([
                     this.appendDishRow(dishModel.toJSON());
                     return;
                 }
-                dishModel.save(data);
-                var template = _.template(DishRowTemplate, dishModel.toJSON());
-                $(template).replaceAll($(eventModel.target).parent().parent());
+                if(dishModel.save(data)){
+                    this.removeEditDishModal();
+                    var template = _.template(DishRowTemplate, dishModel.toJSON());
+                    $(template).replaceAll($(eventModel.target).parent().parent());
+                }
             },
 
             dishDrop: function(event) {
