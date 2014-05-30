@@ -10,20 +10,26 @@
 	<body>
 		<div class="row navbar metro head" gumby-fixed="top" id="nav1">
 			<h1 class="four columns logo">
-    			<a>
+    			<a style="cursor: pointer">
       				<img src="static/img/menu.png" id="menu__toggle"/>
     			</a>
   			</h1>
-  			<div class="four columns" id="basket">
-  				<img src="static/img/shop_basket.png" width="35px" height="35px" />Cart
+			<div class="row">
+	  			<h2 class="one columns" id="logout">
+		  			<a href="logout">
+			        	<img src="static/img/exit.png" width="20px" height="20px" />
+				    </a>	
+			    </h2>
+			</div>
+  			<div class="row">
+	  			<div class="two columns" id="basket">
+			  		<div>
+						<img src="static/img/shop_basket.png" />
+						<span >Cart</span>
+		  			</div>
+	  			</div>
   			</div>
-  			<h2 class="four columns" id="logout">
-	  			<a href="logout">
-		        	<img src="static/img/exit.png" width="25px" height="25px" />
-			    </a>	
-		    </h2>
-		</div>
-		
+		</div>		
 		<div class = "row" id="content">
 		</div>
 		<div id="cart"></div>
