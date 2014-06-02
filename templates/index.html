@@ -11,9 +11,21 @@
 		<div class="row navbar metro head" gumby-fixed="top" id="nav1">
 			<h1 class="four columns logo">
     			<a style="cursor: pointer">
-      				<img src="static/img/menu.png" id="menu__toggle"/>
+      				<img src="static/img/menu.png"  id="menu__toggle"/>
     			</a>
   			</h1>
+  			<div id="clock">
+  			<img src="static/img/calendar.png" width="20px" height="20px" />
+  			<p id="calendar"><script type="text/javascript">
+
+var currentTime = new Date()
+var month = currentTime.getMonth() + 1
+var day = currentTime.getDate()
+var year = currentTime.getFullYear()
+document.write(day + "/" + month + "/" + year)
+
+</script></p>
+  			</div>
 			<div class="row">
 	  			<h2 class="one columns" id="logout">
 		  			<a href="logout">
