@@ -17,6 +17,7 @@ define([ 'jquery', 'underscore', 'backbone',
 			'click .EditOrderBtn' : 'openCloseEdit',
 			'click span' : 'openClose',
 			'click .DivideOrderBtn' : 'divideOrder',
+			'change input.ticketCountInOrder[type=text]':  'calcTotalPrice'
 		},
 
 		initialize : function() {
@@ -183,6 +184,16 @@ define([ 'jquery', 'underscore', 'backbone',
 			  match = document.cookie.match(new RegExp(name + '=([^;]+)'));
 			  if (match) return parseInt(match[1]);
 			},
+			
+		calcTotalPrice: function(event){
+			var self = this;
+			var totalPrice = 0;
+			var id = parseInt(event.currentTarget.className.match(/\d+$/)[0]); 
+			_.each(orders.get(id).get("Tickets").toJSON(), function(model) {
+				  totalPrice += model.price * model.count;
+				})
+			self.$el.find($(".TotalOrderPrice_" + id)).html("Total price: " + totalPrice + "$");
+		},
 
 		render : function() {
 			var self = this;

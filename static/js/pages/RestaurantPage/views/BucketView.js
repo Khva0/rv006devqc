@@ -95,9 +95,9 @@ define([ 'jquery', 'underscore', 'backbone',
 		},
 
 		cartCountChanged : function(event) {
-			var value = Math.round(event.target.value);
+			var value = event.target.value;
 			var id = parseInt(event.target.id.match(/\d+$/)[0]);
-			if ($.isNumeric(value)) {
+			if (value/Math.floor(value)==1 && value > 0) {
 				bucket.at(id).set({
 					count : value
 				});
