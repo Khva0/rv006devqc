@@ -13,22 +13,22 @@
 						<li class="field three columns">
 						    <label class="centered inline">Name<sup>*</sup></label>
 					    </li>
-					    <li class="field eight columns success" id="dish_name">
-						    <input class=" text input" name="name" type="text" 
+					    <li class="field eight columns" id="dish_name">
+						    <input class="text input" name="name" type="text" placeholder="Name input"
 						    	value="<%-name%>" /> 
 						</li>
 						<li class="field three columns">
 							<label class="centered inline">Price<sup>*</sup></label>
 						</li>
-						<li class="field eight columns danger" id="dish_price">
-							<input class="text input" name="price" type="text" 
+						<li class="field eight columns" id="dish_price">
+							<input class="text input" name="price" type="text" placeholder="Price input"
 								value="<%-price%>" />
 						</li>
 						<li class="field three columns">
 					<label class="centered inline" style="text-align: left">Count<sup>*</sup></label>
 						</li>
 						<li class="field eight columns" id="dish_count">
-							<input name="count" class="text input" type="text" 
+							<input name="count" class="text input" type="text" placeholder="Count input"
 								value="<%-count%>"/>
 						</li> 						        
 						<li class="field three columns">
@@ -48,7 +48,6 @@
 						</li>
 						<li>
 							<label class="checkbox" for="is_active">
-								<input type="hidden" name="id_status" value="2" /> <!-- 2 = Inactive-->
 								<input name="id_status" value="<%-id_status%>" id="is_active_status" type="checkbox" <%-parseInt(id_status) === 1? 'checked': ''%> />
 								<span></span> Is active
 							</label>
