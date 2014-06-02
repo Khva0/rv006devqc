@@ -70,7 +70,9 @@ define([
             },
 
             saveDish: function(event) {
-                var data = form2js('update_menu_form', '.', true);
+                var data = form2js('update_menu_form', '.', false);
+                if (_.isNull(data.id_status)) { data.id_status = 2; }
+                if (_.isEmpty(data.image)) { delete data.image; }
                 if(data.id_category != dishModel.get('id_category')){
                     dishes.remove(dishModel);
                     this.removeDishRow(eventModel);
@@ -79,13 +81,12 @@ define([
                 if (data.id_status == 1 && dishModel.get('status') === 'Inactive') {
                     dishModel.set('status', 'Active') ;
                 }
-                if (data.id_status == 2 && dishModel.get('status') === 'Active') {
-                    dishModel.set('status', 'Inactive') ;
-                    this.removeDishRow(eventModel);
-                    this.appendDishRow(dishModel.toJSON());
-                    return;
-                }
-                if(dishModel.save(data)){
+                if(dishModel.save(data, {silent:true})){
+                    if (data.id_status == 2 && dishModel.get('status') === 'Active') {
+                        dishModel.set('status', 'Inactive') ;
+                        this.removeDishRow(eventModel);
+                        this.appendDishRow(dishModel.toJSON());
+                    }
                     this.removeEditDishModal();
                     var template = _.template(DishRowTemplate, dishModel.toJSON());
                     $(template).replaceAll($(eventModel.target).parent().parent());
