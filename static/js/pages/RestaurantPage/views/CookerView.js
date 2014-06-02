@@ -57,6 +57,8 @@ define([
             initialize: function() {
                 categories = new CategoriesCollection();
                 statuses = new StatusesCollection();
+                var today = new Date();
+
             },
 
             store: function(event) {

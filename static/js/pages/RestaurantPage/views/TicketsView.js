@@ -38,14 +38,14 @@ var TicketsView = Backbone.View.extend({
 		    	var value = event.currentTarget.value;
 		    	var orderId = parseInt(event.currentTarget.className.match(/\d+$/)[0]);
 		    	var ticketId = event.currentTarget.name;
-		    	if($.isNumeric(value) && value >= 1){
+		    	if(value/Math.floor(value)==1 && value > 0){
 		    		var ticketModel = orders.get(orderId).get("Tickets").get(ticketId);
 		    		ticketModel.set({count: value});
 		    		ticketModel.save();
 		    		
 		    		this.calcTotalTicketPrice(event, orderId, ticketId);
 		    	} else {
-			alert("Only digits!");
+		    			alert("Only digits!");
 				       }
 		    	},
       

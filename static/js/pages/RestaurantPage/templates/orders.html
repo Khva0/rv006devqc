@@ -15,6 +15,7 @@
 					<span id="<%= order.get("id") %>">Order #<%= order.get("id") %></span>
 				</div>
 				<div class="columns OrderButtonsFloat">
+				<% if( order.get("status") != "Closed") { %>
 				    <% if( role == 2) { %>
 				    <div class="small success btn OrderBtN">
                         <button type="button" class="RemoveOrderBtn OrderRemoveBtn" value="<%= order.get("id") %>">Remove</button>
@@ -29,6 +30,7 @@
 					<div class="small success btn OrderBtN">
 						<button type="button" class="closeOrder" value="<%= order.get("id") %>">Close</button>
 					</div>
+				<% }  %>
 				</div>
 			</div>
 			<div class="row OrderRow2" >
@@ -37,7 +39,7 @@
 				<div class="two columns" style="text-align: right; float: right;">
 					<span <% if( order.get("status") == "Pending") { %> style="color: green;"<% }  %> ><%= order.get("status") %></span>
 				</div>
-				<div class="three columns">Total price: <%= order.get("TotalCount") %>$</div>
+				<div class="three columns TotalOrderPrice_<%= order.get("id") %>">Total price: <%= order.get("TotalCount") %>$</div>
 			</div>
 			<div id="OpCl_<%= order.get("id") %>" class="row" style="display: none; background-color: white;"></div>
 		</div>
