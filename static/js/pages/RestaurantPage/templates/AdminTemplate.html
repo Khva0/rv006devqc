@@ -65,6 +65,39 @@
     </div>
     <!--[if lt IE 9]><div class="popup__valignfix"></div><![endif]-->
 </div>
-
+<div class="menu__overlay">
+      <div class="menu_popup">
+    <div id="mainmenu"></div>
+    <div class="medium success btn centered" id="menu_trigger">
+    Add...<i class="icon-play"></i>
+    </div>
+    <div id="btnblock">
+    <div id="popup__toggle" class="medium success btn centered">
+  <a>Dish</a>
+      </div>
+    <div id="cat__toggle" class="medium success btn centered">
+  <a>Category</a>
+</div>
+<div> 
+     <div id="bulk_trigger">
+    Bulk Operations
+    </div> 
+         
+    </div>
    
+  <script type="text/javascript">
+   p = $('.menu__overlay');
+                $('#menu__toggle').click(function() {
+                    p.css('display', 'block');
+                });
+                p.click(function(event) {
+                    e = event || window.event;
+                    if (e.target == this) {
+                        $(p).css('display', 'none');
+                    }
+                });
+                $('.popup__close').click(function() {
+                    p.css('display', 'none');
+                });
+  </script>
 

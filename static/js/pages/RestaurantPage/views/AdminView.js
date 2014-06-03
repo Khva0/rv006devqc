@@ -21,7 +21,8 @@ define([
                     'click #popup__toggle': 'popUp',
                     'click #resetter': 'resetSearch',
                     'click #deleteuser': 'deleteuser',
-                    'click #search_btn': 'search'
+                    'click #search_btn': 'search',
+
 
                 },
 
@@ -47,6 +48,22 @@ define([
                     users.get(e.target.value).destroy();
 
                 },
+
+                  popUp: function(event) {
+               
+                
+                $('.popup__overlay').css('display', 'block');
+                
+                $('.popup__overlay').click(function(event) {
+                    e = event || window.event;
+                    if (e.target == this) {
+                        $('.popup__overlay').css('display', 'none');
+                    }
+                });
+                $('.popup__close').click(function() {
+                    $('.popup__overlay').css('display', 'none');
+                });
+            },
                 search: function(e){
                     console.log($("#search").val());
                 },
