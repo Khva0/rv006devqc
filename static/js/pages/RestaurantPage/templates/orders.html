@@ -1,12 +1,3 @@
-<style> 
-.OrderImg {
-    width: 54px !important;
-    height: 54px !important;
-    background-image: url("static/img/purchase.png");
-    background-position: 5px !important;
-    margin-top: -10px !important;
-}
-</style>
 <% _.each(orders.toArray(), function(order) {%>
 	<div class="row Order" id="Order_<%= order.get("id") %>">
 		<div class="twelve columns centered orderBlock">

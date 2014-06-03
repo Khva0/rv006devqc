@@ -462,6 +462,14 @@ width: 80px !important;
     background-color: red !important;
 }
 
+.OrderImg {
+    width: 54px !important;
+    height: 54px !important;
+    background-image: url("../img/purchase.png");
+    background-position: 5px !important;
+    margin-top: -10px !important;
+}
+
 /***********************END ORDERS***************************/
 /***********************TICKETS******************************/
 .TicketHover {
@@ -494,6 +502,15 @@ width: 80px !important;
 
 .CursorPointer {
     cursor: pointer !important;
+}
+
+.closeTicket {
+    background-image: url("../img/trash16.png") !important;
+    width: 16px !important;
+    height: 16px !important;
+    float: right !important;
+    margin-right: 5px !important;
+    margin-top: 5px !important;
 }
 /***********************END TICKETS**************************/
 /***********************CART*********************************/
@@ -571,6 +588,13 @@ width: 80px !important;
 .CartFooter {
     text-align: center !important;
     padding-bottom: 5px !important;
+}
+
+.CartTrashImg {
+    background-image: url("../img/trash16.png") !important;
+    width: 16px  !important;
+    height: 16px !important;
+    float: right !important;
 }
 /***********************END CART*****************************/
 /******************END ORDERS CSS****************************/
