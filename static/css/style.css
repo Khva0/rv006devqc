@@ -597,4 +597,31 @@ width: 80px !important;
     float: right !important;
 }
 /***********************END CART*****************************/
+/***********************START WAITER*****************************/
+.imgToAddDishToCart {
+    position: absolute !important;
+    bottom: 0 !important;
+    right: 0 !important;
+    margin-right: 2% !important;
+    margin-bottom: 2% !important;
+    background-image: url("../img/rsz_shop_basket.png") !important;
+    width: 24px !important;
+    height: 24px !important;
+    cursor: pointer !important;
+}
+
+.DishRow {
+    padding-right: 1% !important;
+}
+
+.dishShadow {
+    background-color: rgba(255, 255, 255, 0.6) !important; 
+    min-height: 72px !important;
+}
+
+.DishBlk {
+    position: relative !important; 
+    padding-top: 8% !important;
+}
+/***********************END WAITER*****************************/
 /******************END ORDERS CSS****************************/

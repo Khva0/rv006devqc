@@ -146,7 +146,10 @@ define([ 'jquery', 'underscore', 'backbone',
 				orders : orders.sort(),
 				role : self.role
 			});
-			self.$el.html(self.doCol(template));
+			if (window.location.hash == "#orders") {
+				self.$el.html(self.doCol(template));
+				}
+			
 
 		},
 
