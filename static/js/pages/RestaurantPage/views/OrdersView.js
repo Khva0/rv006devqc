@@ -88,10 +88,11 @@ define([ 'jquery', 'underscore', 'backbone',
 						self.$el.find(".BtnCornerDivide").hide();
 					}
 				})
+				console.log("open");
 			} else {
-				event.target.innerText = "Edit"
+				event.target.innerText = "Edit";
+				console.log("close");
 			}
-			;
 			$(div).toggle("slow");
 		},
 
