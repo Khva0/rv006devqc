@@ -6,6 +6,7 @@
 	  <link rel="stylesheet" type="text/css" href="static/css/style.css">
 	  <script type=text/javascript data-main="static/js/main.js" src="static/js/libs/requirejs/require.js">
 	  </script>
+
 	</head>
 	<body>
 		<div class="row navbar metro head" gumby-fixed="top" id="nav1">
@@ -15,17 +16,13 @@
     			</a>
   			</h1>
   			<div id="clock">
+  			
   			<img src="static/img/calendar.png" width="20px" height="20px" />
-  			<p id="calendar"><script type="text/javascript">
+  			<input type="date" id="calendar" value="">
 
-var currentTime = new Date()
-var month = currentTime.getMonth() + 1
-var day = currentTime.getDate()
-var year = currentTime.getFullYear()
-document.write(day + "/" + month + "/" + year)
-
-</script></p>
+  			<div class="small success btn" id="setdate"><a>Set</a></div>
   			</div>
+
 			<div class="row">
 	  			<h2 class="one columns" id="logout">
 		  			<a href="logout">
@@ -45,5 +42,7 @@ document.write(day + "/" + month + "/" + year)
 		<div class = "row" id="content">
 		</div>
 		<div id="cart"></div>
+		
 	</body>
+
 </html>

@@ -23,11 +23,21 @@ body {
     top:5px;
 }
 
+
 #calendar {
     position: relative;
     left: 145px;
-    
-    bottom: 38px;
+    background-color: #f2f2e6;
+    bottom: 25px;
+    border: 1px solid;
+    border-color: #664e4d;
+}
+
+#setdate {
+    position: relative;
+    left: 300px;
+    width: :60px;
+    bottom: 54px;
 }
 
 .footer {
@@ -353,6 +363,15 @@ label {
     z-index: 300;
 }
 
+
+
+#mainmenu img {
+    position: relative;
+    top: 1em;
+
+    width:70%;
+    
+}
 
 th, td{
     border: 1px solid white;
