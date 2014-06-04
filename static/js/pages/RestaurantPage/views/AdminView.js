@@ -22,6 +22,11 @@ define([
                     'click #resetter': 'resetSearch',
                     'click #deleteuser': 'deleteuser',
                     'click #search_btn': 'search',
+                    'mouseenter #menu_trigger': 'addDialog',
+                    'mouseleave #menu_trigger': 'remDialog',
+                    'mouseenter #popup__toggle': 'addDialog',
+                    'mouseleave #popup__toggle': 'remDialog'
+
 
 
                 },
@@ -49,7 +54,7 @@ define([
 
                 },
 
-                  popUp: function(event) {
+            popUp: function(event) {
                
                 
                 $('.popup__overlay').css('display', 'block');
@@ -74,21 +79,17 @@ define([
                         });
                 },
 
-                popUp: function(e) {
-                    p = $('.popup__overlay')
-                    $('#popup__toggle').click(function() {
-                        p.css('display', 'block')
-                    })
-                    p.click(function(event) {
-                        e = event || window.event
-                        if (e.target == this) {
-                            $(p).css('display', 'none')
-                        }
-                    })
-                    $('.popup__close').click(function() {
-                        p.css('display', 'none')
-                    })
-                },
+             
+
+                addDialog: function(event) {
+                $('#popup__toggle').css('display', 'inline-block');
+                $('#cat__toggle').css('display', 'inline-block');
+              },
+
+              remDialog: function(event) {
+                $('#popup__toggle').css('display', 'none');
+                $('#cat__toggle').css('display', 'none');
+              },
 
                 render: function() {
 
