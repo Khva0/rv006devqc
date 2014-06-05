@@ -257,6 +257,9 @@ def orders():
 @app.route('/addOrder', methods=["POST"])
 def add_order():
     try:
+        name = session["username"]
+        role = Users().get_permission(name)[0]['id_role']
+        
         user_id = session["userid"]
         orderId = Manager().add_order(user_id, get_dict(request.json))
         return Response(str(orderId))
@@ -268,6 +271,9 @@ def add_order():
 @app.route('/getOrders/<int:order_id>', methods=["DELETE"])
 def close_order(order_id):
     try:
+        name = session["username"]
+        role = Users().get_permission(name)[0]['id_role']
+        
         Manager().close_order(order_id)
         return Response(None)
     except Exception, e:
@@ -278,6 +284,9 @@ def close_order(order_id):
 @app.route('/deleteOrder/<int:order_id>', methods=["DELETE"])
 def remove_order(order_id):
     try:
+        name = session["username"]
+        role = Users().get_permission(name)[0]['id_role']
+        
         Manager().remove_order(order_id)
         return Response(None)
     except Exception, e:
@@ -288,6 +297,9 @@ def remove_order(order_id):
 @app.route('/getTickets/<int:order_id>', methods=["GET"])
 def tickets_get(order_id):
     try:
+        name = session["username"]
+        role = Users().get_permission(name)[0]['id_role']
+        
         order = Manager().get_full_order(order_id)
         return Response(json.dumps(order))
     except Exception, e:
@@ -298,6 +310,9 @@ def tickets_get(order_id):
 @app.route('/getTickets/<int:ticket_id>', methods=["PUT"])
 def tickets_put(ticket_id):
     try:
+        name = session["username"]
+        role = Users().get_permission(name)[0]['id_role']
+        
         Manager().edit_order(get_dict(request.json))
         return Response(None)
     except Exception, e:
@@ -308,6 +323,10 @@ def tickets_put(ticket_id):
 @app.route('/getTickets/<int:ticket_id>', methods=["DELETE"])
 def tickets_delete(ticket_id):
     try:
+        name = session["username"]
+        role = Users().get_permission(name)[0]['id_role']
+        name = session["username"]
+        role = Users().get_permission(name)[0]['id_role']
         Manager().del_ticket(ticket_id)
         return Response(None)
     except Exception, e:
