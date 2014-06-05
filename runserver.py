@@ -284,7 +284,7 @@ def add_order():
     try:
         name = session["username"]
         role = Users().get_permission(name)[0]['id_role']
-        
+
         user_id = session["userid"]
         orderId = Manager().add_order(user_id, get_dict(request.json))
         return Response(str(orderId))
