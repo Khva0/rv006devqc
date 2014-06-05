@@ -73,17 +73,21 @@ define([
 
             saveDish: function(event) {
                 var data = form2js('update_menu_form', '.', false);
+                if (data.price.charAt(0) === '.') { data.price = '0' + data.price; }
                 if (_.isNull(data.id_status)) { data.id_status = 2; }
                 if (_.isEmpty(data.image)) { delete data.image; }
                 if(data.id_category != dishModel.get('id_category')){
-                    dishes.remove(dishModel);
-                    this.removeDishRow(eventModel);
-                    if(dishModel.save(data)) return;
+                    if(dishModel.save(data)) {
+                        dishes.remove(dishModel);
+                        this.removeDishRow(eventModel);
+                        this.removeEditDishModal();
+                        return;
+                    }
                 }
                 if (data.id_status == 1 && dishModel.get('status') === 'Inactive') {
                     dishModel.set('status', 'Active') ;
                 }
-                if(dishModel.save(data, {silent:true})){
+                if(dishModel.save(data)){
                     if (data.id_status == 2 && dishModel.get('status') === 'Active') {
                         dishModel.set('status', 'Inactive') ;
                         this.removeDishRow(eventModel);
