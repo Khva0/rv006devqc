@@ -11,7 +11,8 @@ define([
         'text!pages/RestaurantPage/templates/DishesTemplate.html',
         'text!pages/RestaurantPage/templates/EditDishTemplate.html',
         'text!pages/RestaurantPage/templates/CategoriesTemplate.html',
-        'text!pages/RestaurantPage/templates/DishRowTemplate.html'
+        'text!pages/RestaurantPage/templates/DishRowTemplate.html',
+        'text!pages/RestaurantPage/templates/AddDishTemplate.html'
     ],
 
     function(_,
@@ -26,7 +27,8 @@ define([
         DishesTemplate,
         EditDishTemplate,
         CategoriesTemplate,
-        DishRowTemplate
+        DishRowTemplate,
+        AddDishTemplate
     ) {
         return Backbone.View.extend({
 
@@ -62,20 +64,37 @@ define([
             },
 
             store: function(event) {
-                event.preventDefault();
-                var data = form2js('create_menu_form', '.', true);
-                this.model = new DishesModel(data);
+                var data = form2js('update_menu_form', '.', false);
+                this.checkFormDish(data);
+                var model = new DishesModel(data);
+                var self = this;
+                var isSave = model.save({},{
+                    success: function(m, response) {
+                        if(isSave) { 
+                            if(parseInt(data.id_category) === parseInt(dishes.id)) {                        
+                                model.set('id', parseInt(response));
+                                if (parseInt(data.id_status) === 1) {
+                                    model.set('status', 'Active');
+                                    self.prependDishRow(model.toJSON());
+                                } else {
+                                    model.set('status', 'Inactive');
+                                    self.appendDishRow(model.toJSON());
+                                }
+                            }
+                            dishes.add(model);
+                            self.removeEditDishModal();    
+                        }                     
+                    }}); 
+            },
 
-                var jsonString = JSON.stringify(data, null, '\t');
-                console.log(jsonString);
-                this.model.save(); //Saving new dish to server
+            checkFormDish: function(data) {
+                if (data.price.charAt(0) === '.') { data.price = '0' + data.price; }
+                if (_.isNull(data.id_status)) { data.id_status = 2; }
             },
 
             saveDish: function(event) {
                 var data = form2js('update_menu_form', '.', false);
-                if (data.price.charAt(0) === '.') { data.price = '0' + data.price; }
-                if (_.isNull(data.id_status)) { data.id_status = 2; }
-                if (_.isEmpty(data.image)) { delete data.image; }
+                this.checkFormDish(data);
                 if(data.id_category != dishModel.get('id_category')){
                     if(dishModel.save(data)) {
                         dishes.remove(dishModel);
@@ -127,6 +146,9 @@ define([
                 event.target.value = statusId == 1 ? 2 : 1;
             },
 
+            prependDishRow: function(obj) {
+                $('#dishes').prepend(_.template(DishRowTemplate, obj));
+            },
             appendDishRow: function(obj) {
                 $('#dishes').append(_.template(DishRowTemplate, obj));
             },
@@ -169,19 +191,8 @@ define([
             },
 
             popUp: function(event) {
-               
-                
-                $('.popup__overlay').css('display', 'block');
-                
-                $('.popup__overlay').click(function(event) {
-                    e = event || window.event;
-                    if (e.target == this) {
-                        $('.popup__overlay').css('display', 'none');
-                    }
-                });
-                $('.popup__close').click(function() {
-                    $('.popup__overlay').css('display', 'none');
-                });
+                this.$el.append(_.template(AddDishTemplate));
+                $('#edit_dish_template').css('display', 'block');
             },
 
             searchDishes: function(event) {
