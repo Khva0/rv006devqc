@@ -200,12 +200,6 @@ define([ 'jquery', 'underscore', 'backbone',
 			$(self.el).find($(".TotalOrderPrice_" + id)).html("Total price: " + totalPrice + "$");
 		},
 		
-		cleanup: function() {
-	        this.undelegateEvents();
-	        $(this.el).empty();
-	        },
-
-
 		render : function() {
 			var self = this;
 			orders.fetch({
