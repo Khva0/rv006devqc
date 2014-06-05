@@ -202,13 +202,11 @@ define([ 'jquery', 'underscore', 'backbone',
 		},
 		
 		renderByDate : function() {
-			var self = this;
 			var InpDate = $("input[type=date]").val();
 			orders.fetch({url: "/getOrders/" + InpDate});
 		},
 		
 		render : function() {
-			var self = this;
 			orders.fetch();
 		}
 
