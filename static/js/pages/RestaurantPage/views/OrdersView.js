@@ -204,28 +204,12 @@ define([ 'jquery', 'underscore', 'backbone',
 		renderByDate : function() {
 			var self = this;
 			var InpDate = $("input[type=date]").val();
-			orders.fetch({
-				url: "/getOrders/" + InpDate,
-				success : function(orders) {
-					var template = _.template(OrdersTemplate, {
-						orders : orders,
-						role : self.role
-					});
-				}
-			});
-
+			orders.fetch({url: "/getOrders/" + InpDate});
 		},
 		
 		render : function() {
 			var self = this;
-			orders.fetch({
-				success : function(orders) {
-					var template = _.template(OrdersTemplate, {
-						orders : orders,
-						role : self.role
-					});
-				}
-			});
+			orders.fetch();
 		}
 
 	});
