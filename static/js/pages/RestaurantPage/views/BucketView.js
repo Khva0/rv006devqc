@@ -206,7 +206,7 @@ define([ 'jquery', 'underscore', 'backbone',
 					cartView.drag();
 				}
 			} catch (e) {
-				console.log(e);
+				//console.log(e);
 			}
 		}
 	});
