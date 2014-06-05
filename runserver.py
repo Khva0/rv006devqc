@@ -240,7 +240,7 @@ def orders():
         if 'username' in session and role == 2:
             orders = Manager().get_all_orders()
             data += ({"orders": orders},)
-            print data
+            #print data
             return Response(json.dumps(orders))
         #for waiter 3
         elif 'username' in session and role == 3:
@@ -254,6 +254,7 @@ def orders():
 
 @app.route('/getOrders/<date>', methods=["GET"])
 def orders_by_date(date):
+    print date
     try:
         name = session["username"]
         role = Users().get_permission(name)[0]['id_role']
@@ -261,12 +262,12 @@ def orders_by_date(date):
         session["userid"] = user_id
         data = ()
         data += ({"role": role},)
-        print name + " role = " + str(role) + " user id = " + str(user_id) + " date = " + date
+        print name + " role = " + str(role) + " user id = " + str(user_id)
         #for mnager 2
         if 'username' in session and role == 2:
             orders = Manager().get_all_orders(date)
             data += ({"orders": orders},)
-            print data
+            #print data
             return Response(json.dumps(orders))
         #for waiter 3
         elif 'username' in session and role == 3:

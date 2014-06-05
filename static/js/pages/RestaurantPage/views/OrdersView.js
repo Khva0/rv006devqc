@@ -200,6 +200,22 @@ define([ 'jquery', 'underscore', 'backbone',
 			$(self.el).find($(".TotalOrderPrice_" + id)).html("Total price: " + totalPrice + "$");
 		},
 		
+		renderByDate : function(date) {
+			var self = this;
+			var InpDate = $("input[type=date]").val();
+			orders.sync("read", orders, {
+				url: "/getOrders/" + InpDate,
+				success: function(response){
+					alert("work")
+					var template = _.template(OrdersTemplate, {
+						orders : response,
+						role : self.role
+					});
+					$(self.el).html(self.doCol(template));
+				}
+			});
+		},
+		
 		render : function() {
 			var self = this;
 			orders.fetch({
