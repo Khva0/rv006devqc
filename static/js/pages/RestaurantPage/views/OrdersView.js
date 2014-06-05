@@ -21,6 +21,7 @@ define([ 'jquery', 'underscore', 'backbone',
 		},
 
 		initialize : function() {
+			$("#setdate").click(this.renderByDate);
 			this.role = this.getCookie("role");
 			ticketsView = new TicketsView();
 			this.listenTo(orders, 'add', this.renderNewElement);
@@ -206,12 +207,10 @@ define([ 'jquery', 'underscore', 'backbone',
 			orders.fetch({
 				url: "/getOrders/" + InpDate,
 				success : function(orders) {
-					console.log(orders)
 					var template = _.template(OrdersTemplate, {
 						orders : orders,
 						role : self.role
 					});
-					$(self.el).html(self.doCol(template));
 				}
 			});
 
@@ -221,12 +220,10 @@ define([ 'jquery', 'underscore', 'backbone',
 			var self = this;
 			orders.fetch({
 				success : function(orders) {
-					console.log(orders)
 					var template = _.template(OrdersTemplate, {
 						orders : orders,
 						role : self.role
 					});
-					$(self.el).html(self.doCol(template));
 				}
 			});
 		}
