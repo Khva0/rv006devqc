@@ -200,26 +200,28 @@ define([ 'jquery', 'underscore', 'backbone',
 			$(self.el).find($(".TotalOrderPrice_" + id)).html("Total price: " + totalPrice + "$");
 		},
 		
-		renderByDate : function(date) {
+		renderByDate : function() {
 			var self = this;
 			var InpDate = $("input[type=date]").val();
-			orders.sync("read", orders, {
+			orders.fetch({
 				url: "/getOrders/" + InpDate,
-				success: function(response){
-					alert("work")
+				success : function(orders) {
+					console.log(orders)
 					var template = _.template(OrdersTemplate, {
-						orders : response,
+						orders : orders,
 						role : self.role
 					});
 					$(self.el).html(self.doCol(template));
 				}
 			});
+
 		},
 		
 		render : function() {
 			var self = this;
 			orders.fetch({
 				success : function(orders) {
+					console.log(orders)
 					var template = _.template(OrdersTemplate, {
 						orders : orders,
 						role : self.role
