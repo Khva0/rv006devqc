@@ -252,6 +252,32 @@ def orders():
     return render_template('index.html')
 
 
+@app.route('/getOrders/<date>', methods=["GET"])
+def orders_by_date(date):
+    try:
+        name = session["username"]
+        role = Users().get_permission(name)[0]['id_role']
+        user_id = Manager().get_user_id(name)
+        session["userid"] = user_id
+        data = ()
+        data += ({"role": role},)
+        print name + " role = " + str(role) + " user id = " + str(user_id) + " date = " + date
+        #for mnager 2
+        if 'username' in session and role == 2:
+            orders = Manager().get_all_orders(date)
+            data += ({"orders": orders},)
+            print data
+            return Response(json.dumps(orders))
+        #for waiter 3
+        elif 'username' in session and role == 3:
+            orders = Waiter().get_orders(user_id)
+            return Response(json.dumps(orders))
+        print "!!!NOT IN SESSION!!!"
+    except Exception, e:
+            print e
+    return render_template('index.html')
+
+
 @app.route('/addOrder', methods=["POST"])
 def add_order():
     try:
@@ -297,7 +323,7 @@ def tickets_get(order_id):
     try:
         name = session["username"]
         role = Users().get_permission(name)[0]['id_role']
-        
+
         order = Manager().get_full_order(order_id)
         return Response(json.dumps(order))
     except Exception, e:
