@@ -85,7 +85,7 @@ define([ 'jquery', 'underscore', 'backbone',
 							tickets : order.get("Tickets"),
 							order : order
 						});
-						self.$el.find(".BtnCornerDivide").hide();
+						$(self.el).find(".BtnCornerDivide").hide();
 					}
 				})
 				
@@ -114,17 +114,16 @@ define([ 'jquery', 'underscore', 'backbone',
 									tickets : order.get("Tickets"),
 									order : order
 								});
-								self.$el.find(".closeTicket").hide();
-								self.$el.find(".ticketCountInOrder").prop(
+								$(self.el).find(".closeTicket").hide();
+								$(self.el).find(".ticketCountInOrder").prop(
 										'disabled', true);
-								self.$el.find(".BtnCornerDivide").hide();
+								$(self.el).find(".BtnCornerDivide").hide();
 
 							}
 						})
 			} else {
 
-			}
-			;
+			};
 			$(div).toggle("slow");
 		},
 
@@ -150,7 +149,7 @@ define([ 'jquery', 'underscore', 'backbone',
 				role : self.role
 			});
 			if (window.location.hash == "#orders") {
-				self.$el.html(self.doCol(template));
+				$(self.el).html(self.doCol(template));
 				}
 			
 
@@ -172,10 +171,10 @@ define([ 'jquery', 'underscore', 'backbone',
 									tickets : order.get("Tickets"),
 									order : order
 								});
-								self.$el.find(".closeTicket").hide();
-								self.$el.find(".ticketCountInOrder").prop(
+								$(self.el).find(".closeTicket").hide();
+								$(self.el).find(".ticketCountInOrder").prop(
 										'disabled', true);
-								self.$el.find(".BtnCornerDivide").show();
+								$(self.el).find(".BtnCornerDivide").show();
 
 							}
 						})
@@ -198,8 +197,14 @@ define([ 'jquery', 'underscore', 'backbone',
 			_.each(orders.get(id).get("Tickets").toJSON(), function(model) {
 				  totalPrice += model.price * model.count;
 				})
-			self.$el.find($(".TotalOrderPrice_" + id)).html("Total price: " + totalPrice + "$");
+			$(self.el).find($(".TotalOrderPrice_" + id)).html("Total price: " + totalPrice + "$");
 		},
+		
+		cleanup: function() {
+	        this.undelegateEvents();
+	        $(this.el).empty();
+	        },
+
 
 		render : function() {
 			var self = this;
@@ -209,7 +214,7 @@ define([ 'jquery', 'underscore', 'backbone',
 						orders : orders,
 						role : self.role
 					});
-					self.$el.html(self.doCol(template));
+					$(self.el).html(self.doCol(template));
 				}
 			});
 		}

@@ -31,20 +31,25 @@ define([
 
 
             index: function() {
+            	if(typeof loginView === "undefined"){
                 loginView = new LoginView();
+                };
 
                 loginView.render();
             },
             admin: function() {
-
+            	if(typeof adminView === "undefined"){
                 adminView = new AdminView();
+                };
                 adminView.render();
                 //usersView = new UserDataView;
                 //usersView.render();
             },
 
             edit_user: function(id) {
+            	if(typeof editUserView === "undefined"){
                 editUserView = new EditUserView();
+                };
                 editUserView.render({
                     id: id
                 });
@@ -52,13 +57,17 @@ define([
             },
 
             cooker: function() {
+            	if(typeof cookerView === "undefined"){
                 cookerView = new CookerView();
+                };
                 cookerView.render();
             },
 
             edit_dish: function(id) {
                 console.log(id);
+                if(typeof editDishView === "undefined"){
                 editDishView = new EditDishView();
+                };
                 editDishView.render({
                     id: id
                 });
@@ -66,14 +75,18 @@ define([
 
             waiter: function() {
             	if (this.getCookie("role") == 2 || this.getCookie("role") == 3) {
+            		if(typeof waiterView === "undefined"){
                     waiterView = new WaiterView();
+                    };
                     waiterView.render();					
 				}
             },
 
             orders: function() {
             	if (this.getCookie("role") == 2 || this.getCookie("role") == 3) {
+            		if(typeof ordersView === "undefined"){
                     ordersView = new OrdersView();
+            		};
                     ordersView.render();
 				}
             },
@@ -82,7 +95,9 @@ define([
 
             edit_order: function(id) {
             	if (this.getCookie("role") == 2 || this.getCookie("role") == 3) {
+            		if(typeof ticketsView === "undefined"){
                     ticketsView = new TicketsView();
+                    };
                     ticketsView.render({
                         id: id
                     });
