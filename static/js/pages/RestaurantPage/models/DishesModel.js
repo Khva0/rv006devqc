@@ -7,8 +7,7 @@ define(["underscore", "backbone", "jquery"],
 
         validate: function(attrs, options) {
         	var regFloat = new RegExp("^[0-9]*[.][0-9]+$");
-        	var regInteger = new RegExp("^[0-9]$");
-        	alert(regInteger.exec(attrs.count));
+        	var regInteger = new RegExp("^[0-9]+$");
         	var isError = false;
         	if (_.isEmpty(attrs.name)) {
 				isError = true;
@@ -18,7 +17,7 @@ define(["underscore", "backbone", "jquery"],
 				isError = true;
 				$('#dish_price').removeClass('success').addClass('danger');
         	} else $('#dish_price').removeClass('danger').addClass('success');
-        	if (_.isEmpty(attrs.count)) {
+        	if (_.isEmpty(attrs.count) || _.isNull(regInteger.exec(attrs.count))) {
 				isError = true;
 				$('#dish_count').removeClass('success').addClass('danger');
         	} else $('#dish_count').removeClass('danger').addClass('success');
