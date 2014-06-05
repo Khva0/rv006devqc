@@ -189,9 +189,7 @@ def get_menu_by_category(id_category):
 
 @app.route('/dishes', methods=['POST'])
 def add_item_menu():
-    print(request.json)
-    Cooker().add_item_menu(get_dict(request.json))
-    return 'ok'
+    return str(Cooker().add_item_menu(get_dict(request.json)))
 
 
 @app.route('/dishes/<int:id_dish>', methods=['DELETE'])
