@@ -4,6 +4,7 @@ define([
         "jquery",
         "form2js",
         "pages/RestaurantPage/models/DishesModel",
+        "pages/RestaurantPage/models/CategoryModel",
         "pages/RestaurantPage/collections/CategoriesCollection",
         "pages/RestaurantPage/collections/DishesCollection",
         "pages/RestaurantPage/collections/StatusesCollection",
@@ -12,7 +13,9 @@ define([
         'text!pages/RestaurantPage/templates/EditDishTemplate.html',
         'text!pages/RestaurantPage/templates/CategoriesTemplate.html',
         'text!pages/RestaurantPage/templates/DishRowTemplate.html',
-        'text!pages/RestaurantPage/templates/AddDishTemplate.html'
+        'text!pages/RestaurantPage/templates/AddDishTemplate.html',
+        'text!pages/RestaurantPage/templates/AddCategoryTemplate.html',
+        'text!pages/RestaurantPage/templates/CategoryBlockTemplate.html'
     ],
 
     function(_,
@@ -20,6 +23,7 @@ define([
         $,
         form2js,
         DishesModel,
+        CategoryModel,
         CategoriesCollection,
         DishesCollection,
         StatusesCollection,
@@ -28,7 +32,9 @@ define([
         EditDishTemplate,
         CategoriesTemplate,
         DishRowTemplate,
-        AddDishTemplate
+        AddDishTemplate,
+        AddCategoryTemplate,
+        CategoryBlockTemplate
     ) {
         return Backbone.View.extend({
 
@@ -216,42 +222,37 @@ define([
 
             },
 
+            /*Method for add new category and view her on page*/
             addCat: function(event) {
-                event.preventDefault();
                 var data = form2js('catform', '.', true);
-                this.model = new CategoryModel(data); 
-                var jsonString = JSON.stringify(data, null, '\t');
-                console.log(jsonString);
-                this.model.save({
- 
+                var categoryModel = new CategoryModel(data); 
+                var isSave = categoryModel.save({},{
+                    success: function(model, response) {
+                        if (isSave) {
+                            categoryModel.set('id', parseInt(response));
+                            categories.add(categoryModel);
+                            $('.cat__overlay').remove();
+                            $('#category_block').append(_.template(CategoryBlockTemplate, categoryModel.toJSON()));
+                        }
+                    }
                 });
             },
   
             catPopUp: function(event) {
-                
-                
+                this.$el.append(_.template(AddCategoryTemplate));                
                 $('.cat__overlay').css('display', 'block');
-               
-                $('.cat__overlay').click(function(event) {
-                    e = event || window.event;
-                    if (e.target == this) {
-                        $('.cat__overlay').css('display', 'none');
-                    }
-                });
-                $('.cat__close').click(function() {
-                    $('.cat__overlay').css('display', 'none');
-                });
               },
 
-              addDialog: function(event) {
-              	$('#popup__toggle').css('display', 'inline-block');
+            addDialog: function(event) {
+            	$('#popup__toggle').css('display', 'inline-block');
                 $('#cat__toggle').css('display', 'inline-block');
-              },
+            },
 
-              remDialog: function(event) {
+            remDialog: function(event) {
                 $('#popup__toggle').css('display', 'none');
                 $('#cat__toggle').css('display', 'none');
-              },
+            },
+
             render: function() {
                 var self = this;
                 $.when(categories.fetch()).done(function() {
