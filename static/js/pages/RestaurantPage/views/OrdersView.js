@@ -17,7 +17,11 @@ define([ 'jquery', 'underscore', 'backbone',
 			'click .EditOrderBtn' : 'openCloseEdit',
 			'click span' : 'openClose',
 			'click .DivideOrderBtn' : 'divideOrder',
-			'change input.ticketCountInOrder[type=text]' : 'calcTotalPrice'
+			'change input.ticketCountInOrder[type=text]' : 'calcTotalPrice',
+			
+			/****MENU****/
+			'click #menu_trigger': 'routeWaiter'
+			/****MENU****/
 		},
 
 		initialize : function() {
@@ -28,6 +32,12 @@ define([ 'jquery', 'underscore', 'backbone',
 			this.listenTo(orders, 'destroy', this.renderNewElement);
 
 		},
+		
+		/****MENU****/
+		routeWaiter: function(){
+			window.location.hash = "#waiter"
+		},
+		/****MENU****/
 
 		closeOrder : function(event) {
 			$(this.el).find("#Order_" + event.target.value).fadeOut(

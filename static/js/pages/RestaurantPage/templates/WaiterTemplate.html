@@ -16,44 +16,35 @@
 
 
 
-
-
-
-
-
-
-
-
-
 <!-- FOR MENU START -->
 <div class="line_up dishes" id="dishes"></div>
 <div class="menu__overlay">
-	<div class="menu_popup">
-		<div id="mainmenu">
-			<img src="/static/img/logo_actions.png" alt="none" width="20%">
-		</div>
-		<div class="medium success btn centered" id="menu_trigger">New
-			order</div>
-		<div class="medium success btn centered" id="orders_trigger">
-			View orders</div>
+    <div class="menu_popup">
+        <div id="mainmenu">
+            <img src="/static/img/logo_actions.png" alt="none" width="20%">
+        </div>
+        <div class="medium success btn centered" id="menu_trigger">New
+            order</div>
+        <div class="medium success btn centered" id="orders_trigger">
+            View orders</div>
 
 
-	</div>
+    </div>
 </div>
 
 <script type="text/javascript">
-	p = $('.menu__overlay');
-	$('#menu__toggle').click(function() {
-		p.css('display', 'block');
-	});
-	p.click(function(event) {
-		e = event || window.event;
-		if (e.target == this) {
-			$(p).css('display', 'none');
-		}
-	});
-	$('.popup__close').click(function() {
-		p.css('display', 'none');
-	});
+    p = $('.menu__overlay');
+    $('#menu__toggle').click(function() {
+        p.css('display', 'block');
+    });
+    p.click(function(event) {
+        e = event || window.event;
+        if (e.target == this) {
+            $(p).css('display', 'none');
+        }
+    });
+    $('.popup__close').click(function() {
+        p.css('display', 'none');
+    });
 </script>
 <!-- FOR MENU END -->
