@@ -213,7 +213,6 @@ define([ 'jquery', 'underscore', 'backbone',
 						orders : orders,
 						role : self.role
 					});
-					$(self.el).html(self.doCol(template));
 				}
 			});
 
