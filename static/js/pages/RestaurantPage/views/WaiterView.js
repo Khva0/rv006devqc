@@ -14,19 +14,26 @@ define([
             events:{
                 'click #view_category': 'viewCategory',
                 'click .imgToAddDishToCart': 'addDishToCart',
+                
+                
+                /*
                 'mouseenter #menu_trigger': 'addDialog',
                 'mouseleave #menu_trigger': 'remDialog',
                 'mouseenter #popup__toggle': 'addDialog',
                 'mouseleave #popup__toggle': 'remDialog',
                 'mouseenter #cat__toggle': 'addDialog',
-                'mouseleave #cat__toggle': 'remDialog'
+                'mouseleave #cat__toggle': 'remDialog',
+                */
+                
+                
+                
             },
 
             el: $('#content'),
 
             initialize: function() {
+            	$("#menu_trigger").click(function(){window.location.hash = "#orders"});
                 categories = new CategoriesCollection();
-
             },
 
             isSelectedCategory: function(val) {
