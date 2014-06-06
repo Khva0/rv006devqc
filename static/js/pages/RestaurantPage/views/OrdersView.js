@@ -153,7 +153,6 @@ define([ 'jquery', 'underscore', 'backbone',
 			if (window.location.hash == "#orders") {
 				$(self.el).html(self.doCol(template));
 			}
-
 		},
 
 		divideOrder : function(event) {
@@ -209,13 +208,12 @@ define([ 'jquery', 'underscore', 'backbone',
 			orders.fetch({
 				url : "/getOrders/" + InpDate,
 				success : function(orders) {
-					var template = _.template(OrdersTemplate, {
-						orders : orders,
-						role : self.role
-					});
+					if (orders.length == 0) {
+						console.log("orders = 0");
+						$("#content").html('<div id="NotFound" style="text-align: center;"><img src="static/img/notfound3.jpg"></div>');
+					}
 				}
 			});
-
 		},
 
 		render : function() {
