@@ -17,7 +17,7 @@ define([ 'jquery', 'underscore', 'backbone',
 			'click .EditOrderBtn' : 'openCloseEdit',
 			'click span' : 'openClose',
 			'click .DivideOrderBtn' : 'divideOrder',
-			'change input.ticketCountInOrder[type=text]':  'calcTotalPrice'
+			'change input.ticketCountInOrder[type=text]' : 'calcTotalPrice'
 		},
 
 		initialize : function() {
@@ -89,11 +89,11 @@ define([ 'jquery', 'underscore', 'backbone',
 						$(self.el).find(".BtnCornerDivide").hide();
 					}
 				})
-				
+
 				console.log("open");
 			} else {
 				event.target.innerText = "Edit";
-				
+
 				console.log("close");
 			}
 			$(div).toggle("slow");
@@ -124,7 +124,8 @@ define([ 'jquery', 'underscore', 'backbone',
 						})
 			} else {
 
-			};
+			}
+			;
 			$(div).toggle("slow");
 		},
 
@@ -151,8 +152,7 @@ define([ 'jquery', 'underscore', 'backbone',
 			});
 			if (window.location.hash == "#orders") {
 				$(self.el).html(self.doCol(template));
-				}
-			
+			}
 
 		},
 
@@ -185,29 +185,51 @@ define([ 'jquery', 'underscore', 'backbone',
 			;
 			$(div).toggle("slow");
 		},
-		
-		getCookie: function(name) {
-			  match = document.cookie.match(new RegExp(name + '=([^;]+)'));
-			  if (match) return parseInt(match[1]);
-			},
-			
-		calcTotalPrice: function(event){
+
+		getCookie : function(name) {
+			match = document.cookie.match(new RegExp(name + '=([^;]+)'));
+			if (match)
+				return parseInt(match[1]);
+		},
+
+		calcTotalPrice : function(event) {
 			var self = this;
 			var totalPrice = 0;
-			var id = parseInt(event.currentTarget.className.match(/\d+$/)[0]); 
+			var id = parseInt(event.currentTarget.className.match(/\d+$/)[0]);
 			_.each(orders.get(id).get("Tickets").toJSON(), function(model) {
-				  totalPrice += model.price * model.count;
-				})
-			$(self.el).find($(".TotalOrderPrice_" + id)).html("Total price: " + totalPrice + "$");
+				totalPrice += model.price * model.count;
+			})
+			$(self.el).find($(".TotalOrderPrice_" + id)).html(
+					"Total price: " + totalPrice + "$");
 		},
-		
+
 		renderByDate : function() {
+			var self = this;
 			var InpDate = $("input[type=date]").val();
-			orders.fetch({url: "/getOrders/" + InpDate});
+			orders.fetch({
+				url : "/getOrders/" + InpDate,
+				success : function(orders) {
+					var template = _.template(OrdersTemplate, {
+						orders : orders,
+						role : self.role
+					});
+					$(self.el).html(self.doCol(template));
+				}
+			});
+
 		},
-		
+
 		render : function() {
-			orders.fetch();
+			var self = this;
+			orders.fetch({
+				success : function(orders) {
+					var template = _.template(OrdersTemplate, {
+						orders : orders,
+						role : self.role
+					});
+					$(self.el).html(self.doCol(template));
+				}
+			});
 		}
 
 	});
