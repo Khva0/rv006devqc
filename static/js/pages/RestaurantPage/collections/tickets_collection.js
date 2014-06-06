@@ -13,16 +13,14 @@ define([
 		model: Ticket,
 
 	    initialize:
-	        function()
+	        function(event)
 	        {
 	            //this.on( "change", this.changeCount, this);
 	            this.on( "change:status", this.changeStatus, this);
 	            this.on( "remove", this.removeModel, this);
 	            
-	            /***ANIMATION TEST***/
-				 // Display a loading indication whenever the Collection is fetching.
-			    /*this.on("request", function() {
-			    	$("#content").html('<div style="text-align: center;"><img src="http://www.mcevoyranch.com/skin/frontend/mcevoy/default/images/loading.gif"></div>');
+			    /*this.on("request", function(event) {
+			      $("#Order_755").html('<div style="text-align: center;"><img src="http://www.mcevoyranch.com/skin/frontend/mcevoy/default/images/loading.gif"></div>');
 			    }, this);*/
 	        },
 	        changeCount: function(model, val, options){
