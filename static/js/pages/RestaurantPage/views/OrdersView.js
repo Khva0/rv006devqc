@@ -30,7 +30,12 @@ define([ 'jquery', 'underscore', 'backbone',
 			ticketsView = new TicketsView();
 			this.listenTo(orders, 'add', this.renderNewElement);
 			this.listenTo(orders, 'destroy', this.renderNewElement);
-
+			
+			/***ANIMATION TEST***/
+			 // Display a loading indication whenever the Collection is fetching.
+		    orders.on("request", function() {
+		    	$("#content").html('<div style="text-align: center;"><img src="http://za.keter.com/files/images/global/themes/7ECC14/product__showcase__loading_animation.gif"></div>');
+		    }, this);
 		},
 		
 		/****MENU****/

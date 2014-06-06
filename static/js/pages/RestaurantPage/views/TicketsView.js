@@ -19,9 +19,9 @@ var TicketsView = Backbone.View.extend({
     	'click .BtnCornerDivide': 'getTicketAndAddToBucket',
       },
       
-      initialize: function() {
+      initialize: function(event) {
           //tickets = new Tickets();
-          
+         
       },
       
       closeTicket: function(event) {
