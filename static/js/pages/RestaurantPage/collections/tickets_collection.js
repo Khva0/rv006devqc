@@ -20,7 +20,7 @@ define([
 	            this.on( "remove", this.removeModel, this);
 	            
 			    /*this.on("request", function(event) {
-			      $("#Order_755").html('<div style="text-align: center;"><img src="http://www.mcevoyranch.com/skin/frontend/mcevoy/default/images/loading.gif"></div>');
+			      $("#").html('<div style="text-align: center;"><img src="http://www.mcevoyranch.com/skin/frontend/mcevoy/default/images/loading.gif"></div>');
 			    }, this);*/
 	        },
 	        changeCount: function(model, val, options){
