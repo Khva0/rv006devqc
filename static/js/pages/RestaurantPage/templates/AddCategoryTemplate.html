@@ -1,0 +1,27 @@
+<div class="cat__overlay">
+  <div class="cat_popup">
+    <div class="title">
+      <span>Add Category</span>
+    </div>
+    <div class="row" style="background-color: white">
+      <form method="post" name="catform" id="catform">
+        <ul class="two_up tiles" style="padding-left: 10px; padding-top: 20px">
+          <li class="four columns">
+            <label>New category<sup>*</sup></label>
+          </li>
+          <li class="field seven columns" id="add_name_category">
+            <input class="input" type="text" name="category" placeholder="Input category"/>
+          </li>
+        </ul>
+      </form>
+      <div  class="actions" style="margin-top: -13px; padding-bottom: 15px">
+        <div class="medium success btn">
+          <input type="button" value="Cancel" onclick="$('.cat__overlay').remove();" />
+        </div>
+        <div class="medium success btn">
+          <input type="button" value="Add category" id="addCat" />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
