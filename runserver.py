@@ -206,8 +206,7 @@ def get_all_categories():
 
 @app.route('/categories', methods=['POST'])
 def create_category():
-    Cooker().add_item_category(get_dict(request.json))
-    return '{"ok":"category add"}'
+    return str(Cooker().add_item_category(get_dict(request.json)))
 
 
 @app.route('/cookerlist', methods=['GET'])
