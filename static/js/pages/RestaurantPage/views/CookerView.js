@@ -57,7 +57,11 @@ define([
                 'mouseenter #popup__toggle': 'addDialog',
                 'mouseleave #popup__toggle': 'remDialog',
                 'mouseenter #cat__toggle': 'addDialog',
-                'mouseleave #cat__toggle': 'remDialog'
+                'mouseleave #cat__toggle': 'remDialog',
+                'mouseenter #bulk_trigger': 'bulkDialog',
+                'mouseleave #bulk_trigger': 'remBulkDialog',
+                'mouseenter #remove_selected, #change_status, #change_category': 'bulkDialog',
+                'mouseleave #remove_selected, #change_status, #change_category': 'remBulkDialog'
             },
 
             el: '#content',
@@ -246,6 +250,18 @@ define([
             addDialog: function(event) {
             	$('#popup__toggle').css('display', 'inline-block');
                 $('#cat__toggle').css('display', 'inline-block');
+            },
+
+            bulkDialog: function(event) {
+                $('#remove_selected').css('display', 'inline-block');
+                $('#change_status').css('display', 'inline-block');
+                $('#change_category').css('display', 'inline-block');
+            },
+
+            remBulkDialog: function(event) {
+                $('#remove_selected').css('display', 'none');
+                $('#change_status').css('display', 'none');
+                $('#change_category').css('display', 'none');
             },
 
             remDialog: function(event) {
