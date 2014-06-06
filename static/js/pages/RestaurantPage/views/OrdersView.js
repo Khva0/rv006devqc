@@ -34,7 +34,7 @@ define([ 'jquery', 'underscore', 'backbone',
 			/***ANIMATION TEST***/
 			 // Display a loading indication whenever the Collection is fetching.
 		    orders.on("request", function() {
-		    	$("#content").html('<div style="text-align: center;"><img src="http://za.keter.com/files/images/global/themes/7ECC14/product__showcase__loading_animation.gif"></div>');
+		    	$("#content").html('<div style="text-align: center;"><img src="http://www.mcevoyranch.com/skin/frontend/mcevoy/default/images/loading.gif"></div>');
 		    }, this);
 		},
 		
