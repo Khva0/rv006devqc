@@ -24,10 +24,13 @@ class  Manager(Waiter):
             return tickets
         return None
     
-    def get_all_orders(self):
+    def get_all_orders(self, Date = ''):
         """get all orders all waiters for curent date"""
-        date = datetime.datetime.now().strftime('%Y-%m-%d')
-        
+        if Date == '':
+            date = datetime.datetime.now().strftime('%Y-%m-%d')
+        else:
+            date = Date
+
         #data = "orders.id, statuses.status"
         data = "orders.id, statuses.status, CAST(Sum(tickets.price) as UNSIGNED) as TotalCount"
         #condition = "WHERE orders.id_status = statuses.id AND (orders.id_status = 4 OR orders.id_status =5) AND orders.id_user = users.id AND orders.date LIKE '{0}%'".format(date)

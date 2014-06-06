@@ -21,6 +21,7 @@ define([ 'jquery', 'underscore', 'backbone',
 		},
 
 		initialize : function() {
+			$("#setdate").click(this.renderByDate);
 			this.role = this.getCookie("role");
 			ticketsView = new TicketsView();
 			this.listenTo(orders, 'add', this.renderNewElement);
@@ -85,7 +86,7 @@ define([ 'jquery', 'underscore', 'backbone',
 							tickets : order.get("Tickets"),
 							order : order
 						});
-						self.$el.find(".BtnCornerDivide").hide();
+						$(self.el).find(".BtnCornerDivide").hide();
 					}
 				})
 				
@@ -114,17 +115,16 @@ define([ 'jquery', 'underscore', 'backbone',
 									tickets : order.get("Tickets"),
 									order : order
 								});
-								self.$el.find(".closeTicket").hide();
-								self.$el.find(".ticketCountInOrder").prop(
+								$(self.el).find(".closeTicket").hide();
+								$(self.el).find(".ticketCountInOrder").prop(
 										'disabled', true);
-								self.$el.find(".BtnCornerDivide").hide();
+								$(self.el).find(".BtnCornerDivide").hide();
 
 							}
 						})
 			} else {
 
-			}
-			;
+			};
 			$(div).toggle("slow");
 		},
 
@@ -150,7 +150,7 @@ define([ 'jquery', 'underscore', 'backbone',
 				role : self.role
 			});
 			if (window.location.hash == "#orders") {
-				self.$el.html(self.doCol(template));
+				$(self.el).html(self.doCol(template));
 				}
 			
 
@@ -172,10 +172,10 @@ define([ 'jquery', 'underscore', 'backbone',
 									tickets : order.get("Tickets"),
 									order : order
 								});
-								self.$el.find(".closeTicket").hide();
-								self.$el.find(".ticketCountInOrder").prop(
+								$(self.el).find(".closeTicket").hide();
+								$(self.el).find(".ticketCountInOrder").prop(
 										'disabled', true);
-								self.$el.find(".BtnCornerDivide").show();
+								$(self.el).find(".BtnCornerDivide").show();
 
 							}
 						})
@@ -198,20 +198,16 @@ define([ 'jquery', 'underscore', 'backbone',
 			_.each(orders.get(id).get("Tickets").toJSON(), function(model) {
 				  totalPrice += model.price * model.count;
 				})
-			self.$el.find($(".TotalOrderPrice_" + id)).html("Total price: " + totalPrice + "$");
+			$(self.el).find($(".TotalOrderPrice_" + id)).html("Total price: " + totalPrice + "$");
 		},
-
+		
+		renderByDate : function() {
+			var InpDate = $("input[type=date]").val();
+			orders.fetch({url: "/getOrders/" + InpDate});
+		},
+		
 		render : function() {
-			var self = this;
-			orders.fetch({
-				success : function(orders) {
-					var template = _.template(OrdersTemplate, {
-						orders : orders,
-						role : self.role
-					});
-					self.$el.html(self.doCol(template));
-				}
-			});
+			orders.fetch();
 		}
 
 	});

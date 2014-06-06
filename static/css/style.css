@@ -38,6 +38,7 @@ body {
     left: 300px;
     width: :60px;
     bottom: 54px;
+    cursor: pointer;
 }
 
 .footer {
