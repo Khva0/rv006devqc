@@ -8,8 +8,6 @@ define([ 'jquery', 'underscore', 'backbone',
 		model : Order,
 
 		initialize : function() {
-			/***ANIMATION TEST***/
-			 // Display a loading indication whenever the Collection is fetching.
 		    this.on("request", function() {
 		    	$("#content").html('<div style="text-align: center;"><img src="http://www.mcevoyranch.com/skin/frontend/mcevoy/default/images/loading.gif"></div>');
 		    }, this);
