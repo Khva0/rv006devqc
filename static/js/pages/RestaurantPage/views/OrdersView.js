@@ -31,6 +31,18 @@ define([ 'jquery', 'underscore', 'backbone',
 			this.listenTo(orders, 'add', this.renderNewElement);
 			this.listenTo(orders, 'destroy', this.renderNewElement);
 			
+		    /***********************/
+		    window.addEventListener('load', function () {
+		    	  if (Notification && Notification.permission !== "granted") {
+		    	    Notification.requestPermission(function (status) {
+		    	      if (Notification.permission !== status) {
+		    	        Notification.permission = status;
+		    	      }
+		    	    });
+		    	  }
+		    });
+		    /**********************/
+			
 		},
 		
 		/****MENU****/
@@ -38,6 +50,36 @@ define([ 'jquery', 'underscore', 'backbone',
 			window.location.hash = "#waiter"
 		},
 		/****MENU****/
+		notificationBrowser: function(totalCount){
+			var body = "Total count: " + totalCount + "$";
+			var icon = "http://bit.ly/1paflMZ";
+		    if (Notification && Notification.permission === "granted") {
+		      var n = new Notification("Added new order!",
+		    		  {
+		    	    body : body,
+		    	    icon : icon
+		    	}
+		      );
+		    }
+		    else if (Notification && Notification.permission !== "denied") {
+		      Notification.requestPermission(function (status) {
+		        if (Notification.permission !== status) {
+		          Notification.permission = status;
+		        }
+		        if (status === "granted") {
+		          var n = new Notification("Added new order!", 
+		        		  {
+			    	    body : body,
+			    	    icon : icon
+			    	}
+		          );
+		          n.onshow = function () { 
+		        	  setTimeout(n.close, 2000); 
+		        	}
+		        }
+		      });
+		    }
+		    },
 
 		closeOrder : function(event) {
 			$(this.el).find("#Order_" + event.target.value).fadeOut(
@@ -72,7 +114,7 @@ define([ 'jquery', 'underscore', 'backbone',
 						url : "/deleteOrder/" + orderId
 					});
 
-				} catch (e) {
+				} catch (e) {this.tot
 					// TODO: handle exception
 				}
 

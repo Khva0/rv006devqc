@@ -12,7 +12,7 @@ define([ 'jquery', 'underscore', 'backbone',
 		    	$("#content").html('<div style="text-align: center;"><img src="http://www.mcevoyranch.com/skin/frontend/mcevoy/default/images/loading.gif"></div>');
 		    }, this);
 		},
-
+		
 		comparator : function(a, b) {
 
 			if (a.get("status") == "Pending" && b.get("status") == "Closed") {

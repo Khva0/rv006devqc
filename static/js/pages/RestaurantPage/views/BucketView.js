@@ -49,6 +49,7 @@ define([ 'jquery', 'underscore', 'backbone',
 		},
 
 		cartAddOrder : function() {
+			var self = this;
 			if (bucket.length > 0) {
 				bucket.sync("create", bucket, {
 					success : function(response) {
@@ -56,7 +57,9 @@ define([ 'jquery', 'underscore', 'backbone',
 							id : response,
 							status : "Pending"
 						});
-
+						
+						var totPrice = cartView.calcTotalPrice();
+						ordersView.notificationBrowser(totPrice);
 						bucket.reset();
 						tickets.reset();
 						cartView.render();
@@ -128,8 +131,19 @@ define([ 'jquery', 'underscore', 'backbone',
 			var count = bucket.at(ticketId).get("count");
 			var price = bucket.at(ticketId).get("price");
 			var totalPrice = count * price;
+			self.totPrice = totalPrice;
 			self.$el.find($("#cartTicketToDelete_" + ticketId)).find(
 					$(".ticketTotalPrice")).html("Total " + totalPrice + "$");
+		},
+		
+		calcTotalPrice : function(id) {
+			var self = this;
+			var totPrice = null;
+			_.each(bucket.toJSON(), function(model) {
+				totPrice += model.price * model.count;
+			});
+			console.log(totPrice);
+			return totPrice;
 		},
 
 		drag : function() {
