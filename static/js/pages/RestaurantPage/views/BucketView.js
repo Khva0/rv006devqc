@@ -142,7 +142,7 @@ define([ 'jquery', 'underscore', 'backbone',
 			_.each(bucket.toJSON(), function(model) {
 				totPrice += model.price * model.count;
 			});
-			console.log(totPrice);
+			//console.log(totPrice);
 			return totPrice;
 		},
 

@@ -216,16 +216,7 @@ def cooker_by_categories():
     return json.dumps(dishes, categories)
 
 
-def permission_decorator(val):
-    def create_decorator(fn):
-        def decorate():
-            fn()
-        return decorate
-    return create_decorator
-
-
 @app.route('/getOrders', methods=["GET"])
-#@permission_decorator("id")
 def orders():
     try:
         name = session["username"]
