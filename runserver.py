@@ -91,7 +91,8 @@ def login():
                 response.set_cookie('role', "3")
                 return response
         else:
-            return '{"error":"login"}'
+            #return '{"error":"login"}'
+            return make_response(redirect("/"))
 
 
 @app.route('/logout')
