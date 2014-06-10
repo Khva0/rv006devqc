@@ -71,7 +71,10 @@ def login():
         if Users().login(json.loads(json.dumps(request.form, separators=(',', ':')))):
             session['username'] = request.form['username']
             if (Users().get_permission(json.loads(json.dumps(request.form, separators=(',', ':')))['username'])[0]['id_role']) == 1:
-                return redirect(url_for('admin_usr'))
+                session['role'] = 1
+                response = make_response(redirect("/#admin"))
+                response.set_cookie('role', "2")
+                return response
             if (Users().get_permission(json.loads(json.dumps(request.form, separators=(',', ':')))['username'])[0]['id_role']) == 2:
                 session['role'] = 2
                 response = make_response(redirect("/#orders"))
@@ -83,7 +86,10 @@ def login():
                 response.set_cookie('role', "3")
                 return response
             if (Users().get_permission(json.loads(json.dumps(request.form, separators=(',', ':')))['username'])[0]['id_role']) == 4:
-                return redirect(url_for('cooker_usr'))
+                session['role'] = 4
+                response = make_response(redirect("/#cooker"))
+                response.set_cookie('role', "3")
+                return response
         else:
             return '{"error":"login"}'
 
