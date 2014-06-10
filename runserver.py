@@ -246,8 +246,7 @@ def orders():
         print "!!!NOT IN SESSION!!!"
     except Exception, e:
             print e
-    return render_template('index.html')
-
+    return Response({"error": "denided"})
 
 @app.route('/getOrders/<date>', methods=["GET"])
 def orders_by_date(date):
@@ -261,7 +260,7 @@ def orders_by_date(date):
         data += ({"role": role},)
         print name + " role = " + str(role) + " user id = " + str(user_id)
         #for mnager 2
-        if 'username' in session and role == 2:
+        if 'username' in session and role == 2 or role == 3:
             orders = Manager().get_all_orders(date)
             data += ({"orders": orders},)
             #print data
@@ -273,7 +272,7 @@ def orders_by_date(date):
         print "!!!NOT IN SESSION!!!"
     except Exception, e:
             print e
-    return render_template('index.html')
+    return Response({"error": "denided"})
 
 
 @app.route('/addOrder', methods=["POST"])
@@ -287,7 +286,7 @@ def add_order():
         return Response(str(orderId))
     except Exception, e:
             print e
-    return render_template('index.html')
+    return Response({"error": "denided"})
 
 
 @app.route('/getOrders/<int:order_id>', methods=["DELETE"])
@@ -300,7 +299,7 @@ def close_order(order_id):
         return Response(None)
     except Exception, e:
             print e
-    return render_template('index.html')
+    return Response({"error": "denided"})
 
 
 @app.route('/deleteOrder/<int:order_id>', methods=["DELETE"])
@@ -313,7 +312,7 @@ def remove_order(order_id):
         return Response(None)
     except Exception, e:
             print e
-    return render_template('index.html')
+    return Response({"error": "denided"})
 
 
 @app.route('/getTickets/<int:order_id>', methods=["GET"])
@@ -326,7 +325,7 @@ def tickets_get(order_id):
         return Response(json.dumps(order))
     except Exception, e:
             print e
-    return render_template('index.html')
+    return Response({"error": "denided"})
 
 
 @app.route('/getTickets/<int:ticket_id>', methods=["PUT"])
@@ -339,7 +338,7 @@ def tickets_put(ticket_id):
         return Response(None)
     except Exception, e:
             print e
-    return render_template('index.html')
+    return Response({"error": "denided"})
 
 
 @app.route('/getTickets/<int:ticket_id>', methods=["DELETE"])
@@ -351,7 +350,7 @@ def tickets_delete(ticket_id):
         return Response(None)
     except Exception, e:
             print e
-    return render_template('index.html')
+    return Response({"error": "denided"})
 
 
 def get_dict(multi_dict):
