@@ -79,6 +79,8 @@ define([
                     waiterView = new WaiterView();
                     };
                     waiterView.render();					
+				}else{
+					window.location.hash = "";
 				}
             },
 
@@ -88,6 +90,8 @@ define([
                     ordersView = new OrdersView();
             		};
                     ordersView.render();
+				}else{
+					window.location.hash = "";
 				}
             },
 
@@ -101,6 +105,8 @@ define([
                     ticketsView.render({
                         id: id
                     });
+				}else{
+					window.location.hash = "/#";
 				}
             },
             
