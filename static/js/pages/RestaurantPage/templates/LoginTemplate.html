@@ -1,23 +1,59 @@
    <div class="row text-center">
 
-   
        <form method="post" name="loginform" id="loginform" action = "/login">
            <fieldset>
                <legend>Please, enter your login and password</legend>
                <ul>
-               <li class="field"><label class="centered inline" for="text1">Your
+               <li class="field "><label class="centered inline" for="text1">Your
                        Login</label> <input class="wide text input" id="text1" type="text"
                    placeholder="login" name="username" /></li>
-               <li class="field"><label class="inline" for="text2">Password</label>
+               <li class="field "><label class="inline" for="text2">Password</label>
                    <input class="wide password input" id="text2" type="password"
                    placeholder="password" name="password" /></li>
                </ul>
            </fieldset>
            <div class="medium success btn centered four columns">
-               <input type="submit" id="trylog"/>
+               <button type="button" id="trylog" onclick="getStatus();" >
+               Login
+               </button>
            
        </form>
    </div>
+<script type="text/javascript">
+getStatus = function(){
+	var name = $("input[name=username]").val();
+	var password = $("input[name=password]").val()
+	$.post( "/login", { username: name, password: password }, function(data){
+		//console.log(data);
+		if(data == "danger"){
+			$("li").addClass("danger");
+			Shake($("#loginform"));
+		}else{
+			document.loginform.submit();
+		};
+		});
+};
+
+Shake = function(div){                                                                                                                                                                                            
+    var interval = 100;                                                                                                 
+    var distance = 10;                                                                                                  
+    var times = 4;                                                                                                      
+
+    $(div).css('position','relative');                                                                                  
+
+    for(var iter=0;iter<(times+1);iter++){                                                                              
+        $(div).animate({ 
+            left:((iter%2==0 ? distance : distance*-1))
+            },interval);                                   
+    }//for                                                                                                              
+
+    $(div).animate({ left: 0},interval);                                                                                
+
+};
+//test
+</script>
+   
+   
    <script type="text/javascript">
    p = $('.menu__overlay');
                 $('#menu__toggle').click(function() {
