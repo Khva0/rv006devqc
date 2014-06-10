@@ -106,7 +106,7 @@ define([
                         id: id
                     });
 				}else{
-					window.location.hash = "/#";
+					window.location.hash = "";
 				}
             },
             
