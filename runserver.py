@@ -347,8 +347,6 @@ def tickets_delete(ticket_id):
     try:
         name = session["username"]
         role = Users().get_permission(name)[0]['id_role']
-        name = session["username"]
-        role = Users().get_permission(name)[0]['id_role']
         Manager().del_ticket(ticket_id)
         return Response(None)
     except Exception, e:
