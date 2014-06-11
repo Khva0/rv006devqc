@@ -280,8 +280,10 @@ def add_order():
     try:
         name = session["username"]
         role = Users().get_permission(name)[0]['id_role']
-
+        user_id = Manager().get_user_id(name)
+        session["userid"] = user_id
         user_id = session["userid"]
+        print user_id
         orderId = Manager().add_order(user_id, get_dict(request.json))
         return Response(str(orderId))
     except Exception, e:
