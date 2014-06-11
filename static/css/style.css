@@ -30,20 +30,24 @@ body {
 
 
 #calendar {
-    position: relative;
-    left: 125px;
-    background-color: #f2f2e6;
-    bottom: 25px;
-    border: 1px solid;
-    border-color: #664e4d;
-    max-width: 151px;
+	position: relative;
+	left: 125px;
+	background-color: #f2f2e6;
+	bottom: 25px;
+	border: none;
+	border-color: #664e4d;
+	max-width: 151px;
 }
 
-#setdate {
+#setdate2 {
     position: relative;
     left: 280px;
     width: :60px;
     bottom: 54px;
+    cursor: pointer;
+}
+
+#setdate {
     cursor: pointer;
 }
 
