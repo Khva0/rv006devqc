@@ -59,7 +59,12 @@ define([ 'jquery', 'underscore', 'backbone',
 						});
 						
 						var totPrice = cartView.calcTotalPrice();
-						ordersView.notificationBrowser(totPrice);
+						try {
+							ordersView.notificationBrowser(totPrice);
+						} catch (e) {
+
+						};
+						
 						bucket.reset();
 						tickets.reset();
 						cartView.render();
@@ -200,10 +205,7 @@ define([ 'jquery', 'underscore', 'backbone',
 		render : function(option) {
 			try {
 
-				if (parseInt(document.cookie.match(new RegExp("role"
-						+ '=([^;]+)'))[1]) == 2
-						|| parseInt(document.cookie.match(new RegExp("role"
-								+ '=([^;]+)'))[1]) == 3) {
+				if (parseInt(document.cookie.match(new RegExp("role" + '=([^;]+)'))[1]) == 2 || parseInt(document.cookie.match(new RegExp("role" + '=([^;]+)'))[1]) == 3) {
 					var self = this;
 					var template = _.template(BucketTemplate, {
 						order : bucket

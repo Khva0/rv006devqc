@@ -32,15 +32,20 @@ define([ 'jquery', 'underscore', 'backbone',
 			this.listenTo(orders, 'destroy', this.renderNewElement);
 			
 		    /***********************/
+	    	try {
 		    window.addEventListener('load', function () {
-		    	  if (Notification && Notification.permission !== "granted") {
-		    	    Notification.requestPermission(function (status) {
-		    	      if (Notification.permission !== status) {
-		    	        Notification.permission = status;
-		    	      }
-		    	    });
-		    	  }
+
+		    		if (Notification && Notification.permission !== "granted") {
+			    	    Notification.requestPermission(function (status) {
+			    	      if (Notification.permission !== status) {
+			    	        Notification.permission = status;
+			    	      }
+			    	    });
+			    	  };
 		    });
+		    } catch (e) {
+
+			}
 		    /**********************/
 			
 		},
@@ -51,34 +56,38 @@ define([ 'jquery', 'underscore', 'backbone',
 		},
 		/****MENU****/
 		notificationBrowser: function(totalCount){
-			var body = "Total count: " + totalCount + "$";
-			var icon = "http://bit.ly/1paflMZ";
-		    if (Notification && Notification.permission === "granted") {
-		      var n = new Notification("Added new order!",
-		    		  {
-		    	    body : body,
-		    	    icon : icon
-		    	}
-		      );
-		    }
-		    else if (Notification && Notification.permission !== "denied") {
-		      Notification.requestPermission(function (status) {
-		        if (Notification.permission !== status) {
-		          Notification.permission = status;
-		        }
-		        if (status === "granted") {
-		          var n = new Notification("Added new order!", 
-		        		  {
+			try {
+				var body = "Total count: " + totalCount + "$";
+				var icon = "http://bit.ly/1paflMZ";
+			    if (Notification && Notification.permission === "granted") {
+			      var n = new Notification("Added new order!",
+			    		  {
 			    	    body : body,
 			    	    icon : icon
 			    	}
-		          );
-		          n.onshow = function () { 
-		        	  setTimeout(n.close, 2000); 
-		        	}
-		        }
-		      });
-		    }
+			      );
+			    }else if (Notification && Notification.permission !== "denied") {
+			      Notification.requestPermission(function (status) {
+			        if (Notification.permission !== status) {
+			          Notification.permission = status;
+			        }
+			        if (status === "granted") {
+			          var n = new Notification("Added new order!", 
+			        		  {
+				    	    body : body,
+				    	    icon : icon
+				    	}
+			          );
+			          n.onshow = function () { 
+			        	  setTimeout(n.close, 2000); 
+			        	}
+			        }
+			      });
+			    };
+			} catch (e) {
+
+			};
+
 		    },
 
 		closeOrder : function(event) {
