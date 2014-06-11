@@ -343,7 +343,7 @@ label {
     z-index: 350;
     top:100px;
     width:20%;
-    
+    cursor: pointer;
     border-bottom: 1px solid white; 
     border-left: 0px;
     border-right: 0px;
@@ -359,16 +359,17 @@ label {
     border-bottom: 1px solid white; 
     border-left: 0px;
     border-right: 0px;
+    cursor: pointer;
 }
 
-#advanced_search {
+#advanced_search_popup {
     color:white;
     position: fixed;
     left:15px;
     z-index: 350;
     top:170px;
     width:20%;
-    
+    cursor: pointer;
     border-bottom: 1px solid white; 
     border-left: 0px;
     border-right: 0px;
@@ -442,10 +443,11 @@ label {
 
 #mainmenu {
     position: fixed;
-    top: 1em;
+    top: 1%;
     left: 1em;
     width:20%;
-    height:100%;
+    bottom: 1%;
+    height: 98%;
     background-color: #664e4d;
     border-color: white;
     border-width: 20px;
