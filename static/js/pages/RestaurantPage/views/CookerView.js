@@ -15,7 +15,8 @@ define([
         'text!pages/RestaurantPage/templates/DishRowTemplate.html',
         'text!pages/RestaurantPage/templates/AddDishTemplate.html',
         'text!pages/RestaurantPage/templates/AddCategoryTemplate.html',
-        'text!pages/RestaurantPage/templates/CategoryBlockTemplate.html'
+        'text!pages/RestaurantPage/templates/CategoryBlockTemplate.html',
+        'text!pages/RestaurantPage/templates/AdvancedSearchTemplate.html'
     ],
 
     function(_,
@@ -34,7 +35,8 @@ define([
         DishRowTemplate,
         AddDishTemplate,
         AddCategoryTemplate,
-        CategoryBlockTemplate
+        CategoryBlockTemplate,
+        AdvancedSearchTemplate
     ) {
         return Backbone.View.extend({
 
@@ -47,6 +49,8 @@ define([
                 'click #resetter': 'resetSearch',
                 'click #popup__toggle': 'popUp',
                 'click #search_btn': 'searchDishes',
+                'click #advanced_search_popup': 'advancedSearchPopup', 
+                'click #advanced_search': 'advancedSearch', 
                 'keyup #search': 'showRes',
                 'click #addCat': 'addCat', 
                 'click #cat__toggle': 'catPopUp',
@@ -210,6 +214,25 @@ define([
                 dishes = new DishesCollection(str);
                 $.when(dishes.fetch()).done(function() {
                     $('#dishes').html(_.template(DishesTemplate));
+                });
+            },
+            
+            advancedSearch: function(event) {
+                var data = form2js('advanced_search_form', '.', true);
+                if (data.id_category == 'All') delete data.id_category;
+                var str = 'advanced_search/' + JSON.stringify(data);
+                dishes = new DishesCollection(str);
+                $.when(dishes.fetch()).done(function() {
+                    $('#dishes').html(_.template(DishesTemplate));
+                });
+                $('.popup__overlay').remove();
+            },
+
+            advancedSearchPopup: function(event) {
+                var self = this;
+                $.when(statuses.fetch()).done(function() {
+                    self.$el.append(_.template(AdvancedSearchTemplate));
+                    $('.popup__overlay').css('display', 'block');
                 });
             },
 
