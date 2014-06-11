@@ -1,0 +1,56 @@
+<div class="popup__overlay">
+	<div class="popup_edit_dish" style="width: 600px">
+		<div class="title">
+	  		<span>Advanced Search</span>
+	  	</div>
+		<div class="row">
+			<form id="advanced_search_form">
+				<ul class="two_up tiles">
+					<li>
+						<ul class="two_up tiles">
+							<li class="three columns inline">Name</li>
+							<li class="field eight columns"><input type="text" class="input" name="name"/></li>
+							<li class="three columns inline">Price</li>
+							<li class="field eight columns"><input type="text" class="input" name="price"/></li>
+							<li class="three columns inline">Count</li>
+							<li class="field eight columns"><input type="text" class="input" name="count"/></li>
+						</ul>
+					</li>
+					<li>
+						<ul class="two_up tiles">
+							<li class="three columns inline" style="margin-bottom: 5px">Status</li>
+							<li class="picker eight columns" style="margin-bottom: 10px">
+								<select name="id_status">
+									<%_.each(statuses.toJSON(), function(key){ %>
+										<option value="<%-key.id%>">
+											<%-key.status%>
+										</option>
+									<% }) %>
+								</select>
+							</li>
+							<li class="three columns inline">Category</li>
+							<li class="picker eight columns">
+								<select name="id_category">
+									<option selected>All</option>
+									<%_.each(categories.toJSON(), function(key){ %>
+										<option value="<%-key.id%>">
+											<%-key.category%>
+										</option>
+									<% }) %>
+								</select>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</form>
+			<div class="actions">
+				<div class="medium success btn">
+					<input type="button" value="Cancel" onclick="$('.popup__overlay').remove();" />
+				</div>
+				<div class="medium success btn">
+					<input type="button" value="Search" id="advanced_search" />
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
