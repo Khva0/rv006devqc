@@ -45,6 +45,9 @@ define([ 'jquery', 'underscore', 'backbone',
 
 			this.listenTo(bucket, 'add', this.render);
 			this.listenTo(bucket, 'remove', this.render);
+			
+			//shake
+			$("#hrlmsh").click(harlemShake);
 
 		},
 
