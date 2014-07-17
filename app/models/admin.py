@@ -19,26 +19,24 @@ class Admin(Users):
         pass
 
     def adduser(self, fields):
-        """ Add user method
-        	insert data from user form in to db 
+        """ Add user method insert data from user form in to db
         """
         return self.w.insert(fields, self.db_name)
 
     def edituser(self, fields, condition):
-        """ Edit user method
-        	update user data 
+        """ Edit user method update user data
         """
         return self.w.update(fields, self.db_name, condition)
 
     def deleteuser(self, uid):
         """ Delete user method
-        	Dete user from db (change status to remove) 
+            Dete user from db (change status to remove)
         """
         self.edituser({"id_status": "2"}, "where id={0}".format(uid))
 
     def set_permission(self, uname, role):
-        """ Set user permission method 
-        	change users permission
+        """ Set user permission method
+            change users permission
         """
         if role == 'admin':
             self.w.update(
@@ -56,5 +54,5 @@ class Admin(Users):
 if __name__ == '__main__':
     a = Admin()
     # print a.get_all_users()
-    #u.adduser({"id":"4","f_name" : "T1", "l_name" : "uuuu","login":"asdasdasd","password":"asdasdasd","email":"asdasd@asdad","status":"0","id_role":"1"})
-    #u.edituser({"f_name" : "us"},"where id = 3")
+    # u.adduser({"id":"4","f_name" : "T1", "l_name" : "uuuu","login":"asdasdasd","password":"asdasdasd","email":"asdasd@asdad","status":"0","id_role":"1"})
+    # u.edituser({"f_name" : "us"},"where id = 3")

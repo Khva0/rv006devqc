@@ -1,4 +1,12 @@
-from flask import Flask, render_template, request, abort, redirect, url_for, session, jsonify, Response
+from flask import (Flask,
+                   render_template,
+                   request,
+                   abort,
+                   redirect,
+                   url_for,
+                   session,
+                   jsonify,
+                   Response,)
 import json
 import os
 import imghdr
@@ -139,7 +147,7 @@ def edit_user(id_user):
 def save_user(id_user):
     """ Edit User
         Get data from user edit form and update in to db
-    """    
+    """
     Admin().edituser(request.json, "where id={0}".format(id_user))
     print json.dumps(request.json)
     return json.dumps(request.json)
@@ -156,7 +164,7 @@ def delete_user(id_user):
 
 @app.route('/deleteall', methods=['POST'])
 def multiple_users_delete():
-    """ Multiple users delete 
+    """ Multiple users delete
         Multiple users delete (change status by remove) get data from users form and change status
     """
     if 'username' in session:
@@ -296,7 +304,7 @@ def close_order(order_id):
     try:
         name = session["username"]
         role = Users().get_permission(name)[0]['id_role']
-        
+
         Manager().close_order(order_id)
         return Response(None)
     except Exception, e:
@@ -309,7 +317,7 @@ def remove_order(order_id):
     try:
         name = session["username"]
         role = Users().get_permission(name)[0]['id_role']
-        
+
         Manager().remove_order(order_id)
         return Response(None)
     except Exception, e:
@@ -335,7 +343,7 @@ def tickets_put(ticket_id):
     try:
         name = session["username"]
         role = Users().get_permission(name)[0]['id_role']
-        
+
         Manager().edit_order(get_dict(request.json))
         return Response(None)
     except Exception, e:
